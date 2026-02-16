@@ -1,0 +1,461 @@
+{
+  "source": "turkmenkultur.com",
+  "items": [
+    {
+      "name": "TAWUS",
+      "meaning": "Tawus guş ýaly owadan-görmegöý gyz"
+    },
+    {
+      "name": "TÄZEGÜL",
+      "meaning": "Ter-täze gül ýaly owadan gyz bolsun."
+    },
+    {
+      "name": "TOGTA",
+      "meaning": "Togtasyn, dursun,ölmesin,kän ýaşasyn."
+    },
+    {
+      "name": "TOGTAGÜL",
+      "meaning": "Gözel gyz togtasyn, ölmesin."
+    },
+    {
+      "name": "TOKAR",
+      "meaning": "Keýgiň owlugy ýaly gözel gyz bolsun."
+    },
+    {
+      "name": "TOTAÝ",
+      "meaning": "Gyz-aýal atlarnyň goşma ady, Hormatly"
+    },
+    {
+      "name": "TOTY",
+      "meaning": "Toty guş ýaly owadan bolsun."
+    },
+    {
+      "name": "TOWŞAN",
+      "meaning": "Ýüwrük,ýyldyrym bolsun, duşmana"
+    },
+    {
+      "name": "TUMAR",
+      "meaning": "Hormatly owadan gyz bolsun."
+    },
+    {
+      "name": "TURAN",
+      "meaning": "Gadymy Türk ýürdy.(Iran-Turan)."
+    },
+    {
+      "name": "ÜLKER",
+      "meaning": "Ülker ýyldyzy,(süreýýa) ýaly parlak gyz"
+    },
+    {
+      "name": "ÝILDYZ",
+      "meaning": "Ýyldyz ýaly parlak owadan gyz bolsun."
+    },
+    {
+      "name": "ÝÜPEK",
+      "meaning": "Ýüpek ýaly ýumşak owadan gyz bolsun."
+    },
+    {
+      "name": "ZÖHRE",
+      "meaning": "Ýyldyz ady bolup,şol ýaly parlasyn diýen"
+    },
+    {
+      "name": "GÖWHER",
+      "meaning": "Göwher ýaly gymmat bahaly söýülen gyz"
+    },
+    {
+      "name": "GÖZEL",
+      "meaning": "Owdan-gelşikli, görmegöý gyz bolsun."
+    },
+    {
+      "name": "GUNÇA",
+      "meaning": "Açylmadyk gül, gunça ýaly owadan gyz"
+    },
+    {
+      "name": "GÜL",
+      "meaning": "Gül ýaly owadan, ýakymly, özüne çekiji gyz"
+    },
+    {
+      "name": "GÜLNAR",
+      "meaning": "Naryň güli ýaly owadan gyz bolsun."
+    },
+    {
+      "name": "GÜLNUR",
+      "meaning": "Gül ýaly nurly owadan gyz bolsun."
+    },
+    {
+      "name": "HAJAR",
+      "meaning": "Göçüp ýören Ebrahym(A)niň aýalynyň ady."
+    },
+    {
+      "name": "HAJAT",
+      "meaning": "Gerek zat,zerur zat.Isek-arzuw edilip"
+    },
+    {
+      "name": "HALIMA",
+      "meaning": "Ýuwaş-rehimli,mylaýym gyz bolsun."
+    },
+    {
+      "name": "HALLY",
+      "meaning": "Bu at oglan-gyza dakylýar: Hal-ýagdaýy we"
+    },
+    {
+      "name": "HATYJA",
+      "meaning": "Hz.Muhammediň birinji aýalynyň ady."
+    },
+    {
+      "name": "HESEL",
+      "meaning": "Asel, bal, süýji dilli ýakymly gyz bolsun."
+    },
+    {
+      "name": "HURMA",
+      "meaning": "Süýji dilli, uly derejeli gyz bolsun."
+    },
+    {
+      "name": "HÜÝRI",
+      "meaning": "Hüýri, peri ýaly owadan gyz bolsun."
+    },
+    {
+      "name": "MAHYM",
+      "meaning": "Aýym,aý ýaly gyzym."
+    },
+    {
+      "name": "MAMA",
+      "meaning": "Mamasynyň ady dakylan gyz."
+    },
+    {
+      "name": "MAMAGÜL",
+      "meaning": "Mamasynyň güli."
+    },
+    {
+      "name": "MARAL",
+      "meaning": "Maral ýaly owadan gyz bolsun."
+    },
+    {
+      "name": "MAÝA",
+      "meaning": "Maýa ýaly ýuwaş mähirli gyz bolsun."
+    },
+    {
+      "name": "MAÝSA",
+      "meaning": "Gögerip outran ýaş arpa bugdaý.Maýsa ýaly"
+    },
+    {
+      "name": "MELEK",
+      "meaning": "Perişte, perişte ýaly haýyrly."
+    },
+    {
+      "name": "MERJEN",
+      "meaning": "Merjen ýaly gymmat-baha gözel gyz.Ýakub-"
+    },
+    {
+      "name": "MERÝEM",
+      "meaning": "Semiz-sagdyn gyz.HZ.Isanyň ejesiniň ady."
+    },
+    {
+      "name": "MIWE",
+      "meaning": "Süýji dilli gyz bolsun."
+    },
+    {
+      "name": "NABAT",
+      "meaning": "Nabat ýaly süýji – ýakymly gyz bolsun."
+    },
+    {
+      "name": "NÄZ",
+      "meaning": "Niýaz sözi bilen goşma atlaryň gysgalan"
+    },
+    {
+      "name": "NÄZIK",
+      "meaning": "Mylaýym,ýumşak, täzeje."
+    },
+    {
+      "name": "NÄZLI",
+      "meaning": "Näzli , gözel gyz bolsun."
+    },
+    {
+      "name": "NERGIS",
+      "meaning": "Sary ýaprakly owadan gül.Nergis."
+    },
+    {
+      "name": "NIGÄR",
+      "meaning": "Görmegöý ,owadan gyz."
+    },
+    {
+      "name": "NOWBAHAR",
+      "meaning": "Baharyň başlanan wagty dünýä gelen gyz."
+    },
+    {
+      "name": "NOWÇA",
+      "meaning": "Sagdyn,ýaş owadan gyz."
+    },
+    {
+      "name": "NOWGÜL",
+      "meaning": "Täze gül."
+    },
+    {
+      "name": "NURGÜL",
+      "meaning": "Nurana, gülýüzli gözel gyz."
+    },
+    {
+      "name": "SAÇLY",
+      "meaning": "Uzyn saçly dünýä gelen gyz."
+    },
+    {
+      "name": "SADAR",
+      "meaning": "Gymmatly daş ,eziz gyz."
+    },
+    {
+      "name": "SARYÝA",
+      "meaning": "Saryýagyz-owadan gyz."
+    },
+    {
+      "name": "SÄHER",
+      "meaning": "Säherde-daňdan dünýä gelen gyz."
+    },
+    {
+      "name": "SELBI",
+      "meaning": "Serw agajy.Serwi boýly owadan gyz bolsun."
+    },
+    {
+      "name": "SELIMÄ",
+      "meaning": "Sagdyn-kemsiz gyz bolsun."
+    },
+    {
+      "name": "SENEM",
+      "meaning": "Owdan ,söýgüli, gözel gyz bolsun."
+    },
+    {
+      "name": "SOLMAZ",
+      "meaning": "Solmasyn,elmydama ter bolsun."
+    },
+    {
+      "name": "SOLTAN",
+      "meaning": "Saltan,padyşah,häkim,atly-abraýly."
+    },
+    {
+      "name": "SONA",
+      "meaning": "Ýaşylbaş , owdan ördek,görmegöý gyz."
+    },
+    {
+      "name": "SONAŞ",
+      "meaning": "Sona sözi bilen gelýän goşma at."
+    },
+    {
+      "name": "SÜLGÜN",
+      "meaning": "Owadan-görmegöý,ajaýyp gyz.Meydan"
+    },
+    {
+      "name": "SÜMBÜL",
+      "meaning": "Sünbül,gowy isli ösümlik.Gül ady."
+    },
+    {
+      "name": "SURAÝ",
+      "meaning": "Ülker yyldyzyň ady.Parlak gyz."
+    },
+    {
+      "name": "ŞEKER",
+      "meaning": "Şeker-gand ýaly süýji-ýakymly gyz bolsun."
+    },
+    {
+      "name": "ŞEMŞAD",
+      "meaning": "Şemşad,gaty, sagdyn hem owadan agajyň"
+    },
+    {
+      "name": "ŞIRIN",
+      "meaning": "Süýji,datly,tagamly."
+    },
+    {
+      "name": "YMSA",
+      "meaning": "Ymsynmak,hantama bolmak, tamakin bolup"
+    },
+    {
+      "name": "KEKIL",
+      "meaning": "Käkilli, saçly owadan gyz."
+    },
+    {
+      "name": "KEÝIK",
+      "meaning": "Keýik ýaly owadan gyz bolsun."
+    },
+    {
+      "name": "KÜMÜŞ",
+      "meaning": "Görmegöý owadan gyz bolsun."
+    },
+    {
+      "name": "LÄLE",
+      "meaning": "Gyzyl gül,çygdem, parlak gül ýaly gyz bolsun."
+    },
+    {
+      "name": "LEÝLA",
+      "meaning": "Leýli sözünden dörän at."
+    },
+    {
+      "name": "BAHAR",
+      "meaning": "Baharda (ýazda) dünýä gelen gyz."
+    },
+    {
+      "name": "BAHARGÜL",
+      "meaning": "Baharyň güli ýaly owadan gyz bolsun."
+    },
+    {
+      "name": "BÄGÜL",
+      "meaning": "Bägül ýaly gözel gyz bolsun."
+    },
+    {
+      "name": "BIBI",
+      "meaning": "Hormatly, abraý gyz bolsun.Hormatly aýala"
+    },
+    {
+      "name": "BIBINIÝAZ",
+      "meaning": "Dilenip-ýalbarlyp alynan gyz."
+    },
+    {
+      "name": "BIBISARA",
+      "meaning": "Hormatly, abraýly gyz bolsun."
+    },
+    {
+      "name": "BIKE",
+      "meaning": "Hormatly uly derejeli gyz bolsun."
+    },
+    {
+      "name": "OGULBAGT",
+      "meaning": "Bagtly gyzyň yzyndan ogul bolsun."
+    },
+    {
+      "name": "OGULJAN",
+      "meaning": "Şu owadan –jan gyzyň yzyndan ogul bolsun."
+    },
+    {
+      "name": "OGULGEREK",
+      "meaning": "Gyzymyz ýeterlik, indi bize ogul gerek."
+    },
+    {
+      "name": "OTAGA",
+      "meaning": "Başymyzyň bezegi-täji gyz."
+    },
+    {
+      "name": "OWADAN",
+      "meaning": "Owadan , görmegöý, gözel gyz."
+    },
+    {
+      "name": "OWLAK",
+      "meaning": "Şadyýan – ýakymly.Owlak ýaly gyz bolsun."
+    },
+    {
+      "name": "ÖMÜR",
+      "meaning": "Ömri bolsun, kän ýaşasyn."
+    },
+    {
+      "name": "ÖWSER",
+      "meaning": "Öwsün(Äfsun) atyp duran parlak-owadan"
+    },
+    {
+      "name": "PAMYK",
+      "meaning": "Ýymşak, mylaýym, mähriban gyz bolsun."
+    },
+    {
+      "name": "PATMA",
+      "meaning": "HZ.Muhammediň gyzynyň ady."
+    },
+    {
+      "name": "PERI",
+      "meaning": "Perizat ýaly owadan gyz bolsun."
+    },
+    {
+      "name": "RABYGA",
+      "meaning": "Rabia,Dördünji."
+    },
+    {
+      "name": "RAGNA",
+      "meaning": "Owadan.Rana bir gülüň ady."
+    },
+    {
+      "name": "REÝHAN",
+      "meaning": "Hoş isli ösümlik."
+    },
+    {
+      "name": "RYZWAN",
+      "meaning": "Jennetiň bir ady."
+    },
+    {
+      "name": "JAHAN",
+      "meaning": "Dünýäsi giň ,asmany düri bolsun."
+    },
+    {
+      "name": "JAHANAÝ",
+      "meaning": "Asmanyň aýy-gözel gyz."
+    },
+    {
+      "name": "JAMAL",
+      "meaning": "Jemal, owadan gözel gyz."
+    },
+    {
+      "name": "JEMILE",
+      "meaning": "Owadan, görmegöý gyz bolsun"
+    },
+    {
+      "name": "JENAN",
+      "meaning": "Janlaryň –jany,mähriban gyz bolsun."
+    },
+    {
+      "name": "JEREN",
+      "meaning": "Keýik-Maral,owdan-çalasym gyz bolsun."
+    },
+    {
+      "name": "ÇEMEN",
+      "meaning": "Gülli otlar gögerýän ýer."
+    },
+    {
+      "name": "ÇYNAR",
+      "meaning": "Çynar ýaly başy dik bolsun, kän ýaşasyn."
+    },
+    {
+      "name": "DESSE",
+      "meaning": "Desse-desse gül ýaly owadan gyz bolsun."
+    },
+    {
+      "name": "DILEG",
+      "meaning": "Dilek-arzuw edilip ýetilen gyz."
+    },
+    {
+      "name": "DOÝDUK",
+      "meaning": "Gyzdan doýduk, indi bize ogul gerek"
+    },
+    {
+      "name": "DÖNDI",
+      "meaning": "Şu gyzyň yzyndan oglan bolsun,ogla tarap"
+    },
+    {
+      "name": "DURNA",
+      "meaning": "Durna guş ýaly owadan, aram ,sabyrly gyz"
+    },
+    {
+      "name": "DURSUN",
+      "meaning": "Dursun, ölmesin , köp ýaşasyn."
+    },
+    {
+      "name": "DÜNÝÄ",
+      "meaning": "Dünýäsi giň, asmany düri bolsun."
+    },
+    {
+      "name": "EJEGYZ",
+      "meaning": "Ejesiniň gyzy."
+    },
+    {
+      "name": "EJEKE",
+      "meaning": "Aýrylan uly aýaldoganynyň ady dakylan"
+    },
+    {
+      "name": "EJOW",
+      "meaning": "Aýrylan ejäniň ady dakylan gyz.Eje sözi"
+    },
+    {
+      "name": "ENE",
+      "meaning": "Dädesiniň aýrylan enesiniň ady dakylan gyz."
+    },
+    {
+      "name": "ENEKÄBÄ",
+      "meaning": "Dädesiniň aýrylan enesiniň ady dakylan gyz."
+    },
+    {
+      "name": "ENEKE",
+      "meaning": "Enekäniň ady dakylan gyz.(Eneke:"
+    }
+  ]
+}
