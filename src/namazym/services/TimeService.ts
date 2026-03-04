@@ -1,4 +1,4 @@
-import { format, toZonedTime } from 'date-fns-tz';
+import { format, utcToZonedTime, formatInTimeZone } from 'date-fns-tz';
 import { DEMO_MODE } from '../constants/demo';
 import { getDemoDateTime } from '../constants/demoData';
 
@@ -15,15 +15,17 @@ export const TimeService = {
         if (DEMO_MODE) {
             return getDemoDateTime();
         }
-        return toZonedTime(new Date(), TIMEZONE);
+        return utcToZonedTime(new Date(), TIMEZONE);
     },
 
     /**
      * Bugünün tarihini YYYY-MM-DD formatında döndürür (Türkmenistan saati).
      */
     getTodayDateString: (): string => {
-        const now = TimeService.now();
-        return format(now, 'yyyy-MM-dd', { timeZone: TIMEZONE });
+        if (DEMO_MODE) {
+            return format(getDemoDateTime(), 'yyyy-MM-dd', { timeZone: TIMEZONE });
+        }
+        return formatInTimeZone(new Date(), TIMEZONE, 'yyyy-MM-dd');
     },
 
     /**
@@ -31,7 +33,7 @@ export const TimeService = {
      */
     getDayOfYear: (): number => {
         const now = TimeService.now();
-        const start = toZonedTime(new Date(Date.UTC(now.getFullYear(), 0, 1, 0, 0, 0)), TIMEZONE);
+        const start = utcToZonedTime(new Date(Date.UTC(now.getFullYear(), 0, 1, 0, 0, 0)), TIMEZONE);
         const diff = now.getTime() - start.getTime();
         const oneDay = 1000 * 60 * 60 * 24;
         return Math.floor(diff / oneDay) + 1;

@@ -13,7 +13,7 @@ export const DemoBanner = () => {
 
 const styles = StyleSheet.create({
     banner: {
-        backgroundColor: colors.cardStrong,
+        backgroundColor: colors.card,
         paddingVertical: spacing.sm,
         paddingHorizontal: spacing.xl,
         borderRadius: 999,

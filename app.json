@@ -44,6 +44,14 @@
         {
           "locationWhenInUsePermission": "Kybla ugry düzmek üçin ýeriňizi bilmek gerek."
         }
+      ],
+      [
+        "expo-notifications",
+        {
+          "sounds": [
+            "./src/namazym/assets/audio/azan_short.wav"
+          ]
+        }
       ]
     ],
     "extra": {
@@ -51,9 +59,7 @@
         "projectId": "b9936d46-5710-4703-abfd-f6ed64798031"
       }
     },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
+    "runtimeVersion": "1.0.0",
     "updates": {
       "url": "https://u.expo.dev/b9936d46-5710-4703-abfd-f6ed64798031"
     }

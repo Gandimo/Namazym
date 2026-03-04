@@ -1,0 +1,152 @@
+{
+    "id": "namaz_kitaby_sejde_saw",
+    "type": "book_entry",
+    "listTitle": "Sejde säw we kaza",
+    "detailTitle": "Sejde säw, Tiläwet sejde, Şükür sejde, Kaza namazlar",
+    "content": [
+        {
+            "type": "heading",
+            "text": "SEJDE SÄW"
+        },
+        {
+            "type": "paragraph",
+            "text": "Namazda wajyplardan birini ýalňyşlyk bilen terk etmek ýa-da gijikmek ýagdaýynda namazyň ahyrynda «sejde säw» edilýär. Sejde säw namazda ýüze çykan kemçiligi doldurýar."
+        },
+        {
+            "type": "section_heading",
+            "text": "Sejde säwiň berjaý edilişi"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Soňky oturyşda «Tahýýat» okalandan soň saga salam berilýär.",
+                "Iki sejde edilýär: her birinde «Sübhäne Rabbiyel-Aglä» üç gezek.",
+                "Ikinji sejdeden soň oturylýar — tahýýat, salat-Ibrahim, doga okalýar.",
+                "Soňra saga we çepe salam berilip namaz tamamlanýar."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Sejde säw etmeli ýagdaýlar"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Fatyha ýa-da zam süresini unutmak.",
+                "Kyraaty ýalňyş ýerde içinden ýa-da sesli okamak.",
+                "Witirde kunut dogasyny unutmak.",
+                "Orta oturyşy unudyp ýerinden turmak.",
+                "Ruku ýa-da sejdäni gijikdirmek.",
+                "Tahýýatda ýalňyşmak.",
+                "Ekstrali tekbir aýtmak ýaly bidüzgün ýagdaýlar."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "TILÄWET SEJDESI"
+        },
+        {
+            "type": "paragraph",
+            "text": "Gurhany Kerimde 15 sejde aýaty bardyr. Şol aýatlary okan ýa-da eşiden kişä sejde etmek wajypdyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Tiläwet sejdäniň berjaý edilişi"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Kyblä bakylyp dik durulýar.",
+                "Niýet edilýär: «…tiläwet sejdäni okamaga».",
+                "«Allahu ekber» diýlip sejdä gidilýär.",
+                "«Sübhäne Rabbiyel-Aglä» üç gezek.",
+                "«Allahu ekber» diýlip dikelmek we namaza ýaly salam berilmeýär."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Sejde aýatlary süreleri"
+        },
+        {
+            "type": "unordered_list",
+            "items": [
+                "Araf: 206-njy aýat",
+                "Rad: 15-nji aýat",
+                "Nahl: 50-nji aýat",
+                "Isra: 109-njy aýat",
+                "Mearyem: 58-nji aýat",
+                "Haj: 18-nji aýat",
+                "Furkan: 60-njy aýat",
+                "Neml: 26-njy aýat",
+                "Sejde: 15-nji aýat",
+                "Fussilet: 38-nji aýat",
+                "Necm: 62-nji aýat",
+                "Inşikak: 21-nji aýat",
+                "Alak: 19-njy aýat",
+                "Haj: 77-nji aýat (ikinji sejde)",
+                "Sad: 24-nji aýat (şükür sejde)"
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "ŞÜKÜR SEJDESI"
+        },
+        {
+            "type": "paragraph",
+            "text": "Bir nygmata göwünden çykanda ýa-da bir beladan halas bolanda Allatagala şükür etmek üçin edilýän sejdedir. «Sad» süresiniň 24-nji aýaty hem şükür sejdesidir."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "KAZA NAMAZLAR"
+        },
+        {
+            "type": "paragraph",
+            "text": "Wagt geçip okalýan namaza «kaza» diýilýär. Mazur sebäpsiz namazyň kazasy uly günädir."
+        },
+        {
+            "type": "section_heading",
+            "text": "Kaza namazyň okalmaýan wagtlary"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Günüň dogup gelýän wagty (tuluğuş-şems).",
+                "Gün dik duran wagty — günortan zewal.",
+                "Gün ýaşyp barýan wagty (gurubüş-şems)."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Kaza üçin azan we kamat"
+        },
+        {
+            "type": "paragraph",
+            "text": "Kaza namazlar üçin azan we kamat aýtmak sünnetdir. Namazdan birden köp geçirilse, ýeke azan we kamat hem ýeterlik."
+        },
+        {
+            "type": "section_heading",
+            "text": "Kaza niýeti"
+        },
+        {
+            "type": "paragraph",
+            "text": "Kaza namazyna niýetde haýsy namazyň kazasydygyny anyklaşdyrmak gerek. Mysal:"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "«…ertiriň kaza namazyny okamaga niýet etdim».",
+                "«…düýnki öýläniň kaza namazyny okamaga niýet etdim».",
+                "Birnäçe kaza bar bolsa, «iň soňky», «iň öňki» ýa-da kesgitli gün aýdylyp niýet edilýär."
+            ]
+        }
+    ]
+}

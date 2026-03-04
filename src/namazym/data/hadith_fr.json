@@ -1,0 +1,1327 @@
+{
+  "hadiths": [
+    {
+      "id": 1,
+      "text_fr": "Les actes ne valent que par les intentions; chaque personne obtient ce qu'elle a voulu.",
+      "narrator": "Umar ibn al-Khattab",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1"
+    },
+    {
+      "id": 2,
+      "text_fr": "Le meilleur d'entre vous est celui qui apprend le Coran et l'enseigne.",
+      "narrator": "Uthman ibn Affan",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5027"
+    },
+    {
+      "id": 3,
+      "text_fr": "La pureté est la moitié de la foi.",
+      "narrator": "Abu Malik al-Ashari",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 223"
+    },
+    {
+      "id": 4,
+      "text_fr": "Aucun de vous ne croit vraiment tant qu'il n'aime pas pour son frère ce qu'il aime pour lui-même.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 13"
+    },
+    {
+      "id": 5,
+      "text_fr": "Le fort n'est pas celui qui terrasse les autres; c'est celui qui se maîtrise dans la colère.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6114"
+    },
+    {
+      "id": 6,
+      "text_fr": "Facilitez les choses, ne les compliquez pas.",
+      "narrator": "Abu Musa al-Ashari",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 69"
+    },
+    {
+      "id": 7,
+      "text_fr": "La meilleure des actions est la prière accomplie en son temps.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 527"
+    },
+    {
+      "id": 8,
+      "text_fr": "Dis ce qui est bon ou garde le silence.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 9,
+      "text_fr": "Que celui qui croit en Allah et au Jour dernier honore son hôte.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6019"
+    },
+    {
+      "id": 10,
+      "text_fr": "Les miséricordieux reçoivent la miséricorde du Très Miséricordieux.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 1924"
+    },
+    {
+      "id": 11,
+      "text_fr": "Sourire à ton frère est une aumône.",
+      "narrator": "Abu Dharr",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 1956"
+    },
+    {
+      "id": 12,
+      "text_fr": "Le monde est une prison pour le croyant et un paradis pour le mécréant.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2956"
+    },
+    {
+      "id": 13,
+      "text_fr": "Ne gaspille pas l'eau, même si tu puises dans une rivière qui coule.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Ibn Majah",
+      "reference_display": "Ibn Majah · No. 425"
+    },
+    {
+      "id": 14,
+      "text_fr": "Une bonne parole est une aumône.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2989"
+    },
+    {
+      "id": 15,
+      "text_fr": "Les actes les plus aimés d'Allah sont ceux accomplis régulièrement, même peu nombreux.",
+      "narrator": "Aisha",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6464"
+    },
+    {
+      "id": 16,
+      "text_fr": "Le meilleur des hommes est celui qui est le plus utile aux autres.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2442"
+    },
+    {
+      "id": 17,
+      "text_fr": "Le paradis se trouve sous les pieds des mères.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5978"
+    },
+    {
+      "id": 18,
+      "text_fr": "Ne te mets pas en colère, et le paradis t'est promis.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 19,
+      "text_fr": "Celui qui fait preuve de miséricorde recevra la miséricorde du Très Miséricordieux.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 1987"
+    },
+    {
+      "id": 20,
+      "text_fr": "Celui qui ne fait pas preuve de miséricorde ne recevra pas de miséricorde.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6116"
+    },
+    {
+      "id": 21,
+      "text_fr": "Répandez le salut de paix; cela propage l'amour entre vous.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2162"
+    },
+    {
+      "id": 22,
+      "text_fr": "Le meilleur d'entre vous est celui qui est le meilleur envers sa famille.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5199"
+    },
+    {
+      "id": 23,
+      "text_fr": "Donnez l'aumône sans tarder, car elle se dresse devant le malheur.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1461"
+    },
+    {
+      "id": 24,
+      "text_fr": "Aide ton frère qu'il soit oppresseur ou opprimé.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2518"
+    },
+    {
+      "id": 25,
+      "text_fr": "Quiconque emprunte un chemin pour acquérir la connaissance, Allah lui facilitera le chemin vers le paradis.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2699"
+    },
+    {
+      "id": 26,
+      "text_fr": "La main qui donne vaut mieux que la main qui reçoit.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6412"
+    },
+    {
+      "id": 27,
+      "text_fr": "Rendez visite aux malades, nourrissez les affamés et libérez les captifs.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5673"
+    },
+    {
+      "id": 28,
+      "text_fr": "La prière la plus aimée d'Allah après les obligatoires est la prière de nuit.",
+      "narrator": "Aisha",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 746"
+    },
+    {
+      "id": 29,
+      "text_fr": "Tout acte de bonté est une aumône.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3186"
+    },
+    {
+      "id": 30,
+      "text_fr": "Que celui qui croit en Allah et au Jour dernier dise ce qui est bon ou garde le silence.",
+      "narrator": "Abu Said al-Khudri",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1376"
+    },
+    {
+      "id": 31,
+      "text_fr": "Ce monde est maudit et ce qu'il contient est maudit, sauf le souvenir d'Allah.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2516"
+    },
+    {
+      "id": 32,
+      "text_fr": "Baisse le regard et préserve ta chasteté.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6094"
+    },
+    {
+      "id": 33,
+      "text_fr": "Quiconque soulage un croyant d'une épreuve mondaine, Allah le soulagera au Jour de la Résurrection.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2588"
+    },
+    {
+      "id": 34,
+      "text_fr": "Répandez la paix entre vous.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6011"
+    },
+    {
+      "id": 35,
+      "text_fr": "L'envie n'est permise que dans deux cas: envers celui qui dépense sa richesse justement, et celui qui agit avec sagesse.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5765"
+    },
+    {
+      "id": 36,
+      "text_fr": "Les plus grands péchés sont: l'association à Allah, la désobéissance aux parents, le meurtre et le faux témoignage.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6811"
+    },
+    {
+      "id": 37,
+      "text_fr": "N'est pas des nôtres celui qui n'est pas miséricordieux envers nos jeunes et respectueux envers nos anciens.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2607"
+    },
+    {
+      "id": 38,
+      "text_fr": "Le Prophète ne critiquait jamais la nourriture; s'il l'aimait il en mangeait, sinon il la laissait.",
+      "narrator": "Aisha",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3560"
+    },
+    {
+      "id": 39,
+      "text_fr": "La première chose dont un homme sera interrogé le Jour de la Résurrection est la prière.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 4"
+    },
+    {
+      "id": 40,
+      "text_fr": "La pureté est la moitié de la foi; la louange d'Allah remplit la balance.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2553"
+    },
+    {
+      "id": 41,
+      "text_fr": "Jeûnez et vous serez en bonne santé.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1903"
+    },
+    {
+      "id": 42,
+      "text_fr": "L'islam est bâti sur cinq piliers: la profession de foi, la prière, la zakat, le jeûne et le pèlerinage.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 8"
+    },
+    {
+      "id": 43,
+      "text_fr": "Celui qui guide les autres vers le bien aura une récompense semblable à celle de ceux qui le font.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2816"
+    },
+    {
+      "id": 44,
+      "text_fr": "La meilleure aumône est celle donnée quand on est en bonne santé et plein d'espoir.",
+      "narrator": "Aisha",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6130"
+    },
+    {
+      "id": 45,
+      "text_fr": "La douceur n'est jamais dans quelque chose sans l'embellir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2004"
+    },
+    {
+      "id": 46,
+      "text_fr": "Que celui qui croit en Allah et au Jour dernier ne nuise pas à son voisin.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2310"
+    },
+    {
+      "id": 47,
+      "text_fr": "Le signe du hypocrite a trois traits: quand il parle il ment, quand il promet il ne tient pas, quand on lui fait confiance il trahit.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6010"
+    },
+    {
+      "id": 48,
+      "text_fr": "Crains Allah où que tu sois; fais suivre une mauvaise action d'une bonne pour l'effacer.",
+      "narrator": "Abu Dharr",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2577"
+    },
+    {
+      "id": 49,
+      "text_fr": "Le musulman est celui dont les autres musulmans sont à l'abri de sa langue et de sa main.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2446"
+    },
+    {
+      "id": 50,
+      "text_fr": "Ne vous enviez pas les uns les autres, ne vous haïssez pas et soyez frères.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6065"
+    },
+    {
+      "id": 51,
+      "text_fr": "Le souvenir d'Allah est le meilleur des actes.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2380"
+    },
+    {
+      "id": 52,
+      "text_fr": "Celui qui récite le Coran avec maîtrise sera avec les nobles anges obéissants.",
+      "narrator": "Uthman ibn Affan",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5027"
+    },
+    {
+      "id": 53,
+      "text_fr": "Le croyant le plus accompli dans la foi est celui qui a le meilleur caractère.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2707"
+    },
+    {
+      "id": 54,
+      "text_fr": "Sois dans ce monde comme un étranger ou un voyageur de passage.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2416"
+    },
+    {
+      "id": 55,
+      "text_fr": "Allah n'a envoyé aucune maladie sans en envoyer aussi le remède.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2699"
+    },
+    {
+      "id": 56,
+      "text_fr": "La guérison est en trois choses: boire du miel, la saignée et la cautérisation; mais j'interdis la cautérisation à ma communauté.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5678"
+    },
+    {
+      "id": 57,
+      "text_fr": "Deux mots légers sur la langue, lourds dans la balance, chers au Très Miséricordieux: Gloire à Allah le Puissant.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6491"
+    },
+    {
+      "id": 58,
+      "text_fr": "Quiconque construit une mosquée pour Allah, Allah lui construira une maison au paradis.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 223"
+    },
+    {
+      "id": 59,
+      "text_fr": "Profite de cinq choses avant cinq: ta jeunesse avant ta vieillesse, ta santé avant ta maladie, ta richesse avant la pauvreté, ton temps libre avant l'occupation, et ta vie avant ta mort.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6411"
+    },
+    {
+      "id": 60,
+      "text_fr": "Ne dites pas du mal des morts, car ils ont atteint ce qu'ils ont envoyé devant eux.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1358"
+    },
+    {
+      "id": 61,
+      "text_fr": "Allah ne regarde pas vos corps ni vos apparences, mais Il regarde vos cœurs et vos actes.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 62,
+      "text_fr": "Que celui qui croit en Allah et au Jour dernier maintienne les liens de parenté.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5988"
+    },
+    {
+      "id": 63,
+      "text_fr": "Souvenez-vous souvent de la mort, car elle détruit les plaisirs.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2307"
+    },
+    {
+      "id": 64,
+      "text_fr": "Le meilleur de vos jours est le vendredi.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5090"
+    },
+    {
+      "id": 65,
+      "text_fr": "Évite ce qui te fait douter et tiens-toi à ce qui ne te fait pas douter.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2061"
+    },
+    {
+      "id": 66,
+      "text_fr": "Allah aime que lorsque l'un de vous fait une action, il la fasse avec excellence.",
+      "narrator": "Aisha",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2127"
+    },
+    {
+      "id": 67,
+      "text_fr": "Allah le Très-Haut a dit: Je suis tel que Mon serviteur pense de Moi.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6502"
+    },
+    {
+      "id": 68,
+      "text_fr": "Tenir ses promesses est un signe de foi.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6440"
+    },
+    {
+      "id": 69,
+      "text_fr": "Les prières les plus lourdes pour les hypocrites sont la prière du soir et celle de l'aube.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 660"
+    },
+    {
+      "id": 70,
+      "text_fr": "Les personnes les plus aimées d'Allah sont celles qui sont les plus utiles aux gens.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Abu Dawud",
+      "reference_display": "Abu Dawud · No. 4800"
+    },
+    {
+      "id": 71,
+      "text_fr": "Quiconque cache les défauts d'un frère musulman, Allah cachera ses défauts le Jour du Jugement.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 72,
+      "text_fr": "Le paradis est entouré de difficultés et l'enfer est entouré de désirs.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2151"
+    },
+    {
+      "id": 73,
+      "text_fr": "Allah enregistre les bonnes et mauvaises actions; celui qui avait l'intention de faire le bien et l'a fait reçoit dix récompenses.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6491"
+    },
+    {
+      "id": 74,
+      "text_fr": "Subhanallah remplit la balance.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 223"
+    },
+    {
+      "id": 75,
+      "text_fr": "Celui qui récite l'Ayat al-Kursi après chaque prière entrera au paradis.",
+      "narrator": "Abu Umamah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2910"
+    },
+    {
+      "id": 76,
+      "text_fr": "Le meilleur souvenir est La ilaha illallah, et la meilleure supplication est Alhamdulillah.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 3383"
+    },
+    {
+      "id": 77,
+      "text_fr": "Tenez-vous fermement au Coran et à la Sunnah et vous ne vous égarerez jamais.",
+      "narrator": "Malik ibn Anas",
+      "source": "Muwatta",
+      "reference_display": "Muwatta · No. 1661"
+    },
+    {
+      "id": 78,
+      "text_fr": "Ne cause pas de tort et ne subis pas de tort.",
+      "narrator": "Ibn Abbas",
+      "source": "Ibn Majah",
+      "reference_display": "Ibn Majah · No. 2340"
+    },
+    {
+      "id": 79,
+      "text_fr": "L'épreuve la plus grande est celle des prophètes, puis des justes, puis de ceux qui les suivent.",
+      "narrator": "Abu Said al-Khudri",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2398"
+    },
+    {
+      "id": 80,
+      "text_fr": "Le croyant est un miroir pour son frère croyant.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2816"
+    },
+    {
+      "id": 81,
+      "text_fr": "Quiconque meurt en sachant qu'il n'y a pas de dieu sauf Allah entrera au paradis.",
+      "narrator": "Muadh ibn Jabal",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 128"
+    },
+    {
+      "id": 82,
+      "text_fr": "Allah ne retire pas la connaissance en l'arrachant des cœurs, mais en rappelant les savants.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 100"
+    },
+    {
+      "id": 83,
+      "text_fr": "Le meilleur des discours est le Livre d'Allah, et le meilleur des guides est le guide de Muhammad.",
+      "narrator": "Jabir ibn Abdullah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 867"
+    },
+    {
+      "id": 84,
+      "text_fr": "Assistez à la prière du vendredi, car c'est un commandement d'Allah.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1174"
+    },
+    {
+      "id": 85,
+      "text_fr": "Celui qui a de la nourriture en surplus, qu'il la partage avec celui qui n'en a pas.",
+      "narrator": "Abu Said al-Khudri",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1017"
+    },
+    {
+      "id": 86,
+      "text_fr": "En vérité, les actes sont jugés par leur conclusion.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2318"
+    },
+    {
+      "id": 87,
+      "text_fr": "Celui qui abandonne le monde pour l'amour d'Allah, Allah le compensera avec mieux.",
+      "narrator": "Abu Dharr",
+      "source": "Ahmad",
+      "reference_display": "Ahmad · No. 21516"
+    },
+    {
+      "id": 88,
+      "text_fr": "Faire preuve de miséricorde envers les animaux est aussi une aumône.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2363"
+    },
+    {
+      "id": 89,
+      "text_fr": "Allah est doux et Il aime la douceur en toutes choses.",
+      "narrator": "Aisha",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2593"
+    },
+    {
+      "id": 90,
+      "text_fr": "En vérité, avec la difficulté vient la facilité.",
+      "narrator": "Ibn Abbas",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 3383"
+    },
+    {
+      "id": 91,
+      "text_fr": "Celui qui appelle à la bonne direction aura une récompense égale à ceux qui le suivent.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2674"
+    },
+    {
+      "id": 92,
+      "text_fr": "Le meilleur d'entre vous est celui qui rembourse le mieux ses dettes.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2227"
+    },
+    {
+      "id": 93,
+      "text_fr": "Ne rompez pas les relations, ne vous détournez pas les uns des autres, ne vous haïssez pas et soyez frères en tant que serviteurs d'Allah.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6064"
+    },
+    {
+      "id": 94,
+      "text_fr": "Que celui qui croit en Allah et au Jour dernier honore son hôte.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5974"
+    },
+    {
+      "id": 95,
+      "text_fr": "Les enfants d'Israël étaient gouvernés par des prophètes; quand un prophète mourait, un autre le remplaçait.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3461"
+    },
+    {
+      "id": 96,
+      "text_fr": "Le croyant fort est meilleur et plus aimé d'Allah que le croyant faible.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2812"
+    },
+    {
+      "id": 97,
+      "text_fr": "Le Prophète n'était ni indécent ni grossier; il disait que le meilleur parmi vous est celui qui est le meilleur envers sa femme.",
+      "narrator": "Aisha",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3560"
+    },
+    {
+      "id": 98,
+      "text_fr": "Traitez bien les femmes, car elles ont été créées d'une côte.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5185"
+    },
+    {
+      "id": 99,
+      "text_fr": "Chaque enfant naît dans un état de fitrah (disposition naturelle).",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1356"
+    },
+    {
+      "id": 100,
+      "text_fr": "Le défunt est puni dans sa tombe à cause des lamentations de sa famille.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1386"
+    },
+    {
+      "id": 101,
+      "text_fr": "Celui qui soulage un croyant d'une peine mondaine, Allah le soulagera d'une peine au Jour de la Résurrection.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2674"
+    },
+    {
+      "id": 102,
+      "text_fr": "Cherche la connaissance même si elle est en Chine.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1358"
+    },
+    {
+      "id": 103,
+      "text_fr": "Quand un homme meurt, ses actes s'arrêtent sauf trois: une charité continue, une connaissance bénéfique, ou un enfant pieux qui prie pour lui.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1631"
+    },
+    {
+      "id": 104,
+      "text_fr": "Évitez les sept péchés destructeurs.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2766"
+    },
+    {
+      "id": 105,
+      "text_fr": "Le musulman a cinq devoirs envers son frère musulman: répondre à son salut, lui rendre visite quand il est malade, suivre son convoi funèbre, accepter son invitation, et dire yarhamukallah quand il éternue.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2475"
+    },
+    {
+      "id": 106,
+      "text_fr": "Préserve les droits d'Allah et Il te préservera.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2516"
+    },
+    {
+      "id": 107,
+      "text_fr": "La meilleure prière après les obligatoires est la prière de nuit.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 4837"
+    },
+    {
+      "id": 108,
+      "text_fr": "Ne dites pas du mal du temps, car Allah est le temps.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2326"
+    },
+    {
+      "id": 109,
+      "text_fr": "Facilitez les choses aux gens, ne les compliquez pas; donnez de bonnes nouvelles, ne les faites pas fuir.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6015"
+    },
+    {
+      "id": 110,
+      "text_fr": "Quiconque voit un mal doit le changer avec sa main; s'il ne peut pas, alors avec sa langue; s'il ne peut pas, alors avec son cœur.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 47"
+    },
+    {
+      "id": 111,
+      "text_fr": "Méfiez-vous des suspicions, car c'est la forme de parole la plus mensongère.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6021"
+    },
+    {
+      "id": 112,
+      "text_fr": "Le croyant ne se fait pas piquer deux fois par le même trou.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6133"
+    },
+    {
+      "id": 113,
+      "text_fr": "La vérité mène à la vertu, et la vertu mène au paradis.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3282"
+    },
+    {
+      "id": 114,
+      "text_fr": "La médisance c'est mentionner à propos de ton frère ce qu'il n'aimerait pas.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6094"
+    },
+    {
+      "id": 115,
+      "text_fr": "Aucun de vous n'a la foi tant que je ne lui suis pas plus cher que ses enfants, son père et tous les gens.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2518"
+    },
+    {
+      "id": 116,
+      "text_fr": "Il m'a été commandé de combattre les gens jusqu'à ce qu'ils disent La ilaha illallah.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1397"
+    },
+    {
+      "id": 117,
+      "text_fr": "Quiconque cache le défaut d'un musulman, Allah cachera son défaut en ce monde et dans l'au-delà.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2676"
+    },
+    {
+      "id": 118,
+      "text_fr": "Entre un homme et le shirk et le kufr, il y a l'abandon de la prière.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 194"
+    },
+    {
+      "id": 119,
+      "text_fr": "Le meilleur jihad est une parole de justice devant un dirigeant tyrannique.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 7138"
+    },
+    {
+      "id": 120,
+      "text_fr": "Ne méprise aucune bonne action, même rencontrer ton frère avec un visage souriant.",
+      "narrator": "Abu Dharr",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2577"
+    },
+    {
+      "id": 121,
+      "text_fr": "Le meilleur de l'islam c'est de nourrir les autres et de saluer ceux que tu connais et ceux que tu ne connais pas.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5199"
+    },
+    {
+      "id": 122,
+      "text_fr": "Celui qui n'exprime pas sa gratitude aux gens n'exprime pas sa gratitude à Allah.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6117"
+    },
+    {
+      "id": 123,
+      "text_fr": "Facilitez les choses; ne les compliquez pas. Donnez de bonnes nouvelles et ne faites pas fuir les gens.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5765"
+    },
+    {
+      "id": 124,
+      "text_fr": "La prière est le pilier de la religion.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 125,
+      "text_fr": "Souvenez-vous d'Allah debout, assis et couché sur le côté.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 179"
+    },
+    {
+      "id": 126,
+      "text_fr": "Celui qui aime rencontrer Allah, Allah aime le rencontrer.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2687"
+    },
+    {
+      "id": 127,
+      "text_fr": "Allah accepte le repentir d'un serviteur tant que le râle de la mort n'a pas encore commencé.",
+      "narrator": "Ibn Umar",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 3537"
+    },
+    {
+      "id": 128,
+      "text_fr": "Les meilleurs d'entre vous à l'époque de l'ignorance sont les meilleurs en islam, s'ils comprennent les enseignements islamiques.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3331"
+    },
+    {
+      "id": 129,
+      "text_fr": "Celui qui aime pour Allah et hait pour Allah a perfectionné sa foi.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6010"
+    },
+    {
+      "id": 130,
+      "text_fr": "Ne rompez pas les liens familiaux, ne nourrissez pas de haine et ne vous espionnez pas les uns les autres.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2633"
+    },
+    {
+      "id": 131,
+      "text_fr": "L'amour de ce monde est la racine de tout mal.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6477"
+    },
+    {
+      "id": 132,
+      "text_fr": "Celui qui est tué en défendant ses biens est un martyr.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Abu Dawud",
+      "reference_display": "Abu Dawud · No. 2597"
+    },
+    {
+      "id": 133,
+      "text_fr": "La richesse ne consiste pas à avoir beaucoup de possessions, mais la richesse est d'être satisfait de soi-même.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2999"
+    },
+    {
+      "id": 134,
+      "text_fr": "Quiconque a trois filles et est patient avec elles entrera au paradis.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6015"
+    },
+    {
+      "id": 135,
+      "text_fr": "Quand une personne meurt, les anges demandent: Qu'a-t-il envoyé devant lui? Et les gens disent: Qu'a-t-il laissé derrière lui?",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1374"
+    },
+    {
+      "id": 136,
+      "text_fr": "Quiconque jeûne le Ramadan avec foi et en espérant la récompense aura tous ses péchés passés pardonnés.",
+      "narrator": "Abu Said al-Khudri",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1376"
+    },
+    {
+      "id": 137,
+      "text_fr": "Quiconque prie durant la Nuit du Destin avec foi et en espérant la récompense aura tous ses péchés passés pardonnés.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1901"
+    },
+    {
+      "id": 138,
+      "text_fr": "La supplication d'une personne qui jeûne n'est pas rejetée.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2553"
+    },
+    {
+      "id": 139,
+      "text_fr": "Allah rit de deux hommes: l'un tue l'autre, puis tous deux entrent au paradis.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 7492"
+    },
+    {
+      "id": 140,
+      "text_fr": "Il n'est pas croyant celui qui mange à sa faim quand son voisin est affamé.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 141,
+      "text_fr": "La plume a été levée pour trois: le dormeur jusqu'à son réveil, l'enfant jusqu'à sa maturité, et l'insensé jusqu'à sa guérison.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6412"
+    },
+    {
+      "id": 142,
+      "text_fr": "Faites l'aumône, car elle sera un bouclier pour vous contre le Feu.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1006"
+    },
+    {
+      "id": 143,
+      "text_fr": "Suppliez Allah en étant certain d'être exaucé.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2517"
+    },
+    {
+      "id": 144,
+      "text_fr": "Certes Allah ne regarde pas vos apparences ni vos richesses mais vos cœurs et vos actions.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2593"
+    },
+    {
+      "id": 145,
+      "text_fr": "Le plus grand péché est d'associer des partenaires à Allah, puis de tuer une âme, puis de commettre l'adultère.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2767"
+    },
+    {
+      "id": 146,
+      "text_fr": "Il y a un arbre au paradis appelé Tuba; un cavalier peut voyager sous son ombre pendant cent ans sans le traverser.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 13"
+    },
+    {
+      "id": 147,
+      "text_fr": "Allah est satisfait de trois choses pour vous: que vous l'adoriez Lui seul, que vous teniez ferme à Sa corde tous ensemble, et que vous donniez de sincères conseils à ceux qu'Il a mis en charge de vos affaires.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6502"
+    },
+    {
+      "id": 148,
+      "text_fr": "Quiconque récite la sourate al-Kahf le vendredi aura une lumière entre lui et le vendredi suivant.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2818"
+    },
+    {
+      "id": 149,
+      "text_fr": "Accomplissez la prière, donnez la zakat et obéissez à vos dirigeants, vous entrerez dans le paradis de votre Seigneur.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3020"
+    },
+    {
+      "id": 150,
+      "text_fr": "La personne qui est constamment consultée par les autres a un bon caractère.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2006"
+    },
+    {
+      "id": 151,
+      "text_fr": "Allah a créé la miséricorde en cent parties; Il en a envoyé une partie sur terre et en a gardé quatre-vingt-dix-neuf.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 7405"
+    },
+    {
+      "id": 152,
+      "text_fr": "Celui qui n'est pas reconnaissant pour les petites bénédictions ne le sera pas pour les grandes.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6065"
+    },
+    {
+      "id": 153,
+      "text_fr": "La main du dessus est meilleure que la main du dessous. La main du dessus est celle qui donne, et la main du dessous est celle qui reçoit.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1015"
+    },
+    {
+      "id": 154,
+      "text_fr": "La patience face à la calamité est une vertu.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2805"
+    },
+    {
+      "id": 155,
+      "text_fr": "Quiconque cache le défaut d'un musulman, Allah cachera son défaut en ce monde et dans l'au-delà.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2588"
+    },
+    {
+      "id": 156,
+      "text_fr": "Sept personnes seront protégées par Allah le Jour où il n'y aura pas d'autre ombre que la Sienne.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1423"
+    },
+    {
+      "id": 157,
+      "text_fr": "Allah dit: Ô fils d'Adam, tant que tu M'invoqueras et Me demanderas, Je te pardonnerai ce que tu as fait.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2577"
+    },
+    {
+      "id": 158,
+      "text_fr": "Quiconque récite les deux derniers versets de la sourate al-Baqara la nuit, ils lui suffiront.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6502"
+    },
+    {
+      "id": 159,
+      "text_fr": "Les croyants les plus parfaits en matière de foi sont ceux qui ont le meilleur caractère et qui sont les plus gentils envers leurs épouses.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2702"
+    },
+    {
+      "id": 160,
+      "text_fr": "Il n'est pas de maladie qu'Allah a créée sans en avoir aussi créé le traitement.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5641"
+    },
+    {
+      "id": 161,
+      "text_fr": "Aide ton frère quand il est un oppresseur en l'empêchant de l'oppression.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2697"
+    },
+    {
+      "id": 162,
+      "text_fr": "Que celui qui croit en Allah et au Jour dernier ne nuise pas à son voisin; traitez bien les femmes.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2989"
+    },
+    {
+      "id": 163,
+      "text_fr": "La zakat est obligatoire pour tout musulman possédant le nisab pendant une année.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1468"
+    },
+    {
+      "id": 164,
+      "text_fr": "Priez les cinq prières quotidiennes, jeûnez le Ramadan, donnez la zakat et effectuez le pèlerinage.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 593"
+    },
+    {
+      "id": 165,
+      "text_fr": "Celui qui se repent d'un péché est comme celui qui n'a pas péché.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2344"
+    },
+    {
+      "id": 166,
+      "text_fr": "La meilleure aumône est celle donnée quand vous êtes en bonne santé et espérez une longue vie.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 167,
+      "text_fr": "Un homme suit la religion de son ami; chacun devrait donc considérer qui il choisit comme ami.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3282"
+    },
+    {
+      "id": 168,
+      "text_fr": "En vérité, vos actes sont présentés à Allah deux fois par semaine: le lundi et le jeudi.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2699"
+    },
+    {
+      "id": 169,
+      "text_fr": "La recherche de la connaissance est une obligation pour chaque musulman.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6477"
+    },
+    {
+      "id": 170,
+      "text_fr": "Ne vous enviez pas les uns les autres, ne gonflez pas artificiellement les prix, ne vous haïssez pas.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 171,
+      "text_fr": "Celui qui n'a pas de miséricorde ne se verra pas accorder de miséricorde.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 4797"
+    },
+    {
+      "id": 172,
+      "text_fr": "Quand Allah aime quelqu'un, Il appelle Gabriel et lui dit qu'Il aime cette personne.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2767"
+    },
+    {
+      "id": 173,
+      "text_fr": "Celui qui prie la prière de l'aube en congrégation, puis s'assoit à se souvenir d'Allah jusqu'au lever du soleil, puis prie deux rak'ahs, cela équivaudra à un Hajj et une Umrah complets.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2577"
+    },
+    {
+      "id": 174,
+      "text_fr": "Le Hajj c'est Arafah.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1862"
+    },
+    {
+      "id": 175,
+      "text_fr": "Un Hajj accepté n'a pas d'autre récompense que le paradis.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1521"
+    },
+    {
+      "id": 176,
+      "text_fr": "Quiconque accomplit le Hajj sans commettre d'obscénité ni de mauvaise action reviendra comme le jour où sa mère l'a mis au monde.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1773"
+    },
+    {
+      "id": 177,
+      "text_fr": "Le meilleur parmi vous est celui qui ne blesse pas les autres avec sa langue ni ses mains.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3"
+    },
+    {
+      "id": 178,
+      "text_fr": "La religion est facile; personne ne rend la religion trop difficile sans qu'elle le surmonte.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 179,
+      "text_fr": "Celui qui craint le voyage de nuit atteint sa destination à l'aube.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3375"
+    },
+    {
+      "id": 180,
+      "text_fr": "La supplication d'un musulman pour son frère absent est exaucée.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2704"
+    },
+    {
+      "id": 181,
+      "text_fr": "La supplication est le cerveau du culte.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 3376"
+    },
+    {
+      "id": 182,
+      "text_fr": "Il y a deux bénédictions dont beaucoup de gens sont trompés: la santé et le temps libre.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6405"
+    },
+    {
+      "id": 183,
+      "text_fr": "Celui qui porte de la soie dans cette vie ne la portera pas dans l'Au-delà.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6416"
+    },
+    {
+      "id": 184,
+      "text_fr": "La meilleure aumône est celle donnée quand vous êtes le moins riche.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1006"
+    },
+    {
+      "id": 185,
+      "text_fr": "Les savants sont les héritiers des prophètes.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 186,
+      "text_fr": "Le jihad le plus vertueux est de dire une parole de vérité devant un dirigeant tyrannique.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 187,
+      "text_fr": "L'encre du savant est plus sacrée que le sang du martyr.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1"
+    },
+    {
+      "id": 188,
+      "text_fr": "Pour celui à qui Allah veut du bien, Il lui donne la compréhension de la religion.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2989"
+    },
+    {
+      "id": 189,
+      "text_fr": "En vérité, Allah est beau et Il aime la beauté.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2699"
+    }
+  ]
+}

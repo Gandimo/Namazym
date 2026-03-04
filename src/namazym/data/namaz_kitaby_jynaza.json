@@ -1,0 +1,98 @@
+{
+    "id": "namaz_kitaby_jynaza",
+    "type": "book_entry",
+    "listTitle": "Jynaza namazy",
+    "detailTitle": "Jynaza namazy",
+    "content": [
+        {
+            "type": "heading",
+            "text": "JYNAZA NAMAZY"
+        },
+        {
+            "type": "paragraph",
+            "text": "Jynaza namazy musulman aradan çykan adama edilýän sogaply farz-ı kifayedir. Käbir musulmanlar tarapyndan ýerine ýetirilse, beýlekilerden düşýär."
+        },
+        {
+            "type": "section_heading",
+            "text": "Jynaza namazynyň şertleri"
+        },
+        {
+            "type": "unordered_list",
+            "items": [
+                "Merhumyň musulman bolmagy.",
+                "Merhumyň ýuwlup kepenlenmegi.",
+                "Jynazanyň jemagatyň öňünde goýulmagy.",
+                "Namaz okajaklaryň täretli bolmagy."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Jynaza namazynyň niýeti"
+        },
+        {
+            "type": "quote",
+            "text": "«Niýet etdim Allah ryzasy üçin jynaza namazyny okamaga, uýdum häzir bolan ymama»"
+        },
+        {
+            "type": "section_heading",
+            "text": "Jynaza namazynyň okalyş düzgüni"
+        },
+        {
+            "type": "paragraph",
+            "text": "Jynaza namazy ruku we sejde bolmazdan okalýar."
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Niýet edilýär.",
+                "1-nji tekbir → «Sübhaneke» dogasy okalýar.",
+                "2-nji tekbir → Salawat (Allahümme salli, Allahümme bärik) okalýar.",
+                "3-nji tekbir → Jynaza dogasy okalýar.",
+                "4-nji tekbir → Saga we çepe salam berilýär."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Jynaza dogalary"
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Merhum erkek bolsa"
+        },
+        {
+            "type": "quote",
+            "text": "«Alla:hümmagfir lihayyina: ve meyyitina: ve şa:hidina: ve ga:'ibina: ve sagiry:na: we kebi:rina: ve zekerina: we ünsa:na:. Alla:hümme men ahýeýtehü minna: feahýihi alel-islä:m, ve men teveffeytehu minna: feteveffehu alel-iman»"
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Merhum aýal bolsa"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ýokardaky dogany okanyňda merhumy aňladýan ýerleri aýalyňky ýaly üýtgetmeli (hu → ha)."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Merhum çaga bolsa"
+        },
+        {
+            "type": "quote",
+            "text": "«Alla:hümme'c'alhu lena: feratan vec'alhu lena: ecran ve zuhra:n vec'alhu lena: şa:fi'an ve müşeffa'a:»"
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Käbir meseleler"
+        },
+        {
+            "type": "unordered_list",
+            "items": [
+                "Jynaza namazy jemagat bilen okalanda sogaby uludyr.",
+                "Merhumyň bagyşlanmagy üçin doga edilýär.",
+                "Jynaza namazyndan soň teşrik tekbiri okalmaýar."
+            ]
+        }
+    ]
+}

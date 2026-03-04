@@ -1,0 +1,497 @@
+[
+    {
+        "id": 1,
+        "arabic": "ٱللَّٰه",
+        "latin_tr": "Allah"
+    },
+    {
+        "id": 2,
+        "arabic": "ٱلرَّحْمَٰن",
+        "latin_tr": "Er-Rahman"
+    },
+    {
+        "id": 3,
+        "arabic": "ٱلرَّحِيم",
+        "latin_tr": "Er-Rahim"
+    },
+    {
+        "id": 4,
+        "arabic": "ٱلْمَلِك",
+        "latin_tr": "El-Melik"
+    },
+    {
+        "id": 5,
+        "arabic": "ٱلْقُدُّوس",
+        "latin_tr": "El-Kuddus"
+    },
+    {
+        "id": 6,
+        "arabic": "ٱلسَّلَام",
+        "latin_tr": "Es-Selam"
+    },
+    {
+        "id": 7,
+        "arabic": "ٱلْمُؤْمِن",
+        "latin_tr": "El-Mü'min"
+    },
+    {
+        "id": 8,
+        "arabic": "ٱلْمُهَيْمِن",
+        "latin_tr": "El-Müheymin"
+    },
+    {
+        "id": 9,
+        "arabic": "ٱلْعَزِيز",
+        "latin_tr": "El-Aziz"
+    },
+    {
+        "id": 10,
+        "arabic": "ٱلْجَبَّار",
+        "latin_tr": "El-Cebbar"
+    },
+    {
+        "id": 11,
+        "arabic": "ٱلْمُتَكَبِّر",
+        "latin_tr": "El-Mütekebbir"
+    },
+    {
+        "id": 12,
+        "arabic": "ٱلْخَالِق",
+        "latin_tr": "El-Halik"
+    },
+    {
+        "id": 13,
+        "arabic": "ٱلْبَارِئ",
+        "latin_tr": "El-Bari"
+    },
+    {
+        "id": 14,
+        "arabic": "ٱلْمُصَوِّر",
+        "latin_tr": "El-Musavvir"
+    },
+    {
+        "id": 15,
+        "arabic": "ٱلْغَفَّار",
+        "latin_tr": "El-Gaffar"
+    },
+    {
+        "id": 16,
+        "arabic": "ٱلْقَهَّار",
+        "latin_tr": "El-Kahhar"
+    },
+    {
+        "id": 17,
+        "arabic": "ٱلْوَهَّاب",
+        "latin_tr": "El-Vehhab"
+    },
+    {
+        "id": 18,
+        "arabic": "ٱلرَّزَّاق",
+        "latin_tr": "Er-Rezzak"
+    },
+    {
+        "id": 19,
+        "arabic": "ٱلْفَتَّاح",
+        "latin_tr": "El-Fettah"
+    },
+    {
+        "id": 20,
+        "arabic": "ٱلْعَلِيم",
+        "latin_tr": "El-Alim"
+    },
+    {
+        "id": 21,
+        "arabic": "ٱلْقَابِض",
+        "latin_tr": "El-Kabid"
+    },
+    {
+        "id": 22,
+        "arabic": "ٱلْبَاسِط",
+        "latin_tr": "El-Basit"
+    },
+    {
+        "id": 23,
+        "arabic": "ٱلْخَافِض",
+        "latin_tr": "El-Hafid"
+    },
+    {
+        "id": 24,
+        "arabic": "ٱلرَّافِع",
+        "latin_tr": "Er-Rafi"
+    },
+    {
+        "id": 25,
+        "arabic": "ٱلْمُعِزّ",
+        "latin_tr": "El-Muizz"
+    },
+    {
+        "id": 26,
+        "arabic": "ٱلْمُذِلّ",
+        "latin_tr": "El-Müzill"
+    },
+    {
+        "id": 27,
+        "arabic": "ٱلسَّمِيع",
+        "latin_tr": "Es-Semiʿ"
+    },
+    {
+        "id": 28,
+        "arabic": "ٱلْبَصِير",
+        "latin_tr": "El-Basir"
+    },
+    {
+        "id": 29,
+        "arabic": "ٱلْحَكَم",
+        "latin_tr": "El-Hakem"
+    },
+    {
+        "id": 30,
+        "arabic": "ٱلْعَدْل",
+        "latin_tr": "El-Adl"
+    },
+    {
+        "id": 31,
+        "arabic": "ٱللَّطِيف",
+        "latin_tr": "El-Latif"
+    },
+    {
+        "id": 32,
+        "arabic": "ٱلْخَبِير",
+        "latin_tr": "El-Habir"
+    },
+    {
+        "id": 33,
+        "arabic": "ٱلْحَلِيم",
+        "latin_tr": "El-Halim"
+    },
+    {
+        "id": 34,
+        "arabic": "ٱلْعَظِيم",
+        "latin_tr": "El-Azim"
+    },
+    {
+        "id": 35,
+        "arabic": "ٱلْغَفُور",
+        "latin_tr": "El-Gafur"
+    },
+    {
+        "id": 36,
+        "arabic": "ٱلشَّكُور",
+        "latin_tr": "Eş-Şekur"
+    },
+    {
+        "id": 37,
+        "arabic": "ٱلْعَلِيّ",
+        "latin_tr": "El-Aliyy"
+    },
+    {
+        "id": 38,
+        "arabic": "ٱلْكَبِير",
+        "latin_tr": "El-Kebir"
+    },
+    {
+        "id": 39,
+        "arabic": "ٱلْحَفِيظ",
+        "latin_tr": "El-Hafiz"
+    },
+    {
+        "id": 40,
+        "arabic": "ٱلْمُقِيت",
+        "latin_tr": "El-Mukit"
+    },
+    {
+        "id": 41,
+        "arabic": "ٱلْحَسِيب",
+        "latin_tr": "El-Hasib"
+    },
+    {
+        "id": 42,
+        "arabic": "ٱلْجَلِيل",
+        "latin_tr": "El-Celil"
+    },
+    {
+        "id": 43,
+        "arabic": "ٱلْكَرِيم",
+        "latin_tr": "El-Kerim"
+    },
+    {
+        "id": 44,
+        "arabic": "ٱلرَّقِيب",
+        "latin_tr": "Er-Rakib"
+    },
+    {
+        "id": 45,
+        "arabic": "ٱلْمُجِيب",
+        "latin_tr": "El-Mucib"
+    },
+    {
+        "id": 46,
+        "arabic": "ٱلْوَاسِع",
+        "latin_tr": "El-Vasi"
+    },
+    {
+        "id": 47,
+        "arabic": "ٱلْحَكِيم",
+        "latin_tr": "El-Hakim"
+    },
+    {
+        "id": 48,
+        "arabic": "ٱلْوَدُود",
+        "latin_tr": "El-Vedud"
+    },
+    {
+        "id": 49,
+        "arabic": "ٱلْمَجِيد",
+        "latin_tr": "El-Mecid"
+    },
+    {
+        "id": 50,
+        "arabic": "ٱلْبَاعِث",
+        "latin_tr": "El-Bais"
+    },
+    {
+        "id": 51,
+        "arabic": "ٱلشَّهِيد",
+        "latin_tr": "Eş-Şehid"
+    },
+    {
+        "id": 52,
+        "arabic": "ٱلْحَقّ",
+        "latin_tr": "El-Hakk"
+    },
+    {
+        "id": 53,
+        "arabic": "ٱلْوَكِيل",
+        "latin_tr": "El-Vekil"
+    },
+    {
+        "id": 54,
+        "arabic": "ٱلْقَوِيّ",
+        "latin_tr": "El-Kaviyy"
+    },
+    {
+        "id": 55,
+        "arabic": "ٱلْمَتِين",
+        "latin_tr": "El-Metin"
+    },
+    {
+        "id": 56,
+        "arabic": "ٱلْوَلِيّ",
+        "latin_tr": "El-Veliyy"
+    },
+    {
+        "id": 57,
+        "arabic": "ٱلْحَمِيد",
+        "latin_tr": "El-Hamid"
+    },
+    {
+        "id": 58,
+        "arabic": "ٱلْمُحْصِي",
+        "latin_tr": "El-Muhsi"
+    },
+    {
+        "id": 59,
+        "arabic": "ٱلْمُبْدِئ",
+        "latin_tr": "El-Mübdi"
+    },
+    {
+        "id": 60,
+        "arabic": "ٱلْمُعِيد",
+        "latin_tr": "El-Muid"
+    },
+    {
+        "id": 61,
+        "arabic": "ٱلْمُحْيِي",
+        "latin_tr": "El-Muhyi"
+    },
+    {
+        "id": 62,
+        "arabic": "ٱلْمُمِيت",
+        "latin_tr": "El-Mümit"
+    },
+    {
+        "id": 63,
+        "arabic": "ٱلْحَيّ",
+        "latin_tr": "El-Hayy"
+    },
+    {
+        "id": 64,
+        "arabic": "ٱلْقَيُّوم",
+        "latin_tr": "El-Kayyum"
+    },
+    {
+        "id": 65,
+        "arabic": "ٱلْوَاجِد",
+        "latin_tr": "El-Vacid"
+    },
+    {
+        "id": 66,
+        "arabic": "ٱلْمَاجِد",
+        "latin_tr": "El-Macid"
+    },
+    {
+        "id": 67,
+        "arabic": "ٱلْوَاحِد",
+        "latin_tr": "El-Vahid"
+    },
+    {
+        "id": 68,
+        "arabic": "ٱلْأَحَد",
+        "latin_tr": "El-Ehad"
+    },
+    {
+        "id": 69,
+        "arabic": "ٱلصَّمَد",
+        "latin_tr": "Es-Samed"
+    },
+    {
+        "id": 70,
+        "arabic": "ٱلْقَادِر",
+        "latin_tr": "El-Kadir"
+    },
+    {
+        "id": 71,
+        "arabic": "ٱلْمُقْتَدِر",
+        "latin_tr": "El-Muktedir"
+    },
+    {
+        "id": 72,
+        "arabic": "ٱلْمُقَدِّم",
+        "latin_tr": "El-Mukaddim"
+    },
+    {
+        "id": 73,
+        "arabic": "ٱلْمُؤَخِّر",
+        "latin_tr": "El-Muahhir"
+    },
+    {
+        "id": 74,
+        "arabic": "ٱلْأَوَّل",
+        "latin_tr": "El-Evvel"
+    },
+    {
+        "id": 75,
+        "arabic": "ٱلْآخِر",
+        "latin_tr": "El-Ahir"
+    },
+    {
+        "id": 76,
+        "arabic": "ٱلظَّاهِر",
+        "latin_tr": "Ez-Zahir"
+    },
+    {
+        "id": 77,
+        "arabic": "ٱلْبَاطِن",
+        "latin_tr": "El-Batin"
+    },
+    {
+        "id": 78,
+        "arabic": "ٱلْوَالِي",
+        "latin_tr": "El-Vali"
+    },
+    {
+        "id": 79,
+        "arabic": "ٱلْمُتَعَالِي",
+        "latin_tr": "El-Müteali"
+    },
+    {
+        "id": 80,
+        "arabic": "ٱلْبَرّ",
+        "latin_tr": "El-Berr"
+    },
+    {
+        "id": 81,
+        "arabic": "ٱلتَّوَّاب",
+        "latin_tr": "Et-Tevvab"
+    },
+    {
+        "id": 82,
+        "arabic": "ٱلْمُنْتَقِم",
+        "latin_tr": "El-Müntekim"
+    },
+    {
+        "id": 83,
+        "arabic": "ٱلْعَفُوّ",
+        "latin_tr": "El-Afuvv"
+    },
+    {
+        "id": 84,
+        "arabic": "ٱلرَّؤُوف",
+        "latin_tr": "Er-Rauf"
+    },
+    {
+        "id": 85,
+        "arabic": "مَالِكُ ٱلْمُلْك",
+        "latin_tr": "Malik-ül Mülk"
+    },
+    {
+        "id": 86,
+        "arabic": "ذُو ٱلْجَلَالِ وَٱلْإِكْرَام",
+        "latin_tr": "Zül-Celali vel-İkram"
+    },
+    {
+        "id": 87,
+        "arabic": "ٱلْمُقْسِط",
+        "latin_tr": "El-Muksit"
+    },
+    {
+        "id": 88,
+        "arabic": "ٱلْجَامِع",
+        "latin_tr": "El-Cami"
+    },
+    {
+        "id": 89,
+        "arabic": "ٱلْغَنِيّ",
+        "latin_tr": "El-Ganiyy"
+    },
+    {
+        "id": 90,
+        "arabic": "ٱلْمُغْنِي",
+        "latin_tr": "El-Mugni"
+    },
+    {
+        "id": 91,
+        "arabic": "ٱلْمَانِع",
+        "latin_tr": "El-Mani"
+    },
+    {
+        "id": 92,
+        "arabic": "ٱلضَّارّ",
+        "latin_tr": "Ed-Darr"
+    },
+    {
+        "id": 93,
+        "arabic": "ٱلنَّافِع",
+        "latin_tr": "En-Nafi"
+    },
+    {
+        "id": 94,
+        "arabic": "ٱلنُّور",
+        "latin_tr": "En-Nur"
+    },
+    {
+        "id": 95,
+        "arabic": "ٱلْهَادِي",
+        "latin_tr": "El-Hadi"
+    },
+    {
+        "id": 96,
+        "arabic": "ٱلْبَدِيع",
+        "latin_tr": "El-Bedi"
+    },
+    {
+        "id": 97,
+        "arabic": "ٱلْبَاقِي",
+        "latin_tr": "El-Baki"
+    },
+    {
+        "id": 98,
+        "arabic": "ٱلْوَارِث",
+        "latin_tr": "El-Varis"
+    },
+    {
+        "id": 99,
+        "arabic": "ٱلرَّشِيد",
+        "latin_tr": "Er-Reşid"
+    }
+]

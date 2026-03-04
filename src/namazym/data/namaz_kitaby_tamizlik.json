@@ -1,0 +1,232 @@
+{
+    "id": "namaz_kitaby_tamizlik",
+    "type": "book_entry",
+    "listTitle": "Tämizlik",
+    "detailTitle": "Tämizlik",
+    "content": [
+        {
+            "type": "heading",
+            "text": "II BÖLÜM"
+        },
+        {
+            "type": "subheading",
+            "text": "TÄMIZLIK"
+        },
+        {
+            "type": "paragraph",
+            "text": "Yslam dini musulmanlaryň dine bir kalbynyň, içki dünýäsiniň arassalygyna däl, eýsem, daşky görnüşiniň, bedeniniň, egin-eşigininiň päk bolmagyna hem örän uly ähmiýet berýär."
+        },
+        {
+            "type": "paragraph",
+            "text": "Gurhany Kerimiň «A'lâ» süresiniň 14–15-nji aýatlarynda şeýle aýdylýar:"
+        },
+        {
+            "type": "quote",
+            "text": "«Hakykatdan hem, tämizlenen we Perwerdigäriniň adyny ýat edip namaz okan (her bir) adam (azapdan) halas bolar»."
+        },
+        {
+            "type": "paragraph",
+            "text": "Pygamberimiz Hz. Muhammet sallallähu aleyhi we sellem hem tämizlik barada: «Tämizlik imanyň ýarysysydyr» diýip aýdýar (Muslim)."
+        },
+        {
+            "type": "section_heading",
+            "text": "NEJASATDAN ARASSALANMAK"
+        },
+        {
+            "type": "paragraph",
+            "text": "Adamlaryň we käbir jandarlaryň bedeninden bölünip çykýan hapalara we serhoş ediji içgiler ýaly hapa hasaplanýan käbir beýleki zatlara «nejasat» diýilýär. Musulmanyňçylykda nejasatyň ýokan ýeri hapa hasaplanýar. Şonuň üçin namaz okaýjak adamyň bedeniniň, eşigininiň we namaz okaýan ýeriniň nejasatdan päk bolmagy zerurdyr."
+        },
+        {
+            "type": "paragraph",
+            "text": "Namazyň dürslügine päsgel berýän nejasatlaryň agyr nejasat we ýeňil nejasat diýilýän görnüşleri bolýar."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Agyr nejasat hasaplanýan zatlar"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Adam bedeninden çykyp, täret ýa-da gusul almaklygyň zerurlygyny döredýän hemme zat: peşew, tezek, meni, mezi, wedi, gan, iriň, sary suw, agyz dolusy gusuk, zenanlara mahsus aýbaşy, çile we istihaza ganlary.",
+                "Eti iýilmeýän haýwanlaryň nejasaty, peşewi, hyllgy. Eti iýilmeýän haýwanlardan diňe pişigiň hyllgy we agzyndan galan zat nejasat däl-de, mekruh hasap edilýär.",
+                "Haýwanlardan çykýan gan.",
+                "Towuk, gaz, ördek, hindi guşy ýaly eti iýilýän guşlaryň tezegi.",
+                "Maslygynyň ýa-da haram ölen malyň eýlenmedik derisi.",
+                "Şerap (arak), serhoş edýän beýleki spirtli içgiler hem egin-eşige ýa-da bedene dökülse, degen ýeri ýuwulýança tämiz däl."
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Agyr nejasatyň namazyň dürslügine päsgel berýän mukdary gatylygyna (goýulygyna) ýa-da suwuklygyna görä kesgitlenýär. Eger nejasat gaty görnüşde bolup, ol hem bir dirhemden, ýagny üç gramdan az bolsa ýa-da suwuklyk görnüşindäki nejasat eliň aýasynyň içinden az ýere ýaýran bolsa, onda ol nejasat namazyň dürslügine päsgel bermeýär. Iki nejasatyň hem (suwuk we goýy nejasatlaryň) şundan artykmajy namazyň dürslügine päsgel berýär. Ýöne namazyň dürslügine päsgel bermeýän az mukdardaky nejasatdan hem arassalanmak sünnetdir."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Ýeňil nejasat hasaplanýan zatlar"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Atyň, gatyryň, eşegiň, eti iýilýän (goýun, keýik) öý hem-de ýabany haýwanlaryň peşewi we tezegi.",
+                "Gyrgy, baýguş ýaly eti iýilmeýän guşlaryň tezegi."
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Ýöne serçe, gögerçin, gumry ýaly nejasatyny howada taşlaýan guşlaryň tezegi täretli adamyň bir ýerine degse, ol ýer nejasat hasaplanmaýar."
+        },
+        {
+            "type": "paragraph",
+            "text": "Eger ýeňil nejasat hasaplanýan zatlar eşigiň ýa-da beden agzasynyň dörtden bir böleginden az ýere degen bolsa, ol nejasat namazyň dürslügine päsgel bermeýär. Ýöne ol nejasaty arassalap namaz okamak sünnetdir."
+        },
+        {
+            "type": "section_heading",
+            "text": "Nejasaty päklemekiň ýollary"
+        },
+        {
+            "type": "paragraph",
+            "text": "Nejasatdan päklenmek, täret we gusul almak üçin iň esasy arassalaýjy zat suwudyr. Suwuň tämizleýji bolmagy üçin onuň reňki, tagamy ýa-da ysy üýtgemeli däldir."
+        },
+        {
+            "type": "paragraph",
+            "text": "Şerigatyň görkezmesine görä, hapalanan zatlary suw bilen ýuwmak, suwda gaýnatmak, oda tutmak, süpürmek (sürtmek), gazamak we owkalamak ýaly dürli arassalaýyş ýollary bardyr. Hapalanan zatlar bu usullaryň haýsy hem bolsa biri bilen arassalanyp biler."
+        },
+        {
+            "type": "section_heading",
+            "text": "Hajathana degişli düzgünler"
+        },
+        {
+            "type": "paragraph",
+            "text": "Hajathana girmezden öň «Alla:hümme inni: e'u:zü bike minel-hubusi wel-habä:'is» diýen dogany okamaly we sol aýak bilen girip, sag aýak bilen çykmaly. Hajathanadan çykanyňdan soň «Gufra:neke elhamdu lilla:hi-llezi: ezhebe annil-ezä: we a'fä:ni:» dogasyny okamaly."
+        },
+        {
+            "type": "paragraph",
+            "text": "Hajathanada gürleşmek, kybla tarap oturmak dürs bolmaýar. Ýüzünde aýat-doga ýazylan, Allatagalanyň ýa-da pygamberimiz Hz. Muhammet sallallähu aleyhi we sellemiň ady ýazylan zatlar bilen hajathana girmeli däl."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Istibra"
+        },
+        {
+            "type": "paragraph",
+            "text": "Busugylandan soň erkek kişiniň peşew damjalarynyň doly kesilmegine garaşmagyna «Istibra» diýilýär. Peşew damjalary käbir adamlarda çalt, käbirlerinde bolsa uzak wagtdan soň kesilýär. Her kim öz ýagdaýyna görä, suw bilen synja almazdan öň ýa peşew damjalarynyň kesilmegine garaşmaly, ýa-da hajathanadan çykanyňdan soň dessine täret alman, ilki biraz ýöremeli, hereket etmeli ýa bolmasa üsgürip ardynyrçap, şondan soň synja almaly. Täreti bolsa istibradan we synjadan soň almaly."
+        },
+        {
+            "type": "paragraph",
+            "text": "Istibra etmekden maksat täretiň dürslügine päsgel bermezlikdir. Eger-de buşukmakdan soň dessine täret alnypsa we ondan soň azajyk hem bolsa peşew çyksa, onda täret bozulýar, şol täret bilen namaz okamak dürs bolmaýar. Şonuň üçin istibra meselesine gaty ünsli bolmalydyr. Ýöne bu meselede öte was-waslylyk hem dogry däl."
+        },
+        {
+            "type": "quote",
+            "text": "Pygamberimiz Muhammet aleyhissalam hadyslarynyň birinde: «Peşewden (syçramagyndan, üstüňize degmeginden) ägä boluň. Çünki gabyr azabynyň köpüsi şol sebäpli dir» diýmek bilen, bu meselede ünsli bolmagy ündäpdir."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Synja (istinýa)"
+        },
+        {
+            "type": "paragraph",
+            "text": "Kiçi we uly täret edeniňden soň, awrat ýerlerini arassalamakdyr. Bu tämizligiň hökümi müekket sünnetdir (möhüm sünnetdir)."
+        },
+        {
+            "type": "paragraph",
+            "text": "Synja suw bilen, suw bolmadyk ýagdaýda kesek, ýörite edilen çyg sorýan hajathana kagyzlary bilen amala aşyrylsa bolar. Ýöne süňk, demir ýaly zatlar bilen ýa-da ýüpek ýaly gymmat bahaly mata bölekleri we Zemzem suwy bilen synja almak mekruhdyr."
+        },
+        {
+            "type": "paragraph",
+            "text": "Synja almagyň iň laýyk görnüşi ilki nejasat ýokuşan (degen) ýeri hajathana kagyzy, soňra suw bilen gowy edip ýuwmak, soňra bolsa hajathana kagyzy ýa-da ýörite mata bilen süpürip guratmakdyr. Synjadan soň, täret almazdan öň, elleri goşara çenli ýuwmalydyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Täret ýa-da gusul alnanda ulanylýan suw bilen baglanyşykly hökümler"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ýokarda hem bellenip geçilişi ýaly, nejasaty arassalamak, täret we gusul almak üçin esasy tämizleýji serişde suw bolup, suwuň tämizleýji bolmagy üçin onuň reňki, tagamy hem-de ysy üýtgemedik bolmalydyr."
+        },
+        {
+            "type": "paragraph",
+            "text": "Gar, ýagşy, doly, deňiz, derýa, köl, guýy, çeşme suwlaryna birkemsiz arassa (mutlak) suw diýilýär. Bu suwlar bilen täret hem-de gusul almak bolýar."
+        },
+        {
+            "type": "paragraph",
+            "text": "Ösümlik, gül, miwe suwy, içinde nohut, mäş, noýba ýaly ösümlikler ýatyrylan ýa-da gaýnadylan suwlara bolsa garyndyly (mukäýýat) suwlar diýilýär. Şeýle suwlar bilen täret ýa-da gusul alynmaýar."
+        },
+        {
+            "type": "paragraph",
+            "text": "Iň azyndan bir saman çöpüni akdyryp äkidýän suwa akar suw diýilýär. Bular ýaly suwuň içine nejasat gaçanda, suwuň üç sypatyndan biri (reňki, tagamy we ysy) üýtgemese, ol hapa suw hasaplanmaýar."
+        },
+        {
+            "type": "paragraph",
+            "text": "50 inedördül metrdən az meýdany tutýan ýata suwa nejasat gaçsa, suwuň üç sypatyndan biri üýtgemese-de, bu suw hapa suw hasaplanýar."
+        },
+        {
+            "type": "paragraph",
+            "text": "50 inedördül metrdən giň meýdany tutýan ýata suw bolsa-da, ol akar suw hökümündedir. Ýata suwuň çuňlugy azyndan bir garyňş bolmalydyr, ýagny goşawujyň dolduranynda, suw bulanmalı dälidir."
+        },
+        {
+            "type": "paragraph",
+            "text": "Pişik, syçan ýaly jandarlaryň degen suwuny ulanmak mekruhdyr. Täret ýa-da gusul alanda, öň ulanylan suw gaýtadan ulanylmak bolmaýar. Eşegiň ýa-da gatyryň agzy degen suw şübheli suw hasaplanyp, beýle suwy ulanmak maslahat berilmeýär."
+        },
+        {
+            "type": "section_heading",
+            "text": "Guýy suwuna degişli hökümler"
+        },
+        {
+            "type": "paragraph",
+            "text": "Bir guýynyň suwy näçe köp bolsa hem, ol kiçi suw hasaplanylýar. Guýynyň içine nejasat düşse suw hapalanýar. Guýynyň suwuny arassalamak, içine düşen hapa görä, üç görnüşde amala aşyrylýar:"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Suwy doly boşadylýar.",
+                "Kyrk gowa suw çekilýär.",
+                "Ýigrimi gowa suw çekilýär."
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Guýynyň suwy:"
+        },
+        {
+            "type": "unordered_list",
+            "items": [
+                "a) gan, şerap, peşew ýaly suwuk görnüşdäki nejasat guýa dökülse;",
+                "b) ynsanyň ýa-da towugyň, ördegiň, gazyň, şeýle-de pişik hem-de it ýaly eti iýilmeýän haýwanlaryň tezegi guýa gaçsa;",
+                "ç) ynsan ýa-da goýun, geçi ýaly haýwanlar guýa gaçyp ölse;",
+                "d) syçan, serçe ýaly kiçi jandarlar guýa gaçyp ölenden soň, çişip dargasa we ýülekleri dökülýän ýagdaýa ýetse;",
+                "e) eger guýa doňuz gaçyp, ölmänkä çykarylsa hem guýy doly boşadylmalydyr."
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Guýynyň düýbünden suw hemişe syzyp çykyp duran bolsa, şol sebäpli hem onuň suwuny boşatmak mümkin bolmasa, onda ol guýudan iki ýüz gowa suw çekip çykarylmalydyr. Şeýle guýudan üç ýüz gowa suw çykarmak has gowudyr. Şeýle hem guýynyň ululygyna, suw möçberini gowy bilýän iki adamyň maslahatyna görä onuň suwy çykarylsa bolýar. Eger şübheli ýagdaý ýüze çyksa, onda guýynyň suwy ýörite enjam arkaly boşadylyp bilner."
+        },
+        {
+            "type": "paragraph",
+            "text": "Towuk, pişik, gögerçin ýa-da şular ýaly ululykdaky bir haýwan guýa gaçyp ölse, ol hem heniz çişmänkä çykarylsa, guýudan kyrk gowa suw çykarylýar. Elli-altmyş gowa suw çykarmak has-da gowudyr."
+        },
+        {
+            "type": "paragraph",
+            "text": "Serçe, syçan, as we şolar ýaly ululykdaky haýwan guýa gaçyp ölse ýa-da maslygynyň gaçsa, heniz çişip dargamanka çykarylan ýagdaýynda ýigrimi gowa suw çykarylýar. Otuz gowa suw çykarmak mustahapdyr, ýagny has gowudyr."
+        },
+        {
+            "type": "paragraph",
+            "text": "Içine düýe, goýun, sygyr, at we eşek ýaly haýwanlaryň az mukdardaky tezegi gaçan guýynyň suwuna täret ýa-da gusul almak bolar. Ýöne gowa bilen suw çekilende, her gezekinde tezek çykyp dursa, onda guýynyň suwy doly boşadylmalydyr."
+        },
+        {
+            "type": "paragraph",
+            "text": "Serçe we gögerçin ýaly kiçi guşlaryň nejasaty guýynyň içine gaçan bolsa, suwuň reňkini, tagamyny ýa-da ysyny üýtgetmedik ýagdaýynda ol suw hapa hasaplanmaýar."
+        },
+        {
+            "type": "paragraph",
+            "text": "Ýan jandarlaryň maslygynyň guýudan çykmagy suwuň reňkini, tagamyny ýa-da ysyny üýtgetmedik bolsa, ol suw hem hapa hasap edilmeýär."
+        },
+        {
+            "type": "paragraph",
+            "text": "Guýa gaçyp ölen, emma haçan gaçandygy bilinmeýän bir haýwan çişip dargamadyk bolsa, ol bir gün öň gaçan hasap edilip, guýynyň suwy 24 sagat öň hapalanan hasaplanylýar. Eger-de çişip dargan bolsa, ol üç gün öň gaçan hasaplanylyp, guýynyň üç günden bärki suwy hapa saýylýar. Şonuň üçin şol günleriň dowamynda alnan täret we gusul dürs hasap edilmeýär. Birinji ýagdaýda bir günlük, ikinji ýagdaýda üç günlük okalan namazlaryň kazasy alynmalydyr. Nejasat degip, şol suwa ýuwulan eşikler hem täzeden ýuwulmalydyr."
+        },
+        {
+            "type": "paragraph",
+            "text": "Eger guýynyň töwereginde hajathana bar bolsa, guýynyň suwunyň üç sypatyndan biri, ýagny ysy, reňki ýa-da tagamy üýtgese, bu ýagdaýa sebäb boljak başga hiç hili delil bolmasa, ol hajathana sebäpli diýip, guýynyň suwy hapa hasaplanylýar."
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "id": "namaz_kitaby_namaz_okalysy_adimler_tr",
+    "type": "book_entry",
+    "listTitle": "Namazın Kılınış Düzeni",
+    "detailTitle": "Namazın Kılınış Düzeni (adım adım)",
+    "content": [
+        {
+            "type": "heading",
+            "text": "NAMAZIN KILINIŞ DÜZENİ"
+        },
+        {
+            "type": "section_heading",
+            "text": "1. Niyet"
+        },
+        {
+            "type": "paragraph",
+            "text": "Niyet kalp ile yapılır, dil ile söylemek sünnettir."
+        }
+    ]
+}

@@ -1,0 +1,68 @@
+{
+    "id": "namaz_kitaby_namazdan_son",
+    "type": "book_entry",
+    "listTitle": "Namazdan soň tesbihler",
+    "detailTitle": "Namazdan soň okalýan tesbihler we dogalar",
+    "content": [
+        {
+            "type": "heading",
+            "text": "NAMAZDAN SOŇKY TESBIHLER WE DOGALAR"
+        },
+        {
+            "type": "paragraph",
+            "text": "Parz namazlarynyň salamyndan soň doga edilip, soňra tesbihler aýdylýar. Tesbihler adatça jemagatda ses bilen edilýär."
+        },
+        {
+            "type": "section_heading",
+            "text": "Namazdan soňky doga"
+        },
+        {
+            "type": "quote",
+            "text": "«Alla:hümme entessalä:m, we minkessalä:m, tebä:rekte ýä: zal-celä:li vel-ikrä:m»"
+        },
+        {
+            "type": "section_heading",
+            "text": "Ayetel-Kürsi"
+        },
+        {
+            "type": "quote",
+            "text": "«Allahu lä: ilä:he illä: huvel-hayyül-kayyum, lä: te'huzühü sinetüv-velä nevm, lehü mä: fisseemä:wä:ti ve mä: fil-erd, men zellezi: yeşfe'u indehü illä: bi'iznih, ya'lemü mä: beyne eydihim ve mä: halfehüm, ve lä: yühiy­tu:ne bişey'im-min 'ilmühü illä: bimä: şä:e, vesi'a kürsiyyühüssemä:wä:ti vel-erd, ve lä: yeüdühü hıfzuhumä: ve hüvel-'aliyyül-'azi:m»"
+        },
+        {
+            "type": "section_heading",
+            "text": "33 + 33 + 33 tesbihler"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "33 gezek «Sübhanallah» (Allatagal köňül päk we eksikden uzak).",
+                "33 gezek «Elhamdülillah» (Alle şükür we öwgi).",
+                "33 gezek «Allahu Ekber» (Allah iň uludyr).",
+                "Soňra: «Lä: ilä:he illAllahu wahdeh, lä: şeri:ke leh, lehül-mülkü ve lehül-hamdü ve hüve alä: külli şeý'in kadi:r»"
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Töwir (elleri galdyryp doga)"
+        },
+        {
+            "type": "paragraph",
+            "text": "Tesbihlerden soň iki el galdyrylyp töwir edilýär. Ymam ýokary ses bilen doga aýdýar, jemagat içinden «Amin» diýýär."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Jemagat bolup namaz okamagyň fazyly"
+        },
+        {
+            "type": "quote",
+            "text": "Pygamberimiz Muhammet aleýhissalam: «Jemagat bilen okalan namaz, ýeke özüň okan namazdan ýigrimi ýedi esse artykdyr» (Buhary, Müslim)."
+        },
+        {
+            "type": "paragraph",
+            "text": "Jemagat bilen namaz okamak erkek musulmanlara müekked sünnetdir. Zenanlar öýlerinde namaz okasalar has artyk sogap gazanýarlar."
+        }
+    ]
+}

@@ -1,0 +1,378 @@
+{
+    "male": {
+        "title": "Erkekler üçin",
+        "tabs": {
+            "taret": {
+                "title": "Täret (abdest)",
+                "stepsTitle": "Täret (abdest)",
+                "steps": [
+                    {
+                        "no": 1,
+                        "title": "Niyét",
+                        "text": "Täret almak niýeti."
+                    },
+                    {
+                        "no": 2,
+                        "title": "Eller",
+                        "text": "Bilek çenli 3 gezek ýuw."
+                    },
+                    {
+                        "no": 3,
+                        "title": "Agzy",
+                        "text": "3 gezek çalaýa çaýka."
+                    },
+                    {
+                        "no": 4,
+                        "title": "Burny",
+                        "text": "3 gezek suw çek we çykart."
+                    },
+                    {
+                        "no": 5,
+                        "title": "Ýüz",
+                        "text": "Ýüzüňi 3 gezek ýuw."
+                    },
+                    {
+                        "no": 6,
+                        "title": "Eller",
+                        "text": "Tirsege çenli 3 gezek ýuw (ilki sag, soň çep)."
+                    },
+                    {
+                        "no": 7,
+                        "title": "Mes",
+                        "text": "Başyňa mesh et, gulaklary mesh et."
+                    },
+                    {
+                        "no": 8,
+                        "title": "Aýaklar",
+                        "text": "Topuga çenli 3 gezek ýuw (ilki sag, soň çep)."
+                    }
+                ]
+            },
+            "namazOkalysy": {
+                "title": "Namaz okalyşy",
+                "stepsTitle": "Namaz okalyşy (ädim-ädim)",
+                "steps": [
+                    {
+                        "no": 1,
+                        "title": "Niyét",
+                        "text": "Namazyň adyny we wagtyny niýet et."
+                    },
+                    {
+                        "no": 2,
+                        "title": "Takbir",
+                        "text": "«Allahu Äkbar»."
+                    },
+                    {
+                        "no": 3,
+                        "title": "Gyýam",
+                        "text": "Fatiha + goşmaça sure/aýat okalýar."
+                    },
+                    {
+                        "no": 4,
+                        "title": "Ruku",
+                        "text": "«Subhâne rabbiyal azym» (3 gezek)."
+                    },
+                    {
+                        "no": 5,
+                        "title": "Süjut",
+                        "text": "«Subhâne rabbiyal a'la» (3 gezek)."
+                    },
+                    {
+                        "no": 6,
+                        "title": "Oturuş",
+                        "text": "Iki süjut arasynda gysga oturuş."
+                    },
+                    {
+                        "no": 7,
+                        "title": "Soňky oturuş",
+                        "text": "«Ettehijjat…» + «Allâhumma salli…» + doga."
+                    },
+                    {
+                        "no": 8,
+                        "title": "Salam",
+                        "text": "Sag-a we çep-e salam ber."
+                    }
+                ],
+                "rakatsTitle": "Bäş wagt namaz rekatlary",
+                "rakatsIntro": "Namaz, musulmanyň gün dowamynda Rebbine ýüzlenýän iň mukaddes ybadatlarynyň biridir. Bäş wagt namaz belli wagtlarda, belli rekat we okalyş tertibi bilen ýerine ýetirilýär.",
+                "rakats": [
+                    {
+                        "key": "ertir",
+                        "title": "Ertir namazy",
+                        "total": "Jemi: 4 rekat",
+                        "parts": [
+                            {
+                                "title": "2 rekat sünnet",
+                                "text": "Sünnet bilen başlanýar. Birinji rekatda Fatiha we sure okalýar, ruku we süjut edilýär. Ikinji rekatda hem Fatiha we sure okalýar, oturyşda dogalar okalyp salam berilýär."
+                            },
+                            {
+                                "title": "2 rekat farz",
+                                "text": "Sünnetden soň farz okalýar. Jemagat bolsa «imama uýdum» diýlip niýet edilýär. Iki rekat hem Fatiha we sure bilen okalýar, soňky oturyşda dogalar okalyp salam berilýär."
+                            }
+                        ]
+                    },
+                    {
+                        "key": "oyle",
+                        "title": "Öýle namazy",
+                        "total": "Jemi: 10 rekat",
+                        "parts": [
+                            {
+                                "title": "4 rekat ilkinji sünnet",
+                                "text": "Ilkinji iki rekatda Fatiha we sure okalýar. Ikinji rekatdan soň gysga oturyş bolýar. Üçünji we dördünji rekatlarda hem Fatiha we sure okalýar, soňky oturyşda dogalar okalyp salam berilýär."
+                            },
+                            {
+                                "title": "4 rekat farz",
+                                "text": "Ilkinji iki rekatda Fatiha we sure okalýar. Üçünji-dördünji rekatlarda diňe Fatiha okalýar. Soňky oturyşda dogalar okalyp salam berilýär."
+                            },
+                            {
+                                "title": "2 rekat soňky sünnet",
+                                "text": "Iki rekat hökmünde okalýar. Her iki rekatda hem Fatiha we sure okalýar, dogalar bilen tamamlanýar."
+                            }
+                        ]
+                    },
+                    {
+                        "key": "ikindi",
+                        "title": "Ikindi namazy",
+                        "total": "Jemi: 8 rekat",
+                        "parts": [
+                            {
+                                "title": "4 rekat sünnet",
+                                "text": "Ilkinji iki rekatda Fatiha we sure okalýar, ikinjiden soň oturyş bolýar. Üçünji-dördünji rekatlarda hem Fatiha we sure okalýar, soňky oturyşda dogalar okalýar."
+                            },
+                            {
+                                "title": "4 rekat farz",
+                                "text": "Ilkinji iki rekatda Fatiha we sure, üçünji-dördünji rekatlarda diňe Fatiha okalýar. Soňky oturyşda dogalar okalyp salam berilýär."
+                            }
+                        ]
+                    },
+                    {
+                        "key": "agsam",
+                        "title": "Agşam namazy",
+                        "total": "Jemi: 5 rekat",
+                        "parts": [
+                            {
+                                "title": "3 rekat farz",
+                                "text": "Ilkinji iki rekatda Fatiha we sure okalýar, ikinjiden soň oturyş bolýar. Üçünji rekatda diňe Fatiha okalýar, soňky oturyşda salam berilýär."
+                            },
+                            {
+                                "title": "2 rekat sünnet",
+                                "text": "Iki rekat hökmünde okalýar. Her rekatda Fatiha we sure okalýar, dogalar bilen tamamlanýar."
+                            }
+                        ]
+                    },
+                    {
+                        "key": "yassy",
+                        "title": "Ýassy namazy",
+                        "total": "Jemi: 10 rekat + 3 rekat witir",
+                        "parts": [
+                            {
+                                "title": "4 rekat ilkinji sünnet",
+                                "text": "Ilkinji iki rekatda Fatiha we sure okalýar, ikinjiden soň oturyş bolýar. Üçünji-dördünji rekatlarda hem Fatiha we sure okalýar."
+                            },
+                            {
+                                "title": "4 rekat farz",
+                                "text": "Ilkinji iki rekatda Fatiha we sure, üçünji-dördünji rekatlarda diňe Fatiha okalýar."
+                            },
+                            {
+                                "title": "2 rekat soňky sünnet",
+                                "text": "Iki rekat hökmünde okalýar. Her rekatda Fatiha we sure okalýar."
+                            },
+                            {
+                                "title": "Witir (3 rekat)",
+                                "text": "Ýassy namazyndan soň okalýar. Ilkinji iki rekatda Fatiha we sure okalýar, ikinjiden soň oturyş bolýar. Üçünji rekatda Fatiha we sureden soň kunut tekbiri alnyp kunut dogalary okalýar, soň ruku-süjut bilen tamamlanýar."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "female": {
+        "title": "Aýallar üçin",
+        "tabs": {
+            "taret": {
+                "title": "Täret (abdest)",
+                "stepsTitle": "Täret (abdest)",
+                "steps": [
+                    {
+                        "no": 1,
+                        "title": "Niyét",
+                        "text": "Täret almak niýeti."
+                    },
+                    {
+                        "no": 2,
+                        "title": "Eller",
+                        "text": "Bilek çenli 3 gezek ýuw."
+                    },
+                    {
+                        "no": 3,
+                        "title": "Agzy",
+                        "text": "3 gezek çalaýa çaýka."
+                    },
+                    {
+                        "no": 4,
+                        "title": "Burny",
+                        "text": "3 gezek suw çek we çykart."
+                    },
+                    {
+                        "no": 5,
+                        "title": "Ýüz",
+                        "text": "Ýüzüňi 3 gezek ýuw."
+                    },
+                    {
+                        "no": 6,
+                        "title": "Eller",
+                        "text": "Tirsege çenli 3 gezek ýuw (ilki sag, soň çep)."
+                    },
+                    {
+                        "no": 7,
+                        "title": "Mes",
+                        "text": "Başyňa mesh et, gulaklary mesh et."
+                    },
+                    {
+                        "no": 8,
+                        "title": "Aýaklar",
+                        "text": "Topuga çenli 3 gezek ýuw (ilki sag, soň çep)."
+                    }
+                ]
+            },
+            "namazOkalysy": {
+                "title": "Namaz okalyşy",
+                "stepsTitle": "Namaz okalyşy (ädim-ädim)",
+                "steps": [
+                    {
+                        "no": 1,
+                        "title": "Niyét",
+                        "text": "Namazyň adyny we wagtyny niýet et."
+                    },
+                    {
+                        "no": 2,
+                        "title": "Takbir",
+                        "text": "«Allahu Äkbar»."
+                    },
+                    {
+                        "no": 3,
+                        "title": "Gyýam",
+                        "text": "Fatiha + goşmaça sure/aýat okalýar."
+                    },
+                    {
+                        "no": 4,
+                        "title": "Ruku",
+                        "text": "«Subhâne rabbiyal azym» (3 gezek)."
+                    },
+                    {
+                        "no": 5,
+                        "title": "Süjut",
+                        "text": "«Subhâne rabbiyal a'la» (3 gezek)."
+                    },
+                    {
+                        "no": 6,
+                        "title": "Oturuş",
+                        "text": "Iki süjut arasynda gysga oturuş."
+                    },
+                    {
+                        "no": 7,
+                        "title": "Soňky oturuş",
+                        "text": "«Ettehijjat…» + «Allâhumma salli…» + doga."
+                    },
+                    {
+                        "no": 8,
+                        "title": "Salam",
+                        "text": "Sag-a we çep-e salam ber."
+                    }
+                ],
+                "rakatsTitle": "Bäş wagt namaz rekatlary",
+                "rakatsIntro": "Namaz, musulmanyň gün dowamynda Rebbine ýüzlenýän iň mukaddes ybadatlarynyň biridir. Bäş wagt namaz belli wagtlarda, belli rekat we okalyş tertibi bilen ýerine ýetirilýär.",
+                "rakats": [
+                    {
+                        "key": "ertir",
+                        "title": "Ertir namazy",
+                        "total": "Jemi: 4 rekat",
+                        "parts": [
+                            {
+                                "title": "2 rekat sünnet",
+                                "text": "Sünnet bilen başlanýar. Birinji rekatda Fatiha we sure okalýar, ruku we süjut edilýär. Ikinji rekatda hem Fatiha we sure okalýar, oturyşda dogalar okalyp salam berilýär."
+                            },
+                            {
+                                "title": "2 rekat farz",
+                                "text": "Sünnetden soň farz okalýar. Jemagat bolsa «imama uýdum» diýlip niýet edilýär. Iki rekat hem Fatiha we sure bilen okalýar, soňky oturyşda dogalar okalyp salam berilýär."
+                            }
+                        ]
+                    },
+                    {
+                        "key": "oyle",
+                        "title": "Öýle namazy",
+                        "total": "Jemi: 10 rekat",
+                        "parts": [
+                            {
+                                "title": "4 rekat ilkinji sünnet",
+                                "text": "Ilkinji iki rekatda Fatiha we sure okalýar. Ikinji rekatdan soň gysga oturyş bolýar. Üçünji we dördünji rekatlarda hem Fatiha we sure okalýar, soňky oturyşda dogalar okalyp salam berilýär."
+                            },
+                            {
+                                "title": "4 rekat farz",
+                                "text": "Ilkinji iki rekatda Fatiha we sure okalýar. Üçünji-dördünji rekatlarda diňe Fatiha okalýar. Soňky oturyşda dogalar okalyp salam berilýär."
+                            },
+                            {
+                                "title": "2 rekat soňky sünnet",
+                                "text": "Iki rekat hökmünde okalýar. Her iki rekatda hem Fatiha we sure okalýar, dogalar bilen tamamlanýar."
+                            }
+                        ]
+                    },
+                    {
+                        "key": "ikindi",
+                        "title": "Ikindi namazy",
+                        "total": "Jemi: 8 rekat",
+                        "parts": [
+                            {
+                                "title": "4 rekat sünnet",
+                                "text": "Ilkinji iki rekatda Fatiha we sure okalýar, ikinjiden soň oturyş bolýar. Üçünji-dördünji rekatlarda hem Fatiha we sure okalýar, soňky oturyşda dogalar okalýar."
+                            },
+                            {
+                                "title": "4 rekat farz",
+                                "text": "Ilkinji iki rekatda Fatiha we sure, üçünji-dördünji rekatlarda diňe Fatiha okalýar. Soňky oturyşda dogalar okalyp salam berilýär."
+                            }
+                        ]
+                    },
+                    {
+                        "key": "agsam",
+                        "title": "Agşam namazy",
+                        "total": "Jemi: 5 rekat",
+                        "parts": [
+                            {
+                                "title": "3 rekat farz",
+                                "text": "Ilkinji iki rekatda Fatiha we sure okalýar, ikinjiden soň oturyş bolýar. Üçünji rekatda diňe Fatiha okalýar, soňky oturyşda salam berilýär."
+                            },
+                            {
+                                "title": "2 rekat sünnet",
+                                "text": "Iki rekat hökmünde okalýar. Her rekatda Fatiha we sure okalýar, dogalar bilen tamamlanýar."
+                            }
+                        ]
+                    },
+                    {
+                        "key": "yassy",
+                        "title": "Ýassy namazy",
+                        "total": "Jemi: 10 rekat + 3 rekat witir",
+                        "parts": [
+                            {
+                                "title": "4 rekat ilkinji sünnet",
+                                "text": "Ilkinji iki rekatda Fatiha we sure okalýar, ikinjiden soň oturyş bolýar. Üçünji-dördünji rekatlarda hem Fatiha we sure okalýar."
+                            },
+                            {
+                                "title": "4 rekat farz",
+                                "text": "Ilkinji iki rekatda Fatiha we sure, üçünji-dördünji rekatlarda diňe Fatiha okalýar."
+                            },
+                            {
+                                "title": "2 rekat soňky sünnet",
+                                "text": "Iki rekat hökmünde okalýar. Her rekatda Fatiha we sure okalýar."
+                            },
+                            {
+                                "title": "3 rekat witir",
+                                "text": "Ýassy namazyndan soň okalýar. Ilkinji iki rekatda Fatiha we sure okalýar, ikinjiden soň oturyş bolýar. Üçünji rekatda Fatiha we sureden soň kunut tekbiri alnyp kunut dogalary okalýar, soň ruku-süjut bilen tamamlanýar."
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

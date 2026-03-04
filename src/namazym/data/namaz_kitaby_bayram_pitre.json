@@ -1,0 +1,95 @@
+{
+    "id": "namaz_kitaby_bayram_pitre",
+    "type": "book_entry",
+    "listTitle": "Baýram edebi we pitre",
+    "detailTitle": "Baýram gününiň edebi we pitre sadakasy",
+    "content": [
+        {
+            "type": "heading",
+            "text": "BAÝRAM GÜNÜNIŇ EDEBI"
+        },
+        {
+            "type": "paragraph",
+            "text": "Oraza baýram gününde irden turup suwa düşmek, dişlerini miswak bilen arassalamak, ýakymly ysly zatlar sepinmek, arassa we täze eşiklerini geýmek, Allatagalaňyň nygmatlaryna şükür niýeti bilen şadyýan bolmak, güler ýüzli bolmak, sadaka paýlamak, baýram gijelerini ybadat bilen geçirmek baýramyň edeplerindendir."
+        },
+        {
+            "type": "paragraph",
+            "text": "Remezan baýramynda namazdan öň hurma ýaly süýji zatlar iýip, metjide gitmek mustahapdyr."
+        },
+        {
+            "type": "paragraph",
+            "text": "Baýram gününde birek-birege ýagşy doga-dilegler edip, dost we garyndaşlaryňa görme-görşe «Kabul bolsun» diýip gitmek baýramyň edebidir. Şeýle hem baýram gününiň hormatyna öýkeliler ýaraşmaly, birek-birek bilen razylaşmalydyr. Maşgalanyň ulularynyň göwünlerini hoş edip, haýyr dogalaryny almalydyr."
+        },
+        {
+            "type": "quote",
+            "text": "«Namaz-orazaňyz kabul bolsun!»"
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "PITRE SADAKASY"
+        },
+        {
+            "type": "paragraph",
+            "text": "Pitre sadakasy bergisinden we beýläki zerur bolan hajatlardan başga, pesinden nisap mukdary mal-mülki ýa-da nagt puly bolan gurply adamyň eklenjindäki maşgala agzalarynyň her biri üçin berilýän sadakadyr. Pitre sadakasyny bermek wajypdyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Hadyslar"
+        },
+        {
+            "type": "paragraph",
+            "text": "Abdylla Ibn Omar r.a. şeýle diýýär:"
+        },
+        {
+            "type": "quote",
+            "text": "«Resulalla piträni hurmadan ýa-da arpadan bir sag mukdaryny azat, gul, erkek, aýal, uly, kiçi hemmesine wajyp edipdi we baýram namazyndan öň berilmegini buýrupdy»"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ebu Sagyýt Hudry r.a. hem bu barada:"
+        },
+        {
+            "type": "quote",
+            "text": "«Biz Pygamberiň döwründe piträni azyk önümlerinden bir sag ölçeginde berýärdik. Şol wagt pitre sadakasy arpa, kişmiş, hurma we ýag alnan peýnirden hasaplanýardy»"
+        },
+        {
+            "type": "paragraph",
+            "text": "Pitre sadakasyna türkmençilikde «baş pitre» diýilýär. Munuň sebäbi bu sadakanyň adamyň özüni hem-de eklenjindäkilere baş saglygynyň hatyrasyna şükür hökmünde berilýän sadaka bolmagydyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Möçberi we wagty"
+        },
+        {
+            "type": "unordered_list",
+            "items": [
+                "Baş piträni Remezan aýynyň başyndan, Oraza baýram namazyna çenli aralykda düşýän ýerlerine bermelidir.",
+                "Oraza baýramyndan öň berilse sogaby köpdür; soňra goýulsa, bermek boýundan düşmeýär we sogaby az bolýar.",
+                "Dini çeşmelere laýyklykda arpadan, kişmişden we hurmadan bir sag, bugdaýdan bolsa ýarym sag möçberinde berilýär.",
+                "Bir sag, takmynan 3 kg 400 grama deňdir.",
+                "Bu azyk önümleriniň pula öwrüp bahasyny bersen hem bolýar.",
+                "Bir baş piträni diňe bir adama bermeli — bir piträni ikä bölüp iki adama bermek bolmaýar. Emma bir adama birden köp pitre bersen hem bolýar.",
+                "Pitre bereniňde içiňden niýet etmeli; alýan adama aýtmak hökmany däldir.",
+                "Ýurdumyzda baş piträniň möçberi her ýylyň Oraza aýynda Türkmenistanyň Müftüsiniň müdiriýeti tarapyndan milli manadymyzda kesgitlenilýär we yglan edilýär."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Piträniň berilmeli ýerleri"
+        },
+        {
+            "type": "paragraph",
+            "text": "Piträni Gurhany Kerimiň Toba süresiniň 60-njy aýatynda sanawy geçen zekat berilýän kişileriň ählisine berlip bilinýär."
+        },
+        {
+            "type": "unordered_list",
+            "items": [
+                "Pitre nisap mukdaryndaky mala eýe bolan kişilere berilmeýär.",
+                "Kaka-eje, ogul-gyz we är-aýal zekat we pitrelerini biri-birlerine bermek bolmaýar."
+            ]
+        }
+    ]
+}

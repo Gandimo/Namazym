@@ -1,0 +1,218 @@
+{
+    "id": "namaz_kitaby_taret",
+    "type": "book_entry",
+    "listTitle": "Täret",
+    "detailTitle": "Täret",
+    "content": [
+        {
+            "type": "heading",
+            "text": "III BÖLÜM"
+        },
+        {
+            "type": "subheading",
+            "text": "TÄRET"
+        },
+        {
+            "type": "section_heading",
+            "text": "Täretiň mustahaplary (edepleri)"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Kybla bakyp täret almak.",
+                "Namazyň wagty girmezden öň täret alyp, namaza taýýar bolmak.",
+                "Täret suwunyň üstüne syçramazlygy üçin belentdäk ýerde oturyp täret almak.",
+                "Zerurlyk bolmadyk ýagdaýynda başga birinden suw akydyp bermegini soramazlyk.",
+                "Täret alnanda gürlemezlik.",
+                "Täret wagty barmakdaky ýüzügi ýerinden gozgamak.",
+                "Burnuna suw alanynda sag eliň bilen alyp we çep eliň bilen sümgürmek (pyşgyrmak).",
+                "Boýna mesh etmek. Boýnuň meshi üçin eline täzeden suw almak, kelläni mesh edindäki eliň arkasydaky öl bilen berjaý edilýär. Sag eliň ýeňňesi bilen boýnuň sag tarapyna, çep eliň ýeňňesi bilen boýnuň çep tarapyna mesh edilýär.",
+                "Täret alanynda suwy isrip etmezlik. Pygamberimiz Muhammet aleýhissalam bir gün Sagt ibn Ebi Wakkas atly sahabiniň ýanyndan geçip baryarka, onuň (gereginden köp suw akydyp) täret alyp duranyny görýär-de: «Suwy beýle isrip etmäň näme?» diýýär. Sagt (geň galyp): «Täret alanynda hem isrip bolarmy?» diýip soraýar. Pygamberimiz Muhammet aleýhissalam: «Hawa, akyp ýatan derýanyň kenarynda täret alýan bolsaň hem, (suwy gereginden artyk ulansaň) isrip bolar» diýip jogap berýär (Ibni Mäje).",
+                "Ýüzüňi ýuwanyňda gaşlaryň, kirpikleriň we gabaklaryň ýuwulmagyna üns bermek.",
+                "Täret alyp bolanyňdan soň şu dogany okumak: «Eşhedu el lä: ilä:he illalla:hu wahdehu: lä: şeri:ke lehu: we eşhedu enne Muhammeden abduhu: we rasu:luh. Alla:hümmej'alni: minettewwä:bi:ne wej'alni: minel-mutetahhiri:n» (Tirmizi, Abu Dawut)."
+            ]
+        },
+        {
+            "type": "quote",
+            "text": "(«Men ýeke-täk Alladan başga ybadat etmäge mynasyp Taňrynyň ýokdugyna we Muhammet aleýhissalamyň Onuň bendesidigine we ilçisidigine şaýatlyk edýärin. Eý, Allahym! Meni toba eden we tämizlenen bendeleriňden eýle»)."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Täretiň alnysy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Täretiň parzlaryny, sünnetlerini we edeplerini doly öwreneniňden soň, tertibine hem-de usulyna laýyklykda, täret şeýle yzygiderlikde alynýar:"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Täret almaga niýet etmeli.",
+                "Soň «Bismillä:hir-rahmä:nir-rahy:m» diýlip, eller goşara çenli ýuwulýar.",
+                "Sag owja suw alyp, üç gezek agyz çaýkalýar. Agzy çaýkalanda, barmaklar bilen dişler ýuwulýar.",
+                "Sag owuj bilen üç gezek burna suw alnyp, her gezeginde çep el bilen sümgürilýär. Bu hereket daş-töweregi birahat etmejek derejede berjaý edilmelidir.",
+                "Owujyňa suw alyp, üç gezek ýüz ýuwulýar.",
+                "Tirsekler bilen bile, ilki sag el, soňra çep el üç gezek ýuwulýar.",
+                "Eller öllänip, ýokarda beýan edilişi ýaly, kellä, gulaga we boýna mesh edilýär.",
+                "Ilki sag, soň çep aýagyň barmaklarynyň arasy we topuklar bilen bilelikde üç gezek ýuwulýar."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Täretiň mekruhlary"
+        },
+        {
+            "type": "paragraph",
+            "text": "Suwy isrip etmek, suwy gereginden az ulanmak, suwy täret agzalaryňa serpip ýuwmak, üstüňe suw syçradyp täret almak, täret alyp durkaň, zerur bolmasa-da, gürlemek ýaly täretiň sünnetlerine ters gelýän her bir hereket mekruh hasaplanýar."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Täreti bozýan zatlar"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Peşew, tezek, meni, mezi, wedi, gan, art bujakdan ýeliň çykmagy ýaly zatlaryň ählisi.",
+                "Bedenden, ýaradan gan, iriň, sary suw ýaly suwuklyklaryň çykmagy. Şeýle suwuklyklar çykan ýerinden tene ýaýrasa, täreti bozar. Eger-de ujypsyzja suwuklyk çykyp, ol hem bedene ýaýramasa, täreti bozmaýar.",
+                "Agyz dolduryp gusmak. Gusuk az-azdan gelip, hemmesiniň mukdary agzy doldurjak mukdara ýetýän bolsa hem täret bozulýar.",
+                "Agzyndan tüýkülük bilen deň ýa-da ondan köp mukdarda gan gelse. Ýöne alma, aýwa ýaly miweleri dişläniňde gan görseň, täret bozulmaýar.",
+                "Çaşmak, däliremek, tutgaý tutmak, serhoşlyk we uklamak ýaly akylyňy üýtgedýän, huşyňy alýan ýagdaýlardan biriniň ýüze çykmagy adamyň täretini bozar.",
+                "Namazda gülmek. Namazda ýanyňdaky adam eşitjek derejede gülmek hem namazy, hem-de täreti bozar. Özüň eşitjek derejede gülmek diňe namazy bozar.",
+                "Her namaz üçin aýratyn täret alyp namaz okaýan uzurly adamyň täreti namazyň wagtynyň gutarmagy bilen bozulýar.",
+                "Teýemmüm alan adamyň täret almaga ýeterlik suw tapmagy hem meshi bozýar."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Täreti bozmayan zatlar"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Burundan gatap galan gany aýyrmak.",
+                "Biten ýaranyň ýüzüniň ganaman soýulmagy.",
+                "Gakyllyk gopmagy.",
+                "Namazda däl wagtyň, aglamak ýa-da gülmek sebäpli, gözden ýaşuň çykmagy.",
+                "Büre, sakyrtga, çybyn ýaly mör-möjekleriň çakmagy."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Täret bilen baglanyşykly käbir meseleler"
+        },
+        {
+            "type": "paragraph",
+            "text": "Täretsiz adamyň namaz okamak, tiläwet seýdesini etmek, Gurhany Kerimi ýüzünden okumak üçin täret almagy parzdyr. Käbäni togap etmek üçin täret almak bolsa wajypdyr. Hadys, ygtkat, fykhy ýaly ylymlary öwredýän dini kitaplary okamak, ýatdan Gurhany Kerimi okumak, haj edilende Arafatda wakfa (durmak) etmek, Sapa bilen Merwe aralygynda saý etmek (ýlgamak) üçin täret almak sünnetdir. Uklamazdan öň we ukudan oýanananyňdan soň, hemişe täretli bolmak üçin, ýogalan adamy ýuwmaklyk üçin, öwlüýä gidilende, ýalňyşlyk bilen edilen gybat hem-de söýünmek ýaly günälerden soň, şeýle-de gaharyny ýatyrmak üçin täret almak mustahapdyr (sogapdyr)."
+        },
+        {
+            "type": "quote",
+            "text": "Pygamberimiz Muhammet aleýhissalam gaharlanananyňdan soň täret almak barada şeýle diýýär: «Gahar şeýtandandyr. Şeýtan bolsa otdan ýaradyldy. Ody bolsa diňe suw söndürýär. Gahary gelen adam derrew täret alsyn!» (Abu Dawut)."
+        },
+        {
+            "type": "paragraph",
+            "text": "Šuňa meňzeş maksatlar üçin alnan täret bilen islendik ybadat edilip bilner."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Uzurlylar bilen baglanyşykly hökümler"
+        },
+        {
+            "type": "paragraph",
+            "text": "Hemişe dowam edip, täretiň bozulmagyna sebäp bolýan ýagdaýlara «uzur» diýilýär. Muňa mysal edip, peşewini saklap bilmeýän, hemişe içi ýellenýän, ýygy-ýygydan burny, dişi ganaýan adamlaryň ýagdaýlaryny hem-de aýallara mahsus käbir hassalyk, ýagny uzurlyk (istihaza) ýagdaýlaryna agzap geçmek bolar. Bular ýaly hassalyklary bolan adamlara «uzurly adam» diýilýär."
+        },
+        {
+            "type": "paragraph",
+            "text": "Uzurly adam her parz namazy üçin täzeden täret almalydyr. Ýöne indiki namaza çenli uzury dowam etse-de, täretini bozýan başga ýagdaýlar bolmasa, şol täreti bilen Gurhany Kerimi, nepil we kaza namazlaryny okap biler."
+        },
+        {
+            "type": "paragraph",
+            "text": "Uzurly adamyň uzury sebäpli eşigine degen gan, iriň ýaly hapalar, hatda bu hapalar täreti bozak mukdarda hem bolsa, uzury gutulýança namazynyň dürs bolmagyna zelel bermez."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Mesiniň üstünden mesh etmek"
+        },
+        {
+            "type": "paragraph",
+            "text": "Täret alnanda aýaklary ýuwmagyň deregine aýaga geýlen mesini usulyna laýyklykda mesh etmek dinimiziň beren ýeňilligi we rugsadydyr."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Mesiniň üstünden mesh etmegiň şertleri"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Mesi içine suw geçmeýän zatdan tikilen bolmaly.",
+                "Mesi azyndan bir parsah, ýagny 5 km töweregi ýol ýörelende ýyrtylmajak berklykda bolmaly.",
+                "Mesi täret alnanda aýagyň ýuwulmagy parz bolan ýerleri örtmeli.",
+                "Mesiniň topukdan aşakda üç barmak girjek ululykda ýyrtylan ýa-da deşilen ýeri bolmaly däl. Deşikleri ýa-da ýyrtyklary aýry-aýry ýerlerde bolup, olar bir ýere jemlenende, üç barmak sygjak ululykda bolan mesä hem mesh etmek dürs däldir.",
+                "Mesi geýmek üçin her aýagyň daraklygynyň azyndan üç barmak ýaslykda sagat (bitin) bolmagy şertdir. Bir aýagy ýok adamlar beýleki aýagyna mesi geýip biler.",
+                "Mesini aýagyňa täretli wagtyň geýmeli."
+            ]
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Mesiniň üstünden mesh etmegiň düzgüni"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Mesh azyndan üç barmak bilen edilmeli. Mesiniň üstüne mesh edilende mesh edýän barmaklaryň açyk bolmaly we mesh etmäge aýagyň ujundan başlamaly.",
+                "Sag el bilen sag aýak, çep el bilen çep aýak mesh edilýär. Mesini ýuwmak ýa-da esgi bilen öllämek, üstüne suw dökmek mekruhdyr."
+            ]
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Meshiň möhleti"
+        },
+        {
+            "type": "paragraph",
+            "text": "Aýaga geýlen mesiniň möhleti oturymly (mukym) adam üçin 24 sagat, ýolagçy (sapary) adam üçin bolsa 72 sagatdyr. Bu möhlet mesini aýaga geýlen wagtyndan däl-de, mesini aýagymyza geýenimizdäki täretiň bozulýan wagtyndan başlanýar."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Meshi bozýan zatlar"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Meshiň möhletiniň gutarmagy. Täretli wagtyň meshiň möhleti gutarsa, mesini çykaryp, diňe aýaklaryňy ýuwmak täret üçin ýeterlikdir. Mesi tötänlikden çyksa ýa-da çykarylsa, ondan öň täretli bolsaň, diňe aýaklaryňy ýuwmak bilen çäklänip bolar.",
+                "Jünüplik, aýbaşy, çile ýaly gusul almagy zerur eden bir ýagdaýyň ýüze çykmagy hem meshi bozýar."
+            ]
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Sargylaryň üstünden mesh etmek"
+        },
+        {
+            "type": "paragraph",
+            "text": "Bedeniň döwlen ýa-da ýaralanan bir agzasyna öl degirmek saglygyň üçin zyýanly bolsa, täret ýa-da gusul alýnjak wagty bularyň üstündäki sargylara ýa-da üstüne mellhem ýapylan ýaralara mesh etmek ýeterlikdir."
+        },
+        {
+            "type": "paragraph",
+            "text": "Sargyny doly mesh etmek hökman däldir. Ýara bitýänçä, sarga her täretde mesh edilmelidir. Sargynyň täretli wagtyň saralmasy hökman däldir. Heniz bitmedik ýaradaky sargy birden açylsa ýa-da üýtgedilse, täret bozulmaz. Sargynyň üstünden mesh etmek möhleti ýara gutulýança dowam edýär."
+        }
+    ]
+}

@@ -1,0 +1,134 @@
+{
+    "id": "namaz_kitaby_bes_wagt_okalysy_en",
+    "type": "book_entry",
+    "listTitle": "Five Daily Prayers Procedure",
+    "detailTitle": "Procedures for performing the Five Daily Prayers",
+    "content": [
+        {
+            "type": "heading",
+            "text": "PROCEDURES FOR PERFORMING THE FIVE DAILY PRAYERS"
+        },
+        {
+            "type": "section_heading",
+            "text": "Dhuhr Prayer"
+        },
+        {
+            "type": "paragraph",
+            "text": "Dhuhr prayer has a total of 10 rakaats: 4 rakaats Sunnah + 4 rakaats Fard + 2 rakaats Final Sunnah."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "4 Rakaats Sunnah of Dhuhr"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Intention: \"...to perform four rakaats Sunnah of Dhuhr prayer\".",
+                "Takbir Tahrimah, perform first rakaat - Al-Fatihah + Zam Surah.",
+                "Ruku', Sajdah, Sitting (recite At-Tahiyyat, no Salam).",
+                "Rise for third rakaat - Al-Fatihah + Zam Surah.",
+                "Fourth rakaat - Al-Fatihah + Zam Surah, Ruku', Sajdah.",
+                "Final sitting: Recite At-Tahiyyat + Salat Ibrahim + Dua, then give Salam."
+            ]
+        },
+        {
+            "type": "subsection_heading",
+            "text": "4 Rakaats Fard of Dhuhr"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Intention: \"...to perform four rakaats Fard of Dhuhr prayer\".",
+                "First rakaat: A'udhu + Basmalah + Al-Fatihah + Zam Surah.",
+                "Second rakaat: Basmalah + Al-Fatihah + Zam Surah. Ruku', two Sajdahs, Sitting (At-Tahiyyat).",
+                "Third rakaat: Only Al-Fatihah (no Zam Surah in 3rd/4th rakaats of Fard).",
+                "Fourth rakaat: Al-Fatihah. Ruku', two Sajdahs, Final sitting, Salam."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Asr Prayer"
+        },
+        {
+            "type": "paragraph",
+            "text": "Asr prayer is 4 rakaats Fard. 4 rakaats Ghair Muakkad Sunnah is performed before it."
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "4 rakaats Ghair Muakkad Sunnah - performed like Dhuhr Sunnah.",
+                "4 rakaats Fard - similar to Dhuhr Fard, with specific intention."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Maghrib Prayer"
+        },
+        {
+            "type": "paragraph",
+            "text": "Maghrib prayer is 3 rakaats Fard + 2 rakaats Sunnah."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "3 Rakaats Fard of Maghrib"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Intention: \"...to perform three rakaats Fard of Maghrib prayer\".",
+                "First rakaat: Al-Fatihah + Zam Surah.",
+                "Second rakaat: Al-Fatihah + Zam Surah. Ruku', Sajdah, Sitting (At-Tahiyyat - no Salam).",
+                "Third rakaat: Only Al-Fatihah. Ruku', Sajdah, Final sitting, Salam."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Isha Prayer"
+        },
+        {
+            "type": "paragraph",
+            "text": "Isha prayer is 4 rakaats Fard + 4 (or 2) rakaats Sunnah + 3 rakaats Witr-Wajib."
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "4 rakaats Ghair Muakkad Sunnah (before).",
+                "4 rakaats Fard - similar to Dhuhr Fard with intention.",
+                "4 or 2 rakaats Final Sunnah.",
+                "3 rakaats Witr prayer."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Witr Prayer"
+        },
+        {
+            "type": "paragraph",
+            "text": "Witr prayer is 3 rakaats Wajib."
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Intention: \"...to perform three rakaats Wajib of Witr prayer\".",
+                "First rakaat: Al-Fatihah + Zam Surah.",
+                "Second rakaat: Al-Fatihah + Zam Surah. Ruku', Sajdah, Sitting (At-Tahiyyat - no Salam).",
+                "Third rakaat: Al-Fatihah + Zam Surah.",
+                "Before Ruku', \"Allahu Akbar\" takbir is taken, hands raised, and Qunut Dua is recited.",
+                "Qunut: \"Allahumma inna nasta'inuka wa nastaghfiruka wa nu'minu bika, wa natawakkalu alayka, wa nuthni alayka-l-khayra kullah. Wa nashkuruka wa la nakfuruk. Wa nakhla'u wa natruku man yafjuruk...\"",
+                "Then Ruku', Sajdah, Final sitting - Salam."
+            ]
+        }
+    ]
+}

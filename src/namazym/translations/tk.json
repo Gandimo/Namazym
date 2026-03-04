@@ -1,0 +1,88 @@
+{
+    "common": {
+        "prayer_times": "Namaz wagtlary",
+        "ramadan": "Ramazan",
+        "city_select": "Şäher saýla",
+        "settings": "Sazlamalar",
+        "tasbih": "Tasbih",
+        "quran": "Gurhan",
+        "kybla": "Kybla",
+        "kaza": "Kaza namazlary",
+        "hadith": "Günüň hadysy",
+        "verse": "Günüň aýady",
+        "sahetli_gun": "Sähetli gün",
+        "asmaul_husna": "99 At",
+        "mosques": "Metjitler",
+        "dogalar": "Dogalar",
+        "islamic_holidays": "Yslam baýramlary",
+        "auto_location": "Afto-lokasiýa",
+        "select_region": "Sebit saýlaň",
+        "language": "Dil",
+        "previous": "Öňki",
+        "next": "Indiki",
+        "narrator": "Hadisi aýdan",
+        "reported_by": "Riwayet eden",
+        "source": "Çeşme",
+        "read": "Oka",
+        "namaz_kitaby": "Namaz Kitaby"
+    },
+    "prayer": {
+        "fajr": "Imsak",
+        "sunrise": "Ertir",
+        "dhuhr": "Öýle",
+        "asr": "Ikindi",
+        "maghrib": "Agzaçar",
+        "isha": "Ýassy"
+    },
+    "settings": {
+        "notifications": "Bildirişler",
+        "prayer_reminder": "Namaz ýatlatmalary (15 min)",
+        "daily_content": "Günüň aýady we hadysy",
+        "sound_preference": "Ses sazlamasy",
+        "extras": "Goşmaça",
+        "share": "Programmany paýlaş",
+        "rate": "Baha ber",
+        "terms": "Ulanuş şertleri",
+        "copyright": "© 2026 ÄHLI HUKUKLAR GORAGLY"
+    },
+    "notification": {
+        "prayer_reminder_title": "🕌 {{prayer}} wagty",
+        "prayer_reminder_body": " {{prayer}} namazyna {{minutes}} minut galdy ({{city}})",
+        "daily_content_ayah_title": "📖 Günüň aýaty",
+        "daily_content_hadith_title": "📖 Günüň hadysy",
+        "daily_content_body": "Günüň täze ruhy mazmunyny okaň",
+        "prayer_reminder_blueprint": "{{prayer}} namazyna 15 minut galdy."
+    },
+    "ramadan": {
+        "sahur": "Sahur",
+        "iftar": "Iftar"
+    },
+    "home": {
+        "verse_of_day": "Günüň aýady",
+        "hadith_of_day": "Günüň hadysy",
+        "kaza_subtitle": "Hasaba alyş we takiwm"
+    },
+    "namaz_book": {
+        "kyrk_parz": "Kyrk parz",
+        "iman": "Iman-ynanç esaslary",
+        "tamizlik": "Tämizlik",
+        "taret": "Täret",
+        "gusul": "Gusul",
+        "teyemmum": "Teýemmüm",
+        "ybadat": "Ybadat",
+        "namaz": "Namaz",
+        "hukumler": "Namazyň hükümleri",
+        "rekagat": "Rekagat we sünnetler",
+        "okalysy": "Namazyň okalyş düzgüni",
+        "bes_wagt": "Bäş wagt okalyş düzgüni",
+        "namazdan_son": "Namazdan soň tesbihler",
+        "jemagat": "Jemagat düzgünleri",
+        "sejde": "Sejde säw we kaza",
+        "juma": "Saparda we juma namazy",
+        "tarawa": "Baýram we tarawa namazy",
+        "jynaza": "Jynaza namazy",
+        "nepil": "Nepil namazlar",
+        "pitre": "Baýram edebi we pitre",
+        "nezir": "Nezir, ygtykaf we oraza borjy"
+    }
+}

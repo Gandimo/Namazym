@@ -1,0 +1,99 @@
+{
+    "id": "namaz_kitaby_saparda_juma",
+    "type": "book_entry",
+    "listTitle": "Saparda we juma namazy",
+    "detailTitle": "Saparda namaz we juma namazy",
+    "content": [
+        {
+            "type": "heading",
+            "text": "SAPARDA NAMAZ OKAMAK"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ýaşaýan ýerinden, ortaça, pyýada ýöriş bilen üç günlük, ýagny 90 km uzaklyktaky ýola sapara çykan adam şerigaatda saparyny (ýolagçy) hasaplanylýar."
+        },
+        {
+            "type": "paragraph",
+            "text": "Sapara çykan adama müsafyr (ýolagçy) diýilýär. Saparda däl adama bolsa mukym (oturymly) diýilýär."
+        },
+        {
+            "type": "paragraph",
+            "text": "Sapara çykan adam ýaşaýan ýeriniň binalaryndan saýlanandan soň ýa-da çäginden geçip başlandan soň, dört rekagat okaýan parz namazlaryny gysgaldyp, iki rekagat edip okap bilýär."
+        },
+        {
+            "type": "paragraph",
+            "text": "Mümkin boldugyndan sünnet namazlaryny, esasan hem ertir namazynyň sünnetini terk etmeli däl."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "JUMA NAMAZY"
+        },
+        {
+            "type": "paragraph",
+            "text": "Günleriň haýyrlysy juma günüdir. Adam ata şol gün ýaradyldy, şol gün jennete girdi, şol gün jennetden çykaryldy."
+        },
+        {
+            "type": "quote",
+            "text": "Bir adam juma gün gusul alyp, başardygyndan arassa bolsa, metjide gelse, namaz okasa we hutbany diňlese, iki juma arasynda günäleri bagyşlanar."
+        },
+        {
+            "type": "section_heading",
+            "text": "Juma namazynyň parz bolmagynyň şertleri"
+        },
+        {
+            "type": "unordered_list",
+            "items": [
+                "Erkek adam bolmaly.",
+                "Azatlykda bolmaly.",
+                "Mukym bolmaly.",
+                "Sagdyn bolmaly."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Juma namazynyň dürs bolmagynyň şertleri"
+        },
+        {
+            "type": "unordered_list",
+            "items": [
+                "Juma wagtynda okalmaly.",
+                "Azyndan üç erkek bolmaly.",
+                "Metjit umumy bolmaly.",
+                "Şäher hökmünde bolmaly.",
+                "Hutbe okalmaly."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Juma namazynyň okalyş düzgüni"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Ilki azan aýdylýar. Metjide girilende tahyýýetül metjit namazy okalýar.",
+                "Dört rekagat sünnet okalýar.",
+                "Hutbe okalýar — içgin diňlenilýär (hutbe wagtynda gürlemek mekruhdyr).",
+                "Hutbeden soň iki rekagat parz okalýar.",
+                "Parzdan soň dört rekagat sünnet okalýar."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "ZUHRY AHYR NAMAZY"
+        },
+        {
+            "type": "paragraph",
+            "text": "Zuhry ahyr namazy soňky öýle namazy diýmekdir."
+        },
+        {
+            "type": "paragraph",
+            "text": "Yllamynda gapma-garşylykly mesele bolup, okaýan hem bar, okamadyk hem bar. Ikisi hem dogrudyr."
+        }
+    ]
+}

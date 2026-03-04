@@ -1,0 +1,68 @@
+{
+    "language": "tk",
+    "bookId": "namaz_kitaby",
+    "title": "Namaz Kitabym",
+    "chapters": [
+        {
+            "id": "ch1",
+            "title": "Namaz barada düşünje",
+            "sections": [
+                {
+                    "id": "ch1-s1",
+                    "heading": "Namaz näme?",
+                    "paragraphs": [
+                        "Namaz – yslamyň bäş sütüniň biri bolup, her bir musulman üçin parz edilen ybadatdyr.",
+                        "Namaz, Allaha şükür etmegiň, Oňa ýakynlaşmagyň we ruhy taýdan arassalanmagyň iň beýik ýoludyr."
+                    ]
+                },
+                {
+                    "id": "ch1-s2",
+                    "heading": "Namazuň ähmiýeti",
+                    "paragraphs": [
+                        "Namaz, ynsany erbet işlerden saklar we kalbyny nurlandyrar.",
+                        "Kuran-y Kerimde namaz barada köp aýatlar bardyr."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ch2",
+            "title": "Täret we Arassalyk",
+            "sections": [
+                {
+                    "id": "ch2-s1",
+                    "heading": "Täret almak",
+                    "paragraphs": [
+                        "Täret – namaz okamak üçin hökmany bolan beden arassalygydyr.",
+                        "Täret almagyň tertibi şeýledir: Niýet etmek, elleri ýuwmak, agza we burna suw bermek, ýüzi ýuwmak..."
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "ch3",
+            "title": "Namazuň Okalyşy (Gysgaça)",
+            "sections": [
+                {
+                    "id": "ch3-s1",
+                    "heading": "Niyet we Tekbir",
+                    "paragraphs": [
+                        "Namaz okajak adam ilki bilen niýet etmelidir.",
+                        "Soňra 'Allahu Ekber' diýip tekbir getirmeli we ellerini baglamalydyr."
+                    ]
+                },
+                {
+                    "id": "ch3-s2",
+                    "heading": "Kyýam we Kyraat",
+                    "paragraphs": [
+                        "Dik durup, Sübhaneke dogasyny, Fatiha süresini we ýene bir süre okamaly."
+                    ]
+                }
+            ]
+        }
+    ],
+    "meta": {
+        "source": "IslamHouse",
+        "licenseNote": "Public Domain / Educational Use"
+    }
+}

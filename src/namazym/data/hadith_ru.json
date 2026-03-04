@@ -1,0 +1,1327 @@
+{
+  "hadiths": [
+    {
+      "id": 1,
+      "text_ru": "Поистине, дела оцениваются по намерениям, и каждому — то, что он намеревался.",
+      "narrator": "Umar ibn al-Khattab",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1"
+    },
+    {
+      "id": 2,
+      "text_ru": "Лучший из вас тот, кто изучает Коран и обучает ему других.",
+      "narrator": "Uthman ibn Affan",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5027"
+    },
+    {
+      "id": 3,
+      "text_ru": "Чистота — половина веры.",
+      "narrator": "Abu Malik al-Ashari",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 223"
+    },
+    {
+      "id": 4,
+      "text_ru": "Никто из вас по-настоящему не уверует, пока не пожелает брату того же, чего желает себе.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 13"
+    },
+    {
+      "id": 5,
+      "text_ru": "Сильный — не тот, кто побеждает в борьбе, а тот, кто владеет собой в гневе.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6114"
+    },
+    {
+      "id": 6,
+      "text_ru": "Облегчайте, а не затрудняйте.",
+      "narrator": "Abu Musa al-Ashari",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 69"
+    },
+    {
+      "id": 7,
+      "text_ru": "Лучшее из дел — молитва, совершённая в своё время.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 527"
+    },
+    {
+      "id": 8,
+      "text_ru": "Говори благое или молчи.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 9,
+      "text_ru": "Кто верует в Аллаха и Судный день, пусть чтит своего гостя.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6019"
+    },
+    {
+      "id": 10,
+      "text_ru": "Милостивые удостоятся милости Милостивого. Будьте милостивы к тем, кто на земле.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 1924"
+    },
+    {
+      "id": 11,
+      "text_ru": "Улыбка брату твоему — это садака.",
+      "narrator": "Abu Dharr",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 1956"
+    },
+    {
+      "id": 12,
+      "text_ru": "Мир — тюрьма для верующего и рай для неверующего.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2956"
+    },
+    {
+      "id": 13,
+      "text_ru": "Не расточай воду, даже если черпаешь из текущей реки.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Ibn Majah",
+      "reference_display": "Ibn Majah · No. 425"
+    },
+    {
+      "id": 14,
+      "text_ru": "Доброе слово — это садака.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2989"
+    },
+    {
+      "id": 15,
+      "text_ru": "Самые любимые Аллахом дела — те, что совершаются постоянно, пусть даже немного.",
+      "narrator": "Aisha",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6464"
+    },
+    {
+      "id": 16,
+      "text_ru": "Лучший из людей — тот, кто приносит наибольшую пользу другим.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2442"
+    },
+    {
+      "id": 17,
+      "text_ru": "Рай находится у ног матерей.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5978"
+    },
+    {
+      "id": 18,
+      "text_ru": "Не гневайся, и тебе уготован рай.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 19,
+      "text_ru": "Тот, кто проявляет милосердие, удостоится милосердия Всемилостивого.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 1987"
+    },
+    {
+      "id": 20,
+      "text_ru": "Тот, кто не проявляет милосердия, не удостоится милосердия.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6116"
+    },
+    {
+      "id": 21,
+      "text_ru": "Отвечайте на приветствие мира; оно распространяет любовь между вами.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2162"
+    },
+    {
+      "id": 22,
+      "text_ru": "Лучший из вас — тот, кто лучше всех относится к своей семье.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5199"
+    },
+    {
+      "id": 23,
+      "text_ru": "Подавайте милостыню без промедления, ибо она стоит на пути несчастий.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1461"
+    },
+    {
+      "id": 24,
+      "text_ru": "Помоги своему брату, будь он угнетателем или угнетённым.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2518"
+    },
+    {
+      "id": 25,
+      "text_ru": "Кто идёт по пути в поисках знаний, тому Аллах облегчает путь в рай.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2699"
+    },
+    {
+      "id": 26,
+      "text_ru": "Дающая рука лучше берущей; давай прежде, чем окажешься в нужде.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6412"
+    },
+    {
+      "id": 27,
+      "text_ru": "Навещайте больных, кормите голодных, освобождайте пленных.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5673"
+    },
+    {
+      "id": 28,
+      "text_ru": "Самая любимая Аллахом добровольная молитва после обязательных — ночная.",
+      "narrator": "Aisha",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 746"
+    },
+    {
+      "id": 29,
+      "text_ru": "Каждое доброе дело является садакой.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3186"
+    },
+    {
+      "id": 30,
+      "text_ru": "Кто верует в Аллаха и Судный день, пусть говорит благое или молчит.",
+      "narrator": "Abu Said al-Khudri",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1376"
+    },
+    {
+      "id": 31,
+      "text_ru": "Этот мир проклят, и то, что в нём проклято, кроме поминания Аллаха.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2516"
+    },
+    {
+      "id": 32,
+      "text_ru": "Опускай взор и оберегай своё целомудрие.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6094"
+    },
+    {
+      "id": 33,
+      "text_ru": "Кто избавит верующего от мирской беды, того Аллах избавит от беды в День воскресения.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2588"
+    },
+    {
+      "id": 34,
+      "text_ru": "Распространяйте мир между собой.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6011"
+    },
+    {
+      "id": 35,
+      "text_ru": "Зависть допустима лишь в двух случаях: к богатому, тратящему праведно, и к мудрому, действующему согласно мудрости.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5765"
+    },
+    {
+      "id": 36,
+      "text_ru": "Величайшие грехи: многобожие, непослушание родителям, убийство и лжесвидетельство.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6811"
+    },
+    {
+      "id": 37,
+      "text_ru": "Не из нас тот, кто не милосерден к нашим младшим и не уважает наших старших.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2607"
+    },
+    {
+      "id": 38,
+      "text_ru": "Пророк никогда не осуждал еду; если ему нравилось — ел, если нет — оставлял.",
+      "narrator": "Aisha",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3560"
+    },
+    {
+      "id": 39,
+      "text_ru": "Первое, о чём будет спрошен человек в День воскресения, — это молитва.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 4"
+    },
+    {
+      "id": 40,
+      "text_ru": "Чистота — половина веры; хвала Аллаху наполняет весы.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2553"
+    },
+    {
+      "id": 41,
+      "text_ru": "Поститесь — будете здоровы.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1903"
+    },
+    {
+      "id": 42,
+      "text_ru": "Ислам построен на пяти столпах: свидетельстве веры, молитве, закяте, посте и паломничестве.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 8"
+    },
+    {
+      "id": 43,
+      "text_ru": "Кто указывает другим на благое, получит такую же награду, как и совершившие его.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2816"
+    },
+    {
+      "id": 44,
+      "text_ru": "Лучшая милостыня — та, что подаётся в здравии и с надеждой.",
+      "narrator": "Aisha",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6130"
+    },
+    {
+      "id": 45,
+      "text_ru": "Мягкость украшает всё, в чём она есть.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2004"
+    },
+    {
+      "id": 46,
+      "text_ru": "Кто верует в Аллаха и Судный день, пусть не причиняет вреда своему соседу.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2310"
+    },
+    {
+      "id": 47,
+      "text_ru": "Признак лицемера три: когда говорит — лжёт, когда обещает — нарушает, когда доверяют — предаёт.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6010"
+    },
+    {
+      "id": 48,
+      "text_ru": "Бойся Аллаха везде; вслед за плохим делом соверши доброе, чтобы оно стёрло его.",
+      "narrator": "Abu Dharr",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2577"
+    },
+    {
+      "id": 49,
+      "text_ru": "Мусульманин — тот, от чьего языка и руки в безопасности другие мусульмане.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2446"
+    },
+    {
+      "id": 50,
+      "text_ru": "Не завидуйте друг другу, не ненавидьте друг друга и будьте братьями.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6065"
+    },
+    {
+      "id": 51,
+      "text_ru": "Поминание Аллаха — лучшее из деяний.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2380"
+    },
+    {
+      "id": 52,
+      "text_ru": "Тот, кто читает Коран и хорошо владеет им, будет вместе с благородными праведными посланцами.",
+      "narrator": "Uthman ibn Affan",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5027"
+    },
+    {
+      "id": 53,
+      "text_ru": "Самый совершенный по вере верующий — тот, у кого лучший нрав.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2707"
+    },
+    {
+      "id": 54,
+      "text_ru": "Будь в этом мире как странник или путник.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2416"
+    },
+    {
+      "id": 55,
+      "text_ru": "Аллах не ниспослал ни одну болезнь, не ниспослав для неё и лекарство.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2699"
+    },
+    {
+      "id": 56,
+      "text_ru": "Исцеление в трёх вещах: в питье мёда, в кровопускании и прижигании; но прижигание я запрещаю своей общине.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5678"
+    },
+    {
+      "id": 57,
+      "text_ru": "Два слова лёгкие на языке, тяжёлые на весах, любимые Милостивым: Слава Аллаху Великому.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6491"
+    },
+    {
+      "id": 58,
+      "text_ru": "Тот, кто построит мечеть ради Аллаха, Аллах построит для него дом в раю.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 223"
+    },
+    {
+      "id": 59,
+      "text_ru": "Пользуйся пятью до пяти: молодостью до старости, здоровьем до болезни, богатством до бедности, свободным временем до занятости, и жизнью до смерти.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6411"
+    },
+    {
+      "id": 60,
+      "text_ru": "Не поносите покойников, ибо они уже пришли к тому, что совершили.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1358"
+    },
+    {
+      "id": 61,
+      "text_ru": "Поистине, Аллах не смотрит на ваши тела и облик, но смотрит на ваши сердца и дела.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 62,
+      "text_ru": "Кто уверовал в Аллаха и последний день, пусть поддерживает родственные связи.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5988"
+    },
+    {
+      "id": 63,
+      "text_ru": "Поминайте смерть почаще, ибо она разрушает наслаждения.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2307"
+    },
+    {
+      "id": 64,
+      "text_ru": "Лучшее из ваших дней — пятница.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5090"
+    },
+    {
+      "id": 65,
+      "text_ru": "Избегай того, что тебя смущает, и делай то, что тебя не смущает.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2061"
+    },
+    {
+      "id": 66,
+      "text_ru": "Поистине, Аллах любит, когда кто-то из вас делает дело наилучшим образом.",
+      "narrator": "Aisha",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2127"
+    },
+    {
+      "id": 67,
+      "text_ru": "Аллах Всевышний сказал: Я таков, каким считает Меня Мой раб.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6502"
+    },
+    {
+      "id": 68,
+      "text_ru": "Выполнение обязательств — из признаков веры.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6440"
+    },
+    {
+      "id": 69,
+      "text_ru": "Самая тяжкая молитва для лицемеров — вечерняя и утренняя.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 660"
+    },
+    {
+      "id": 70,
+      "text_ru": "Самый любимый Аллахом человек — тот, кто приносит наибольшую пользу людям.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Abu Dawud",
+      "reference_display": "Abu Dawud · No. 4800"
+    },
+    {
+      "id": 71,
+      "text_ru": "Тот, кто скрывает изъяны мусульманина, Аллах скроет его изъяны в Судный день.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 72,
+      "text_ru": "Рай окружён трудностями, а ад — страстями.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2151"
+    },
+    {
+      "id": 73,
+      "text_ru": "Поистине, Аллах записывает добрые и злые дела; кто намеревался сделать доброе и сделал — получит десятикратную награду.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6491"
+    },
+    {
+      "id": 74,
+      "text_ru": "Слово «субханаллах» наполняет весы.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 223"
+    },
+    {
+      "id": 75,
+      "text_ru": "Кто читает «аятуль-курси» после каждой молитвы, войдёт в рай.",
+      "narrator": "Abu Umamah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2910"
+    },
+    {
+      "id": 76,
+      "text_ru": "Наилучшее поминание — «ла иляха илляллах», наилучшая молитва — «альхамдулиллях».",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 3383"
+    },
+    {
+      "id": 77,
+      "text_ru": "Держитесь за Коран и Сунну — не заблудитесь.",
+      "narrator": "Malik ibn Anas",
+      "source": "Muwatta",
+      "reference_display": "Muwatta · No. 1661"
+    },
+    {
+      "id": 78,
+      "text_ru": "Не причиняй вреда и не получай вреда.",
+      "narrator": "Ibn Abbas",
+      "source": "Ibn Majah",
+      "reference_display": "Ibn Majah · No. 2340"
+    },
+    {
+      "id": 79,
+      "text_ru": "Самое тяжёлое испытание — у пророков, затем у праведников, затем у следующих за ними.",
+      "narrator": "Abu Said al-Khudri",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2398"
+    },
+    {
+      "id": 80,
+      "text_ru": "Верующий — зеркало для верующего.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2816"
+    },
+    {
+      "id": 81,
+      "text_ru": "Тот, кто умрёт, зная, что нет бога, кроме Аллаха, войдёт в рай.",
+      "narrator": "Muadh ibn Jabal",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 128"
+    },
+    {
+      "id": 82,
+      "text_ru": "Поистине, Аллах не забирает знание, изымая его из сердец людей, но забирает знание вместе с учёными.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 100"
+    },
+    {
+      "id": 83,
+      "text_ru": "Лучшее из слов — слово Аллаха, лучшее из руководств — руководство Мухаммада.",
+      "narrator": "Jabir ibn Abdullah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 867"
+    },
+    {
+      "id": 84,
+      "text_ru": "Соблюдайте пятничную молитву, ибо она — повеление Аллаха.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1174"
+    },
+    {
+      "id": 85,
+      "text_ru": "Тот, у кого есть лишняя еда, пусть поделится с тем, у кого её нет.",
+      "narrator": "Abu Said al-Khudri",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1017"
+    },
+    {
+      "id": 86,
+      "text_ru": "Поистине, дела завершаются последним.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2318"
+    },
+    {
+      "id": 87,
+      "text_ru": "Тот, кто покинет мирское ради Аллаха, Аллах возместит ему лучшим.",
+      "narrator": "Abu Dharr",
+      "source": "Ahmad",
+      "reference_display": "Ahmad · No. 21516"
+    },
+    {
+      "id": 88,
+      "text_ru": "Милосердие к животным — тоже садака.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2363"
+    },
+    {
+      "id": 89,
+      "text_ru": "Аллах добр и любит доброту во всём.",
+      "narrator": "Aisha",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2593"
+    },
+    {
+      "id": 90,
+      "text_ru": "Поистине, с трудностью приходит облегчение.",
+      "narrator": "Ibn Abbas",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 3383"
+    },
+    {
+      "id": 91,
+      "text_ru": "Кто призывает к верному пути, получит такую же награду, что и следующие за ним.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2674"
+    },
+    {
+      "id": 92,
+      "text_ru": "Лучший из вас тот, кто лучше всех выплачивает долги.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2227"
+    },
+    {
+      "id": 93,
+      "text_ru": "Не разрывайте отношений, не отворачивайтесь друг от друга, не ненавидьте друг друга и будьте рабами Аллаха братьями.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6064"
+    },
+    {
+      "id": 94,
+      "text_ru": "Кто верует в Аллаха и последний день, пусть чтит гостя.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5974"
+    },
+    {
+      "id": 95,
+      "text_ru": "Детьми Израиля управляли пророки; когда умирал один пророк, его сменял другой.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3461"
+    },
+    {
+      "id": 96,
+      "text_ru": "Сильный верующий лучше и более любим Аллахом, чем слабый верующий.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2812"
+    },
+    {
+      "id": 97,
+      "text_ru": "Пророк не был непристойным или грубым; он говорил, что лучшие из вас — те, кто лучше всех относится к своим жёнам.",
+      "narrator": "Aisha",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3560"
+    },
+    {
+      "id": 98,
+      "text_ru": "Обращайтесь с женщинами хорошо, ибо они созданы из ребра.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5185"
+    },
+    {
+      "id": 99,
+      "text_ru": "Каждый ребёнок рождается в состоянии фитра (естественной предрасположенности).",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1356"
+    },
+    {
+      "id": 100,
+      "text_ru": "Усопший подвергается наказанию в могиле из-за плача семьи по нему.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1386"
+    },
+    {
+      "id": 101,
+      "text_ru": "Кто снимет с верующего мирскую скорбь, Аллах снимет с него скорбь в День воскресения.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2674"
+    },
+    {
+      "id": 102,
+      "text_ru": "Ищи знания, даже если они в Китае.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1358"
+    },
+    {
+      "id": 103,
+      "text_ru": "Когда умирает человек, его дела прекращаются, кроме трёх: непрерывной садаки, полезных знаний или праведного ребёнка, молящегося за него.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1631"
+    },
+    {
+      "id": 104,
+      "text_ru": "Остерегайтесь семи губительных грехов.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2766"
+    },
+    {
+      "id": 105,
+      "text_ru": "У мусульманина пять обязанностей перед мусульманином: отвечать на приветствие, навещать больного, провожать покойного, принимать приглашение и говорить «ярхамукаллах» при чихании.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2475"
+    },
+    {
+      "id": 106,
+      "text_ru": "Оберегай (права) Аллаха — и Аллах будет оберегать тебя.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2516"
+    },
+    {
+      "id": 107,
+      "text_ru": "Лучшая молитва после обязательных — ночная молитва.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 4837"
+    },
+    {
+      "id": 108,
+      "text_ru": "Не ругайте время, ибо Аллах есть время.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2326"
+    },
+    {
+      "id": 109,
+      "text_ru": "Облегчайте людям, не затрудняйте, радуйте и не отпугивайте.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6015"
+    },
+    {
+      "id": 110,
+      "text_ru": "Кто увидит зло, пусть изменит его рукой; если не может — словом; если не может — сердцем.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 47"
+    },
+    {
+      "id": 111,
+      "text_ru": "Остерегайтесь дурных предположений, ибо дурное предположение — ложь.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6021"
+    },
+    {
+      "id": 112,
+      "text_ru": "Верующий не кусается дважды из одной норы.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6133"
+    },
+    {
+      "id": 113,
+      "text_ru": "Поистине, правдивость ведёт к праведности, а праведность ведёт в рай.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3282"
+    },
+    {
+      "id": 114,
+      "text_ru": "Гыйба — это упомянуть о своём брате то, что ему неприятно.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6094"
+    },
+    {
+      "id": 115,
+      "text_ru": "Никто из вас не уверует, пока я не стану ему дороже его детей, его отца и всех людей.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2518"
+    },
+    {
+      "id": 116,
+      "text_ru": "Мне велено сражаться с людьми до тех пор, пока они не скажут «Ла иляха илляллах».",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1397"
+    },
+    {
+      "id": 117,
+      "text_ru": "Кто скроет изъян мусульманина, Аллах скроет его изъян в этом мире и в будущем.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2676"
+    },
+    {
+      "id": 118,
+      "text_ru": "Между человеком и многобожием и неверием — оставление молитвы.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 194"
+    },
+    {
+      "id": 119,
+      "text_ru": "Лучший джихад — слово справедливости перед тираном.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 7138"
+    },
+    {
+      "id": 120,
+      "text_ru": "Не считай ни одно доброе дело незначительным, даже встречу брата с улыбкой.",
+      "narrator": "Abu Dharr",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2577"
+    },
+    {
+      "id": 121,
+      "text_ru": "Лучшее в исламе — кормить других и приветствовать тех, кого знаешь и кого не знаешь.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5199"
+    },
+    {
+      "id": 122,
+      "text_ru": "Тот, кто не благодарит людей, не благодарит Аллаха.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6117"
+    },
+    {
+      "id": 123,
+      "text_ru": "Облегчайте, не затрудняйте; радуйте и не отпугивайте.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5765"
+    },
+    {
+      "id": 124,
+      "text_ru": "Молитва — опора религии.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 125,
+      "text_ru": "Поминайте Аллаха стоя, сидя и лёжа на боку.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 179"
+    },
+    {
+      "id": 126,
+      "text_ru": "Тот, кто любит встречу с Аллахом, Аллах любит встречу с ним.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2687"
+    },
+    {
+      "id": 127,
+      "text_ru": "Поистине, Аллах принимает покаяние раба, пока не наступила агония.",
+      "narrator": "Ibn Umar",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 3537"
+    },
+    {
+      "id": 128,
+      "text_ru": "Лучшие из вас в период невежества — лучшие в исламе, если они познают ислам.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3331"
+    },
+    {
+      "id": 129,
+      "text_ru": "Кто любит ради Аллаха и ненавидит ради Аллаха, тот завершил свою веру.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6010"
+    },
+    {
+      "id": 130,
+      "text_ru": "Не разрывайте связи, не питайте ненависти и не шпионьте друг за другом.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2633"
+    },
+    {
+      "id": 131,
+      "text_ru": "Любовь к этому миру — корень всякого зла.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6477"
+    },
+    {
+      "id": 132,
+      "text_ru": "Кто убит, защищая своё имущество, — мученик.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Abu Dawud",
+      "reference_display": "Abu Dawud · No. 2597"
+    },
+    {
+      "id": 133,
+      "text_ru": "Богатство — не в обилии имущества; богатство — в богатстве души.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2999"
+    },
+    {
+      "id": 134,
+      "text_ru": "Кто имеет трёх дочерей и терпеливо заботится о них, войдёт в рай.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6015"
+    },
+    {
+      "id": 135,
+      "text_ru": "Когда человек умирает, ангелы спрашивают: что он отправил вперёд? А люди говорят: что он оставил после себя?",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1374"
+    },
+    {
+      "id": 136,
+      "text_ru": "Кто постится в Рамадан с верой и надеждой на награду, тому простятся прошлые грехи.",
+      "narrator": "Abu Said al-Khudri",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1376"
+    },
+    {
+      "id": 137,
+      "text_ru": "Кто встаёт для молитвы в Ночь предопределения с верой и надеждой на награду, тому простятся прошлые грехи.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1901"
+    },
+    {
+      "id": 138,
+      "text_ru": "Мольба постящегося не отвергается.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2553"
+    },
+    {
+      "id": 139,
+      "text_ru": "Аллах смеётся двум мужчинам: одному, который убил другого, затем оба вошли в рай.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 7492"
+    },
+    {
+      "id": 140,
+      "text_ru": "Не верующий тот, кто ест досыта, тогда как его сосед рядом с ним голоден.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 141,
+      "text_ru": "Перо поднято с трёх: со спящего до пробуждения, с ребёнка до взросления, с безумного до выздоровления.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6412"
+    },
+    {
+      "id": 142,
+      "text_ru": "Подавайте милостыню, ибо она станет щитом для вас от Огня.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1006"
+    },
+    {
+      "id": 143,
+      "text_ru": "Взывай к Аллаху с уверенностью в ответе.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2517"
+    },
+    {
+      "id": 144,
+      "text_ru": "Поистине, Аллах смотрит не на вашу внешность и богатство, а на ваши сердца и поступки.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2593"
+    },
+    {
+      "id": 145,
+      "text_ru": "Величайший грех — придавать Аллаху сотоварищей, затем убивать человека, затем прелюбодействовать.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2767"
+    },
+    {
+      "id": 146,
+      "text_ru": "В раю есть дерево под названием Туба; всадник может ехать под его тенью сто лет и не пересечь его.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 13"
+    },
+    {
+      "id": 147,
+      "text_ru": "Аллах доволен тремя вещами: поклонением Ему одному, крепкому держанию за Его верёвку и искреннему совету тем, кого Аллах поставил управлять вашими делами.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6502"
+    },
+    {
+      "id": 148,
+      "text_ru": "Кто читает суру аль-Кахф в пятницу, у того будет свет между двумя пятницами.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2818"
+    },
+    {
+      "id": 149,
+      "text_ru": "Совершайте молитву, выплачивайте закят и повинуйтесь своим правителям — войдёте в рай вашего Господа.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3020"
+    },
+    {
+      "id": 150,
+      "text_ru": "Человек с хорошим характером постоянно спрашивает совета у других.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2006"
+    },
+    {
+      "id": 151,
+      "text_ru": "Аллах создал милосердие в ста частях; ниспослал одну часть на землю, а девяносто девять оставил.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 7405"
+    },
+    {
+      "id": 152,
+      "text_ru": "Кто не благодарен за малое, не будет благодарен и за большое.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6065"
+    },
+    {
+      "id": 153,
+      "text_ru": "Верхняя рука лучше нижней. Верхняя — дающая, нижняя — берущая.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1015"
+    },
+    {
+      "id": 154,
+      "text_ru": "Терпение во время несчастья — добродетель.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2805"
+    },
+    {
+      "id": 155,
+      "text_ru": "Кто прикроет изъян мусульманина, Аллах прикроет его изъян в этом мире и будущем.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2588"
+    },
+    {
+      "id": 156,
+      "text_ru": "Семь людей укроет Аллах в тени в тот день, когда не будет иной тени, кроме Его тени.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1423"
+    },
+    {
+      "id": 157,
+      "text_ru": "Аллах говорит: О сын Адама, пока ты взываешь ко Мне и просишь Меня, Я прощу тебе содеянное.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2577"
+    },
+    {
+      "id": 158,
+      "text_ru": "Кто читает последние два аята суры аль-Бакара ночью, ему этого будет достаточно.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6502"
+    },
+    {
+      "id": 159,
+      "text_ru": "Самый совершенный верующий по вере — тот, у кого лучший нрав и кто добрее всех к своей жене.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2702"
+    },
+    {
+      "id": 160,
+      "text_ru": "Нет болезни, которую Аллах сотворил, не сотворив для неё лечение.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5641"
+    },
+    {
+      "id": 161,
+      "text_ru": "Помоги своему брату, когда он угнетатель, — останови его от угнетения.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2697"
+    },
+    {
+      "id": 162,
+      "text_ru": "Кто верует в Аллаха и последний день, пусть не обижает соседа; обращайтесь с женщинами хорошо.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2989"
+    },
+    {
+      "id": 163,
+      "text_ru": "Закят обязателен для каждого мусульманина, обладающего нисабом на протяжении года.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1468"
+    },
+    {
+      "id": 164,
+      "text_ru": "Совершайте пять ежедневных молитв, постите Рамадан, платите закят и совершайте хадж.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 593"
+    },
+    {
+      "id": 165,
+      "text_ru": "Кающийся в грехе подобен тому, у кого нет греха.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2344"
+    },
+    {
+      "id": 166,
+      "text_ru": "Лучшая садака — когда ты здоров и надеешься на долгую жизнь.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 167,
+      "text_ru": "Человек следует религии своего друга; поэтому пусть каждый смотрит, с кем он дружит.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3282"
+    },
+    {
+      "id": 168,
+      "text_ru": "Поистине, ваши деяния представляются Аллаху дважды в неделю: в понедельник и четверг.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2699"
+    },
+    {
+      "id": 169,
+      "text_ru": "Поиск знаний обязателен для каждого мусульманина.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6477"
+    },
+    {
+      "id": 170,
+      "text_ru": "Не завидуйте друг другу, не взвинчивайте цены, не ненавидьте друг друга.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 171,
+      "text_ru": "Тому, у кого нет милосердия, не будет оказано милосердие.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 4797"
+    },
+    {
+      "id": 172,
+      "text_ru": "Когда Аллах любит человека, Он зовёт Джибриля и говорит ему, что любит этого человека.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2767"
+    },
+    {
+      "id": 173,
+      "text_ru": "Кто совершает утреннюю молитву в джамаате, затем сидит и поминает Аллаха до восхода солнца, а затем совершает два ракаата, — это равно полному хаджу и умре.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2577"
+    },
+    {
+      "id": 174,
+      "text_ru": "Хадж — это Арафа.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1862"
+    },
+    {
+      "id": 175,
+      "text_ru": "Принятый хадж не имеет награды, кроме рая.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1521"
+    },
+    {
+      "id": 176,
+      "text_ru": "Кто совершает хадж и не совершает непристойного и грехов, вернётся таким, каким его родила мать.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1773"
+    },
+    {
+      "id": 177,
+      "text_ru": "Лучший из вас — тот, кто не причиняет вреда другим ни языком, ни руками.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3"
+    },
+    {
+      "id": 178,
+      "text_ru": "Дин лёгок; и никто не делает дин слишком трудным, кроме как терпит от этого поражение.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 179,
+      "text_ru": "Кто боится ночного путешествия, достигает пункта назначения на рассвете.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3375"
+    },
+    {
+      "id": 180,
+      "text_ru": "Мольба мусульманина за отсутствующего брата принимается.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2704"
+    },
+    {
+      "id": 181,
+      "text_ru": "Дуа — мозг поклонения.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 3376"
+    },
+    {
+      "id": 182,
+      "text_ru": "Два блага, которыми многие обмануты: здоровье и свободное время.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6405"
+    },
+    {
+      "id": 183,
+      "text_ru": "Кто носит шёлк в этом мире, не наденет его в будущем.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6416"
+    },
+    {
+      "id": 184,
+      "text_ru": "Лучшая садака — та, что дана, когда ты меньше всего богат.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1006"
+    },
+    {
+      "id": 185,
+      "text_ru": "Учёные — наследники пророков.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 186,
+      "text_ru": "Наиболее добродетельный джихад — произнести слово истины перед тираном.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 187,
+      "text_ru": "Чернила учёного священнее крови мученика.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1"
+    },
+    {
+      "id": 188,
+      "text_ru": "Кому Аллах желает блага, тому Он даёт понимание в религии.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2989"
+    },
+    {
+      "id": 189,
+      "text_ru": "Поистине, Аллах прекрасен и любит красоту.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2699"
+    }
+  ]
+}

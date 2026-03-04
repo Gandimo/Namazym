@@ -1,0 +1,134 @@
+{
+    "id": "namaz_kitaby_bes_wagt_okalysy",
+    "type": "book_entry",
+    "listTitle": "Bäş wagt okalyş düzgüni",
+    "detailTitle": "Bäş wagt namazlarynyň okalyş düzgünleri",
+    "content": [
+        {
+            "type": "heading",
+            "text": "BÄŞ WAGT NAMAZLARYNYŇ OKALYŞ DÜZGÜNLERI"
+        },
+        {
+            "type": "section_heading",
+            "text": "Öýle namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Öýle namazynyň jemi 10 rekagaty bardyr: 4 rekagat sünnet + 4 rekagat parz + 2 rekagat soňky sünnet."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Öýle namazynyň 4 rekagat sünneti"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Niýet edilýär: «…öýle namazynyň dört rekagat sünnetini okamaga».",
+                "Tahrime tekbiri alynyp birinji rekagat okalýar — Fatyha + zam süre.",
+                "Ruku, sejde, oturyş (tahýýat okalýar, salam berilmeýär).",
+                "Üçünji rekagata turylyp — Fatyha + zam süre.",
+                "Dördünji rekagat — Fatyha + zam süre, ruku, sejde.",
+                "Soňky oturyşda tahýýat + sa­lat-Ibrahim + doga okalýar, salam berilýär."
+            ]
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Öýle namazynyň 4 rekagat parzy"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Niýet: «…öýle namazynyň dört rekagat parzyny okamaga».",
+                "Birinji rekagat: E'uzü + Besmele + Fatyha + zam süre.",
+                "Ikinji rekagat: Besmele + Fatyha + zam süre. Ruku, iki sejde, oturyş (tahýýat).",
+                "Üçünji rekagat: Diňe Fatyha (zam süre ýok — parzlarda 3–4-nji rekagatda sünnet).",
+                "Dördünji rekagat: Fatyha. Ruku, iki sejde, soňky oturyş, salam."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Ikindi namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ikindi namazy 4 rekagat parzdyr. Öňünde 4 rekagat gaýry müekked sünnet okalýar."
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "4 rekagat gaýry müekked sünnet — öýle sünnetiniň ýaly okalýar.",
+                "4 rekagat parz — öýle parzyna meňzeş, degişli niýet bilen."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Agşam namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Agşam namazy 3 rekagat parz + 2 rekagat sünnetdir."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Agşam namazynyň 3 rekagat parzy"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Niýet: «…agşam namazynyň üç rekagat parzyny okamaga».",
+                "Birinji rekagat: Fatyha + zam süre.",
+                "Ikinji rekagat: Fatyha + zam süre. Ruku, sejde, oturyş (tahýýat — salam ýok).",
+                "Üçünji rekagat: Diňe Fatyha. Ruku, sejde, soňky oturyş, salam."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Ýassy namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ýassy namazy 4 rekagat parz + 4 (ýa-da 2) rekagat sünnet + 3 rekagat witir-wajypdyr."
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "4 rekagat gaýry müekked sünnet (öňünde).",
+                "4 rekagat parz — öýle parzyna meňzeş niýet bilen.",
+                "4 ýa-da 2 rekagat soňky sünnet.",
+                "3 rekagat witir namazы."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Witir namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Witir namazy 3 rekagat wajypdyr."
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Niýet: «…witir namazynyň üç rekagat wajybyny okamaga».",
+                "Birinji rekagat: Fatyha + zam süre.",
+                "Ikinji rekagat: Fatyha + zam süre. Ruku, sejde, oturyş (tahýýat — salam ýok).",
+                "Üçünji rekagat: Fatyha + zam süre.",
+                "Rukudan öň «Allahu ekber» tekbiri alynyp eller galdyrylýar we Kunut dogasy okalýar:",
+                "Kunut: «Alla:hümme innä: nesta'i:nuke ve nestagfiruke ve nü'minü bike, ve netewekkelü aleyýke, ve nüsni: aleyýke l-haýre külleh. Ve neşküruke ve lä: nekfürrük. Ve nahlü'ü ve netrükü men ýefcürük...»",
+                "Soňra ruku edilýär, sejde edilýär, soňky oturyş — salam berilýär."
+            ]
+        }
+    ]
+}

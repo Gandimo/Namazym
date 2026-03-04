@@ -1,0 +1,146 @@
+[
+    {
+        "id": "ertogrul_metjit",
+        "name": "Ärtogrul Gazy Metjidi",
+        "city": "Aşgabat",
+        "region": "Ahal",
+        "address": "Aşgabat şäheri",
+        "lat": 37.9601,
+        "lng": 58.3261
+    },
+    {
+        "id": "turkmenbashi_ruhy_metjit",
+        "name": "Türkmenbaşy Ruhy Metjidi",
+        "city": "Aşgabat",
+        "region": "Ahal",
+        "address": "Aşgabat şäheri, Kipçak",
+        "lat": 38.0389,
+        "lng": 58.3775
+    },
+    {
+        "id": "hezreti_omar_metjit",
+        "name": "Hezreti Ömer Metjidi",
+        "city": "Aşgabat",
+        "region": "Ahal",
+        "address": "Aşgabat şäheri",
+        "lat": 37.9458,
+        "lng": 58.3794
+    },
+    {
+        "id": "azadi_metjit",
+        "name": "Azady Metjidi",
+        "city": "Aşgabat",
+        "region": "Ahal",
+        "address": "Aşgabat şäheri, Azady köçesi",
+        "lat": 37.9297,
+        "lng": 58.3831
+    },
+    {
+        "id": "sehitler_metjit",
+        "name": "Şehitler Metjidi",
+        "city": "Aşgabat",
+        "region": "Ahal",
+        "address": "Aşgabat şäheri, Gülistan etraby",
+        "lat": 37.9156,
+        "lng": 58.3628
+    },
+    {
+        "id": "hajynur_isan_metjit",
+        "name": "Hajynur Işan Metjidi",
+        "city": "Aşgabat",
+        "region": "Ahal",
+        "address": "Aşgabat şäheri, Berkararlyk etraby",
+        "lat": 37.9682,
+        "lng": 58.3114
+    },
+    {
+        "id": "hoja_ahmet_yasawy_metjit",
+        "name": "Hoja Ahmet Ýasawy Metjidi",
+        "city": "Aşgabat",
+        "region": "Ahal",
+        "address": "Aşgabat şäheri, Parahat mikroraýon",
+        "lat": 37.9523,
+        "lng": 58.3492
+    },
+    {
+        "id": "ebu_bekr_metjit",
+        "name": "Ebu Bekr Metjidi",
+        "city": "Aşgabat",
+        "region": "Ahal",
+        "address": "Aşgabat şäheri, Mir köçesi",
+        "lat": 37.9384,
+        "lng": 58.3658
+    },
+    {
+        "id": "osman_metjit",
+        "name": "Osman Metjidi",
+        "city": "Aşgabat",
+        "region": "Ahal",
+        "address": "Aşgabat şäheri, Çandybil etraby",
+        "lat": 37.9745,
+        "lng": 58.3556
+    },
+    {
+        "id": "anev_metjit",
+        "name": "Änew Metjidi",
+        "city": "Änew",
+        "region": "Ahal",
+        "address": "Änew şäheri",
+        "lat": 37.8892,
+        "lng": 58.5037
+    },
+    {
+        "id": "baharly_metjit",
+        "name": "Baharły Metjidi",
+        "city": "Baharły",
+        "region": "Ahal",
+        "address": "Baharły etrabы",
+        "lat": 38.4333,
+        "lng": 57.4333
+    },
+    {
+        "id": "mary_merkezi_metjit",
+        "name": "Mary Merkezi Metjidi",
+        "city": "Mary",
+        "region": "Mary",
+        "address": "Mary şäheri",
+        "lat": 37.5942,
+        "lng": 61.8306
+    },
+    {
+        "id": "turkmenabat_metjit",
+        "name": "Türkmenabat Metjidi",
+        "city": "Türkmenabat",
+        "region": "Lebap",
+        "address": "Türkmenabat şäheri",
+        "lat": 39.0933,
+        "lng": 63.5781
+    },
+    {
+        "id": "dasoguz_metjit",
+        "name": "Daşoguz Merkezi Metjidi",
+        "city": "Daşoguz",
+        "region": "Daşoguz",
+        "address": "Daşoguz şäheri",
+        "lat": 41.8369,
+        "lng": 59.9658
+    },
+    {
+        "id": "balkanabat_metjit",
+        "name": "Balkanabat Metjidi",
+        "city": "Balkanabat",
+        "region": "Balkan",
+        "address": "Balkanabat şäheri",
+        "lat": 39.5108,
+        "lng": 54.3669
+    },
+    {
+        "id": "turkmenbashy_city_metjit",
+        "name": "Türkmenbaşy Şäher Metjidi",
+        "city": "Türkmenbaşy",
+        "region": "Balkan",
+        "address": "Türkmenbaşy şäheri",
+        "lat": 40.0225,
+        "lng": 52.9553
+    }
+]

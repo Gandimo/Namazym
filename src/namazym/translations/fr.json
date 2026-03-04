@@ -1,0 +1,64 @@
+{
+    "common": {
+        "prayer_times": "Heures de prière",
+        "ramadan": "Ramadan",
+        "city_select": "Choisir la ville",
+        "settings": "Paramètres",
+        "tasbih": "Tasbih",
+        "quran": "Coran",
+        "kybla": "Qibla",
+        "kaza": "Prières manquées",
+        "hadith": "Hadith du jour",
+        "verse": "Verset du jour",
+        "sahetli_gun": "Jour faste",
+        "asmaul_husna": "99 Noms",
+        "mosques": "Mosquées",
+        "dogalar": "Douas",
+        "islamic_holidays": "Fêtes islamiques",
+        "auto_location": "Auto-localisation",
+        "select_region": "Sélectionner la région",
+        "language": "Langue",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "narrator": "Narrateur",
+        "reported_by": "Rapporté par",
+        "source": "Source",
+        "read": "Lire",
+        "namaz_kitaby": "Livre de Namaz"
+    },
+    "prayer": {
+        "fajr": "Fajr",
+        "sunrise": "Lever du soleil",
+        "dhuhr": "Dhuhr",
+        "asr": "Asr",
+        "maghrib": "Maghrib",
+        "isha": "Isha"
+    },
+    "settings": {
+        "notifications": "Notifications",
+        "prayer_reminder": "Rappel de prière (15 min)",
+        "daily_content": "Verset et Hadith du jour",
+        "sound_preference": "Préférence Sonore",
+        "extras": "Extras",
+        "share": "Partager l'application",
+        "rate": "Évaluez-nous",
+        "terms": "Conditions d'utilisation",
+        "copyright": "© 2026 TOUS DROITS RÉSERVÉS"
+    },
+    "notification": {
+        "prayer_reminder_title": "🕌 Prière de {{prayer}}",
+        "prayer_reminder_body": "Il reste {{minutes}} minutes avant {{prayer}} ({{city}})",
+        "daily_content_ayah_title": "📖 Verset du jour",
+        "daily_content_hadith_title": "📖 Hadith du jour",
+        "daily_content_body": "Lire le nouveau contenu spirituel d'aujourd'hui"
+    },
+    "ramadan": {
+        "sahur": "Sahur",
+        "iftar": "Iftar"
+    },
+    "home": {
+        "verse_of_day": "Verset du jour",
+        "hadith_of_day": "Hadith du jour",
+        "kaza_subtitle": "Suivi et calendrier"
+    }
+}

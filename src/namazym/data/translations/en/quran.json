@@ -1,0 +1,20 @@
+{
+    "surahs": [
+        {
+            "number": 1,
+            "name": "Al-Fatihah",
+            "revelation_type": "Meccan",
+            "ayah_count": 7,
+            "ayahs": [
+                {
+                    "number": 1,
+                    "translation": "In the name of Allah, the Entirely Merciful, the Especially Merciful."
+                },
+                {
+                    "number": 2,
+                    "translation": "[All] praise is [due] to Allah, Lord of the worlds -"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,141 @@
+{
+    "id": "namaz_kitaby_namaz_rekagatlary_en",
+    "type": "book_entry",
+    "listTitle": "Rakaats and Sunnahs",
+    "detailTitle": "Rakaats of the Five Daily Prayers",
+    "content": [
+        {
+            "type": "heading",
+            "text": "RAKAATS OF THE FIVE DAILY PRAYERS"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Fajr prayer is a total of four rakaats. The first two rakaats are Sunnah and the last two rakaats are Fard. The Sunnah of Fajr prayer is stronger (more virtuous) than the Sunnahs of other prayers.",
+                "Dhuhr prayer is a total of ten rakaats. First four rakaats Sunnah, then four rakaats Fard, and after that two rakaats of Final Sunnah.",
+                "Asr prayer is a total of four rakaats Fard. However, it is also good to perform four rakaats of Ghair Muakkad Sunnah prayer before the Fard.",
+                "Maghrib prayer is a total of five rakaats. First three rakaats Fard and last two rakaats Sunnah.",
+                "Isha prayer is a total of eleven or nine rakaats. First four rakaats Fard, then four or two rakaats Sunnah, and then three rakaats of Witr-Wajib are performed. However, it is also good to perform four rakaats of Ghair Muakkad Sunnah prayer before the Fard of Isha. The Sunnah performed after Fard is four rakaats in some places and two rakaats in others; both are correct."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Sunnah Prayers"
+        },
+        {
+            "type": "paragraph",
+            "text": "Sunnah prayers are those performed before or after the five daily Fard prayers. They are divided into two:"
+        },
+        {
+            "type": "h4",
+            "text": "a) Muakkad Sunnah Prayers"
+        },
+        {
+            "type": "paragraph",
+            "text": "2 rakaats of Sunnah before Fajr Fard, 4 rakaats of Sunnah before Dhuhr Fard and 2 rakaats after, 2 rakaats of Sunnah after Maghrib Fard, and 4 or 2 rakaats after Isha Fard."
+        },
+        {
+            "type": "h4",
+            "text": "b) Ghair Muakkad Sunnah Prayers"
+        },
+        {
+            "type": "paragraph",
+            "text": "4 rakaats of Sunnah before Asr Fard and 4 rakaats before Isha Fard. These prayers are performed for reward (thawab)."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Nafl Prayers"
+        },
+        {
+            "type": "paragraph",
+            "text": "Nafl prayers include:"
+        },
+        {
+            "type": "paragraph",
+            "text": "Duha prayer, Taharrat prayer, Tahiyyatul Masjid prayer, Tahajjud (night) prayer, Istikhara prayer, Tasbih prayer, Hajat prayer, Tawba prayer, Travel prayer, Kusoof (solar eclipse) prayer, Khusoof (lunar eclipse) prayer, and prayers performed on holy nights and others."
+        },
+        {
+            "type": "section_heading",
+            "text": "Times when Nafl prayers are Makruh"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "After the entry of Fajr time, no Nafl prayer except Fajr Sunnah is performed.",
+                "After Fajr prayer is performed until sunrise, and between Asr prayer and Maghrib prayer, Nafl prayers are not performed.",
+                "After sunset, before Maghrib Fard is performed, Nafl prayer is not performed.",
+                "When the time for Fard is narrow (short), Nafl prayer is not performed.",
+                "While the Imam is reading the Friday Khutbah, Nafl prayer is not performed.",
+                "When there is an urgent need to use the restroom, Nafl prayer is not performed.",
+                "When a meal is served, Nafl prayer is not performed."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Adhan and Iqamah"
+        },
+        {
+            "type": "paragraph",
+            "text": "Reciting Adhan when the times for the five daily prayers arrive is Muakkad Sunnah for men."
+        },
+        {
+            "type": "section_heading",
+            "text": "Adhan"
+        },
+        {
+            "type": "lines",
+            "lines": [
+                "Allahu Akbar, Allahu Akbar",
+                "Allahu Akbar, Allahu Akbar",
+                "",
+                "Ashhadu alla ilaha illallah",
+                "Ashhadu alla ilaha illallah",
+                "",
+                "Ashhadu anna Muhammadar Rasulullah",
+                "Ashhadu anna Muhammadar Rasulullah",
+                "",
+                "Hayya alas-salah",
+                "Hayya alas-salah",
+                "",
+                "Hayya alal-falah",
+                "Hayya alal-falah",
+                "",
+                "Allahu Akbar, Allahu Akbar",
+                "La ilaha illallah"
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Only in the Fajr Adhan, after \"Hayya alal-falah\", \"Assalatu khayrum-minan-nawm\" (Prayer is better than sleep) is said twice."
+        },
+        {
+            "type": "paragraph",
+            "text": "After the Adhan is finished, the following Dua is recited:"
+        },
+        {
+            "type": "quote",
+            "text": "\"Allahumma Rabba hadhihid-da'watit-tammah, was-salatil-qa'imah, ati Muhammadanil-wasilata wal-fadhilata wad-darajatal-aliyatar-rafiah, wab'as-hu maqamam mahmuda-nilladhi wa'adtah, warzuqna shafa'atahu yawmal-qiyamah, innaka la tukhliful-mi'ad. Birahmatika ya arhamar-rahimin\""
+        },
+        {
+            "type": "paragraph",
+            "text": "Hadiths state that those who recite this Dua will be worthy of the intercession of our Prophet Muhammad (peace be upon him) on the Day of Judgment (Bukhari)."
+        },
+        {
+            "type": "section_heading",
+            "text": "Iqamah"
+        },
+        {
+            "type": "paragraph",
+            "text": "When prayer time arrives, Adhan is recited first. Iqamah is recited when about to start the Fard prayer. The words of Iqamah are similar to those of Adhan. However, in Iqamah, after \"Hayya alal-falah\", the sentence \"Qad qamatis-salah\" is added twice. For women, Adhan and Iqamah are not required."
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "surahs": [
+        {
+            "number": 1,
+            "name": "Fâtiha",
+            "ayah_count": 7,
+            "ayahs": [
+                {
+                    "number": 1,
+                    "translation": "Rahmân ve Rahîm olan Allah'ın adıyla."
+                },
+                {
+                    "number": 2,
+                    "translation": "Hamd, âlemlerin Rabbi Allah'a mahsustur."
+                }
+            ]
+        }
+    ]
+}

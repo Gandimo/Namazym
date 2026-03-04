@@ -1,0 +1,93 @@
+{
+    "categories": [
+        {
+            "id": "turbeler",
+            "title": "Türbeler",
+            "icon": "🕌"
+        },
+        {
+            "id": "ziyarat",
+            "title": "Zyýarat ýerleri",
+            "icon": "⛰️"
+        },
+        {
+            "id": "tarihi",
+            "title": "Taryhy dini mekanlar",
+            "icon": "🏛️"
+        }
+    ],
+    "places": [
+        {
+            "id": "parau_bibi",
+            "category_id": "ziyarat",
+            "name": "Parau-Bibi",
+            "location": "Balkan welaýat",
+            "short_desc": "Türkmenistanda iň tanalýan zyýarat ýerleriniň biri. Doga edilýän mukaddes ýer hökmünde giňden bilinýär.",
+            "full_desc": "Parau-Bibi zyýarathanasy Balkan welaýatynyň Bereket etrabynda ýerleşýär. Bu ýer dagyň ýüzünde gurlan gadymy metjit we zyýarathana toplumydyr. Rowaiýatlara görä, Parau-Bibi keramatly zenan bolup, kynçylykdan gutulmak üçin daga siňip giden diýilýär."
+        },
+        {
+            "id": "gozli_ata",
+            "category_id": "ziyarat",
+            "name": "Gözli Ata",
+            "location": "Balkan welaýat",
+            "short_desc": "Sebitde zyýarat edilýän mukaddes ýer. Taryhy we ruhy ähmiýeti bilen tanalýar.",
+            "full_desc": "Gözli Ata zyýarathanasy Balkan welaýatynyň Türkmenbaşy etrabynda, çöllük meýdanda ýerleşýär. Gözli Ata 14-nji asyrda ýaşap geçen, halk arasynda sarpaly şahsiyet hasaplanýan keramatly adamdyr."
+        },
+        {
+            "id": "najmuddin_kubra",
+            "category_id": "turbeler",
+            "name": "Najmuddin Kubra Mawzoleýi",
+            "location": "Daşoguz welaýat • Köneürgenç",
+            "short_desc": "Türkmenistanda iň meşhur taryhy türbeleriň biri. Mukaddes ýer hökmünde tanalýar.",
+            "full_desc": "Najmuddin Kubra mawzoleýi Köneürgenç taryhy goraghanasynda ýerleşýär. 13-nji asyryň başynda ýaşap geçen beýik alym we şyh Najmuddin Kubra bagyşlanyp gurlan bu bina, Orta Aziýa binagärliginiň ajaýyp nusgasydyr."
+        },
+        {
+            "id": "sultan_sanjar",
+            "category_id": "turbeler",
+            "name": "Soltan Sanjar Türbesi",
+            "location": "Mary welaýat • Merw",
+            "short_desc": "Seljuklar döwletiniň hökümdary Soltan Sanjaryň aramgähi. Binagärlik sungatynyň şa eseridir.",
+            "full_desc": "Gadymy Merwde ýerleşýän Soltan Sanjar türbesi 12-nji asyrda gurlupdyr. Bu bina özüniň üýtgeşik güberçek gümmezi we berkitme ulgamy bilen meşhurdyr."
+        },
+        {
+            "id": "astana_baba",
+            "category_id": "turbeler",
+            "name": "Astana Baba Türbesi",
+            "location": "Lebap welaýat • Kerki",
+            "short_desc": "Kerki şäherine golaý ýerleşýän taryhy memorial toplum.",
+            "full_desc": "Astana Baba türbesi 11-12-nji asyrlara degişli binagärlik ýadygärligidir. Bu ýer zyyaratçylar üçin möhüm ruhy merkez hasaplanýar."
+        },
+        {
+            "id": "sehitli_ata",
+            "category_id": "ziyarat",
+            "name": "Şehitli Ata",
+            "location": "Ahal welaýat",
+            "short_desc": "Ahal welaýatynda ýerleşýän, halkyň hormatlaýan zyýarat ýeri.",
+            "full_desc": "Şehitli Ata zyýarathanasy Tejen etrabynda ýerleşýär. Bu ýeriň taryhy ähmiýeti barada dürli rowaýatlar aýdylýar."
+        },
+        {
+            "id": "kunya_urgench",
+            "category_id": "tarihi",
+            "name": "Köneürgenç Taryhy Ýadygärlikleri",
+            "location": "Daşoguz welaýat",
+            "short_desc": "UNESCO Bütindünýä Mirasyna girizilen gadymy şäher galyndylary.",
+            "full_desc": "Köneürgenç, Horezmşa şalygynyň paýtagty bolan gadymy şäherdir. Minaralar, türbeler we medreseler bu ýeriň taryhy baýlygyny görkezýär."
+        },
+        {
+            "id": "merw",
+            "category_id": "tarihi",
+            "name": "Gadymy Merw",
+            "location": "Mary welaýat",
+            "short_desc": "Beýik Ýüpek Ýolunyň ugrunda ýerleşen gadymy şäherleriň galyndylary.",
+            "full_desc": "Gadymy Merw, Orta Aziýanyň iň gadymy we ähmiýetli şäherlerinden biridir. Bu ýerde Gyaur Gala, Erk Gala ýaly birnäçe gadymy şäher harabalyklary bar."
+        },
+        {
+            "id": "nisa",
+            "category_id": "tarihi",
+            "name": "Nusaý Galasy",
+            "location": "Ahal welaýat • Aşgabat",
+            "short_desc": "Parfiýa imperiýasynyň gadymy paýtagty.",
+            "full_desc": "Nusaý (Gadymy we Täze Nusaý) Aşgabat şäheriniň golaýynda ýerleşýär. Bu ýer Parfiýa patyşalarynyň rezidensiýasy bolup hyzmat eden taryhy galadyr."
+        }
+    ]
+}

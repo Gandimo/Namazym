@@ -1,0 +1,87 @@
+{
+    "id": "namaz_kitaby_gusul",
+    "type": "book_entry",
+    "listTitle": "Gusul",
+    "detailTitle": "Gusul",
+    "content": [
+        {
+            "type": "heading",
+            "text": "IV BÖLÜM"
+        },
+        {
+            "type": "subheading",
+            "text": "GUSUL"
+        },
+        {
+            "type": "paragraph",
+            "text": "Bedeniň ähli ýerini ýuwmaklyga, ýagny endamyňda barmak basar ýaly gury ýer galdyrman suwa düşmeklige gusul diýilýär."
+        },
+        {
+            "type": "section_heading",
+            "text": "Gusul almagy zerur edýän ýagdaýlar"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Jynsy gatnaşykda bolmak, oýadyna ýa-da ukudadygyna garamazdan iniň hapalanmagy. Muňa «jünüplik» diýilýär.",
+                "Aýbaşy ýa-da çile wagtynyň tamamlanmagy."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Gusul almagy hökman bolan adamlara gadagan zatlar"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Namaz okamak bolmaýar. Gusul almagy hökman bolan adam agyz bekläp biler, ýöne aýbaşly ýa-da çileli zenana namaz okamaga, oraza tutmaga bolmaýar.",
+                "Gurhany Kerimi okamak ýa-da ellemek bolmaýar. Ýöne bir gabynyň içine salnan ýa-da bir zada dolanan Gurhany Kerimi zerurlyk ýagdaýlarynda ele almak, götermek bolar.",
+                "Käbäni togap etmek bolmaýar."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Gusulyň parzlary"
+        },
+        {
+            "type": "unordered_list",
+            "items": [
+                "Agzyňy gowy çaýkamak, dişleriň arasynda suwuň geçmegine päsgel berjek galyndy bar bolsa, olary arassalamak.",
+                "Burnuňy suw bilen gowy arassalamak. Orazaly adam gusul alanda, suwy ýuwutmakdan seresap bolmalydyr.",
+                "Bedeniň ähli ýerini barmak basar ýaly gury ýer galdyrman ýuwmak."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Gusulyň sünnetleri"
+        },
+        {
+            "type": "paragraph",
+            "text": "Gusul alnanda bedeniň ähli ýerini üç gezek gaýtalap ýuwmak sünnet sogabyny gazandyrýar. Gusula «E'u:zü billä:hi mineş-şeýtä:nir-raji:m we Bismillä:hir-rahmä:nir-rahym» bilen başlamak, niýet etmek, dişleri arassalaýjy serişdeleri ulanmak, bedendäki nejasaty ýuwmak, namazyň täreti ýaly täret almak sünnetdir."
+        },
+        {
+            "type": "paragraph",
+            "text": "Täret alnandan soň ilki kelleňe, soň sag we sol egniňe üç gezek suw akytmak hem-de suw akýanynda bedeniň her agzasyny owkalap ýuwmak sünnetdir."
+        },
+        {
+            "type": "paragraph",
+            "text": "Gusul alnanda ýüzük, gulakhalkä ýaly zatlar dakylgy bolsa, olary ýerinden gozgamaly, gulaklaryň we göbegiň içlerine suw barmaly. Gyr sakgally adamlar sakgallarynyň düýplerine suw ýetirmeli. Zenanlaryň örülen saçlarynyň düýbine hökman suw barmaly."
+        },
+        {
+            "type": "paragraph",
+            "text": "Eger-de aýal adamyň saçy örülmedik bolsa, onda saçynyň hemme ýerini ýuwmalydyr. Gusul alnanda agzyňy ýuwan wagtyň oturtma (protez) dişleri çykarmaly."
+        },
+        {
+            "type": "paragraph",
+            "text": "Gusul alýan adamyň agzyny we burnuny çaýkanyndan soň, akyp duran suwa, köle ýa-da deňze çümmegi bilen gusuly berjaý bolýar. Suwuň içinde bedenini elleri bilen ýuwsa, gusulyň sünnetlerini-de berjaý eden bolýar."
+        },
+        {
+            "type": "paragraph",
+            "text": "Gusul alnanda awrat ýerleriň ýapyk bolmagy edeplilikden nyşan hasaplanýar. Täretde mekruh bolan zatlar gusulda hem mekruhdyr."
+        },
+        {
+            "type": "paragraph",
+            "text": "Jünüplikden, aýallara mahsus aýbaşy we çile ýaly ýagdaýlardan soň gusul almak parzdyr. Juma hem-de baýram namazlary üçin, haj parzyny berjaý etmek üçin ihrama girmezden öň, Arafatda wakfa durmak üçin gusul almak sünnetdir."
+        }
+    ]
+}

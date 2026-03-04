@@ -1,0 +1,76 @@
+{
+    "id": "namaz_kitaby_jemagat",
+    "type": "book_entry",
+    "listTitle": "Jemagat düzgünleri",
+    "detailTitle": "Jemagat bolup namaz okamak",
+    "content": [
+        {
+            "type": "heading",
+            "text": "JEMAGAT BOLUP NAMAZ OKAMAK"
+        },
+        {
+            "type": "section_heading",
+            "text": "Hatar düzgünleri"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Ymam ne öňde bolýar, jemagat onuň gapdalynda ýa-da arkasyndaky hatarlarda düzülýär.",
+                "Ymamyň sagyna ilki erkek kişiler, soňra ýaşlar düzülýär.",
+                "Bir erkek we ymam bar bolsa, erkek ymamyň sagyna durýar.",
+                "Jemagat köp bolsa, ilkinji bilen öň hatar doldurylýar, soňra yz hatarlar.",
+                "Aýallar erkekleriň arkasyndaky ayrym hatardan durýarlar."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Ymam bilen jemagat utgaşygy"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Ymam azan we kamaty aýdýar (ýa-da müezzin aýdyp berýär).",
+                "Ymam «Allahu ekber» diýip ruku/sejde ädimlerine geçeninde jemagat hem tirkeşýär.",
+                "Ruku tesbihleri: ymam içinden, jemagat hem içinden aýdýar.",
+                "«Semi-Allahu limen hamideh» ymam, «Rabbena lekel-hamd» jemaat.",
+                "Sejde tesbihleri hem jemagat bilen utgaşyp edilýär.",
+                "Ymam sesli okalanda jemagat diňläp durýar."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Mesbuk — jemagatda ýetişmedik rekagat"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ymam namazyny başlan, ýöne jemagat soňra ýetişen kişä «mesbuk» diýilýär."
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Mesbuk, ymam salamlamazdan öň niýet edip jemagata goşulýar.",
+                "Ymam salam berend­en soň, mesbuk ýerine turup ýetişmedik rekagatlaryny tamamlaýar.",
+                "Ýetişen rekagat kyýamdan hasap edilýär — ruku tapdymy, rekagat kabul.",
+                "Eger ruku tapylmasa, şol rekagat hasaba girmeýär, goşmaça okalýar.",
+                "Üç rekagatlyk agşam namazyna ikinji rekagat rukusynda ýetişen: ymam salasyndan soň bir rekagat okap tamamlaýar.",
+                "Soňky oturyşa (kagdaýy-ahyr) ýetişen hem zyýansyz jemagata uýup bilýär."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Mesbuk bilen baglanyşykly käbir meseleler"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Mesbuk tamamlaýan rekagatlarynda Fatyha + zam süre okamaly.",
+                "Üç ýa-da dört rekagat parzda tamamlaýan rekagatlarynda diňe Fatyha okalýar (ikinji rekagat öň okalan bolsa).",
+                "Witiriň kunotyny kaza edende soňky rekagatda kunut okalýar.",
+                "Kaza rekagaty tamamlananda soňky oturyşda tahýýat + salat-Ibrahim + doga okalyp salam berilýär."
+            ]
+        }
+    ]
+}

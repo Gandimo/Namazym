@@ -1,0 +1,115 @@
+{
+    "id": "namaz_kitaby_namaz_okalysy_adimler",
+    "type": "book_entry",
+    "listTitle": "Namazyň okalyş düzgüni",
+    "detailTitle": "Namazyň okalyş düzgüni (ädimme-ädim)",
+    "content": [
+        {
+            "type": "heading",
+            "text": "NAMAZYŇ OKALYŞ DÜZGÜNI"
+        },
+        {
+            "type": "paragraph",
+            "text": "Aşakda ertir namazynyň mysalynda namazyň ädimme-ädim okalyş düzgüni görkezilýär."
+        },
+        {
+            "type": "section_heading",
+            "text": "1. Niýet (Surat 1–2)"
+        },
+        {
+            "type": "paragraph",
+            "text": "Namaza başlamazdan öň niýet edilýär. Niýet kalp bilen edilýär — dilden aýtmak sünnetdir. Mysal: «Niýet etdim Allatagala ertir namazynyň iki rekagat parzyny okamaga»."
+        },
+        {
+            "type": "section_heading",
+            "text": "2. Tahrime tekbiri (Surat 3–4)"
+        },
+        {
+            "type": "paragraph",
+            "text": "Iki el gulak ýumşaklaryna çenli galdyrylýar, barmaklaryň aralygy açyk tutulýar. «Allahu ekber» diýilip elleri galdyrylýar, soň aşak indirilýär."
+        },
+        {
+            "type": "section_heading",
+            "text": "3. Elleri goýuş (Surat 5–6)"
+        },
+        {
+            "type": "paragraph",
+            "text": "Erkeklerde çep eliň üstüne sag el goýulýar we göbegiň aşagyna tutulýar. Zenanlarda kükrügiň üstünde tutulýar. «Sübhaneke» dogasy okalýar."
+        },
+        {
+            "type": "quote",
+            "text": "«Sübhänekellä:hümme we bihamdike we tebä:rekesmüke we te'ä:lä: ceddüke we lä: ilä:he gaýrük»"
+        },
+        {
+            "type": "section_heading",
+            "text": "4. Kyraat"
+        },
+        {
+            "type": "paragraph",
+            "text": "«E'u:zü» we «Besmele» aýdylýar, soňra Fatyha we zam süre okalýar."
+        },
+        {
+            "type": "quote",
+            "text": "Fatyha: «Bismillä:hir-rahmä:nir-rahym. Elhamdu lillä:hi Rabbil-ä:lemi:n. Errahmä:nir-rahi:m. Mä:liki ýöwmiddi:n. İýýä:ke na'büdü we iýýä:ke nesta'i:n. İhdinessirä:tal-müstaky:m. Sirä:tallezi:ne en'amte aleyýhim. Gaýril-magdu:bi aleyýhim we ledda:lli:n. Ä:mi:n»"
+        },
+        {
+            "type": "section_heading",
+            "text": "5–6. Rukua gitmek we dikelmek (Surat 7–8)"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "«Allahu ekber» tekbiri bilen bel büküp rukua gidilýär.",
+                "Iki el bilen iki dyz tutulýar, barmaklar açyk, bas dyzy tutýar.",
+                "Üç gezek «Sübhäne Rabbiyel-Azyym» diýilýär.",
+                "«Semi-Allahu limen hamideh» diýilip dikelmek.",
+                "Kyýamda «Rabbena lekel-hamd» diýilýär."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "7–8. Sejde we oturyş (Surat 9–10)"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "«Allahu ekber» tekbiri bilen sejdä gidilýär.",
+                "Maňlaý, burun, iki el, iki dyz, iki aýak barmaklygy — jemi 7 agza bilen sejde edilýär.",
+                "Üç gezek «Sübhäne Rabbiyel-Aglä» diýilýär.",
+                "Oturylýar (jalsa), soň ikinji sejde edilýär — ýene üç gezek «Sübhäne Rabbiyel-Aglä»."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "9–10. Tahýýat we oturyş (Surat 11–14)"
+        },
+        {
+            "type": "paragraph",
+            "text": "Iki rekagatdan soň oturylýar. «Tahýýat» dogasy okalýar:"
+        },
+        {
+            "type": "quote",
+            "text": "«Ettehyýýä:tü lillä:hi wessalewä:tü vettayyibä:tü. Essalä:mü aleyýke eyyühennebiyýü ve rahmetullä:hi ve berekä:tüh. Essalä:mü aleynä: ve ala: ibä:dilla:his-sä:lihy:n. Eşhedü ellä: ilä:he illalla:h. Ve eşhedü enne Muhammeden abdühü ve Rasu:luh»"
+        },
+        {
+            "type": "paragraph",
+            "text": "Soňky oturyşda «Salatül-Ibrahim» we doga okalýar."
+        },
+        {
+            "type": "quote",
+            "text": "«Alla:hümme salli alä: Muhammed, ve alä: ä:li Muhammad. Kemä: salleýte alä: Ibra:hi:m, ve alä: ä:li İbra:hi:m. İnneke hami:dün Meci:d. Alla:hümme bä:rik alä: Muhammed, ve alä: ä:li Muhammed. Kemä: bä:rekte alä: İbra:hi:m, ve alä: ä:li İbra:hi:m. İnneke hami:dün Meci:d»"
+        },
+        {
+            "type": "section_heading",
+            "text": "11. Salam (Surat 15–18)"
+        },
+        {
+            "type": "paragraph",
+            "text": "Saga we çepe ýüz öwrüp salam berilýär:"
+        },
+        {
+            "type": "quote",
+            "text": "«Essalä:mü aleýyküm ve rahmetullä:h»"
+        }
+    ]
+}

@@ -1,0 +1,131 @@
+{
+    "id": "namaz_kitaby_teyemmum",
+    "type": "book_entry",
+    "listTitle": "Teýemmüm",
+    "detailTitle": "Teýemmüm",
+    "content": [
+        {
+            "type": "heading",
+            "text": "V BÖLÜM"
+        },
+        {
+            "type": "subheading",
+            "text": "TEÝEMMÜM"
+        },
+        {
+            "type": "paragraph",
+            "text": "Teýemmüm arassa toprak bilen ýüzi we tirsekler bilen bileklige çenli elleri mesh etmekdir."
+        },
+        {
+            "type": "quote",
+            "text": "Gurhany Kerimiň «Maide» süresiniň 6-njy aýatynda şeýle diýilýär: «Eger syrkaw (hassa) ýa-da saparda bolsaňyz, ýa-da biriňiz hajathanadan gelen bolsaňyz, ýa aýallaryňyza ýanaşan bolsaňyz we (gusul alar ýaly) suw tapmasaňyz, arassa toprak bilen teýemmüm ediň. Onuň bilen ýüzüňizi we elleriňizi mesh ediň»."
+        },
+        {
+            "type": "paragraph",
+            "text": "Teýemmüm suwuň ýoklugy ýa-da suwdan peýdalanmak mümkin bolmadyk ýagdaýlarda täretiň ýa-da gusulyň deregine alynýar."
+        },
+        {
+            "type": "section_heading",
+            "text": "Teýemmümiň dürs bolmagynyň şertleri"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Teýemmüm alýan wagtyň täreti bozýan ýagdaýlaryň ýüze çykmazlygy.",
+                "Teýemmüm edilmeli agzalarda suw geçirmeýän zatlaryň bolmazlygy."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Teýemmümiň parzlary"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Niýet etmek.",
+                "Arassa toprak bilen teýemmüm etmek."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Teýemmümiň sünnetleri"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "«Bismillä:hir-rahmä:nir-rahym» bilen başlamak.",
+                "Elleri topraga goýup öňe-yza sürtmek.",
+                "Elleriň artyk gumuny kakmak.",
+                "Tertibe görä ýerine ýetirmek."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Teýemmümiň alnysy"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Niýet edilýär.",
+                "Iki el, barmaklar açyk ýagdaýda topraga goýlup öňe-yza sürtülýär.",
+                "Iki eliň artyk gumy kakylýar.",
+                "Ýüz mesh edilýär.",
+                "Elleri täzeden topraga goýup sürtülýär.",
+                "Elleri tirsege çenli mesh edilýär."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Teýemmümi bozýan zatlar"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Täret ýa-da gusuly bozýan ähli ýagdaýlar.",
+                "Suwuň tapylmagy."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "GUSUL"
+        },
+        {
+            "type": "paragraph",
+            "text": "Bedeniň ähli ýerini ýuwmaklyga gusul diýilýär."
+        },
+        {
+            "type": "section_heading",
+            "text": "Gusul almagy zerur edýän ýagdaýlar"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Jünüplik ýagdaýy.",
+                "Aýbaşy ýa-da çile döwrüniň tamamlanmagy."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Gusulyň parzlary"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Agzyňy çaýkamak.",
+                "Burnuňy arassalamak.",
+                "Bedeniň ähli ýerini ýuwmak."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Gusulyň sünnetleri"
+        },
+        {
+            "type": "paragraph",
+            "text": "«E'uzu billä:hi mineş-şeýtanir-raji:m we Bismillä:hir-rahmä:nir-rahym» bilen başlamak, niýet etmek, täret almak, soň bedeni doly ýuwmak sünnetdir."
+        }
+    ]
+}

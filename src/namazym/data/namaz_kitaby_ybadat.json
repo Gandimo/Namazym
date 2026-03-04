@@ -1,0 +1,152 @@
+{
+    "id": "namaz_kitaby_ybadat",
+    "type": "book_entry",
+    "listTitle": "Ybadat",
+    "detailTitle": "Ybadat",
+    "content": [
+        {
+            "type": "heading",
+            "text": "III BÖLÜM"
+        },
+        {
+            "type": "subheading",
+            "text": "YBADAT"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ybadat Allatagalaň emirlerini berjaý edip, gadagan eden zatlaryndan gaça durmak, Beýik Biribarýň razylygyny gazanmak maksady bilen edilen amallardyr. Gurhany Kerim ýaradylmagymyzyň asyl maksadyny şeýle beýan edýär:"
+        },
+        {
+            "type": "quote",
+            "text": "«Men jynlary we ynsanlary Özime ybadat etmekleri üçin ýaratdym» («Zariýat» süresiniň 56-njy aýaty)."
+        },
+        {
+            "type": "paragraph",
+            "text": "Ybadat diýlende ilkinji pursat, aklymyza dine namaz, oraza ýaly zatlar gelýär. Emma ybadat dine bulardan ybarat däldir. Allatagalaň razylygyny gazanmak üçin her bir hereket, söz, amal we niýet ybadat hökmünde kabul edilýär. Allatagalaň emirlerini berjaý etmek ýaly, gadagan eden zatlaryndan daşda durmak hem deň derejede ybadatdyr. Ýöne namazyň ähli ybadatlaryň özegidini bilmelidiris."
+        },
+        {
+            "type": "section_heading",
+            "text": "Ybadatyň Allatagalaň dergähinde kabul bolmagynyň şerti"
+        },
+        {
+            "type": "paragraph",
+            "text": "Edilen ybadatlaryň Allatagalaň dergähinde kabul bolmagynyň ýeke-täk şerti bardyr, ol hem yhlasdyr. Yhlas bilen edilen ybadatlar dine Allatagalaň razylygyny gazanmak üçin ýagşy niýet, arassa ýürek bilen edilen amallardyr. Bu amallar Gurhany Kerime we Pygamberimiz Muhammet aleýhissalamyň sünnetine laýyk berjaý edilmelidir. Eger-de bir bähbit ýa-da bir peýda göz öňünde tutulyp ybadat edilse, beýle ybadat hakky ybadat bolmakdan çykar. Şeýle ybadat Allatagalaň dergähinde kabul bolmaz."
+        },
+        {
+            "type": "paragraph",
+            "text": "Şonuň üçin ybadatlarymyzyň kabul bolmagyny isleýän bolsak, amallarymyzy dine Allatagalaň razylygyny gazanmak üçin, dowamly, wagtynda we bir kemsiz berjaý etmegimiz gereklidir."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Ybadatyň görnüşleri"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ybadat üç görnüşe aýrylýar:"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Beden bilen berjaý edilýän ybadatlar. Ynsanyň hut öziniň bedeni bilen ýerine ýetirmeli ybadatlarydyr. Bular namaz, oraza ýaly ybadatlardyr. Bu ybadatlary başga bir ynsanyň üstü bilen ýerine ýetirmek mümkin bolman, her ynsanyň hut öziniň berjaý etmegi hökmanydyr.",
+                "Mal (emläk) bilen berjaý edilýän ybadatlar. Emlägimiziň bir bölegini başgalara bermek arkaly edilen ybadatlardyr. Bular zekat, üşür, pitre ýaly ybadatlardyr.",
+                "Hem beden, hem emläk bilen edilen ybadatlar. Muňa haj we umra ybadatlaryny mysal getirmek bolar."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Kämillik ýaşy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Kämillik ýaşy, yslam alymlarynyň aýtmagyna görä, ýaş taýdan oglanlarda 12–15, gyzlarda 9–15 ýaş aralygy. Bedeni taýdan bolsa oglanlarda iniň hapalanmagy, gyzlarda aýbaşy halynyň görülmegi bilen kesgitlenýär."
+        },
+        {
+            "type": "paragraph",
+            "text": "Ybadatlary berjaý etmäge borçly (mükellef) bolan her bir musulman dini amallary ýerine ýetirmelidir. Bu dini amallar esaslanyan delilleriniň ýagdaýyna görä sekiz sandyr. Bular parz, wajyp, sünnet, mustahap, mubah, haram, mekruh we mufsiddir."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Parz"
+        },
+        {
+            "type": "paragraph",
+            "text": "Berjaý edilmegi Allatagala we Onuň ilçisi Muhammet aleýhissalam tarapyndan anyk we kesgitli deliller bilen emir edilen amallardyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Wajyp"
+        },
+        {
+            "type": "paragraph",
+            "text": "Hökümi parzyň derejesinde bolmasa-da, kesgitli deliller bilen emir edilen amallardyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Sünnet"
+        },
+        {
+            "type": "paragraph",
+            "text": "Pygamberimiz Muhammet aleýhissalamyň parz we wajypdan başga hut öziniň berjaý eden ýa-da edileni görüp garşy bolmadyk amallarydyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Mustahap"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ýerine ýetirilmegi sogap bolup, terk edilse günä bolmaýan amallardyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Mubah"
+        },
+        {
+            "type": "paragraph",
+            "text": "Dini taýdan hiç hili hökümi bolmadyk amallardyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Haram"
+        },
+        {
+            "type": "paragraph",
+            "text": "Yslam dininde amal edilmegi anyk gadagan edilen zatlardyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Mekruh"
+        },
+        {
+            "type": "paragraph",
+            "text": "Dinimizde amal edilmezligi ýagşy görülýän amallardyr."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Mekruhyň görnüşleri"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Tahrimen-mekruh",
+                "Tenzihen-mekruh"
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Mufsit"
+        },
+        {
+            "type": "paragraph",
+            "text": "Haýsy-da bolsa bir ybadatyň bozulmagyna sebäp bolýan zada mufsit diýilýär."
+        }
+    ]
+}

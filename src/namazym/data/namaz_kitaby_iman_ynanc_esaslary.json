@@ -1,0 +1,282 @@
+{
+    "id": "namaz_kitaby_iman_ynanc_esaslary",
+    "type": "book_entry",
+    "listTitle": "Iman-ynanç esaslary",
+    "detailTitle": "Iman-ynanç esaslary",
+    "content": [
+        {
+            "type": "heading",
+            "text": "I BÖLÜM"
+        },
+        {
+            "type": "subheading",
+            "text": "IMAN-YNANÇ ESASLARY"
+        },
+        {
+            "type": "paragraph",
+            "text": "«Iman» sözi bir zada «ynanmak», «ynam etmek» diýen manylary aňladýar. «Iman» sözüniň dini manysy bolsa Allatagalanyň barlygyna we birligine, Muhammet aleýhissalamyň Onuň resulydygyna ynanmak, ýagny «Lä: ilä:he illalla:h. Muhammedur-Rasu:lullah» diýip aýtmak we ony kalbyň bilen tassyklamakdyr."
+        },
+        {
+            "type": "paragraph",
+            "text": "«Ämentü» dogasynda yslamyň ynanç esaslary, ýagny imanyň şertleri beýan edilýär:"
+        },
+        {
+            "type": "quote",
+            "text": "«Ä:mentü billä:hi we melä:'iketihi: we kütübihi: we rusulihi: wel-ýewmil ä:hiri we bil-kaderi haýrihi: we şerrihi: minalla:hi tagä:lä: wel-bagsi bagdel mewt»"
+        },
+        {
+            "type": "quote",
+            "text": "(«Men Allatagala, Onuň perişdelerine, kitaplaryna, pygamberlerine, ahyret gününe, ýazgyda (kysmata), ýagny ýagşylygyň we ýamanlygyň Allatagala tarapyndan bolýandygyna we öleninden soňra täzeden direlmegiň hakdygyna ynandym»)."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section",
+            "title": "1. ALLATAGALA IMAN",
+            "blocks": [
+                {
+                    "type": "paragraph",
+                    "text": "Allatagalanyň barlygyna, birligine, ýaradyjydygyna, mertebesine laýyk atlarynyň we sypatlarynyň bardygyna hem-de Özüne meňzeş zadyň ýokdugyna ýüregiňden ynanmakdyr."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Her bir musulmanyň Allatagalanyň 14 sany sypatyny bilmegi wajypdyr. Bu sypatlaryň 6 sanysyna «zaty», 8 sanysyna bolsa «subuty» sypatlary diýilýär."
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "title": "Allatagalanyň «zaty» sypatlary",
+            "items": [
+                "1. Wujud. Allatagala bardyr. Onuň ýok bolmagy mümkin däldir.",
+                "2. Kydem. Allatagalanyň barlygynyň başlangyjy ýokdur, Ol ezelidir.",
+                "3. Beka. Allatagala bakydyr, barlygynyň soňy ýokdur, müdümidir.",
+                "4. Wahdanyýet. Allatagala ýeke-täkdir. Onuň deñi, taýy, bäsdeşi ýokdur.",
+                "5. Muhalefetun lil-hawadys. Allatagala ýaradan zatlarynyň hiç birine meňzeýän däldir.",
+                "6. Kyýam bi nefsihi. Allatagalanyň barlygynyň özünden bolmagy."
+            ]
+        },
+        {
+            "type": "section",
+            "title": "Allatagalanyň «subuty» sypatlary",
+            "items": [
+                "1. Haýât. Allatagala diridir.",
+                "2. Ylym. Allatagala hemme zady bilijidir.",
+                "3. Semiğ. Allatagala ähli zady eşidýändir.",
+                "4. Basar. Allatagala ähli zady görýändir.",
+                "5. Irada. Allatagala islän zadyny amala aşyrýjydyr.",
+                "6. Gudrat. Allatagalanyň ähli zada güýji ýetýändir.",
+                "7. Kelam. Allatagala öz şanyna laýyk ýagdaýda gepleýändir.",
+                "8. Tekwin. Allatagala ýaradyjydyr, döredijidir. («Allatagala bir zadyn bolmagyny islëse, oňa «Bol!» diýýär, ol hem bolar» («Ýasyn» süresiniň 82-nji aýaty))."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section",
+            "title": "2. PERIŞDELERE IMAN",
+            "blocks": [
+                {
+                    "type": "paragraph",
+                    "text": "Perişdeler dîne Allatagalanyň emirlerini ýerine ýetirýän, nurdan ýaradylyan mukaddes barlyklar bolup, olar hiç günä etmeýän, güýçli, kuwwatly, çaltlyk bilen hereket edýän ruh barlyklarydyr."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Perişdelerde jynsy aýratynlyklar bolmaýar we olar iýip-içmeýärler. Perişdeleriň sanyny ýerine ýetirýän ýörite wezipesi bardyr."
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "title": "Esasy perişdeler we olaryň wezipesi",
+            "items": [
+                "1. Jebraýyl. Perişdeleriň iň ulusydyr. Wezipesi: pygamberleriň arasynda ilçilik etmek, wahy arkaly Allatagalanyň kitaplaryny pygamberlerine getirmek.",
+                "2. Mikaýyl. Tebigat wakalarynyň hükmi öz ygtyýaryna berlen perişdedir (ýagşyň ýagmagy, ýeliň öwüsmegi, ekinleriň bitmegi we ş.m.).",
+                "3. Ysrapyl. Kyýamatiň gopmasy üçin «Sur» atly surnaýy çalmak we soňra direlmek üçin «Sur» atly surnaýy ikinji gezek çalmak onuň wezipesidir.",
+                "4. Ezraýyl. Ömürleri gutaran adamlaryň janyny almak onuň wezipesidir.",
+                "Kiramen Katibin. Bular iki perişdedir. Biri adamyň sagynda, beýlekisi bolsa solunda bolup, sagyndaky adamyň edýän gowy işlerini, solundaky bolsa edýän erbet işlerini ýazýarlar.",
+                "Müňker we Nekir. Bu perişdeler hem ikidir. Bulara adam öleninden soňra gabyrynda ondan sorag-sowal etmek wezipesi berlendir.",
+                "Ridwan. Jennetdäki perişdeleriň ýolbaşçysydyr.",
+                "Mälik. Dowzahdaky perişdeleriň ýolbaşçysydyr."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section",
+            "title": "3. KITAPLARA IMAN",
+            "blocks": [
+                {
+                    "type": "paragraph",
+                    "text": "Adamlary dogry ýola gönükdirmek üçin Allatagala käbir pygamberlerine ylahi kitaplar inderendir."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Allatagala tarapyndan Hz. Musa aleýhissalama Töwrat, Hz. Dawut aleýhissalama Zebur, Hz. Isa aleýhissalama Injil, Hz. Muhammet sallallähü aleýhi we selleme bolsa Gurhany Kerim iberilendir."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Bu kitaplardan başga käbir pygamberlere iberilen sahypalar hem bar. Sahypalaryň jemi ýüz sahypa töweregi bolup, şu pygamberlere inderilendir: Hz. Adam aleýhissalama 10 sahypa, Hz. Şit aleýhissalama 50 sahypa, Hz. Idris aleýhissalama 30 sahypa, Hz. Ybrahym aleýhissalama bolsa 10 sahypa inderilendir."
+                },
+                {
+                    "type": "subheading",
+                    "text": "Gurhany Kerim"
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Gurhany Kerim Allatagalanyň pygamberimiz Hz. Muhammet aleýhissalama Jebraýyl perişdäniň üsti bilen inderen iň soňky ylahi kitabydyr."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Gurhany Kerim 23 ýylyň dowamynda aýat we aýatlaryň görnüşinde, kähalatlarda bolsa tutuş süre görnüşinde inderilendir."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Pygamberimiz Muhammet aleýhissalam özüne inderilen aýatlary we süreleri töweregindäki sahabilerine aýdyp bererdi. Sahabiler bolsa ony ýat tutardy. Olaryň arasynda wahy kätipleri hem bardy."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Pygamberimiziň döwründe dürli ýazuw esbaplaryna ýazylan Gurhany Kerim dört Çaryýaryň birinjisi Hz. Ebu Bekriň halyflyk eden döwründe sahabilerden Zeýt ibn Sabytyň ýolbaşçylygyndaky kätipler tarapyndan «Mushap» ady bilen ýeke-täk kitap görnüşine getirilýär."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Hz. Osmanyň döwründe bolsa Gurhany Kerim kätipler tarapyndan köpeldilipdir. Şeýlelikde, Gurhany Kerim üýtgedilmekden, ýokulmakdan goralyşlydyr."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Gurhany Kerimi ýüzünden okamak üçin täretli bolmaly hem-de okamaga başlamazdan öň «E'uzu billä:hi mineş-şeýtä:nir-raji:m. Bismillä:hir-rahmä:nir-rahy:m» diýmeli. Şeýle hem Gurhany Kerimi tejwit, ýagny okalyş düzgünleri bilen okamak derwaýysdyr."
+                }
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section",
+            "title": "4. PYGAMBERLERE IMAN",
+            "blocks": [
+                {
+                    "type": "paragraph",
+                    "text": "Pygamberler Allatagalanyň wahyyny (habaryny) Ýer ýüzindäki adamlara ýetirýän ilçilerdir. Ylahy kitap berlen pygamberlere yslam dininde «Rasul» diýilýär."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Gurhany Kerimde ady tutulýan pygamberler şulardyr:"
+                }
+            ]
+        },
+        {
+            "type": "section",
+            "title": "Pygamberleriň sanawy (Gurhany Kerimde ady tutulýanlar)",
+            "items": [
+                "1. Hz. Adam (a.s.).",
+                "2. Hz. Idris (a.s.).",
+                "3. Hz. Nuh (a.s.).",
+                "4. Hz. Hud (a.s.).",
+                "5. Hz. Salyh (a.s.).",
+                "6. Hz. Lut (a.s.).",
+                "7. Hz. Ybrahym (a.s.).",
+                "8. Hz. Ysmaýyl (a.s.).",
+                "9. Hz. Yshak (a.s.).",
+                "10. Hz. Ýakup (a.s.).",
+                "11. Hz. Ýusup (a.s.).",
+                "12. Hz. Şugaýb (a.s.).",
+                "13. Hz. Eýýup (a.s.).",
+                "14. Hz. Musa (a.s.).",
+                "15. Hz. Harun (a.s.).",
+                "16. Hz. Dawut (a.s.).",
+                "17. Hz. Süleýman (a.s.).",
+                "18. Hz. Ýunus (a.s.).",
+                "19. Hz. Ylýas (a.s.).",
+                "20. Hz. Elýasa (a.s.).",
+                "21. Hz. Zulkifl (a.s.).",
+                "22. Hz. Zekeriýa (a.s.).",
+                "23. Hz. Ýahýa (a.s.).",
+                "24. Hz. Isa (a.s.).",
+                "25. Hz. Muhammet (s.a.w.)."
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Gurhany Kerimde atlary agzalýan Uzeýr aleýhissalamyň, Lukman aleýhissalamyň we Zulkarnäýn aleýhissalamyň weli, salyh we ýagşylykda adam bolandyklary aýdylýan hem bolsa, olaryň pygamberdigi ýa-da däldigi hakynda anyk maglumat ýokdur."
+        },
+        {
+            "type": "paragraph",
+            "text": "Pygamberimiz Muhammet aleýhissalamyň hadyslarynyň birinde bolsa jemi 124 müň nebiniň we 315 sany resulnyň ýaşap geçendigi habar berilýär (Ahmet ibn Hanbel)."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section",
+            "title": "5. AHYRETE IMAN",
+            "blocks": [
+                {
+                    "type": "paragraph",
+                    "text": "«Ahyret» sözüniň sözlükde «soň, soňky» diýen manylary bardyr. Allatagalanyň emri bilen Ysrapyl perişdäniň surnaýy çalmagy netijesinde kyýamat gopar we ahyret güni başlanar."
+                },
+                {
+                    "type": "quote",
+                    "text": "«...Kim Allatagalany, perişdelerini, kitaplaryny, pygamberlerini we ahyret gününi inkär etse, ol doly manyda azaşandyr» («Nisa» süresiniň 136-njy aýaty)."
+                },
+                {
+                    "type": "quote",
+                    "text": "«Şübhesiz, şu dünýä durmuşy wagtlaýyn bir güýmenjedir. Emma ahyret hakykatdan ýaşaljak bir ýurtdur» («Mü'min» süresiniň 39-njy aýaty)."
+                },
+                {
+                    "type": "quote",
+                    "text": "«Allanyň saňa berenlerinden Onuň ýolunda harçlap, ahyret ýurdyňy gazanmaga çalyş, emma şu dünýäden hem nesibäňi unutma» («Kasas» süresiniň 77-nji aýaty)."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Gurhany Kerimde ahyretiň menzillerini görkezýän ençeme atlar bardyr: «el-ýewmül ahyr (soňky gün, ahyret güni), ýewmül ba's (direliş güni), ýewmül kyýame (kyýamat güni), ýewmid-din (sylag we jeza güni), ýewmül hisab (hasap güni), ýewmi-itlak (gowuşma güni), ýewmül hasre (puşman bolma güni)»."
+                }
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section",
+            "title": "6. ÝAZGYDA (KYSMATA), ÝAGŞYLYGYŇ WE ÝAMANLYGYŇ ALLATAGALADANDYGYNA YNANMAK",
+            "blocks": [
+                {
+                    "type": "paragraph",
+                    "text": "Allatagalanyň bolup geçen we boljak zatlaryň, haýryň we şeriň, umuman, ähli zatlaryň wagtyny, ýerini we ýagdaýyny soňsuz ylym arkaly bilip ýaratmagyna takdyr, ýagny ýazgy diýilýär."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Haýr we şer işleriň Allatagalanyň ýaratmagy bilen amala aşýandygyna ynanmak imanyň şertlerindendir."
+                }
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section",
+            "title": "7. ÖLÜMDEN SOŇRA GAÝTADAN DIRELMEGIŇ HAKDYGYNA YNANMAK",
+            "blocks": [
+                {
+                    "type": "paragraph",
+                    "text": "Kyýamat gopandan soň, ähli zat ýok bolar. Hiç bir janly-jandar diri galmaz. Dine Allatagala baky galar."
+                },
+                {
+                    "type": "paragraph",
+                    "text": "Bu ýokluk belli bir wagt dowam edenden soňra, Allatagala Ysrapyl perişdä «Sur» atly surnaýy ikinji gezek çalmagy buýrar. Surnaýyň ikinji gezek çalynmagy bilen birlikde adamlaryň bedenleri täzeden ýaradylyp, berzah älemindäki ruhlar bedenlerine dolanyp, adamlar täzeden direlerler."
+                },
+                {
+                    "type": "quote",
+                    "text": "«Ynsan: «Ölenimden soň direldilip, guburymdan çykarylarynmy?» diýer...» («Meryem» süresiniň 66–67-nji aýatlary)."
+                },
+                {
+                    "type": "quote",
+                    "text": "«Öz ýaradylyşyny unudyp: «Bu çüýrën süňkleri kim direlder?» ...» («Ýasyn» süresiniň 78–79-njy aýatlary)."
+                }
+            ]
+        }
+    ]
+}

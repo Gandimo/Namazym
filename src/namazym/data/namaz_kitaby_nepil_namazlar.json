@@ -1,0 +1,101 @@
+{
+    "id": "namaz_kitaby_nepil_namazlar",
+    "type": "book_entry",
+    "listTitle": "Nepil namazlar",
+    "detailTitle": "Nepil namazlar",
+    "content": [
+        {
+            "type": "heading",
+            "text": "NEPIL NAMAZLAR"
+        },
+        {
+            "type": "paragraph",
+            "text": "Nepil namazlar farz we wajyp namazlardan başga, sogap gazanmak üçin okalýan namazlardyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Guşluk (Duha) namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Gün dogup beýgelenden soň okalýar. Iň azyndan iki rekagatdyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Täret namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Täret alandan soň iki rekagat okalýar."
+        },
+        {
+            "type": "section_heading",
+            "text": "Tehejjut namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Gije ukusyndan soň okalýan namazdyr. Iň azyndan iki rekagat."
+        },
+        {
+            "type": "section_heading",
+            "text": "Istihare namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Karar bermezden öň okalýan namazdyr. Iki rekagat + istihare dogasy."
+        },
+        {
+            "type": "section_heading",
+            "text": "Tesbih namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Dört rekagat bolup okalýar. Her rekagatda köp tesbih okalýar."
+        },
+        {
+            "type": "section_heading",
+            "text": "Hajat namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Isleg-dileg üçin okalýar."
+        },
+        {
+            "type": "section_heading",
+            "text": "Toba namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Günä üçin toba edilende okalýar."
+        },
+        {
+            "type": "section_heading",
+            "text": "Ýolagçy namazy"
+        },
+        {
+            "type": "paragraph",
+            "text": "Sapara çykmazdan öň okalýar."
+        },
+        {
+            "type": "section_heading",
+            "text": "Küsüf / Husüf namazlary"
+        },
+        {
+            "type": "paragraph",
+            "text": "Küsüf → Gün tutulanda okalýar. Husüf → Aý tutulanda okalýar."
+        },
+        {
+            "type": "section_heading",
+            "text": "Mübarek gijelerde namaz"
+        },
+        {
+            "type": "unordered_list",
+            "items": [
+                "Regäýyp gijesi",
+                "Migraç gijesi",
+                "Beragat gijesi",
+                "Gadyr gijesi"
+            ]
+        }
+    ]
+}

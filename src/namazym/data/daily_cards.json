@@ -6,17 +6,18 @@
         "type": "Günüň aýady",
         "surah": 1,
         "ayah": 1,
-        "text_tm": "epagatly ündiri Dü : Bu birinji aýata, gysgaça, Rahman ( ) we Rahym ( \"Bismillä\" diýilýär. Ymam Agzamyñ, eýle-de ş ). ga fykh (yslam hukugy) bir topar ba alymlarynyñ pikirine görä, \"Bismillä\" aýaty \"Elham\" süresiniñ bir aýaty däldir. Diñe \"Neml\" süresiniñ 30-njy aýatynda agzalýan \"Bismillä\" bir aýatdyr, galan ýerde bolsa gaýtalamadyr, ol süreden bir aýat däldir. Kurany Kerimiñ \"Toba\" süresinden galan 113 süresiniñ ş ynda gelýän bu aýat bu hemmesiniñ ba ynda diñe bereket üçin okalýar. süreleriñ ba onuñ üçin hem ol namazda içiñden aýdylýar. Emma käbir alymlar ony \"Elhamyñ\" bir aýaty Ş hasaplaýarlar. ş ş Ähli Hijr lanylanda \"Bismillä\" aýdylýar. ş [Kasam bolsun! Biz saña 87. Hadyslaryñ birinde: (namazlarda) gaýtalanýan ýedi (aýaty) we beýik iñ soñy ýokdur\" lanmadyk i \"Bismillä bilen ba № Kurany berdik.] e diýilýär. Bu sebäpli, hem haýsydyr bir i ba",
-        "reference": "1:1"
+        "text_ar": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+        "text_tm": "Rahman we Rahym bolan Allanyň ady bilen.",
+        "reference": "Sure 1, aýat 1"
       },
       "hadith": {
         "type": "Günüň hadysy",
         "id": 1,
-        "text_tm": "Resulalla -sallalahu aleýhi we sellem -: “Siziň Perwerdigariňiziň \nýanynda, haýsy amalyňyzyň has haýyrly we päkdigini derejäňiziň ýokary  \ngalmagy  üçin has ýagşy, altyn-kümiş sadaka bereniňizden hem has haýyrly \nwe duşmanlaryňyza sataşyp, olary öldüreniňizden ýa-da olar sizi öldürip \nşehit bolanyňyzdan hem has haýyrly amaly aýdaýynmy” diýende ! Olar: \n«Hawa, ýa Resulalla » diýýärler. Ol: «Allanyň zikridir» diýýär.",
-        "narrator": "Hz. Muhammed (s.a.w.)",
-        "narrator_chain": "",
-        "source": "Sahyh Ýagşy söz",
-        "number": "1"
+        "text_tm": "Resulalla -sallalahu aleýhi we sellem -: “Siziň Perwerdigariňiziň ýanynda, haýsy amalyňyzyň has haýyrly we päkdigini derejäňiziň ýokary galmagy üçin has ýagşy, altyn-kümiş sadaka bereniňizden hem has haýyrly we duşmanlaryňyza sataşyp, olary öldüreniňizden ýa-da olar sizi öldürip şehit bolanyňyzdan hem has haýyrly amaly aýdaýynmy” diýende ! Olar: «Hawa, ýa Resulalla » diýýärler. Ol: «Allanyň zikridir» diýýär.",
+        "speaker": "Hz. Muhammed (s.a.w.)",
+        "narrator_chain": "Ebu Derdadan (r.a.)",
+        "source": "Tirmizi",
+        "number": "3377"
       },
       "boy_name": {
         "type": "Günüň oglan ady + manyasy",
@@ -39,17 +40,18 @@
         "type": "Günüň aýady",
         "surah": 1,
         "ayah": 2,
-        "text_tm": "(Ähli)  hamdy-senalar  älemleriñ Perwerdigäri Alla mahsusdyr.",
-        "reference": "1:2"
+        "text_ar": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+        "text_tm": "Ähli öwgüler älemleriň Perwerdigäri Allaha mahsusdyr.",
+        "reference": "Sure 1, aýat 2"
       },
       "hadith": {
         "type": "Günüň hadysy",
         "id": 2,
         "text_tm": "Resulalla -sallalahu aleýhi we sellem -: “Saýlananlar ozdylar” \ndiýende,  sahabalar: “Eý, Resulalla olar kim?” diýdiler Resulalla:”Allany \nköp ýatlaýan erkekler we aýallardyr” diýýär.",
-        "narrator": "Hz. Muhammed (s.a.w.)",
-        "narrator_chain": "",
-        "source": "Sahyh Ýagşy söz",
-        "number": "2"
+        "speaker": "Hz. Muhammed (s.a.w.)",
+        "narrator_chain": "Ebu Hüreýreden (r.a.)",
+        "source": "Muslim",
+        "number": "2676"
       },
       "boy_name": {
         "type": "Günüň oglan ady + manyasy",

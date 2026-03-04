@@ -1,0 +1,36 @@
+{
+    "2026": {
+        "special_days": [
+            {
+                "date": "2026-02-18",
+                "name_tm": "Remezan aýynyň başlangyjy",
+                "type": "fasting_start"
+            },
+            {
+                "date": "2026-03-15",
+                "name_tm": "Gadyr gijesi",
+                "type": "holy_night"
+            },
+            {
+                "date": "2026-03-20",
+                "name_tm": "Oraza baýramy",
+                "type": "eid"
+            },
+            {
+                "date": "2026-05-27",
+                "name_tm": "Gurban baýramy (1-nji gün)",
+                "type": "eid"
+            },
+            {
+                "date": "2026-05-28",
+                "name_tm": "Gurban baýramy (2-nji gün)",
+                "type": "eid"
+            },
+            {
+                "date": "2026-05-29",
+                "name_tm": "Gurban baýramy (3-nji gün)",
+                "type": "eid"
+            }
+        ]
+    }
+}

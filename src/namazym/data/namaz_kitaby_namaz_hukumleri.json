@@ -1,0 +1,277 @@
+{
+    "id": "namaz_kitaby_namaz_hukumleri",
+    "type": "book_entry",
+    "listTitle": "Namazyň hükümleri",
+    "detailTitle": "Namazyň hükümleri",
+    "content": [
+        {
+            "type": "heading",
+            "text": "NAMAZLARYŇ WAGTLARY"
+        },
+        {
+            "type": "section_heading",
+            "text": "1. Ertir namazynyň wagty"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ertir namazynyň wagty fejri sadyk (hakyky daň) atandan başlap, gün dogýança dowam edýär. Ertir wagtynyň başlanmagynda «fejri kâzip» (ýalançy daň) bilen «fejri sadyk» (hakyky daň) tapawutlandyrylýar."
+        },
+        {
+            "type": "section_heading",
+            "text": "2. Öýle namazynyň wagty"
+        },
+        {
+            "type": "paragraph",
+            "text": "Öýle namazynyň wagty Günüň zewal geçmeginden (günortan ortadan geçmeginden) başlanýar. Zewal wagty namaz okamak mekruhdyr. Öýle wagty iň soňy asry-ewwel (her zat öz kölegesine ýetende) ýa-da asry-sani (köle iki essesine ýetende) çenli dowam edýär."
+        },
+        {
+            "type": "section_heading",
+            "text": "3. Ikindi namazynyň wagty"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ikindi namazynyň wagty asry-ewwelden (her zadyň öz kölege uzalygyna ýetmeginden) başlanýar we günüň ýaşmagyna çenli dowam edýär."
+        },
+        {
+            "type": "section_heading",
+            "text": "4. Agşam namazynyň wagty"
+        },
+        {
+            "type": "paragraph",
+            "text": "Agşam namazynyň wagty gün ýaşandan soň başlanýar we şapak is ç-ýitýänçä dowam edýär."
+        },
+        {
+            "type": "section_heading",
+            "text": "5. Ýassy namazynyň wagty"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ýassy namazynyň wagty şapak ýitenden soň başlanýar we daň atýança dowam edýär. Daň atmanka, käbir wagtlarda namaz okamak mekruhdyr."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "NAMAZYŇ PARZLARY"
+        },
+        {
+            "type": "paragraph",
+            "text": "Namazyň jemi 12 parzy bar: altysy namazyň daşyndaky (şertleri), altysy namazyň içindäki (rükünleri). Parzlardan biri kem bolsa, namaz dürs bolmaýar."
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Namazyň daşyndaky parzlary (şertleri)"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Hadesden taharet — täret almak.",
+                "Nejasatdan taharet — beden, eşik we namaz ýeriniň nejasatdan päk bolmagy.",
+                "Setri awrat — awrat ýerleriň örtülmegi.",
+                "Namazyň wagtynyň girmesi.",
+                "Namazy Kybla bakyp okamak.",
+                "Namaza niýet edip başlamak."
+            ]
+        },
+        {
+            "type": "subsection_heading",
+            "text": "Namazyň içindäki parzlary (rükünleri)"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Tahrime tekbiri — «Allahu ekber» bilen başlamak.",
+                "Kyýam — namaz okap bolan adamy dik durmak.",
+                "Kyraat — Gurhan okamak.",
+                "Ruku — beli bükmek.",
+                "Sejde — maňlaýy ýere goýmak.",
+                "Kagdaýy-ahyr — namazy salam bilen tamamlamak üçin gerekli soňky oturyş."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "NAMAZYŇ WAJYPLARY"
+        },
+        {
+            "type": "paragraph",
+            "text": "Wajyplar parzlaryň üstüni ýetirýär. Unudyp terk edilse namaz bozulmaýar, emma kemlik bolýar — sejde-i säw bilen düzedilýär. Bilgeşleýin terk edilse mekruh bolup, namazy täzeden okamaga höweslendirilýär."
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Namaza tahrime tekbiri («Allahu ekber») bilen başlamak.",
+                "Parz namazlarynyň ilkinji iki rekatynda kyraat üçin bellemek.",
+                "Fatyha süresini (Elham) okamak.",
+                "Fatyhany her rekatda bir gezek okamak.",
+                "Fatyhadan soň zam süresi, birnäçe gysga aýat ýa-da uzyn aýat okamak.",
+                "Fatyhany beýleki süreden öň okamak.",
+                "Parzlary ýerinde berjaý etmek.",
+                "Wajyplary ýerinde berjaý etmek.",
+                "Orta oturyşda oturmak.",
+                "Orta we soňky oturyşda «Tahýýat» dogasyny okamak.",
+                "Tadili erkan — ruku/sejdede we aralyklarda aram tapmak.",
+                "Jemagat bilen okanynda imam bilen uýgunlykda kyraat düzgünleri.",
+                "Jemagat/sessiz-sesli kyraat düzgünleri — käbir rekatlarda içinden/sesli.",
+                "Imam kyraat edende jemagatyň diňläp durmagy.",
+                "Namazdan salam bilen çykmak.",
+                "Jemagatyň imama haýsydyr ýagdaýda ýetip uýmagy baradaky düzgün.",
+                "Baýram namazynyň her rekatynda goşmaça tekbirleri aýtmak.",
+                "Baýram namazynyň ikinji rekatyndaky ruku tekbiri.",
+                "Witir namazynyň üçünji rekatynda «Kunut» dogalaryny okamak.",
+                "Sejdeli aýatlar okalanda tilawet sejdelerini etmek."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "NAMAZYŇ SÜNNETLERI"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Jemagat bilen (parz namazlaryny) okamak.",
+                "Azan we kamat (erkekler üçin).",
+                "Tahrime tekbirinde, witirde «kunut» öňi, baýram tekbirlerinde elleri galdyrmak.",
+                "Eller gulaga ýetende barmaklaryň arasyny açmak.",
+                "Kyýamda sag eli çep eliň üstünde goýmak.",
+                "Eller baglanandan soň «Sübhanekäni» okamak.",
+                "Ruku/sejde geçiş tekbirleri we «kunut» tekbirini almak.",
+                "Rukuda üç gezek «Sübhane Rabbiyel-azym» diýmek.",
+                "Rukuda iki dyzy tutmak.",
+                "Dyzy tutanyňda barmaklaryň arasyny açmak.",
+                "Rukudan dikelende kyýamda bir tesbih mukdary durmak.",
+                "Iki sejde arasynda-da bir tesbih mukdary oturmak.",
+                "Ýedi agza bilen sejde etmek — maňlaý, iki el, iki dyz, iki aýak.",
+                "Sejdede üç gezek «Sübhane Rabbiyel-aglâ» diýmek.",
+                "Soňky oturyşda «Tahýýat»dan soň «Allahümme salli», «Allahümme bärik» okamak.",
+                "Soňky oturyşda «Allahümmağfirli» ýaly doga okamak.",
+                "Namazyň ahyrynda ýüzüni ilki saga, soň sola öwrüp salam bermek."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "NAMAZYŇ MUSTAHAPLARY"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Tahrime tekbirinde gollary ýokary göterip barmaklaryň arasyny açyk tutmak.",
+                "Tekbir alanda başam barmaklary gulagyň ýumşagyna degirmek.",
+                "Kyýamda erkekleriň ellerini göbegiň aşagynda, zenanlaryň kükrük üstünde goýmagy.",
+                "Eller baglananda sag eliň bileginiň üstüne goýmak usuly.",
+                "Kyýamda iki aýagyň arasynda dört barmak çemesi açyk durmak.",
+                "Ertir/öýle uzyn, ikindi/ýassy orta, agşam gysga süreler okamak.",
+                "Parz namazlarynyň 3–4-nji rekatlarynda hem Fatyha okamak.",
+                "Kyraaty howlukman, tejwid bilen dogry okamak.",
+                "Rukuda başy arka bilen göni tutmak.",
+                "Sejdede başam barmaklary burnuň deňinde tutmak.",
+                "Sejdede barmaklary biri-birine degirip tutmak.",
+                "Imama uýup okaýanlaryň tekbir/tesbihleri sessiz gaýtalamagy."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "NAMAZDA HARAM AMALLAR"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Kyraatda «Fatyha»dan öň «Bismillä…» aýdyp kadalary bozmak.",
+                "«Fatyha» gutarandan soň «Ämin» sözüni daşyndan aýtmak.",
+                "Ýüzüni Kybladan öwürmek.",
+                "Asmana seretmek.",
+                "Uzursyz parz namazlaryny bir zada daýanyp okamak.",
+                "El galdyrmagyň wajyp/sünnet/mustahap bolmadyk ýerinde el galdyrmak.",
+                "Rukuda we sejdede aýak barmaklaryny ýerden götermek.",
+                "Kagdaýda iki aýagyň üstünde oturmak ýaly düzgün bozujy görnüşler."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "NAMAZYŇ MEKRUHLARY"
+        },
+        {
+            "type": "paragraph",
+            "text": "Namazy bozmadyk ýagdaýda ýaramaz görülen işlerdir. Käbir ýagdaýlarda köp gaýtalananda namazy bozar."
+        },
+        {
+            "type": "unordered_list",
+            "items": [
+                "Tekbirleri birnäçe gezek gaýtalamak.",
+                "Kyraatda barmak basyp sanamak.",
+                "Eller/beden bilen bidüzgün hereketler — lybas bilen oýnamak we şuňa meňzeşler.",
+                "Göz yzygiderli saga-çepe seretmek.",
+                "Kyýamda uzursyz hereket etmek.",
+                "Süreler kadalaşdyrylman, Fatyha/Bismillä düzgünleri bozulyp okamak.",
+                "Parz rekatlarynda soňky rekatda öňküsinden uzyn okamak ýaly ýagdaýlar."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "NAMAZYŇ MUBAHLARY"
+        },
+        {
+            "type": "paragraph",
+            "text": "Namazy bozmadyk ýagdaýda rugsat berilýän amallar:"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Göz bilen iki tarapa seretmek — ýüzüni kybladan öwürmän.",
+                "Sejde ediljek ýerde päsgel zat bar bolsa, bir-iki gezek süpürmek.",
+                "Ýylany ýa-da içýany bir-iki gezek urup öldürmek.",
+                "Egin-başy endamyna ýapyşmazy ýaly galdyrmak.",
+                "Bir süreniň başyny 1-nji rekatda, galanyny 2-nji rekatda okamak.",
+                "Nepil namazlarynda her rekatda bir süreni gaýtalamak.",
+                "Imama uýlanda hereketleri uýgun etmek (düzgünli ýagdaýda)."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "NAMAZYŇ MÜFSITLERI"
+        },
+        {
+            "type": "paragraph",
+            "text": "Namazyň içindäki ýa-da daşyndaky parzlaryň biri kem bolsa namaz bozulýar. Şeýle hem namazy bozýan iri hereketler:"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Namazda gürlemek.",
+                "Namazda iýip-içmek.",
+                "Özüň eşider derejede gülmek — jemagat bilen bolsa täret hem bozulýar.",
+                "Göwräni kybladan başga tarapa öwürmek.",
+                "Amaly kesir etmek — namaz tertibini bozýan köp hereket.",
+                "Ardynjyraşmak, bilgeşleýin üsgürmek (käbir ýagdaýlardan başga).",
+                "Namazda salam berip başga biriniň salamyny almak.",
+                "Gurhany many üýtgedjek derejede ýalňyş okamak.",
+                "Ertir namazyny okap durkaň günüň dogmagy.",
+                "Teýemmümli kişi okap durka suwuň tapylmagy.",
+                "Meshiň möhletiniň gutarmagy.",
+                "Erkek-zenan bir hatarda düzgün bozujy ýagdaýda okamak.",
+                "Awrat ýeriniň açylmagy (ölçeg boýunça)."
+            ]
+        }
+    ]
+}

@@ -1,0 +1,141 @@
+{
+    "id": "namaz_kitaby_namaz_rekagatlary",
+    "type": "book_entry",
+    "listTitle": "Rekagat we sünnetler",
+    "detailTitle": "Bäş wagt namazyň rekagatlary",
+    "content": [
+        {
+            "type": "heading",
+            "text": "BÄŞ WAGT NAMAZYŇ REKAGATLARY"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Ertir namazy jemi dört rekagatdyr. Ilkinji iki rekagaty sünnet we soňky iki rekagaty parzdyr. Ertir namazynyň sünneti beýleki namazlaryň sünnetlerinden kuwwatlydyr (afzaldyr).",
+                "Öýle namazy jemi on rekagatdyr. Ilki dört rekagat sünnet, soňra dört rekagat parz we ondan soňra iki rekagat soňky sünnetdir.",
+                "Ikindi namazy jemi dört rekagat parzdyr. Ýöne parzyndan öň dört rekagat gaýry müekked sünnet namazyny okamak hem gowudyr.",
+                "Agşam namazy jemi bäş rekagatdyr. Ilki üç rekagat parz we soň iki rekagat sünnetdir.",
+                "Ýassy namazy jemi on bir ýa-da dokuz rekagatdyr. Ilki dört rekagat parz, soňra dört ýa-da iki rekagat sünnet we soňra bolsa üç rekagat witir-wajyp okalýar. Ýöne ýassy namazynyň parzyndan öň hem dört rekagat gaýry müekked sünnet namazyny okamak gowudyr. Parzdan soňky okalýan sünneti käbir ýerlerde dört rekagat, käbir ýerlerde bolsa iki rekagat edip okaýarlar, bularyň ikisi hem dogrudyr."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Sünnet namazlary"
+        },
+        {
+            "type": "paragraph",
+            "text": "Bäş wagt parz namazlarynyň öň ýa-da soň berjaý edilýän namazlar sünnet namazlarydyr. Bular hem ikä bölünýär:"
+        },
+        {
+            "type": "h4",
+            "text": "a) Müekked sünnet namazlary"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ertir namazynyň parzyndan öň okalýan 2 rekagat sünneti, öýle namazynyň parzyndan öň okalýan 4 rekagat sünneti we parzyndan soň okalýan 2 rekagat sünneti, agşam namazynyň parzyndan soň okalýan 2 rekagat sünneti we ýassy namazynyň parzyndan soň okalýan 4 ýa-da 2 rekagat sünnetleridir."
+        },
+        {
+            "type": "h4",
+            "text": "b) Gaýry müekked sünnet namazlary"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ikindi namazynyň parzyndan öň okalýan 4 rekagat sünnet bilen ýassy namazynyň parzyndan öň okalýan 4 rekagat sünnetleridir. Bu namazlar sogap niýeti bilen okalýandyr."
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Nepil namazlary"
+        },
+        {
+            "type": "paragraph",
+            "text": "Nepil namazlaryna aşakdaky namazlar girýändir:"
+        },
+        {
+            "type": "paragraph",
+            "text": "Guşluk (duha) namazy, täret namazy, tahyýýetül metjit namazy, tehejjud (gije) namazy, istihare namazy, tesbih namazy, hajat namazy, toba namazy, ýolagçy namazy, Gün tutulanda okalýan küsuf namazy, Aý tutulanda okalýan husüf namazy we mübärek gijelerde okalýan namazlar hem-de beýleki namazlar."
+        },
+        {
+            "type": "section_heading",
+            "text": "Nepil namazlarynyň okalmagy mekrüh bolan wagtlar"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Ertir namazynyň wagtynyň girmeginden soň ertir namazynyň sünnetinden başga nepil namazy okalmaz.",
+                "Ertir namazy okalandan soň, Gün naýza boýy galýança we ikindi namazy okalandan soň, agşam namazy aralykda nepil namazlary okalmaz.",
+                "Gün batyp, agşam namazynyň parzy okalmazdan öň nepil namazy okalmaz.",
+                "Parz okamak üçin wagt dar (gysga) bolan wagtlarda nepil namazy okalmaz.",
+                "Ymam juma namazynyň hutbesini okaýan wagty hem nepil namazy okalmaz.",
+                "Täret gyssap duran wagtynda hem nepil namazy okalmaz.",
+                "Orta nahar (tagam) goýlanda hem nepil namazy okalmaz."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "section_heading",
+            "text": "Azan we kamat"
+        },
+        {
+            "type": "paragraph",
+            "text": "Erkek kişilere her gün bäş wagt namazyň wagtlary girende azan aýtmak müekked sünnetdir."
+        },
+        {
+            "type": "section_heading",
+            "text": "Azan"
+        },
+        {
+            "type": "lines",
+            "lines": [
+                "Alla:hu Ekber, Alla:hu Ekber",
+                "Alla:hu Ekber, Alla:hu Ekber",
+                "",
+                "Eşhedü ellä: ilä:he illalla:(h)",
+                "Eşhedü ellä ilä:he illalla:(h)",
+                "",
+                "Eşhedü enne Muhammeder-Rasu:lulla:(h)",
+                "Eşhedü enne Muhammeder-Rasu:lulla:(h)",
+                "",
+                "Hayýýe ales-salä:(h)",
+                "Hayýýe ales-salä:(h)",
+                "",
+                "Hayýýe alel-felä:h",
+                "Hayýýe alel-felä:h",
+                "",
+                "Alla:hu Ekber, Alla:hu Ekber",
+                "Lä: ilä:he illalla:(h)"
+            ]
+        },
+        {
+            "type": "paragraph",
+            "text": "Diňe ertir namazynyň azanynda «Haýýe alel-felä:h» diýilenden soňra iki gezek «Essalä:tü haýrum-minen-new:m» («Namaz okamak uklap ýatmakdan haýyrlydyr») diýilýär."
+        },
+        {
+            "type": "paragraph",
+            "text": "Azan aýdylp gutarandan soň, şu doga okalýar:"
+        },
+        {
+            "type": "quote",
+            "text": "«Alla:hümme Rabbe hä:zhid-dagwetit-tä:mmeti, wessalä:til-ka:'imeti, ä:ti Muhammedenil-wesi:lete welfazy:lete wed-derajetel-a:liýeter-rafi:ate, web-ashu maka:mem mahmudenillezi: we'attehü: werzuknä: şefa:atehu: ýöwmel-kyýä:meti, inneke lä: tuhliful-mi:'a:d. Birahmetike ýä: erha-mer-ra:hymi:n»"
+        },
+        {
+            "type": "paragraph",
+            "text": "Hadyslarda bu dogany okýanlaryň kyýamat gününde pygamberimiz Muhammet aleýhissalamyň şepagatyna mynasyp boljakdyklary aýdylýar (Buhary)."
+        },
+        {
+            "type": "section_heading",
+            "text": "Kamat"
+        },
+        {
+            "type": "paragraph",
+            "text": "Namazyň wagty girende ilkinji bilen azan aýdylýar. Kamat bolsa parz namazyna duruljak bolanda aýdylýar. Kamatyň sözleri hem azanyňky bilen meňzeşdir. Ýöne kamat aýdylanda, «Haýýe alel-felä:h» diýeniňden soň, iki gezek «Kad ka:metis-salä:(h)» sözlemi goşulýar. Aýallara namaz okanlarynda, azan ýa-da kamat aýtmaklары gerek däldir."
+        }
+    ]
+}

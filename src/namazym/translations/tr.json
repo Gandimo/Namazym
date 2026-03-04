@@ -1,0 +1,64 @@
+{
+    "common": {
+        "prayer_times": "Namaz Vakitleri",
+        "ramadan": "Ramazan",
+        "city_select": "Şehir Seç",
+        "settings": "Ayarlar",
+        "tasbih": "Tesbih",
+        "quran": "Kur'an",
+        "kybla": "Kıble",
+        "kaza": "Kaza Namazları",
+        "hadith": "Günün Hadisi",
+        "verse": "Günün Ayeti",
+        "sahetli_gun": "Uğurlu Gün",
+        "asmaul_husna": "99 İsim",
+        "mosques": "Camiler",
+        "dogalar": "Dualar",
+        "islamic_holidays": "İslami Bayramlar",
+        "auto_location": "Otomatik Konum",
+        "select_region": "Bölge Seçiniz",
+        "language": "Dil",
+        "previous": "Önceki",
+        "next": "Sonraki",
+        "narrator": "Hadis Sahibi",
+        "reported_by": "Ravi",
+        "source": "Kaynak",
+        "read": "Oku",
+        "namaz_kitaby": "Namaz Kitabı"
+    },
+    "prayer": {
+        "fajr": "İmsak",
+        "sunrise": "Güneş",
+        "dhuhr": "Öğle",
+        "asr": "İkindi",
+        "maghrib": "Akşam",
+        "isha": "Yatsı"
+    },
+    "settings": {
+        "notifications": "Bildirimler",
+        "prayer_reminder": "Namaz Hatırlatıcı (15 dk)",
+        "daily_content": "Günün Ayeti ve Hadisi",
+        "sound_preference": "Ses Ayarı",
+        "extras": "Ekstralar",
+        "share": "Uygulamayı Paylaş",
+        "rate": "Bizi Değerlendirin",
+        "terms": "Kullanım Şartları",
+        "copyright": "© 2026 TÜM HAKLARI SAKLIDIR"
+    },
+    "notification": {
+        "prayer_reminder_title": "🕌 {{prayer}} Vakti",
+        "prayer_reminder_body": "{{prayer}} namazına {{minutes}} dakika kaldı ({{city}})",
+        "daily_content_ayah_title": "📖 Günün Ayeti",
+        "daily_content_hadith_title": "📖 Günün Hadisi",
+        "daily_content_body": "Günün yeni manevi içeriğini okuyun"
+    },
+    "ramadan": {
+        "sahur": "Sahur",
+        "iftar": "İftar"
+    },
+    "home": {
+        "verse_of_day": "Günün Ayeti",
+        "hadith_of_day": "Günün Hadisi",
+        "kaza_subtitle": "Kayıt ve takvim"
+    }
+}

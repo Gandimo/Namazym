@@ -1,0 +1,22 @@
+{
+    "id": "namaz_kitaby_namaz_rekagatlary_fr",
+    "type": "book_entry",
+    "listTitle": "Rakaats et Sunnas",
+    "detailTitle": "Rakaats des cinq prières quotidiennes",
+    "content": [
+        {
+            "type": "heading",
+            "text": "RAKAATS DES CINQ PRIÈRES QUOTIDIENNES"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "La prière du Fajr comprend quatre rakaats. Deux sunna et deux fard.",
+                "La prière du Dhuhr comprend dix rakaats. 4 sunna, 4 fard et 2 sunna finale.",
+                "La prière de l'Asr comprend quatre rakaats fard.",
+                "La prière du Maghrib comprend cinq rakaats. 3 fard et 2 sunna.",
+                "La prière de l'Isha comprend onze ou neuf rakaats. 4 fard, 4 ou 2 sunna et 3 vitr-wajib."
+            ]
+        }
+    ]
+}

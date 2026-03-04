@@ -18,6 +18,7 @@ export interface PrayerTimeDisplay {
     method: string;
     school: string;
     source: string;
+    is_ramadan?: boolean;
 }
 
 // Raw Data Interface (from prayer_times_cache.json)

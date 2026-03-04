@@ -1,0 +1,106 @@
+{
+    "id": "namaz_kitaby_40_parz",
+    "type": "book_entry",
+    "listTitle": "Kyrk parz",
+    "detailTitle": "Kyrk parz",
+    "content": [
+        {
+            "type": "heading",
+            "text": "KYRK PARZ"
+        },
+        {
+            "type": "section",
+            "title": "Ýedisi imanda",
+            "items": [
+                "1. Allatagalanyň birligine ynanmak.",
+                "2. Allatagalanyň perişdelerine ynanmak.",
+                "3. Allatagalanyň kitaplaryna ynanmak.",
+                "4. Allatagalanyň pygamberlerine ynanmak.",
+                "5. Ahyret gününe ynanmak.",
+                "6. Ýazgyda (kysmata), ýagşylygyň we ýamanlygyň Allatagaladandygyna ynanmak.",
+                "7. Öleninden soň direlmeklige (haşyr gününe) ynanmak."
+            ]
+        },
+        {
+            "type": "section",
+            "title": "Bäşisi yslamda",
+            "items": [
+                "8. Manysyny bilip, «Eşhedu el lä: ilä:he illalla:h we eşhedu enne Muhammeden abduhu we rasuluh» diýip kelemeyi şahadat getirmek iman etmekdir.",
+                "9. Namaz okamak.",
+                "10. Remezan aýynda oraza tutmak.",
+                "11. Zekat bermek.",
+                "12. Ýagdaýyň bolsa, ömrüňde bir gezek haj ybadatyny berjaý etmek."
+            ]
+        },
+        {
+            "type": "section",
+            "title": "On ikisi namazda",
+            "items": [
+                "13. Hadesten arassalanmak (täret almak, gusul almak ýa-da teýemmüm almak).",
+                "14. Nejasatdan arassa bolmak.",
+                "15. Awrat (uýat) ýerlerini örtmek.",
+                "16. Namazyň wagtynyň girmegi, ýagny namazy wagtynda okamak.",
+                "17. Namazy Kybla bakyp okamak.",
+                "18. Namaza niýet edip başlamak.",
+                "19. Tahrime tekbirini almak.",
+                "20. Kyýamda durmak, ýagny dik durmak.",
+                "21. Kyragat, ýagny Gurhany Kerimden aýatlar okamak.",
+                "22. Ruku etmek, ýagny egilip durmak.",
+                "23. Sejde etmek.",
+                "24. Kagdeýi-ahyra oturmak."
+            ]
+        },
+        {
+            "type": "section",
+            "title": "Dördüsi täretde",
+            "items": [
+                "25. Ýüzüni ýuwmak. Ýüzüň çägine maňlaýda saçyň bitýän ýerinden gulaklaryň arasy bilen eňegiň aşagyna çenli bolan aralyk girýär.",
+                "26. Ellerini tirsekleriň bilen birlikde ýuwmak.",
+                "27. Kelläň dörtden bir bölegine öl eliň bilen mesh etmek, ýagny sypamak.",
+                "28. Aýaklaryny topuklaryň bilen birlikde ýuwmak."
+            ]
+        },
+        {
+            "type": "section",
+            "title": "Üçisi gusulda",
+            "items": [
+                "29. Agzyny çaýkamak.",
+                "30. Burnuňa suw çekip arassalamak.",
+                "31. Bedeniň ähli ýerini barmak basar ýaly gury ýer galdyrman ýuwmak."
+            ]
+        },
+        {
+            "type": "section",
+            "title": "Dördüsi teýemmümde",
+            "items": [
+                "32. Niýet etmek. Meselem, teýemmüm edilende, namaz okajak adam namaz okamak üçin diýip, gusul aljak adam gusul almak üçin diýip, Gurhany Kerimi okajak adam bolsa Gurhany Kerim okamak üçin diýip niýet etmelidir.",
+                "33. Arassa toprak jynsyndan bolan zatlara teýemmüm etmek.",
+                "34. Elleriňi bir sapar ýere ýa-da toprak jynsyndan bolan zatlara urup, ýüzüňe mesh etmek.",
+                "35. Ýene-de täzeden elleriňi bir sapar ýere ýa-da toprak jynsyndan bolan zatlara urup, tirsekler bilen bilelikde iki eli mesh etmek."
+            ]
+        },
+        {
+            "type": "section",
+            "title": "Ikisi emri magruf we nehi munkerde",
+            "items": [
+                "36. Adamlara ýagşy sözleri aýdyp, olary dogry ýola ugrukdyrmak.",
+                "37. Adamlary ýaman işlerden gaýtarmak."
+            ]
+        },
+        {
+            "type": "section",
+            "title": "Ikisi zenanlara mahsus ýagdaýda",
+            "items": [
+                "38. Zenanyň aýbaşy ýagdaýyndaky düzgüni bilmek.",
+                "39. Zenanyň çileli (çaga dogranyndan soňky döwür) ýagdaýyndaky düzgüni bilmek."
+            ]
+        },
+        {
+            "type": "section",
+            "title": "Biri ylymda",
+            "items": [
+                "40. Ylym öwrenmek hem öwretmek."
+            ]
+        }
+    ]
+}

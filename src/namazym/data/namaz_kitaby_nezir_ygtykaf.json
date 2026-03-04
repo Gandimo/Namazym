@@ -1,0 +1,94 @@
+{
+    "id": "namaz_kitaby_nezir_ygtykaf",
+    "type": "book_entry",
+    "listTitle": "Nezir, ygtykaf we oraza borjy",
+    "detailTitle": "Nezir, ygtykaf we oraza borjy",
+    "content": [
+        {
+            "type": "heading",
+            "text": "NEZIR"
+        },
+        {
+            "type": "paragraph",
+            "text": "Bir adamyň dini taýdan özüne borç bolmadyk halyna Allatagala ýakynlaşdyrjak bir amaly, ybadat maksady bilen berjaý etmegi ýüregine düwüp, özüne wajyp edip, ony ýerine ýetirjekdigine Allanyň öňünde söz bermegidir."
+        },
+        {
+            "type": "paragraph",
+            "text": "Nezir diňe oraza mahsus bir zat däldir — islendik zatda hem nezir etseň bolýar. Oraza tutmak, namaz okamak, garyp-gasarlara kömek etmek ýaly zatlarda Allanyň razyçylygy üçin nezir etmek sogaply iş hasaplanýar."
+        },
+        {
+            "type": "section_heading",
+            "text": "Neziriň görnüşleri"
+        },
+        {
+            "type": "unordered_list",
+            "items": [
+                "Muaýýan nezir (wagty belli).",
+                "Gaýry muaýýan nezir (wagty belli bolmadyk)."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Neziriň dürs hasaplanmagynyň şertleri"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Nezir edilen zat parz ýa-da wajyp zatlar bolmaly däldir.",
+                "Nezir edilen zat günä işlerden bolmaly däldir.",
+                "Güýjüň ýetjek zadyny nezir etmeli.",
+                "Nezir edilen zat nezir edýäniň mal-mülkünden artyk bolmaly däldir.",
+                "Nezir diňe Allatagalanyň razylygy üçin edilmelidir."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "YGTYKAF"
+        },
+        {
+            "type": "paragraph",
+            "text": "«Ygtykaf» metjitde tagat-ybadat bilen meşgul bolmagy aňlatýar."
+        },
+        {
+            "type": "paragraph",
+            "text": "Ygtykafyň wajyp, sünnet we mustahap bolan üç görnüşi bardyr."
+        },
+        {
+            "type": "section_heading",
+            "text": "Ygtykafyň şertleri"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Musulman bolmak.",
+                "Kämillik ýaşyna ýetmek.",
+                "Erkek – metjitde ygtykafa oturmaly."
+            ]
+        },
+        {
+            "type": "section_heading",
+            "text": "Ygtykafy bozýan ýagdaýlar"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Metjitden sebäpsiz daşara çykmak.",
+                "Özünden gitmek we däli bolmak."
+            ]
+        },
+        {
+            "type": "divider"
+        },
+        {
+            "type": "heading",
+            "text": "ORAZA BORJY (ISKATY SAWM)"
+        },
+        {
+            "type": "paragraph",
+            "text": "Oraza borjy bir merhumyň sag wagty berjaý edip bilmedik orazasynyň deregine mirasdüşerleriniň öwez tölegi (fidýe) bermekleridir."
+        }
+    ]
+}

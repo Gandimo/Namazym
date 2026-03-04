@@ -6,4 +6,4 @@
  * 
  * Set to true ONLY for store screenshot captures.
  */
-export const DEMO_MODE = true;
+export const DEMO_MODE = false;

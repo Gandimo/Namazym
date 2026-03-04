@@ -1,493 +1,671 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, StyleSheet, ScrollView, Pressable, StatusBar } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
-import * as Notifications from "expo-notifications";
-import { PrayerTimesAdapter, PrayerTimeDisplay } from "../services/PrayerTimesAdapter";
-import { DEMO_MODE } from "../constants/demo";
-import { colors, paper } from "../theme/colors";
-import { spacing } from "../theme/spacing";
-import { Card } from "../components/Card";
-import { DemoBanner } from "../components/DemoBanner";
-import { VerseService, DailyContent } from "../services/VerseService";
-import { NotificationService } from "../services/NotificationService";
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import {
+    View,
+    Text,
+    StyleSheet,
+    Pressable,
+    ScrollView,
+    Animated,
+    Dimensions,
+    StatusBar,
+    Platform,
+} from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { Ionicons, Feather } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import * as Haptics from 'expo-haptics';
 
-type Key = "Fajr" | "Sunrise" | "Dhuhr" | "Asr" | "Maghrib" | "Isha";
+// Internal Services & Utils
+import { TimeService } from '../services/TimeService';
+import { getDailyIndex } from '../utils/localizationUtils';
+import { useTranslation } from 'react-i18next';
+import { TURKMEN_SURAH_NAMES } from '../constants/surahNames';
+import { useCity } from '../context/CityContext';
+import { getNextPrayer, getCurrentPrayer } from '../utils/prayerUtils';
+import { PrayerTimesService } from '../services/PrayerTimesService';
+import globalVakitler from '../data/global_vakitler_v3.json';
+import { DataService } from '../services/DataService';
+import quranAr from '../data/quran_ar_full.json';
+import { CitySelectorModal } from '../components/CitySelectorModal';
+import { useAnimatedEntrance } from '../hooks/useAnimatedEntrance';
+import { useScalePress } from '../hooks/useScalePress';
 
-const ORDER: { key: Key; label: string }[] = [
-    { key: "Fajr", label: "Ertir" },
-    { key: "Sunrise", label: "Günüň dogşy" },
-    { key: "Dhuhr", label: "Öýle" },
-    { key: "Asr", label: "Ikindi" },
-    { key: "Maghrib", label: "Agşam" },
-    { key: "Isha", label: "Ýassy" },
-];
+import { HeroPrayerCard } from '../components/HeroPrayerCard';
+import { DailyPrayersList } from '../components/DailyPrayersList';
+import { PillNavigationBar } from '../components/PillNavigationBar';
+import { HeroSkeletonLoader } from '../components/HeroSkeletonLoader';
+import { PremiumIcon } from '../components/icons/PremiumIcon';
+import { DateStrip } from '../components/DateStrip';
+import { ICON_SIZES, ICON_GRADIENTS } from '../theme/iconConstants';
+import { tokens2026 } from '../theme/tokens2026';
+import AudioPlayerService from '../services/AudioPlayerService';
 
-function pad(n: number) {
-    return String(n).padStart(2, "0");
-}
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
-function parseHHMM(hhmm: string) {
-    const [h, m] = hhmm.split(":").map(Number);
-    return { h: Number.isFinite(h) ? h : 0, m: Number.isFinite(m) ? m : 0 };
-}
+// Premium Design Tokens V1.1
+const SKY_THEMES = {
+    Fajr: ['#4A90E2', '#B8D8F4'],
+    Sunrise: ['#FF9E80', '#FBE9E7'],
+    Dhuhr: ['#1e90ff', '#c8eaff'],
+    Asr: ['#F57C00', '#FFF3E0'],
+    Maghrib: ['#311B92', '#FF8A65'],
+    Isha: ['#1A237E', '#121212'],
+};
 
-function toDateToday(hhmm: string) {
-    const { h, m } = parseHHMM(hhmm);
-    const d = new Date();
-    d.setSeconds(0, 0);
-    d.setHours(h, m, 0, 0);
-    return d;
-}
+const SectionHeader = ({ title }: { title: string }) => (
+    <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>{title.toUpperCase()}</Text>
+    </View>
+);
 
-function formatCountdown(ms: number) {
-    const total = Math.max(0, Math.floor(ms / 1000));
-    const h = Math.floor(total / 3600);
-    const m = Math.floor((total % 3600) / 60);
-    const s = total % 60;
-    if (h > 0) return `${pad(h)}:${pad(m)}:${pad(s)}`;
-    return `${pad(m)}:${pad(s)}`;
-}
+const DEEP_SPACE_GRADIENT = ['#0A0A0F', '#1A1A2E'];
 
-function getNextPrayer(now: Date, timings: Record<string, string>) {
-    for (const item of ORDER) {
-        const t = timings[item.key];
-        if (!t) continue;
-        const dt = toDateToday(t);
-        if (dt.getTime() > now.getTime()) {
-            return { ...item, time: t, dateObj: dt };
-        }
-    }
-    const fajr = timings.Fajr;
-    const dt = fajr ? toDateToday(fajr) : new Date(now.getTime() + 3600_000);
-    dt.setDate(dt.getDate() + 1);
-    return { key: "Fajr" as Key, label: "Ertir", time: fajr || "--:--", dateObj: dt };
-}
-
-export default function HomeScreen() {
-    const [todayTimes, setTodayTimes] = useState<PrayerTimeDisplay | null>(null);
-    const [now, setNow] = useState<Date>(new Date());
-    const [cityId] = useState<number>(1); // 1 = Ashgabat
-    const [dailyContent, setDailyContent] = useState<DailyContent | null>(null);
+export default function HomeScreen({ navigation }: any) {
+    const { t, i18n } = useTranslation();
+    const insets = useSafeAreaInsets();
+    const { placeLabel, prayerTimes, isLoading, placeKey, setPlace } = useCity();
+    const [now, setNow] = useState(TimeService.now());
+    const [selectedDate, setSelectedDate] = useState(TimeService.getTodayDateString());
+    const [isCityModalVisible, setCityModalVisible] = useState(false);
+    const fadeAnim = useRef(new Animated.Value(0)).current;
+    const scrollY = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
-        const data = PrayerTimesAdapter.getToday(cityId);
-        setTodayTimes(data);
-
-        const content = VerseService.getTodayContent();
-        setDailyContent(content);
-
-        // Schedule real notifications
-        if (data) {
-            NotificationService.requestPermissions().then(granted => {
-                if (granted) {
-                    NotificationService.scheduleDailyNotifications(data);
-                }
-            });
-        }
-
-        const timer = setInterval(() => setNow(new Date()), 1000);
+        const timer = setInterval(() => setNow(TimeService.now()), 1000);
+        Animated.timing(fadeAnim, { toValue: 1, duration: 800, useNativeDriver: true }).start();
         return () => clearInterval(timer);
-    }, [cityId]);
+    }, [fadeAnim]);
 
-    const next = useMemo(() => {
-        if (!todayTimes) return null;
-        return getNextPrayer(now, todayTimes.timings as any);
-    }, [todayTimes, now]);
+    const current = useMemo(() => prayerTimes ? getCurrentPrayer(now, prayerTimes.timings as any) : null, [prayerTimes, now]);
+    const next = useMemo(() => prayerTimes ? getNextPrayer(now, prayerTimes.timings as any) : null, [prayerTimes, now]);
 
-    const remainingMs = useMemo(() => {
-        if (!next) return 0;
-        return next.dateObj.getTime() - now.getTime();
-    }, [next, now]);
+    // Passenger Mode Data Lookup
+    const selectedPrayerTimes = useMemo(() => {
+        return PrayerTimesService.getPrayerTimes(selectedDate, placeKey);
+    }, [selectedDate, placeKey]);
 
-    if (!todayTimes) {
+    const remainingMs = useMemo(() => next ? next.dateObj.getTime() - now.getTime() : 0, [next, now]);
+
+    const progress = useMemo(() => {
+        if (!current || !next) return 0;
+        const total = next.dateObj.getTime() - current.dateObj.getTime();
+        const passed = now.getTime() - current.dateObj.getTime();
+        return Math.max(0, Math.min(1, passed / total));
+    }, [current, next, now]);
+
+    // Selection Haptics
+    const prevCurrentKey = useRef<string | null>(null);
+    useEffect(() => {
+        if (current?.key && current.key !== prevCurrentKey.current) {
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            prevCurrentKey.current = current.key;
+        }
+    }, [current]);
+
+    const activeSky = useMemo(() => {
+        const sky = (SKY_THEMES as any)[current?.key || 'Dhuhr'];
+        return sky || DEEP_SPACE_GRADIENT;
+    }, [current]);
+
+    const isDarkTheme = useMemo(() => {
+        return current?.key === 'Isha' || current?.key === 'Fajr';
+    }, [current]);
+
+    // Ramadan Logic
+    const currentYear = useMemo(() => now.getFullYear().toString(), [now]);
+    const todayStr = useMemo(() => TimeService.getTodayDateString(), [now]);
+    const ramadanConfig = useMemo(() => (globalVakitler.years as any)[currentYear]?.ramadan, [currentYear]);
+
+    const isRamadanActive = useMemo(() => (selectedPrayerTimes as any)?.ir || false, [selectedPrayerTimes]);
+
+    // Dynamic Dataset Selection
+    const quranData = useMemo(() => DataService.getQuran(t('i18n.language')), [t('i18n.language')]);
+    const currentLang = i18n.language;
+    const hadithData = useMemo(() => DataService.getHadiths(currentLang), [currentLang]);
+    const dailyCards = useMemo(() => require('../data/daily_cards.json'), []); // Base structure
+
+    const versesPool = useMemo(() => {
+        const pool = [];
+        const lang = i18n.language;
+        if (!quranData?.surahs) return [];
+
+        for (const surah of quranData.surahs) {
+            if (!surah.ayahs) continue;
+            for (const ayah of surah.ayahs) {
+                const key = `${surah.number}:${ayah.number}`;
+                pool.push({
+                    surah: surah.number,
+                    ayah: ayah.number,
+                    text_localized: DataService.getVerseText(ayah, lang),
+                    text_ar: (quranAr as Record<string, string>)[key] || "",
+                });
+            }
+        }
+        return pool;
+    }, [quranData, t('i18n.language')]);
+
+    const dailyContent = useMemo(() => {
+        try {
+            const curatedIndex = getDailyIndex(now, dailyCards.cards.length);
+            const content = { ...dailyCards.cards[curatedIndex] };
+            const verseIndex = getDailyIndex(now, versesPool.length);
+            const fullVerse = versesPool[verseIndex];
+
+            if (fullVerse) {
+                const surahName = lang === 'tk' && TURKMEN_SURAH_NAMES[fullVerse.surah - 1] ? TURKMEN_SURAH_NAMES[fullVerse.surah - 1] : `Surah ${fullVerse.surah}`;
+                content.ayat = {
+                    type: 'verse',
+                    surah: fullVerse.surah,
+                    ayah: fullVerse.ayah,
+                    text_ar: fullVerse.text_ar,
+                    text_localized: fullVerse.text_localized,
+                    reference: `${surahName}, ${fullVerse.ayah}`
+                };
+            }
+
+            // Localized Hadith
+            const hIdx = getDailyIndex(now, hadithData.hadiths.length);
+            const localizedHadith = hadithData.hadiths[hIdx];
+            if (localizedHadith) {
+                content.hadith = {
+                    ...content.hadith,
+                    text_localized: currentLang === 'ru' ? (localizedHadith.text_ru || localizedHadith.text_en || localizedHadith.text_tm) :
+                        currentLang === 'en' ? (localizedHadith.text_en || localizedHadith.text_tm) :
+                            currentLang === 'tr' ? (localizedHadith.text_tr || localizedHadith.text_en || localizedHadith.text_tm) :
+                                currentLang === 'fr' ? (localizedHadith.text_fr || localizedHadith.text_en || localizedHadith.text_tm) :
+                                    (localizedHadith.text_tm || ""),
+                    speaker: localizedHadith.speaker,
+                    narrator_chain: localizedHadith.narrator_chain,
+                };
+            }
+
+            return content;
+        } catch (error) {
+            return dailyCards.cards?.[0] || null;
+        }
+    }, [now, versesPool, hadithData, t('i18n.language')]);
+
+    // Entrance Animations
+    const ayatEntrance = useAnimatedEntrance(260);
+    const hadithEntrance = useAnimatedEntrance(340);
+    const ramadanEntrance = useAnimatedEntrance(420);
+    const shortcutsEntrance = useAnimatedEntrance(500);
+    const kazaEntrance = useAnimatedEntrance(580);
+    const infoEntrance = useAnimatedEntrance(660);
+
+    // Scale Press Interactions
+    const ayatPress = useScalePress();
+    const hadithPress = useScalePress();
+    const ramadanPress = useScalePress();
+    const kazaPress = useScalePress();
+
+    if (isLoading || !prayerTimes) {
         return (
-            <View style={[styles.container, styles.center]}>
-                <StatusBar barStyle="dark-content" />
-                <Text style={styles.brand}>NAMAZYM</Text>
-                <Text style={styles.muted}>Maglumat ýüklenýär…</Text>
+            <View style={styles.container}>
+                <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
+                <LinearGradient colors={DEEP_SPACE_GRADIENT as [string, string, ...string[]]} style={StyleSheet.absoluteFill} />
+                <View style={{ paddingTop: insets.top + 60 }}>
+                    <HeroSkeletonLoader />
+                </View>
             </View>
         );
     }
 
-    const timings = todayTimes.timings as Record<string, string>;
+    const formattedDate = now.toLocaleDateString('tk-TM', { day: 'numeric', month: 'long', year: 'numeric' });
+
+    // Parallax Effect (0.04 factor)
+    const backgroundTranslateY = scrollY.interpolate({
+        inputRange: [0, 500],
+        outputRange: [0, 500 * 0.04],
+        extrapolate: 'clamp',
+    });
 
     return (
-        <SafeAreaView style={styles.container} edges={["top"]}>
-            <StatusBar barStyle="dark-content" />
-            <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-                {/* Header */}
-                <View style={styles.header}>
+        <View style={styles.container}>
+            <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
+
+            <Animated.View style={[StyleSheet.absoluteFill, { transform: [{ translateY: backgroundTranslateY }] }]}>
+                <LinearGradient colors={activeSky as [string, string, ...string[]]} style={StyleSheet.absoluteFill} />
+            </Animated.View>
+
+            <Animated.View style={[styles.flex, { opacity: fadeAnim }]}>
+                <View style={[styles.header, { paddingTop: insets.top + 10, zIndex: 10 }]}>
                     <View>
-                        <Text style={styles.brandSmall}>NAMAZYM • Ashgabat</Text>
-                        <Text style={styles.headerTitle}>Namaz Wagtlary</Text>
+                        <Pressable
+                            onPress={() => {
+                                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+                                setCityModalVisible(true);
+                            }}
+                            style={styles.locationSelector}
+                        >
+                            <Text style={styles.locationText}>{placeLabel}</Text>
+                            <PremiumIcon
+                                name="chevron-down"
+                                size="SMALL"
+                                color="white"
+                                style={{ marginLeft: 4 }}
+                            />
+                        </Pressable>
+                        <Text style={styles.dateText}>{formattedDate}</Text>
                     </View>
-                    <View style={styles.dateCircle}>
-                        <Text style={styles.dateText}>{todayTimes.date.split("-")[0]}</Text>
+                    <View style={styles.headerRight}>
+                        <Pressable
+                            onPress={() => {
+                                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                navigation.navigate('Settings');
+                            }}
+                            style={styles.settingsBtn}
+                        >
+                            <PremiumIcon
+                                name="settings-outline"
+                                size="STANDARD"
+                                color="white"
+                                interactive
+                                onPress={() => navigation.navigate('Settings')}
+                            />
+                        </Pressable>
                     </View>
                 </View>
 
-                {/* Demo Banner */}
-                {DEMO_MODE && <DemoBanner />}
+                <Animated.ScrollView
+                    showsVerticalScrollIndicator={false}
+                    onScroll={Animated.event(
+                        [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                        { useNativeDriver: true }
+                    )}
+                    scrollEventThrottle={16}
+                    contentContainerStyle={[
+                        styles.scrollPadding,
+                        {
+                            paddingTop: insets.top + 80,
+                            paddingBottom: insets.bottom + 120
+                        }
+                    ]}
+                >
+                    <HeroPrayerCard
+                        current={current}
+                        next={next}
+                        remainingMs={remainingMs}
+                        progress={progress}
+                        delay={100}
+                        isPassengerMode={selectedDate !== TimeService.getTodayDateString()}
+                    />
 
-                {/* Next Prayer Card */}
-                {next && (
-                    <Card variant="paper" style={styles.heroCard}>
-                        <LinearGradient
-                            colors={["rgba(196,160,80,0.18)", "rgba(255,255,255,0.45)", "rgba(246,240,227,0.0)"]}
-                            start={{ x: 0, y: 0 }}
-                            end={{ x: 1, y: 1 }}
-                            style={StyleSheet.absoluteFill}
-                        />
-                        <Text style={styles.heroLabel}>Indiki namaz: {next.label}</Text>
-                        <View style={styles.heroTimeContainer}>
-                            <Text style={styles.heroTime}>{next.time}</Text>
-                        </View>
+                    <DateStrip
+                        selectedDate={selectedDate}
+                        onDateSelect={setSelectedDate}
+                    />
 
-                        <View style={styles.countdownContainer}>
-                            <Text style={styles.countdownValue}>{formatCountdown(remainingMs)}</Text>
-                            <Text style={styles.countdownLabel}>galýar</Text>
-                        </View>
-
-                        <View style={styles.progressContainer}>
-                            <View style={styles.progressTrack}>
-                                <View style={[styles.progressFill, { width: "35%" }]} />
+                    <DailyPrayersList
+                        prayerTimes={selectedPrayerTimes}
+                        current={selectedDate === TimeService.getTodayDateString() ? current : null}
+                        next={selectedDate === TimeService.getTodayDateString() ? next : null}
+                        progress={progress}
+                        isDarkTheme={isDarkTheme}
+                        delay={180}
+                    />
+                    {dailyContent?.ayat && (
+                        <AnimatedPressable
+                            onPressIn={ayatPress.onPressIn}
+                            onPressOut={ayatPress.onPressOut}
+                            onPress={() => {
+                                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                if (dailyContent?.ayat?.surah) {
+                                    navigation.navigate('QuranReader', {
+                                        surahId: dailyContent.ayat.surah,
+                                        scrollToAyah: dailyContent.ayat.ayah
+                                    });
+                                }
+                            }}
+                            style={[styles.cardContainer, ayatEntrance, ayatPress.scaleStyle]}
+                        >
+                            <View style={styles.cardHeaderRow}>
+                                <Text style={styles.cardHeaderTitle}>{t('home.verse_of_day').toUpperCase()}</Text>
+                                <PremiumIcon name="book-outline" size="SMALL" color={tokens2026.colors.brandGold} />
                             </View>
-                        </View>
-                    </Card>
-                )}
 
-                {/* Daily Schedule */}
-                <Text style={styles.sectionTitle}>Gündelik meýilnama</Text>
-                <Card style={styles.listCard}>
-                    {ORDER.map((item, index) => {
-                        const isLast = index === ORDER.length - 1;
-                        const isNext = next?.key === item.key;
-                        return (
-                            <View key={item.key}>
-                                <View style={styles.row}>
-                                    <View style={styles.rowInfo}>
-                                        {isNext && <View style={styles.dot} />}
-                                        <Text style={[styles.rowLabel, isNext && styles.rowLabelActive]}>{item.label}</Text>
-                                    </View>
-                                    <Text style={[styles.rowValue, isNext && styles.rowValueActive]}>{timings[item.key] || "--:--"}</Text>
-                                </View>
-                                {!isLast && <View style={styles.divider} />}
-                            </View>
-                        );
-                    })}
-                </Card>
-
-                {/* New Modules (Daily Verse & Ramadan) */}
-                <View style={styles.moduleSection}>
-                    {dailyContent && (
-                        <Card style={styles.moduleCard}>
-                            <Text style={styles.moduleLabel}>Günüň aýady</Text>
-                            {dailyContent.ayat.text_ar && (
-                                <Text style={styles.arabicText}>
+                            {dailyContent?.ayat?.text_ar && (
+                                <Text style={styles.cardArabicText}>
                                     {dailyContent.ayat.text_ar}
                                 </Text>
                             )}
-                            <Text style={styles.moduleBody}>"{dailyContent.ayat.text_tm}" ({dailyContent.ayat.reference})</Text>
-                            <Pressable style={styles.moduleAction}>
-                                <Text style={styles.moduleActionText}>Oka →</Text>
-                            </Pressable>
-                        </Card>
+
+                            <Text style={styles.cardTmText}>
+                                {dailyContent?.ayat?.text_localized}
+                            </Text>
+
+                            <View style={styles.cardFooterRow}>
+                                <Text style={styles.verseFooterRow1}>
+                                    {dailyContent?.ayat?.reference || ""}
+                                </Text>
+                                <Text style={styles.cardActionBtn}>{t('common.read')} {"->"}</Text>
+                            </View>
+                        </AnimatedPressable>
                     )}
 
-                    <Card style={styles.moduleCard}>
-                        <Text style={styles.moduleLabel}>Ramazan takwimi</Text>
-                        <View style={styles.ramadanRow}>
-                            <Text style={styles.ramadanValue}>Säher: {timings.Fajr || "--:--"}</Text>
-                            <Text style={styles.ramadanValue}>Iftar: {timings.Maghrib || "--:--"}</Text>
+                    <SectionHeader title={t('home.hadith_of_day')} />
+                    {dailyContent?.hadith && (
+                        <AnimatedPressable
+                            onPressIn={hadithPress.onPressIn}
+                            onPressOut={hadithPress.onPressOut}
+                            onPress={() => {
+                                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                navigation.navigate('HadithReader', {
+                                    hadithId: dailyContent.hadith.id || 1,
+                                    overrideNarrator: dailyContent.hadith.narrator_chain,
+                                    overrideSource: dailyContent.hadith.source
+                                });
+                            }}
+                            style={[styles.cardContainer, hadithEntrance, hadithPress.scaleStyle]}
+                        >
+                            <View style={styles.cardHeaderRow}>
+                                <Text style={styles.cardHeaderTitle}>{t('home.hadith_of_day').toUpperCase()}</Text>
+                                <PremiumIcon name="heart-outline" size="SMALL" color={tokens2026.colors.brandGold} />
+                            </View>
+
+                            {dailyContent.hadith.text_localized ? (
+                                <Text style={styles.cardTmText}>
+                                    {dailyContent.hadith.text_localized}
+                                </Text>
+                            ) : null}
+
+                            <View style={styles.hadithMetaBlock}>
+                                <Text style={styles.hadithMetaBold}>
+                                    {t('common.narrator')}: {dailyContent.hadith.speaker || "Hz. Muhammed (s.a.w.)"}
+                                </Text>
+                                <Text style={styles.hadithMetaItalic}>
+                                    {t('common.reported_by')}: {dailyContent.hadith.narrator_chain || "Sähl bin Sa'd"}
+                                </Text>
+                            </View>
+
+                            <View style={[styles.cardFooterRow, { marginTop: 16 }]}>
+                                <Text style={styles.cardActionBtn}>{t('common.read')} {"->"}</Text>
+                            </View>
+                        </AnimatedPressable>
+                    )}
+
+                    {isRamadanActive && (
+                        <>
+
+                            <AnimatedPressable
+                                onPressIn={ramadanPress.onPressIn}
+                                onPressOut={ramadanPress.onPressOut}
+                                onPress={() => {
+                                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                                    navigation.navigate('RamadanCalendar');
+                                }}
+                                style={[styles.ramadanCard, ramadanEntrance, ramadanPress.scaleStyle]}
+                            >
+                                <View style={styles.ramadanContent}>
+                                    <PremiumIcon
+                                        name="moon-outline"
+                                        size="MEDIUM"
+                                        gradient="RAMADAN_MOON"
+                                        interactive
+                                    />
+                                    <View style={{ marginLeft: 16 }}>
+                                        <Text style={styles.ramadanTitle}>Ramazan {currentYear}</Text>
+                                        <Text style={styles.ramadanSubtitle}>{''}</Text>
+                                    </View>
+                                </View>
+                                <PremiumIcon
+                                    name="chevron-forward"
+                                    size="SMALL"
+                                    color={tokens2026.colors.brandGold}
+                                />
+                            </AnimatedPressable>
+                        </>
+                    )}
+
+
+                    <Animated.View style={[styles.grid, shortcutsEntrance]}>
+                        <ShortcutCard icon="calendar-outline" label={t('common.sahetli_gun')} gradient="TIME_CALENDAR" onPress={() => navigation.navigate('SahetliGun')} />
+                        <ShortcutCard icon="navigate-circle-outline" label={t('common.kybla')} gradient="QIBLA_COMPASS" onPress={() => navigation.navigate('QiblaScreen')} />
+                        <ShortcutCard icon="journal-outline" label={t('common.namaz_kitaby')} gradient="QURAN_BOOK" onPress={() => navigation.navigate('NamazKitaby')} />
+                        <ShortcutCard icon="book-outline" label={t('common.quran')} gradient="QURAN_BOOK" onPress={() => navigation.navigate('QuranMain')} />
+                        <ShortcutCard icon="ellipse-outline" label={t('common.tasbih')} gradient="PRAYER_GOLD" onPress={() => navigation.navigate('TasbihScreen')} />
+                    </Animated.View>
+
+
+                    <AnimatedPressable
+                        onPressIn={kazaPress.onPressIn}
+                        onPressOut={kazaPress.onPressOut}
+                        onPress={() => {
+                            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                            navigation.navigate('Kaza');
+                        }}
+                        style={[styles.glassCardWide, kazaEntrance, kazaPress.scaleStyle]}
+                    >
+                        <View style={styles.kazaRow}>
+                            <View style={styles.kazaTextContent}>
+                                <Text style={styles.kazaTitle}>{t('common.kaza')}</Text>
+                                <Text style={styles.kazaSubtitle}>{t('home.kaza_subtitle')}</Text>
+                            </View>
+                            <View style={styles.kazaBadge}>
+                                <Text style={styles.kazaCount}>0</Text>
+                            </View>
                         </View>
-                        <Pressable style={styles.moduleAction}>
-                            <Text style={styles.moduleActionText}>Takwimi aç →</Text>
-                        </Pressable>
-                    </Card>
-                </View>
+                    </AnimatedPressable>
 
-                {/* Quick Actions */}
-                <View style={styles.actionGrid}>
-                    <Pressable style={styles.actionCard}>
-                        <Card style={styles.actionInner}>
-                            <Text style={styles.actionIcon}>🧭</Text>
-                            <Text style={styles.actionText}>Kybla</Text>
-                        </Card>
-                    </Pressable>
-                    <Pressable style={styles.actionCard}>
-                        <Card style={styles.actionInner}>
-                            <Text style={styles.actionIcon}>📖</Text>
-                            <Text style={styles.actionText}>Günlük</Text>
-                        </Card>
-                    </Pressable>
-                </View>
 
-                {/* Notification Test Button */}
-                <Pressable
-                    onPress={async () => {
-                        await Notifications.scheduleNotificationAsync({
-                            content: { title: "Namazym", body: "Test bildirimi ✅" },
-                            trigger: null, // immediate
-                        });
-                    }}
-                    style={styles.notifBtn}
-                >
-                    <Text style={styles.notifBtnText}>Test Bildirim Gönder</Text>
-                </Pressable>
+                    <Animated.View style={[styles.grid, infoEntrance]}>
+                        <InfoCard icon="sparkles-outline" label="99" gradient="HADITH_STAR" onPress={() => navigation.navigate('AsmaulHusna')} />
+                        <InfoCard icon="moon-outline" label={t('common.islamic_holidays')} gradient="TIME_CALENDAR" onPress={() => navigation.navigate('IslamBayramlary')} />
+                        <InfoCard icon="business-outline" label={t('common.mosques')} gradient="PRAYER_GOLD" onPress={() => navigation.navigate('Metjitler')} />
+                        <InfoCard icon="flower-outline" label={t('common.dogalar')} gradient="PRAYER_GOLD" onPress={() => navigation.navigate('Dogalar')} />
+                    </Animated.View>
 
-                <View style={{ height: 40 }} />
-            </ScrollView>
-        </SafeAreaView>
+                    <View style={{ height: 100 }} />
+                </Animated.ScrollView>
+
+                <PillNavigationBar navigation={navigation} />
+
+                {/* Floating Stop Adhan Button */}
+                {AudioPlayerService.isPlaying() && (
+                    <AnimatedPressable
+                        onPress={() => {
+                            AudioPlayerService.stop();
+                            // Force re-render to hide button
+                            setNow(new Date());
+                        }}
+                        style={[(styles as any).stopAdhanBtn, { bottom: insets.bottom + 100 }]}
+                    >
+                        <LinearGradient
+                            colors={['#C9A84C', '#8E793E']}
+                            style={(styles as any).stopAdhanGradient}
+                        >
+                            <PremiumIcon name="stop-circle-outline" size="STANDARD" color="white" />
+                            <Text style={(styles as any).stopAdhanText}>Azany sakla</Text>
+                        </LinearGradient>
+                    </AnimatedPressable>
+                )}
+
+                <CitySelectorModal
+                    visible={isCityModalVisible}
+                    onClose={() => setCityModalVisible(false)}
+                    onSelect={(place) => setPlace(place.key)}
+                    currentCityId={placeKey}
+                />
+            </Animated.View>
+        </View >
     );
 }
 
+const ShortcutCard = ({ icon, label, gradient, onPress }: any) => (
+    <Pressable
+        onPress={() => { Haptics.selectionAsync(); onPress(); }}
+        style={styles.shortcutCard}
+    >
+        <PremiumIcon
+            name={icon}
+            size="MEDIUM"
+            gradient={gradient}
+            interactive
+            onPress={onPress}
+        />
+        <Text style={styles.shortcutLabel}>{label}</Text>
+    </Pressable>
+);
+
+const InfoCard = ({ icon, label, gradient, onPress }: any) => (
+    <Pressable
+        onPress={() => { Haptics.selectionAsync(); onPress(); }}
+        style={styles.infoCard}
+    >
+        <PremiumIcon
+            name={icon}
+            size="MEDIUM"
+            gradient={gradient}
+            interactive
+            onPress={onPress}
+        />
+        <Text style={styles.infoLabel}>{label}</Text>
+    </Pressable>
+);
+
 const styles = StyleSheet.create({
-    container: {
+    container: { flex: 1, backgroundColor: tokens2026.colors.background.primary },
+    flex: { flex: 1 },
+    header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', paddingHorizontal: 24, paddingVertical: 12 },
+    headerRight: { flexDirection: 'row', alignItems: 'center' },
+    settingsBtn: { width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.06)', alignItems: 'center', justifyContent: 'center' },
+    locationSelector: { flexDirection: 'row', alignItems: 'center' },
+    locationText: { fontSize: 20, fontWeight: '900', color: tokens2026.colors.text.primary },
+    dateText: { fontSize: 13, color: tokens2026.colors.text.secondary, fontWeight: '600', marginTop: 2 },
+    scrollPadding: { paddingHorizontal: tokens2026.layout.screenPadding, paddingBottom: 40 },
+    sectionHeader: { marginTop: 28, marginBottom: 12, marginLeft: 4 },
+    sectionTitle: { fontSize: 11, fontWeight: '900', color: tokens2026.colors.text.secondary, letterSpacing: 2 },
+    glassCardWide: {
+        backgroundColor: 'rgba(255,255,255,0.12)',
+        borderRadius: 28,
+        padding: 24,
+        marginBottom: 12,
+        borderWidth: 0.5,
+        borderColor: 'rgba(255,255,255,0.25)',
+        shadowColor: '#000',
+        shadowOpacity: 0.06,
+        shadowRadius: 16,
+        shadowOffset: { width: 0, height: 8 },
+    },
+    grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
+    shortcutCard: {
+        width: (SCREEN_WIDTH - 54) / 2,
+        backgroundColor: 'rgba(255,255,255,0.12)',
+        borderRadius: 24,
+        padding: 20,
+        marginBottom: 12,
+        alignItems: 'center',
+        gap: 12,
+        borderWidth: 0.5,
+        borderColor: 'rgba(255,255,255,0.25)',
+        shadowColor: '#000',
+        shadowOpacity: 0.08,
+        shadowRadius: 12,
+        shadowOffset: { width: 0, height: 4 },
+    },
+    shortcutLabel: {
+        fontSize: 13,
+        fontWeight: '700',
+        color: '#FFFFFF',
+        textAlign: 'center',
+        letterSpacing: 0.3,
+    },
+    infoCard: {
+        width: (SCREEN_WIDTH - 54) / 2,
+        backgroundColor: 'rgba(255,255,255,0.12)',
+        borderRadius: 24,
+        padding: 20,
+        marginBottom: 12,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 12,
+        borderWidth: 0.5,
+        borderColor: 'rgba(255,255,255,0.25)',
+        shadowColor: '#000',
+        shadowOpacity: 0.08,
+        shadowRadius: 12,
+        shadowOffset: { width: 0, height: 4 },
+    },
+    infoLabel: {
+        fontSize: 13,
+        fontWeight: '700',
+        color: '#FFFFFF',
         flex: 1,
-        backgroundColor: paper.bg,
+        letterSpacing: 0.3,
     },
-    content: {
-        padding: spacing.lg,
-    },
-    center: {
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    header: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        marginBottom: spacing.xl,
-        marginTop: spacing.sm,
-    },
-    brandSmall: {
-        color: paper.muted,
-        fontSize: 12,
-        fontWeight: "800",
-        letterSpacing: 1,
-        textTransform: "uppercase",
-    },
-    headerTitle: {
-        color: paper.text,
-        fontSize: 24,
-        fontWeight: "800",
-        marginTop: 2,
-    },
-    dateCircle: {
-        width: 44,
-        height: 44,
-        borderRadius: 22,
-        backgroundColor: paper.card,
-        justifyContent: "center",
-        alignItems: "center",
+    cardContainer: {
+        backgroundColor: 'rgba(255, 255, 255, 0.97)',
+        borderRadius: 28,
+        padding: 24,
+        marginBottom: 16,
         borderWidth: 1,
-        borderColor: paper.border,
+        borderColor: 'rgba(201,168,76,0.15)',
+        shadowColor: '#C4A050',
+        shadowOpacity: 0.12,
+        shadowRadius: 32,
+        shadowOffset: { width: 0, height: 16 },
+        elevation: 16,
     },
-    dateText: {
-        color: paper.text,
-        fontWeight: "700",
+    cardHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 },
+    cardHeaderTitle: { fontSize: 13, fontWeight: '700', letterSpacing: 1, color: '#666' },
+    cardArabicText: {
+        fontFamily: 'Amiri-Regular',
+        fontSize: 26,
+        textAlign: 'right',
+        color: '#1A1A1A',
+        lineHeight: 42,
+        marginBottom: 16,
+        paddingBottom: 16,
+        borderBottomWidth: 0.5,
+        borderBottomColor: 'rgba(201,168,76,0.2)',
+    },
+    cardTmText: {
+        fontSize: 15,
+        color: '#333333',
+        lineHeight: 24,
+        fontWeight: '500',
+        textAlign: 'left',
+        marginTop: 4,
+    },
+    cardFooterRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+    verseFooterRow1: { fontSize: 14, fontWeight: 'bold', color: '#555', marginTop: 16 },
+    cardActionBtn: { color: tokens2026.colors.brandGold, fontWeight: '600', fontSize: 14 },
+    hadithMetaBlock: { marginTop: 12 },
+    hadithMetaBold: { fontSize: 13, fontWeight: 'bold', color: '#555' },
+    hadithMetaItalic: { fontSize: 13, fontStyle: 'italic', color: '#666', marginTop: 2 },
+    ramadanCard: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', backgroundColor: 'rgba(255,255,255,0.04)', borderRadius: 24, padding: 20 },
+    ramadanContent: { flexDirection: 'row', alignItems: 'center' },
+    ramadanTitle: { fontSize: 16, fontWeight: '800', color: tokens2026.colors.text.primary },
+    ramadanSubtitle: { fontSize: 12, color: tokens2026.colors.text.secondary, fontWeight: '600' },
+    kazaRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+    kazaTextContent: { flex: 1 },
+    kazaTitle: { fontSize: 16, fontWeight: '800', color: '#FFFFFF' },
+    kazaSubtitle: { fontSize: 12, color: 'rgba(255,255,255,0.7)', fontWeight: '600' },
+    kazaBadge: { width: 32, height: 32, borderRadius: 16, backgroundColor: tokens2026.colors.brandGold, alignItems: 'center', justifyContent: 'center' },
+    kazaCount: { color: '#FFF', fontSize: 14, fontWeight: '900' },
+    stopAdhanBtn: {
+        position: 'absolute',
+        alignSelf: 'center',
+        borderRadius: 30,
+        overflow: 'hidden',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 10,
+    },
+    stopAdhanGradient: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: 24,
+        paddingVertical: 12,
+    },
+    stopAdhanText: {
+        color: 'white',
+        fontWeight: '800',
         fontSize: 14,
-    },
-    heroCard: {
-        height: 180,
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: spacing.xl,
-        padding: spacing.xl,
-    },
-    heroLabel: {
-        color: paper.muted,
-        fontSize: 14,
-        fontWeight: "600",
-        marginBottom: spacing.xs,
-    },
-    heroTimeContainer: {
-        flexDirection: "row",
-        alignItems: "baseline",
-    },
-    heroTime: {
-        color: paper.text,
-        fontSize: 64, // Increased from 48
-        fontWeight: "900",
-        letterSpacing: -2,
-    },
-    countdownContainer: {
-        flexDirection: "row",
-        alignItems: "baseline",
-        marginTop: 0,
-    },
-    countdownValue: {
-        color: colors.green,
-        fontSize: 18,
-        fontWeight: "800",
-        fontVariant: ["tabular-nums"],
-    },
-    countdownLabel: {
-        color: paper.muted,
-        fontSize: 13,
-        marginLeft: 6,
-        fontWeight: "600",
-    },
-    progressContainer: {
-        width: "100%",
-        marginTop: spacing.lg,
-    },
-    progressTrack: {
-        height: 6,
-        backgroundColor: "rgba(255,255,255,0.05)",
-        borderRadius: 3,
-        overflow: "hidden",
-    },
-    progressFill: {
-        height: "100%",
-        backgroundColor: colors.green,
-        borderRadius: 3,
-    },
-    sectionTitle: {
-        color: paper.muted,
-        fontSize: 13,
-        fontWeight: "700",
-        textTransform: "uppercase",
+        marginLeft: 10,
         letterSpacing: 1,
-        marginBottom: spacing.md,
-    },
-    listCard: {
-        paddingHorizontal: 0,
-        paddingVertical: 0,
-        marginBottom: spacing.xl,
-    },
-    row: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        paddingVertical: spacing.lg,
-        paddingHorizontal: spacing.lg,
-    },
-    rowInfo: {
-        flexDirection: "row",
-        alignItems: "center",
-    },
-    dot: {
-        width: 6,
-        height: 6,
-        borderRadius: 3,
-        backgroundColor: colors.blue,
-        marginRight: 10,
-    },
-    rowLabel: {
-        color: paper.muted,
-        fontSize: 16,
-        fontWeight: "600",
-    },
-    rowLabelActive: {
-        color: paper.title,
-        fontWeight: "800",
-    },
-    rowValue: {
-        color: paper.muted,
-        fontSize: 16,
-        fontWeight: "700",
-    },
-    rowValueActive: {
-        color: paper.title,
-        fontWeight: "900",
-    },
-    divider: {
-        height: 1,
-        backgroundColor: "rgba(0,0,0,0.06)", // Fixed to very light
-        marginHorizontal: spacing.lg,
-    },
-    moduleSection: {
-        marginBottom: spacing.xl,
-    },
-    moduleCard: {
-        marginBottom: spacing.md,
-    },
-    moduleLabel: {
-        color: paper.title,
-        fontSize: 14,
-        fontWeight: "800",
-        marginBottom: spacing.sm,
-    },
-    arabicText: {
-        color: paper.text,
-        fontFamily: "Amiri_400Regular",
-        fontSize: 22,
-        lineHeight: 34,
-        textAlign: "right",
-        marginBottom: spacing.sm,
-    },
-    moduleBody: {
-        color: paper.muted,
-        fontSize: 14,
-        lineHeight: 20,
-        fontStyle: "italic",
-    },
-    ramadanRow: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        marginTop: 2,
-    },
-    ramadanValue: {
-        color: paper.text,
-        fontSize: 16,
-        fontWeight: "700",
-    },
-    moduleAction: {
-        marginTop: spacing.sm,
-        alignSelf: "flex-end",
-    },
-    moduleActionText: {
-        color: paper.title,
-        fontSize: 13,
-        fontWeight: "700",
-    },
-    actionGrid: {
-        flexDirection: "row",
-        marginHorizontal: -spacing.xs,
-        marginBottom: spacing.xl,
-    },
-    actionCard: {
-        flex: 1,
-        paddingHorizontal: spacing.xs,
-    },
-    actionInner: {
-        alignItems: "center",
-        justifyContent: "center",
-        paddingVertical: spacing.xl,
-    },
-    actionIcon: {
-        fontSize: 24,
-        marginBottom: spacing.xs,
-    },
-    actionText: {
-        color: paper.muted,
-        fontSize: 14,
-        fontWeight: "700",
-    },
-    notifBtn: {
-        paddingVertical: spacing.md,
-        borderRadius: spacing.radius,
-        alignItems: "center",
-        borderWidth: 1,
-        borderColor: paper.border,
-        backgroundColor: paper.card,
-    },
-    notifBtnText: {
-        color: paper.text,
-        fontWeight: "800",
-        fontSize: 14,
-    },
-    brand: {
-        color: paper.title,
-        fontSize: 32,
-        fontWeight: "900",
-        letterSpacing: 4,
-    },
-    muted: {
-        color: paper.muted,
-        marginTop: spacing.md,
-        fontSize: 14,
-    },
+    }
 });

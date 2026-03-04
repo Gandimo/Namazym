@@ -1,0 +1,64 @@
+{
+    "common": {
+        "prayer_times": "Время намаза",
+        "ramadan": "Рамадан",
+        "city_select": "Выбор города",
+        "settings": "Настройки",
+        "tasbih": "Тасбих",
+        "quran": "Коран",
+        "kybla": "Кибла",
+        "kaza": "Каза намазы",
+        "hadith": "Хадис дня",
+        "verse": "Аят дня",
+        "sahetli_gun": "Благоприятный день",
+        "asmaul_husna": "99 имен",
+        "mosques": "Мечети",
+        "dogalar": "Молитвы (Дуа)",
+        "islamic_holidays": "Исламские праздники",
+        "auto_location": "Авто-локация",
+        "select_region": "Выберите регион",
+        "language": "Язык",
+        "previous": "Предыдущий",
+        "next": "Следующий",
+        "narrator": "Автор хадиса",
+        "reported_by": "Передал",
+        "source": "Источник",
+        "read": "Читать",
+        "namaz_kitaby": "Книга Намаза"
+    },
+    "prayer": {
+        "fajr": "Имсак",
+        "sunrise": "Рассвет",
+        "dhuhr": "Зухр",
+        "asr": "Аср",
+        "maghrib": "Магриб",
+        "isha": "Иша"
+    },
+    "settings": {
+        "notifications": "Уведомления",
+        "prayer_reminder": "Напоминание (15 мин)",
+        "daily_content": "Аят и Хадис дня",
+        "sound_preference": "Звуковые настройки",
+        "extras": "Дополнительно",
+        "share": "Поделиться приложением",
+        "rate": "Оценить нас",
+        "terms": "Условия использования",
+        "copyright": "© 2026 ВСЕ ПРАВА ЗАЩИЩЕНЫ"
+    },
+    "notification": {
+        "prayer_reminder_title": "🕌 Время {{prayer}}",
+        "prayer_reminder_body": "До {{prayer}} осталось {{minutes}} минут ({{city}})",
+        "daily_content_ayah_title": "📖 Аят дня",
+        "daily_content_hadith_title": "📖 Хадис дня",
+        "daily_content_body": "Прочитайте сегодняшнее духовное слово"
+    },
+    "ramadan": {
+        "sahur": "Сухур",
+        "iftar": "Ифтар"
+    },
+    "home": {
+        "verse_of_day": "Аят дня",
+        "hadith_of_day": "Хадис дня",
+        "kaza_subtitle": "Учет и календарь"
+    }
+}

@@ -1,0 +1,24 @@
+{
+    "id": "namaz_kitaby_namaz_okalysy_adimler_ru",
+    "type": "book_entry",
+    "listTitle": "Как совершать намаз",
+    "detailTitle": "Как совершать намаз (пошагово)",
+    "content": [
+        {
+            "type": "heading",
+            "text": "КАК СОВЕРШАТЬ НАМАЗ"
+        },
+        {
+            "type": "paragraph",
+            "text": "Ниже приведено пошаговое руководство на примере утреннего намаза."
+        },
+        {
+            "type": "section_heading",
+            "text": "1. Ният (Намерение)"
+        },
+        {
+            "type": "paragraph",
+            "text": "Намерение совершается в сердце. Сказать вслух — сунна."
+        }
+    ]
+}

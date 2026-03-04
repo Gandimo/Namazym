@@ -1,0 +1,22 @@
+{
+    "id": "namaz_kitaby_namaz_rekagatlary_tr",
+    "type": "book_entry",
+    "listTitle": "Rekaatlar ve Sünnetler",
+    "detailTitle": "Beş Vakit Namazın Rekaatları",
+    "content": [
+        {
+            "type": "heading",
+            "text": "BEŞ VAKİT NAMAZIN REKAATLARI"
+        },
+        {
+            "type": "ordered_list",
+            "items": [
+                "Sabah namazı toplam dört rekaattır. İlk iki rekaat sünnet, son iki rekaat farzdır.",
+                "Öğle namazı toplam on rekaattır. 4 sünnet, 4 farz ve 2 son sünnet.",
+                "İkindi namazı toplam dört rekaat farzdır. Öncesinde 4 rekaat gayri müekked sünnet kılınması iyidir.",
+                "Akşam namazı toplam beş rekaattır. 3 farz ve 2 sünnet.",
+                "Yatsı namazı toplam on bir veya dokuz rekaattır. 4 farz, 4 veya 2 sünnet ve 3 rekaat vitir-vacip kılınır."
+            ]
+        }
+    ]
+}

@@ -1,0 +1,209 @@
+{
+    "metadata": {
+        "year": 2026,
+        "source": "Türkmenistanyň Müftüsiniň Müdiriyeti"
+    },
+    "tables": {
+        "asgabat_arkadag_ahal": {
+            "region": "Aşgabat, Arkadag ve Ahal",
+            "eid_time": "08:00",
+            "days": [
+                {
+                    "date": "2026-02-18",
+                    "day": 1,
+                    "imsak": "06:04",
+                    "ertir": "06:44",
+                    "iftar": "19:00",
+                    "yassy": "20:20"
+                },
+                {
+                    "date": "2026-02-19",
+                    "day": 2,
+                    "imsak": "06:03",
+                    "ertir": "06:43",
+                    "iftar": "19:01",
+                    "yassy": "20:21"
+                },
+                {
+                    "date": "2026-03-01",
+                    "day": 12,
+                    "imsak": "05:48",
+                    "ertir": "06:28",
+                    "iftar": "19:13",
+                    "yassy": "20:33"
+                },
+                {
+                    "date": "2026-03-16",
+                    "day": 27,
+                    "imsak": "05:25",
+                    "ertir": "06:05",
+                    "iftar": "19:27",
+                    "yassy": "20:47",
+                    "note": "Gadyr Gijesi"
+                },
+                {
+                    "date": "2026-03-20",
+                    "day": 31,
+                    "note": "Oraza Baýramy",
+                    "eid_prayer": "08:00"
+                }
+            ]
+        },
+        "mary": {
+            "region": "Mary Velayaty",
+            "eid_time": "07:50",
+            "days": [
+                {
+                    "date": "2026-02-18",
+                    "day": 1,
+                    "imsak": "05:49",
+                    "ertir": "06:29",
+                    "iftar": "18:38",
+                    "yassy": "19:58"
+                },
+                {
+                    "date": "2026-02-19",
+                    "day": 2,
+                    "imsak": "05:48",
+                    "ertir": "06:28",
+                    "iftar": "18:39",
+                    "yassy": "19:59"
+                },
+                {
+                    "date": "2026-03-01",
+                    "day": 12,
+                    "imsak": "05:35",
+                    "ertir": "06:15",
+                    "iftar": "18:50",
+                    "yassy": "20:10"
+                },
+                {
+                    "date": "2026-03-16",
+                    "day": 27,
+                    "imsak": "05:13",
+                    "ertir": "05:53",
+                    "iftar": "19:05",
+                    "yassy": "20:25",
+                    "note": "Gadyr Gijesi"
+                },
+                {
+                    "date": "2026-03-20",
+                    "day": 31,
+                    "note": "Oraza Baýramy",
+                    "eid_prayer": "07:50"
+                }
+            ]
+        },
+        "dasoguz": {
+            "region": "Daşoguz Velayaty",
+            "eid_time": "07:55",
+            "days": [
+                {
+                    "date": "2026-02-18",
+                    "day": 1,
+                    "imsak": "06:02",
+                    "ertir": "06:42",
+                    "iftar": "18:41",
+                    "yassy": "20:01"
+                },
+                {
+                    "date": "2026-03-01",
+                    "day": 12,
+                    "imsak": "05:46",
+                    "ertir": "06:26",
+                    "iftar": "18:55",
+                    "yassy": "20:15"
+                },
+                {
+                    "date": "2026-03-16",
+                    "day": 27,
+                    "imsak": "05:22",
+                    "ertir": "06:02",
+                    "iftar": "19:12",
+                    "yassy": "20:32",
+                    "note": "Gadyr Gijesi"
+                },
+                {
+                    "date": "2026-03-20",
+                    "day": 31,
+                    "note": "Oraza Baýramy",
+                    "eid_prayer": "07:55"
+                }
+            ]
+        },
+        "lebap": {
+            "region": "Lebap Velayaty",
+            "eid_time": "07:40",
+            "days": [
+                {
+                    "date": "2026-02-18",
+                    "day": 1,
+                    "imsak": "05:44",
+                    "ertir": "06:24",
+                    "iftar": "18:32",
+                    "yassy": "19:52"
+                },
+                {
+                    "date": "2026-03-01",
+                    "day": 12,
+                    "imsak": "05:29",
+                    "ertir": "06:09",
+                    "iftar": "18:44",
+                    "yassy": "20:04"
+                },
+                {
+                    "date": "2026-03-16",
+                    "day": 27,
+                    "imsak": "05:06",
+                    "ertir": "05:46",
+                    "iftar": "19:00",
+                    "yassy": "20:20",
+                    "note": "Gadyr Gijesi"
+                },
+                {
+                    "date": "2026-03-20",
+                    "day": 31,
+                    "note": "Oraza Baýramy",
+                    "eid_prayer": "07:40"
+                }
+            ]
+        },
+        "balkan": {
+            "region": "Balkan Velayaty",
+            "eid_time": "08:15",
+            "days": [
+                {
+                    "date": "2026-02-18",
+                    "day": 1,
+                    "imsak": "06:22",
+                    "ertir": "07:02",
+                    "iftar": "19:06",
+                    "yassy": "20:26"
+                },
+                {
+                    "date": "2026-03-01",
+                    "day": 12,
+                    "imsak": "06:06",
+                    "ertir": "06:46",
+                    "iftar": "19:19",
+                    "yassy": "20:39"
+                },
+                {
+                    "date": "2026-03-16",
+                    "day": 27,
+                    "imsak": "05:44",
+                    "ertir": "06:24",
+                    "iftar": "19:35",
+                    "yassy": "20:55",
+                    "note": "Gadyr Gijesi"
+                },
+                {
+                    "date": "2026-03-20",
+                    "day": 31,
+                    "note": "Oraza Baýramy",
+                    "eid_prayer": "08:15"
+                }
+            ]
+        }
+    }
+}

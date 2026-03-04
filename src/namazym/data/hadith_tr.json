@@ -1,0 +1,1327 @@
+{
+  "hadiths": [
+    {
+      "id": 1,
+      "text_tr": "Ameller niyetlere göredir; herkes niyet ettiğini elde eder.",
+      "narrator": "Umar ibn al-Khattab",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1"
+    },
+    {
+      "id": 2,
+      "text_tr": "En hayırlınız Kur'an'ı öğrenen ve öğretendir.",
+      "narrator": "Uthman ibn Affan",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5027"
+    },
+    {
+      "id": 3,
+      "text_tr": "Temizlik imanın yarısıdır.",
+      "narrator": "Abu Malik al-Ashari",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 223"
+    },
+    {
+      "id": 4,
+      "text_tr": "Hiçbiriniz, kardeşi için kendisi için istediğini istemedikçe gerçek iman etmiş olmaz.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 13"
+    },
+    {
+      "id": 5,
+      "text_tr": "Güçlü kişi güreşte yenen değil, öfke anında kendine hâkim olandır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6114"
+    },
+    {
+      "id": 6,
+      "text_tr": "Kolaylaştırınız, zorlaştırmayınız.",
+      "narrator": "Abu Musa al-Ashari",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 69"
+    },
+    {
+      "id": 7,
+      "text_tr": "Amellerin en faziletlisi namazı vaktinde kılmaktır.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 527"
+    },
+    {
+      "id": 8,
+      "text_tr": "Hayır söyle ya da sus.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 9,
+      "text_tr": "Allah'a ve ahiret gününe iman eden misafirine ikram etsin.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6019"
+    },
+    {
+      "id": 10,
+      "text_tr": "Merhametlilere Allah da merhamet eder. Yeryüzündekilere merhamet edin.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 1924"
+    },
+    {
+      "id": 11,
+      "text_tr": "Kardeşine gülümsemen sadakadır.",
+      "narrator": "Abu Dharr",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 1956"
+    },
+    {
+      "id": 12,
+      "text_tr": "Dünya müminin zindanı, kâfirin cennetidir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2956"
+    },
+    {
+      "id": 13,
+      "text_tr": "Akan nehirden su alsan bile israf etme.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Ibn Majah",
+      "reference_display": "Ibn Majah · No. 425"
+    },
+    {
+      "id": 14,
+      "text_tr": "Güzel söz sadakadır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2989"
+    },
+    {
+      "id": 15,
+      "text_tr": "Allah'a en sevimli ameller az da olsa devamlı yapılanlardır.",
+      "narrator": "Aisha",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6464"
+    },
+    {
+      "id": 16,
+      "text_tr": "İnsanların en hayırlısı, insanlara en çok faydalı olandır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2442"
+    },
+    {
+      "id": 17,
+      "text_tr": "Cennet annelerin ayakları altındadır.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5978"
+    },
+    {
+      "id": 18,
+      "text_tr": "Kızma, sana cennet var.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 19,
+      "text_tr": "Merhamet eden, Merhametliler Merhametlisi'nin merhametine nail olur.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 1987"
+    },
+    {
+      "id": 20,
+      "text_tr": "Merhamet etmeyene merhamet edilmez.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6116"
+    },
+    {
+      "id": 21,
+      "text_tr": "Selamı yayın; aranızda sevgiyi artırır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2162"
+    },
+    {
+      "id": 22,
+      "text_tr": "En hayırlınız ailesine en iyi davananınızdır.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5199"
+    },
+    {
+      "id": 23,
+      "text_tr": "Sadakayı geciktirmeden verin; zira o belanın önünde durur.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1461"
+    },
+    {
+      "id": 24,
+      "text_tr": "Kardeşine yardım et, ister zalim ister mazlum olsun.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2518"
+    },
+    {
+      "id": 25,
+      "text_tr": "İlim yolunda yürüyene Allah cennete giden yolu kolaylaştırır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2699"
+    },
+    {
+      "id": 26,
+      "text_tr": "Veren el alan elden hayırlıdır; ihtiyaç duymadan önce ver.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6412"
+    },
+    {
+      "id": 27,
+      "text_tr": "Hastaları ziyaret edin, açları doyurun, esirleri serbest bırakın.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5673"
+    },
+    {
+      "id": 28,
+      "text_tr": "Farz namazlardan sonra Allah'a en sevimli namaz gece namazıdır.",
+      "narrator": "Aisha",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 746"
+    },
+    {
+      "id": 29,
+      "text_tr": "Her iyilik sadakadır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3186"
+    },
+    {
+      "id": 30,
+      "text_tr": "Allah'a ve ahiret gününe iman eden hayır söylesin ya da sussun.",
+      "narrator": "Abu Said al-Khudri",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1376"
+    },
+    {
+      "id": 31,
+      "text_tr": "Bu dünya lanetlidir; Allah'ın zikri ve ona yardımcı olan şeyler hariç.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2516"
+    },
+    {
+      "id": 32,
+      "text_tr": "Gözünü koru ve ırzını muhafaza et.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6094"
+    },
+    {
+      "id": 33,
+      "text_tr": "Bir müminden dünyevi bir sıkıntıyı gideren kimsenin, Allah kıyamet günü sıkıntısını giderir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2588"
+    },
+    {
+      "id": 34,
+      "text_tr": "Aranızda selamı yayın.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6011"
+    },
+    {
+      "id": 35,
+      "text_tr": "İki kişiye gıpta edilir: birine Allah mal vermiş hak yolunda harcıyor, diğerine hikmet vermiş.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5765"
+    },
+    {
+      "id": 36,
+      "text_tr": "En büyük günahlar: Allah'a ortak koşmak, anne babaya isyan, adam öldürmek ve yalan yere şahitlik.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6811"
+    },
+    {
+      "id": 37,
+      "text_tr": "Küçüklerimize merhamet etmeyen, büyüklerimize saygı göstermeyen bizden değildir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2607"
+    },
+    {
+      "id": 38,
+      "text_tr": "Peygamber hiçbir zaman yemeği kötülemedi; beğendiyse yerdi, beğenmediyse bırakırdı.",
+      "narrator": "Aisha",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3560"
+    },
+    {
+      "id": 39,
+      "text_tr": "Kıyamette kulun ilk sorgulanacağı şey namazdır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 4"
+    },
+    {
+      "id": 40,
+      "text_tr": "Temizlik imanın yarısıdır; hamd teraziyi doldurur.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2553"
+    },
+    {
+      "id": 41,
+      "text_tr": "Oruç tutun, sağlıklı olursunuz.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1903"
+    },
+    {
+      "id": 42,
+      "text_tr": "İslam beş temel üzerine bina edilmiştir: kelime-i şehadet, namaz, zekât, oruç ve hac.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 8"
+    },
+    {
+      "id": 43,
+      "text_tr": "Hayra delalet eden, onu yapan gibi sevap alır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2816"
+    },
+    {
+      "id": 44,
+      "text_tr": "En faziletli sadaka, sağlıklıyken ve ümit içindeyken verilen sadakadır.",
+      "narrator": "Aisha",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6130"
+    },
+    {
+      "id": 45,
+      "text_tr": "Yumuşaklık, içinde bulunduğu her şeyi güzelleştirir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2004"
+    },
+    {
+      "id": 46,
+      "text_tr": "Allah'a ve ahiret gününe iman eden komşusuna eziyet etmesin.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2310"
+    },
+    {
+      "id": 47,
+      "text_tr": "Münafığın alameti üçtür: konuşursa yalan söyler, söz verirse döner, emanet verilirse ihanet eder.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6010"
+    },
+    {
+      "id": 48,
+      "text_tr": "Nerede olursan ol Allah'tan kork; kötü amelin ardından iyilik yap ki onu silsin.",
+      "narrator": "Abu Dharr",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2577"
+    },
+    {
+      "id": 49,
+      "text_tr": "Müslüman, dilinden ve elinden diğer Müslümanların güvende olduğu kişidir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2446"
+    },
+    {
+      "id": 50,
+      "text_tr": "Birbirinize haset etmeyin, birbirinize kin gütmeyin ve kardeş olun.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6065"
+    },
+    {
+      "id": 51,
+      "text_tr": "Allah'ı zikretmek amellerin en hayırlısıdır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2380"
+    },
+    {
+      "id": 52,
+      "text_tr": "Kur'an'ı iyi okuyan, şerefli ve itaatkâr meleklerle beraberdir.",
+      "narrator": "Uthman ibn Affan",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5027"
+    },
+    {
+      "id": 53,
+      "text_tr": "Müminlerin iman bakımından en kâmili, ahlakı en güzel olandır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2707"
+    },
+    {
+      "id": 54,
+      "text_tr": "Bu dünyada sanki bir yabancı veya yolcu gibi ol.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2416"
+    },
+    {
+      "id": 55,
+      "text_tr": "Allah her hastalık için bir deva indirmiştir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2699"
+    },
+    {
+      "id": 56,
+      "text_tr": "Şifа üç şeydedir: bal içmek, hacamat ve dağlama; ancak dağlamayı ümmetim için yasaklarım.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5678"
+    },
+    {
+      "id": 57,
+      "text_tr": "Dilde hafif, mizanda ağır, Rahman'a sevimli iki kelime: Sübhanallahilazim.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6491"
+    },
+    {
+      "id": 58,
+      "text_tr": "Allah rızası için cami inşa edene Allah cennette ev inşa eder.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 223"
+    },
+    {
+      "id": 59,
+      "text_tr": "Beşi, beşten önce ganimet bil: gençliği ihtiyarlıktan, sağlığı hastalıktan, zenginliği fakirlikten, boş vakti meşguliyetten, hayatı ölümden önce.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6411"
+    },
+    {
+      "id": 60,
+      "text_tr": "Ölülerinize sövmeyin, zira onlar yaptıklarının karşılığına ulaştılar.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1358"
+    },
+    {
+      "id": 61,
+      "text_tr": "Allah bedenlerinize ve görünüşünüze bakmaz; kalplerinize ve amellerinize bakar.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 62,
+      "text_tr": "Allah'a ve ahiret gününe iman eden sıla-i rahmi gözetsin.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5988"
+    },
+    {
+      "id": 63,
+      "text_tr": "Lezzetleri yok eden ölümü çokça hatırlayın.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2307"
+    },
+    {
+      "id": 64,
+      "text_tr": "Günlerin en hayırlısı Cuma günüdür.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5090"
+    },
+    {
+      "id": 65,
+      "text_tr": "Seni şüpheye düşüreni bırak, şüpheye düşürmeyene yönel.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2061"
+    },
+    {
+      "id": 66,
+      "text_tr": "Allah, birinizin bir iş yaptığında onu güzel yapmasını sever.",
+      "narrator": "Aisha",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2127"
+    },
+    {
+      "id": 67,
+      "text_tr": "Yüce Allah şöyle buyurdu: Ben kulumun beni zannettiği gibiyim.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6502"
+    },
+    {
+      "id": 68,
+      "text_tr": "Sözünde durmak imandan bir alâmettir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6440"
+    },
+    {
+      "id": 69,
+      "text_tr": "Münafıklara en ağır gelen namaz yatsı ve sabah namazıdır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 660"
+    },
+    {
+      "id": 70,
+      "text_tr": "Allah'a en sevimli insan, insanlara en çok faydalı olandır.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Abu Dawud",
+      "reference_display": "Abu Dawud · No. 4800"
+    },
+    {
+      "id": 71,
+      "text_tr": "Bir Müslümanın ayıbını örten kimsenin ayıbını Allah kıyamette örter.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 72,
+      "text_tr": "Cennet güçlüklerle, cehennem ise şehvetlerle çevrilidir.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2151"
+    },
+    {
+      "id": 73,
+      "text_tr": "Allah iyi ve kötü amelleri yazar; iyilik yapmaya niyet edip yapana on sevap vardır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6491"
+    },
+    {
+      "id": 74,
+      "text_tr": "Sübhanallah mizanı doldurur.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 223"
+    },
+    {
+      "id": 75,
+      "text_tr": "Her namazın ardından Ayetel Kürsî'yi okuyan cennete girer.",
+      "narrator": "Abu Umamah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2910"
+    },
+    {
+      "id": 76,
+      "text_tr": "En hayırlı zikir 'Lâ ilâhe illallah', en hayırlı dua 'Elhamdülillah'tır.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 3383"
+    },
+    {
+      "id": 77,
+      "text_tr": "Kur'an'a ve Sünnete sarılın, asla sapmazsınız.",
+      "narrator": "Malik ibn Anas",
+      "source": "Muwatta",
+      "reference_display": "Muwatta · No. 1661"
+    },
+    {
+      "id": 78,
+      "text_tr": "Ne zarar ver ne de zarara uğra.",
+      "narrator": "Ibn Abbas",
+      "source": "Ibn Majah",
+      "reference_display": "Ibn Majah · No. 2340"
+    },
+    {
+      "id": 79,
+      "text_tr": "En ağır belâ peygamberlere, sonra sâlihlere, sonra sırasıyla diğerlerine gelir.",
+      "narrator": "Abu Said al-Khudri",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2398"
+    },
+    {
+      "id": 80,
+      "text_tr": "Mü'min, mü'minin aynasıdır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2816"
+    },
+    {
+      "id": 81,
+      "text_tr": "Lâ ilâhe illallah diyerek ölen cennete girer.",
+      "narrator": "Muadh ibn Jabal",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 128"
+    },
+    {
+      "id": 82,
+      "text_tr": "Allah ilmi, insanların kalbinden söküp almaz; âlimlerin canını alarak ilmi alır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 100"
+    },
+    {
+      "id": 83,
+      "text_tr": "Sözün en hayırlısı Allah'ın Kitabı, yolun en hayırlısı Muhammed'in yoludur.",
+      "narrator": "Jabir ibn Abdullah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 867"
+    },
+    {
+      "id": 84,
+      "text_tr": "Cuma namazını kılın; zira o Allah'ın emridir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1174"
+    },
+    {
+      "id": 85,
+      "text_tr": "Fazla yiyeceği olan, yiyeceği olmayanla paylaşsın.",
+      "narrator": "Abu Said al-Khudri",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1017"
+    },
+    {
+      "id": 86,
+      "text_tr": "Ameller, sonuçlarına göre değerlendirilir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2318"
+    },
+    {
+      "id": 87,
+      "text_tr": "Allah rızası için dünyayı terk edene Allah daha hayırlısını verir.",
+      "narrator": "Abu Dharr",
+      "source": "Ahmad",
+      "reference_display": "Ahmad · No. 21516"
+    },
+    {
+      "id": 88,
+      "text_tr": "Hayvanlara merhamet etmek de sadakadır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2363"
+    },
+    {
+      "id": 89,
+      "text_tr": "Allah lütufkârdır ve her şeyde lütfu sever.",
+      "narrator": "Aisha",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2593"
+    },
+    {
+      "id": 90,
+      "text_tr": "Şüphesiz her güçlükle birlikte bir kolaylık vardır.",
+      "narrator": "Ibn Abbas",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 3383"
+    },
+    {
+      "id": 91,
+      "text_tr": "Doğru yola davet eden, ona uyanların sevabının benzerini alır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2674"
+    },
+    {
+      "id": 92,
+      "text_tr": "En hayırlınız, borcunu en güzel şekilde ödeyeninizdir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2227"
+    },
+    {
+      "id": 93,
+      "text_tr": "Birbirinizle ilişkileri kesmeyin, birbirinizden yüz çevirmeyin, birbirinize kin gütmeyin ve Allah'ın kulları olarak kardeş olun.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6064"
+    },
+    {
+      "id": 94,
+      "text_tr": "Allah'a ve ahiret gününe iman eden misafirine ikram etsin.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5974"
+    },
+    {
+      "id": 95,
+      "text_tr": "İsrailoğulları, peygamberler tarafından yönetiliyordu; biri ölünce yerine başkası geçerdi.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3461"
+    },
+    {
+      "id": 96,
+      "text_tr": "Güçlü mü'min, zayıf mü'minden hayırlı ve Allah'a daha sevimlidir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2812"
+    },
+    {
+      "id": 97,
+      "text_tr": "Peygamber kaba ve çirkin sözlü değildi; en hayırlınız eşine en iyi davananızdır derdi.",
+      "narrator": "Aisha",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3560"
+    },
+    {
+      "id": 98,
+      "text_tr": "Kadınlara iyi davranın; zira onlar kaburga kemiğinden yaratılmıştır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5185"
+    },
+    {
+      "id": 99,
+      "text_tr": "Her çocuk fıtrat üzere doğar.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1356"
+    },
+    {
+      "id": 100,
+      "text_tr": "Ölü, ailesinin ağlaması sebebiyle kabrinde azap görür.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1386"
+    },
+    {
+      "id": 101,
+      "text_tr": "Bir mü'minin dünya kederini gideren kimsenin kıyamet gününün kederini Allah giderir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2674"
+    },
+    {
+      "id": 102,
+      "text_tr": "İlmi Çin'de de olsa arayınız.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1358"
+    },
+    {
+      "id": 103,
+      "text_tr": "İnsan öldüğünde ameli üç şey dışında kesilir: sadaka-i câriye, faydalı ilim ve kendisine dua eden salih çocuk.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1631"
+    },
+    {
+      "id": 104,
+      "text_tr": "Yedi helak edici şeyden kaçının.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2766"
+    },
+    {
+      "id": 105,
+      "text_tr": "Müslümanın Müslüman üzerinde beş hakkı vardır: selâmını almak, hastasını ziyaret etmek, cenazesine katılmak, davetine icabet etmek, aksırınca yerhamukallah demek.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2475"
+    },
+    {
+      "id": 106,
+      "text_tr": "Allah'ın hakkını gözet, Allah da seni gözetsin.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2516"
+    },
+    {
+      "id": 107,
+      "text_tr": "Farz namazlardan sonra en hayırlı namaz gece namazıdır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 4837"
+    },
+    {
+      "id": 108,
+      "text_tr": "Zamana sövmeyin; zira Allah zamandır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2326"
+    },
+    {
+      "id": 109,
+      "text_tr": "İnsanlara kolaylaştırın, zorlaştırmayın; müjdeleyin, nefret ettirmeyin.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6015"
+    },
+    {
+      "id": 110,
+      "text_tr": "Biriniz bir kötülük görürse eliyle değiştirsin; gücü yetmezse diliyle; gücü yetmezse kalbiyle.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 47"
+    },
+    {
+      "id": 111,
+      "text_tr": "Zandan sakının; zira zan, sözün en yalanıdır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6021"
+    },
+    {
+      "id": 112,
+      "text_tr": "Mü'min aynı delikten iki kez sokulmaz.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6133"
+    },
+    {
+      "id": 113,
+      "text_tr": "Doğruluk iyiliğe, iyilik de cennete götürür.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3282"
+    },
+    {
+      "id": 114,
+      "text_tr": "Gıybet, kardeşinin hoşlanmayacağı şeyi onun arkasından söylemektir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6094"
+    },
+    {
+      "id": 115,
+      "text_tr": "Hiçbiriniz, çocuğundan, babasından ve tüm insanlardan beni daha çok sevmedikçe iman etmiş olmaz.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2518"
+    },
+    {
+      "id": 116,
+      "text_tr": "Lâ ilâhe illallah deyinceye kadar insanlarla savaşmam emredildi.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1397"
+    },
+    {
+      "id": 117,
+      "text_tr": "Bir Müslümanın ayıbını örten kimsenin ayıbını Allah dünyada ve ahirette örter.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2676"
+    },
+    {
+      "id": 118,
+      "text_tr": "Kişi ile şirk ve küfür arasındaki fark namazı terk etmektir.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 194"
+    },
+    {
+      "id": 119,
+      "text_tr": "En faziletli cihad, zalim yöneticinin karşısında hak sözü söylemektir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 7138"
+    },
+    {
+      "id": 120,
+      "text_tr": "Hiçbir iyiliği küçümseme; kardeşine güler yüzle kavuşmak bile olsa.",
+      "narrator": "Abu Dharr",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2577"
+    },
+    {
+      "id": 121,
+      "text_tr": "İslam'ın en hayırlısı yemek yedirmek ve tanıdık tanımadık herkese selam vermektir.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5199"
+    },
+    {
+      "id": 122,
+      "text_tr": "İnsanlara teşekkür etmeyen Allah'a da şükretmemiş olur.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6117"
+    },
+    {
+      "id": 123,
+      "text_tr": "Kolaylaştırın, zorlaştırmayın; müjdeleyin, nefret ettirmeyin.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5765"
+    },
+    {
+      "id": 124,
+      "text_tr": "Namaz dinin direğidir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 125,
+      "text_tr": "Allah'ı ayakta, otururken ve yanınız üzere yatarken zikredin.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 179"
+    },
+    {
+      "id": 126,
+      "text_tr": "Allah'a kavuşmayı seven kimseyle Allah da kavuşmayı sever.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2687"
+    },
+    {
+      "id": 127,
+      "text_tr": "Allah, can boğaza gelmedikçe kulunun tövbesini kabul eder.",
+      "narrator": "Ibn Umar",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 3537"
+    },
+    {
+      "id": 128,
+      "text_tr": "Cahiliye döneminde en hayırlı olanlarınız İslam'ı kavrarlarsa İslam'da da en hayırlı olanlardır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3331"
+    },
+    {
+      "id": 129,
+      "text_tr": "Allah için seven, Allah için buğzeden imanını tamamlamıştır.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6010"
+    },
+    {
+      "id": 130,
+      "text_tr": "Bağları kesmeyin, kin beslemeyin ve birbirinizi gözetlemeyin.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2633"
+    },
+    {
+      "id": 131,
+      "text_tr": "Dünya sevgisi her hatanın başıdır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6477"
+    },
+    {
+      "id": 132,
+      "text_tr": "Malını savunurken öldürülen şehittir.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Abu Dawud",
+      "reference_display": "Abu Dawud · No. 2597"
+    },
+    {
+      "id": 133,
+      "text_tr": "Zenginlik mal çokluğundan değil, gönül zenginliğindedir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2999"
+    },
+    {
+      "id": 134,
+      "text_tr": "Kim üç kızı olur ve onlara sabırla bakarsa cennete girer.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6015"
+    },
+    {
+      "id": 135,
+      "text_tr": "İnsan ölünce melekler 'Ne gönderdi?' diye sorar; halk ise 'Ne bıraktı?' der.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1374"
+    },
+    {
+      "id": 136,
+      "text_tr": "Kim iman ederek ve sevabını bekleyerek Ramazan orucunu tutarsa geçmiş günahları bağışlanır.",
+      "narrator": "Abu Said al-Khudri",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1376"
+    },
+    {
+      "id": 137,
+      "text_tr": "Kim iman ederek ve sevabını bekleyerek Kadir Gecesi'ni ihya ederse geçmiş günahları bağışlanır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1901"
+    },
+    {
+      "id": 138,
+      "text_tr": "Oruçlunun duası reddedilmez.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2553"
+    },
+    {
+      "id": 139,
+      "text_tr": "Allah iki kişiye güler: biri diğerini öldürür, sonra ikisi de cennete girer.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 7492"
+    },
+    {
+      "id": 140,
+      "text_tr": "Komşusu aç iken tok yatan kişi iman etmiş değildir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 141,
+      "text_tr": "Kalem üçünden kaldırıldı: uyanana kadar uyuyandan, büluğa erene kadar çocuktan ve iyileşene kadar deliden.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6412"
+    },
+    {
+      "id": 142,
+      "text_tr": "Sadaka verin; zira o sizi Ateş'ten koruyacak bir kalkandır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1006"
+    },
+    {
+      "id": 143,
+      "text_tr": "Allah'a icabet edeceğinden emin olarak dua edin.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2517"
+    },
+    {
+      "id": 144,
+      "text_tr": "Allah sizin dış görünüşünüze ve malınıza bakmaz; kalplerinize ve amellerinize bakar.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2593"
+    },
+    {
+      "id": 145,
+      "text_tr": "En büyük günah Allah'a ortak koşmak, ardından adam öldürmek, ardından zina etmektir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2767"
+    },
+    {
+      "id": 146,
+      "text_tr": "Cennette Tuba adında bir ağaç vardır; bir binici yüz yıl onun gölgesinde gitse bitiremez.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 13"
+    },
+    {
+      "id": 147,
+      "text_tr": "Allah üç şeyden razıdır: yalnız O'na ibadet etmenizden, hep birlikte O'nun ipine sarılmanızdan ve işlerinizi yönettiği kimselere nasihat etmenizden.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6502"
+    },
+    {
+      "id": 148,
+      "text_tr": "Kim Cuma günü Kehf Suresi'ni okursa iki Cuma arasında için nur aydınlatır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2818"
+    },
+    {
+      "id": 149,
+      "text_tr": "Namazı kılın, zekâtı verin ve yöneticilerinize itaat edin; Rabbinizin cennetine girersiniz.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3020"
+    },
+    {
+      "id": 150,
+      "text_tr": "Sürekli danışılan kişi iyi ahlâklıdır.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2006"
+    },
+    {
+      "id": 151,
+      "text_tr": "Allah merhameti yüz parça yarattı; bir parçasını yeryüzüne indirdi, doksan dokuzunu yanında sakladı.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 7405"
+    },
+    {
+      "id": 152,
+      "text_tr": "Küçük nimetlere şükretmeyen, büyük nimetlere de şükretmez.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6065"
+    },
+    {
+      "id": 153,
+      "text_tr": "Üstteki el alttaki elden hayırlıdır. Üstteki el veren, alttaki el alan eldir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1015"
+    },
+    {
+      "id": 154,
+      "text_tr": "Musibette sabır erdemdir.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2805"
+    },
+    {
+      "id": 155,
+      "text_tr": "Bir Müslümanın ayıbını kapatan kimsenin ayıbını Allah bu dünyada ve ahirette kapatır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2588"
+    },
+    {
+      "id": 156,
+      "text_tr": "Allah, kendi gölgesinden başka gölgenin olmadığı günde yedi kişiyi gölgelendirir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1423"
+    },
+    {
+      "id": 157,
+      "text_tr": "Allah buyurur: Ey Âdemoğlu, sen bana dua ettikçe ve benden istedikçe seni bağışlarım.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2577"
+    },
+    {
+      "id": 158,
+      "text_tr": "Kim gece Bakara Suresi'nin son iki ayetini okursa ona yeter.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6502"
+    },
+    {
+      "id": 159,
+      "text_tr": "Müminlerin en kâmil imanı olanları, en güzel ahlâklı ve eşine en iyi davananıdır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2702"
+    },
+    {
+      "id": 160,
+      "text_tr": "Allah yarattığı her hastalığın tedavisini de yaratmıştır.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 5641"
+    },
+    {
+      "id": 161,
+      "text_tr": "Kardeşinin zalim olduğunda ona yardımını, onu zulümden alıkoymakla yap.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2697"
+    },
+    {
+      "id": 162,
+      "text_tr": "Allah'a ve ahiret gününe iman eden komşusuna eziyet etmesin; kadınlara iyi davranın.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2989"
+    },
+    {
+      "id": 163,
+      "text_tr": "Üzerinden bir yıl geçen nisap miktarı malı bulunan her Müslümana zekât farzdır.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1468"
+    },
+    {
+      "id": 164,
+      "text_tr": "Beş vakit namazı kılın, Ramazan orucunu tutun, zekâtı verin ve hacca gidin.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 593"
+    },
+    {
+      "id": 165,
+      "text_tr": "Günahtan tövbe eden, hiç günah işlememiş gibidir.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 2344"
+    },
+    {
+      "id": 166,
+      "text_tr": "En hayırlı sadaka sağlıklı ve uzun ömür ümidindeyken verilendir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 167,
+      "text_tr": "Kişi, dostunun dini üzeredir; herkes kiminle arkadaşlık ettiğine baksın.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3282"
+    },
+    {
+      "id": 168,
+      "text_tr": "Ameller haftada iki kez Allah'a arz edilir: Pazartesi ve Perşembe.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2699"
+    },
+    {
+      "id": 169,
+      "text_tr": "İlim öğrenmek her Müslümana farzdır.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6477"
+    },
+    {
+      "id": 170,
+      "text_tr": "Birbirinize haset etmeyin, fiyatları yapay şişirmeyin, birbirinize kin gütmeyin.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 171,
+      "text_tr": "Merhametsize merhamet edilmez.",
+      "narrator": "Abdullah ibn Amr",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 4797"
+    },
+    {
+      "id": 172,
+      "text_tr": "Allah bir kulunu sevince Cebrail'i çağırır ve ona o kişiyi sevdiğini söyler.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2767"
+    },
+    {
+      "id": 173,
+      "text_tr": "Kim cemaatla sabah namazı kılar, güneş doğana kadar Allah'ı zikrederek oturursa, ardından iki rekât namaz kılarsa bu tam bir hac ve umreye eşittir.",
+      "narrator": "Anas ibn Malik",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2577"
+    },
+    {
+      "id": 174,
+      "text_tr": "Hac, Arefe'dir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1862"
+    },
+    {
+      "id": 175,
+      "text_tr": "Mebrûr haccın karşılığı yalnızca cennettir.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1521"
+    },
+    {
+      "id": 176,
+      "text_tr": "Kim hacceder ve kötü söz söylemez ve günah işlemezse anasından doğduğu gibi döner.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1773"
+    },
+    {
+      "id": 177,
+      "text_tr": "En hayırlınız dili ve eliyle insanlara zarar vermeyeninizdir.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3"
+    },
+    {
+      "id": 178,
+      "text_tr": "Din kolaylaştırıcıdır; kim dinde aşırıya kaçarsa din onu yener.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 179,
+      "text_tr": "Gece yolculuğundan korkan sabaha karşı hedefine ulaşır.",
+      "narrator": "Abdullah ibn Masud",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 3375"
+    },
+    {
+      "id": 180,
+      "text_tr": "Müslümanın gıyabında kardeşi için duası kabul edilir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2704"
+    },
+    {
+      "id": 181,
+      "text_tr": "Dua ibadetin beynidir.",
+      "narrator": "Anas ibn Malik",
+      "source": "Tirmidhi",
+      "reference_display": "Tirmidhi · No. 3376"
+    },
+    {
+      "id": 182,
+      "text_tr": "Pek çok insanın aldandığı iki nimet: sağlık ve boş vakit.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6405"
+    },
+    {
+      "id": 183,
+      "text_tr": "Bu dünyada ipek giyen ahirette giymez.",
+      "narrator": "Abdullah ibn Umar",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6416"
+    },
+    {
+      "id": 184,
+      "text_tr": "En hayırlı sadaka, en az zenginken verilendir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 1006"
+    },
+    {
+      "id": 185,
+      "text_tr": "Âlimler peygamberlerin vârisleridir.",
+      "narrator": "Anas ibn Malik",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 6018"
+    },
+    {
+      "id": 186,
+      "text_tr": "En faziletli cihad, zalim yöneticinin karşısında hak sözü söylemektir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2564"
+    },
+    {
+      "id": 187,
+      "text_tr": "Âlimin mürekkebi, şehidin kanından kutsaldır.",
+      "narrator": "Abdullah ibn Abbas",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 1"
+    },
+    {
+      "id": 188,
+      "text_tr": "Allah kimin için hayır isterse ona dinde anlayış verir.",
+      "narrator": "Abu Hurayrah",
+      "source": "Bukhari",
+      "reference_display": "Bukhari · No. 2989"
+    },
+    {
+      "id": 189,
+      "text_tr": "Şüphesiz Allah güzeldir ve güzelliği sever.",
+      "narrator": "Abu Hurayrah",
+      "source": "Muslim",
+      "reference_display": "Muslim · No. 2699"
+    }
+  ]
+}
