@@ -1,0 +1,100 @@
+{
+  "id": "namaz_kitaby_40_parz",
+  "type": "book_entry",
+  "listTitle": "Les Quarante Obligations",
+  "detailTitle": "Les Quarante Obligations",
+  "content": [
+    { "type": "heading", "text": "LES QUARANTE OBLIGATIONS (FARD)" },
+    {
+      "type": "section",
+      "title": "Six Piliers de la Foi (Iman)",
+      "items": [
+        "1. Croire en l'unicité d'Allah (Tawhid).",
+        "2. Croire aux anges d'Allah.",
+        "3. Croire aux livres révélés d'Allah.",
+        "4. Croire aux prophètes et messagers d'Allah.",
+        "5. Croire au Jour du Jugement (Akhira).",
+        "6. Croire au décret divin (Qadar) — que le bien et le mal viennent d'Allah."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Cinq Piliers de l'Islam",
+      "items": [
+        "7. Réciter la Chahada: «Achhadu alla ilaha illallah wa achhadu anna Muhammadan abduhu wa rasuluh».",
+        "8. Accomplir les cinq prières quotidiennes (Salat).",
+        "9. Jeûner durant le mois de Ramadan (Sawm).",
+        "10. Payer l'aumône obligatoire (Zakat).",
+        "11. Accomplir le pèlerinage du Hajj au moins une fois dans sa vie si on en a la capacité."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Douze Conditions Obligatoires de la Prière",
+      "items": [
+        "12. Se purifier de l'impureté rituelle (Hadath) par les ablutions, le ghusl ou le tayammum.",
+        "13. Être libre de l'impureté physique (Najasa) sur le corps, les vêtements et le lieu de prière.",
+        "14. Couvrir les parties intimes (Awrah).",
+        "15. Se tourner vers la Qibla (direction de la Ka'ba).",
+        "16. Prier dans le temps désigné (Waqt).",
+        "17. Faire l'intention (Niyyah) pour la prière.",
+        "18. Prononcer le Takbir d'ouverture: «Allahu Akbar».",
+        "19. Se tenir debout (Qiyam) pendant la prière.",
+        "20. Réciter des versets du Coran (Qira'at).",
+        "21. Effectuer l'inclination (Ruku').",
+        "22. Effectuer la prosternation (Sujud).",
+        "23. S'asseoir pour le Tachahoud final (Qa'da al-Akhira)."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Quatre Actes Obligatoires des Ablutions (Wudu)",
+      "items": [
+        "24. Laver entièrement le visage (de la naissance des cheveux au menton, d'oreille en oreille).",
+        "25. Laver les deux bras jusqu'aux coudes inclus.",
+        "26. Essuyer au moins le quart de la tête (Masah).",
+        "27. Laver les deux pieds jusqu'aux chevilles incluses."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Trois Actes Obligatoires du Grand Lavage (Ghusl)",
+      "items": [
+        "28. Se rincer la bouche complètement.",
+        "29. Se rincer les narines avec de l'eau.",
+        "30. Laver tout le corps sans laisser aucun endroit sec."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Deux Actes Obligatoires de l'Ablution Sèche (Tayammum)",
+      "items": [
+        "31. Faire l'intention (Niyyah).",
+        "32. Frapper la terre propre et essuyer le visage et les deux bras jusqu'aux coudes."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Ordonner le Bien et Interdire le Mal (2)",
+      "items": [
+        "33. Guider les gens vers la bonne conduite.",
+        "34. Prévenir les gens du mal et des mauvaises actions."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Obligations Spécifiques aux Femmes (2)",
+      "items": [
+        "35. Pour les femmes, connaître les règles concernant les menstruations (Hayd).",
+        "36. Pour les femmes, connaître les règles concernant les saignements post-partum (Nifas)."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Connaissance (1)",
+      "items": [
+        "37. Acquérir et transmettre les connaissances religieuses."
+      ]
+    }
+  ]
+}

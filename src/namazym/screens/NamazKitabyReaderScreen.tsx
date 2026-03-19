@@ -54,6 +54,37 @@ import besWagtRu from '../data/namaz_kitaby/namaz_kitaby_bes_wagt_okalysy_ru.jso
 import besWagtTr from '../data/namaz_kitaby/namaz_kitaby_bes_wagt_okalysy_tr.json';
 import besWagtFr from '../data/namaz_kitaby/namaz_kitaby_bes_wagt_okalysy_fr.json';
 
+// Localized versions — Chapters 1-6 (en, ru, fr, tr)
+import parzEn from '../data/namaz_kitaby/namaz_kitaby_40_parz_en.json';
+import parzRu from '../data/namaz_kitaby/namaz_kitaby_40_parz_ru.json';
+import parzFr from '../data/namaz_kitaby/namaz_kitaby_40_parz_fr.json';
+
+import imanEn from '../data/namaz_kitaby/namaz_kitaby_iman_ynanc_esaslary_en.json';
+import imanRu from '../data/namaz_kitaby/namaz_kitaby_iman_ynanc_esaslary_ru.json';
+import imanFr from '../data/namaz_kitaby/namaz_kitaby_iman_ynanc_esaslary_fr.json';
+
+import tamizlikEn from '../data/namaz_kitaby/namaz_kitaby_tamizlik_en.json';
+import tamizlikRu from '../data/namaz_kitaby/namaz_kitaby_tamizlik_ru.json';
+import tamizlikFr from '../data/namaz_kitaby/namaz_kitaby_tamizlik_fr.json';
+
+import taretEn from '../data/namaz_kitaby/namaz_kitaby_taret_en.json';
+import taretRu from '../data/namaz_kitaby/namaz_kitaby_taret_ru.json';
+import taretFr from '../data/namaz_kitaby/namaz_kitaby_taret_fr.json';
+import taretTr from '../data/namaz_kitaby/namaz_kitaby_taret_tr.json';
+import parzTr from '../data/namaz_kitaby/namaz_kitaby_40_parz_tr.json';
+import imanTr from '../data/namaz_kitaby/namaz_kitaby_iman_ynanc_esaslary_tr.json';
+import tamizlikTr from '../data/namaz_kitaby/namaz_kitaby_tamizlik_tr.json';
+import gusulTr from '../data/namaz_kitaby/namaz_kitaby_gusul_tr.json';
+import teyemmumTr from '../data/namaz_kitaby/namaz_kitaby_teyemmum_tr.json';
+
+import gusulEn from '../data/namaz_kitaby/namaz_kitaby_gusul_en.json';
+import gusulRu from '../data/namaz_kitaby/namaz_kitaby_gusul_ru.json';
+import gusulFr from '../data/namaz_kitaby/namaz_kitaby_gusul_fr.json';
+
+import teyemmumEn from '../data/namaz_kitaby/namaz_kitaby_teyemmum_en.json';
+import teyemmumRu from '../data/namaz_kitaby/namaz_kitaby_teyemmum_ru.json';
+import teyemmumFr from '../data/namaz_kitaby/namaz_kitaby_teyemmum_fr.json';
+
 const CONTENT_MAP: Record<string, any> = {
     namaz_kitaby_40_parz: parzData,
     namaz_kitaby_iman_ynanc_esaslary: imanData,
@@ -79,6 +110,12 @@ const CONTENT_MAP: Record<string, any> = {
 };
 
 const LOCALIZED_CONTENT_MAP: Record<string, Record<string, any>> = {
+    namaz_kitaby_40_parz: { tk: parzData, en: parzEn, ru: parzRu, tr: parzTr, fr: parzFr },
+    namaz_kitaby_iman_ynanc_esaslary: { tk: imanData, en: imanEn, ru: imanRu, tr: imanTr, fr: imanFr },
+    namaz_kitaby_tamizlik: { tk: tamizlikData, en: tamizlikEn, ru: tamizlikRu, tr: tamizlikTr, fr: tamizlikFr },
+    namaz_kitaby_taret: { tk: taretData, en: taretEn, ru: taretRu, tr: taretTr, fr: taretFr },
+    namaz_kitaby_gusul: { tk: gusulData, en: gusulEn, ru: gusulRu, tr: gusulTr, fr: gusulFr },
+    namaz_kitaby_teyemmum: { tk: teyemmumData, en: teyemmumEn, ru: teyemmumRu, tr: teyemmumTr, fr: teyemmumFr },
     namaz_kitaby_namaz_rekagatlary: { en: rekagatlaryEn, ru: rekagatlaryRu, tr: rekagatlaryTr, fr: rekagatlaryFr },
     namaz_kitaby_namaz_okalysy_adimler: { en: adimlerEn, ru: adimlerRu, tr: adimlerTr, fr: adimlerFr },
     namaz_kitaby_bes_wagt_okalysy: { en: besWagtEn, ru: besWagtRu, tr: besWagtTr, fr: besWagtFr },
@@ -183,7 +220,7 @@ export default function NamazKitabyReaderScreen() {
         if (!contentId) return null;
         const lang = i18n.language;
         const localized = LOCALIZED_CONTENT_MAP[contentId];
-        if (localized && lang !== 'tk' && localized[lang]) {
+        if (localized && localized[lang]) {
             return localized[lang];
         }
         return CONTENT_MAP[contentId] ?? null;
@@ -474,77 +511,63 @@ const styles = StyleSheet.create({
     titleContainer: { flex: 1, alignItems: 'center', paddingHorizontal: 12 },
     headerTitle: { fontSize: 14, fontWeight: '800', letterSpacing: 1.5, color: '#FFFFFF' },
     controlTrigger: {
-        width: 40, height: 40, borderRadius: 12,
+        width: 40, height: 40, borderRadius: 20,
         backgroundColor: 'rgba(255, 255, 255, 0.1)',
         justifyContent: 'center', alignItems: 'center'
     },
-    progressBarContainer: {
-        height: 2, width: '100%', backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    },
-    progressBarFill: { height: '100%' },
+    progressBarContainer: { height: 2, backgroundColor: 'rgba(255,255,255,0.1)' },
+    progressBarFill: { height: 2 },
     controlsPanel: {
-        position: 'absolute', top: 76, right: 16, left: 16,
-        padding: 24, borderRadius: 24,
-        backgroundColor: COLORS.glassCard,
-        shadowOpacity: 0, elevation: 0,
-        borderWidth: 1, borderColor: COLORS.glassBorder,
-        zIndex: 50, gap: 20,
+        backgroundColor: 'rgba(255,255,255,0.95)',
+        marginHorizontal: 16, marginBottom: 8,
+        borderRadius: 16, padding: 16,
+        shadowColor: '#000', shadowOpacity: 0.1, shadowRadius: 12, elevation: 4,
     },
-    themeRow: { flexDirection: 'row', justifyContent: 'center', gap: 16 },
+    themeRow: { flexDirection: 'row', justifyContent: 'center', gap: 12 },
     themeOption: {
-        width: 48, height: 48, borderRadius: 24,
-        alignItems: 'center', justifyContent: 'center',
+        width: 44, height: 44, borderRadius: 22,
+        justifyContent: 'center', alignItems: 'center',
+        shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 4, elevation: 2,
     },
-    controlDivider: { height: 1, backgroundColor: 'rgba(0, 0, 0, 0.05)' },
-    controlRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
-    settingLabel: { fontSize: 11, fontWeight: '800', color: COLORS.gold, letterSpacing: 1 },
-    stepper: {
-        flexDirection: 'row', alignItems: 'center',
-        backgroundColor: 'rgba(0, 0, 0, 0.03)', borderRadius: 12, padding: 4,
+    controlDivider: { height: 1, backgroundColor: 'rgba(0,0,0,0.06)', marginVertical: 12 },
+    controlRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+    settingLabel: { fontSize: 11, fontWeight: '700', letterSpacing: 1, color: '#888' },
+    stepper: { flexDirection: 'row', alignItems: 'center', gap: 16 },
+    stepBtn: {
+        width: 32, height: 32, borderRadius: 16,
+        backgroundColor: 'rgba(196,160,80,0.1)',
+        justifyContent: 'center', alignItems: 'center',
     },
-    stepBtn: { width: 44, height: 36, alignItems: 'center', justifyContent: 'center' },
-    stepValue: { minWidth: 44, textAlign: 'center', fontSize: 15, fontWeight: '800', color: COLORS.textPrimary },
-
+    stepValue: { fontSize: 16, fontWeight: '700', color: '#1A1A1A', minWidth: 24, textAlign: 'center' },
     paperContainer: {
-        flex: 1,
-        margin: 16,
-        borderRadius: 32,
-        overflow: 'hidden',
+        flex: 1, marginHorizontal: 12, marginBottom: 8,
+        borderRadius: 20, overflow: 'hidden',
+        shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 16, elevation: 4,
     },
-    scrollContent: { paddingHorizontal: 32, paddingTop: 40, paddingBottom: 100 },
-    headingBox: { alignItems: 'center', marginBottom: 24 },
-    mainHeading: { fontSize: 14, fontWeight: '900', textAlign: 'center', letterSpacing: 2 },
-    subheadingBox: { alignItems: 'center', marginBottom: 40 },
-    centeredSubheading: { fontWeight: '900', textAlign: 'center', letterSpacing: -1 },
-    titleDivider: { height: 3, width: 60, marginTop: 16 },
-    sectionHeadingContainer: { marginTop: 40, marginBottom: 16 },
-    sectionHeadingText: { fontWeight: '900', letterSpacing: -0.5 },
-    sectionUnderline: { height: 1, marginTop: 4, marginBottom: 20, opacity: 0.1 },
-    paragraph: { marginBottom: 24 },
-    listItem: { marginBottom: 12, fontWeight: '500' },
-    quoteBox: { borderLeftWidth: 3, paddingHorizontal: 20, paddingVertical: 16, marginBottom: 32, borderRadius: 4 },
-    quoteText: { fontStyle: 'italic', fontWeight: '500' },
-    subheading: { fontWeight: '900', marginBottom: 16, marginTop: 12 },
-    subsectionHeadingText: { fontWeight: '800', marginTop: 24, marginBottom: 16 },
-    listContainer: { marginBottom: 32 },
-    listRow: { flexDirection: 'row', alignItems: 'flex-start', marginBottom: 16 },
-    listBullet: { fontWeight: '900', minWidth: 28 },
-    listItemText: { flex: 1, fontWeight: '500' },
-    sectionContainer: { marginBottom: 40 },
-    dividerLine: {
-        height: 1,
-        marginVertical: 24,
-        opacity: 0.2,
+    scrollContent: { paddingHorizontal: 24, paddingTop: 32, paddingBottom: 48 },
+    headingBox: { alignItems: 'center', marginBottom: 8 },
+    mainHeading: { fontSize: 13, fontWeight: '900', letterSpacing: 3, textAlign: 'center' },
+    subheadingBox: { alignItems: 'center', marginBottom: 28, marginTop: 8 },
+    centeredSubheading: { fontWeight: '800', textAlign: 'center', letterSpacing: 0.5 },
+    titleDivider: { height: 2, width: 48, borderRadius: 1, marginTop: 12 },
+    sectionHeadingContainer: { marginTop: 28, marginBottom: 8 },
+    sectionHeadingText: { fontWeight: '800', letterSpacing: 0.3 },
+    sectionUnderline: { height: 1.5, width: 40, borderRadius: 1, marginTop: 6, marginBottom: 12 },
+    subsectionHeadingText: { fontWeight: '700', marginTop: 20, marginBottom: 6 },
+    dividerLine: { height: 1, marginVertical: 24, borderRadius: 1 },
+    linesBlock: { marginVertical: 8 },
+    lineText: { lineHeight: 28 },
+    paragraph: { marginBottom: 16 },
+    quoteBox: {
+        borderLeftWidth: 3, paddingLeft: 16, paddingVertical: 12,
+        paddingRight: 8, marginVertical: 12, borderRadius: 4,
     },
-    linesBlock: {
-        backgroundColor: 'rgba(196,160,80,0.05)',
-        borderRadius: 12,
-        padding: 20,
-        marginBottom: 24,
-    },
-    lineText: {
-        fontWeight: '600',
-        lineHeight: 28,
-        textAlign: 'center',
-    },
+    quoteText: { fontStyle: 'italic' },
+    subheading: { fontWeight: '700', marginTop: 20, marginBottom: 8 },
+    listContainer: { marginVertical: 8 },
+    listRow: { flexDirection: 'row', marginBottom: 10, alignItems: 'flex-start' },
+    listBullet: { fontWeight: '700', marginRight: 10, marginTop: 2, minWidth: 20 },
+    listItemText: { flex: 1 },
+    listItem: { marginBottom: 8, paddingLeft: 8 },
+    sectionContainer: { marginBottom: 20 },
 });

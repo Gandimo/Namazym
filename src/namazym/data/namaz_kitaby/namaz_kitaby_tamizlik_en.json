@@ -1,0 +1,31 @@
+{
+  "id": "namaz_kitaby_tamizlik",
+  "type": "book_entry",
+  "listTitle": "Purification",
+  "detailTitle": "Purification (Cleanliness in Islam)",
+  "content": [
+    { "type": "heading", "text": "Purification: Importance and Overview" },
+    { "type": "paragraph", "text": "Cleanliness is a core value in Islam — both physical and spiritual. Ritual purity is required for many acts of worship, especially prayer." },
+    { "type": "section_heading", "text": "Types of Purity" },
+    { "type": "unordered_list", "items": [
+      "Minor impurity (requires wudu — ablution).",
+      "Major impurity (requires ghusl — full bath).",
+      "Ritual dryness (tayammum) when water is unavailable."
+    ]},
+    { "type": "section_heading", "text": "Daily Practices" },
+    { "type": "paragraph", "text": "Personal hygiene, trimming nails, keeping clothes and place of prayer clean, and regular washing are encouraged." },
+    { "type": "section_heading", "text": "When to perform wudu" },
+    { "type": "ordered_list", "items": [
+      "Before each obligatory prayer if nullified.",
+      "After certain acts that break wudu (natural discharges, deep sleep, etc.).",
+      "Before touching the Mushaf in some schools."
+    ]},
+    { "type": "quote", "text": "Cleanliness is half of faith — keep body and heart pure." },
+    { "type": "section", "title": "Quick checklist", "items": [
+      "Wudu when required",
+      "Ghusl after major impurity",
+      "Tayammum if no water",
+      "Maintain personal hygiene"
+    ]}
+  ]
+}

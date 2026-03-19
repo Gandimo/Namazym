@@ -9,6 +9,7 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const ARABIC_NAMES: Record<string, string> = {
     Fajr: 'الفجر',
+    Sunrise: 'الشروق',
     Dhuhr: 'الظهر',
     Asr: 'العصر',
     Maghrib: 'المغرب',
@@ -73,6 +74,7 @@ export const DailyPrayersList = ({ prayerTimes, current, next, progress, delay =
     const entranceStyle = useAnimatedEntrance(delay);
     const ORDER = [
         { key: 'Fajr', label: t('prayer.fajr') },
+        { key: 'Sunrise', label: t('prayer.sunrise') },
         { key: 'Dhuhr', label: t('prayer.dhuhr') },
         { key: 'Asr', label: t('prayer.asr') },
         { key: 'Maghrib', label: t('prayer.maghrib') },
@@ -120,19 +122,19 @@ const styles = StyleSheet.create({
         marginBottom: tokens2026.layout.spacing,
     },
     card: {
-        height: 70,
-        borderRadius: 20, // Secondary Card Radius
+        height: 74,
+        borderRadius: 20,
         overflow: 'hidden',
         justifyContent: 'center',
         paddingHorizontal: tokens2026.layout.componentPadding,
     },
     activeCard: {
-        backgroundColor: tokens2026.colors.surface.default,
+        backgroundColor: 'rgba(255, 255, 255, 0.09)',
         borderWidth: 1,
-        borderColor: tokens2026.colors.brandGold,
+        borderColor: `rgba(196, 160, 80, 0.85)`,
     },
     inactiveCard: {
-        backgroundColor: tokens2026.colors.surface.default,
+        backgroundColor: 'rgba(255, 255, 255, 0.07)',
     },
     content: {
         flexDirection: 'row',

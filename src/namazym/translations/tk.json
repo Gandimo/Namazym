@@ -27,11 +27,11 @@
         "namaz_kitaby": "Namaz Kitaby"
     },
     "prayer": {
-        "fajr": "Imsak",
-        "sunrise": "Ertir",
+        "fajr": "Ertir",
+        "sunrise": "Gün",
         "dhuhr": "Öýle",
         "asr": "Ikindi",
-        "maghrib": "Agzaçar",
+        "maghrib": "Agşam",
         "isha": "Ýassy"
     },
     "settings": {
@@ -84,5 +84,20 @@
         "nepil": "Nepil namazlar",
         "pitre": "Baýram edebi we pitre",
         "nezir": "Nezir, ygtykaf we oraza borjy"
+    },
+    "qibla": {
+        "compass": "",
+        "status_calibrating": "Pusula taýýarlanýar",
+        "status_hold_flat": "Telefony düz tutuň",
+        "status_unstable": "Magnit päsgelçiligi bolup biler",
+        "status_far": "Kybla gözlenýär",
+        "status_near": "Kybla ýakyn",
+        "status_aligned": "Kybla tarapyna öwrülýär",
+        "status_perfect": "Kybla tapyldy",
+        "heading": "Ugur",
+        "bearing": "Kybla ugry",
+        "difference": "Tapawut",
+        "distance": "Mekgä",
+        "stable": "Durnukly"
     }
 }

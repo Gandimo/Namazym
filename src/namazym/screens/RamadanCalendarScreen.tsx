@@ -7,7 +7,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useCity } from '../context/CityContext';
 import { TimeService } from '../services/TimeService';
 import { getCurrentPrayer } from '../utils/prayerUtils';
-import globalVakitler from '../data/global_vakitler_v3.json';
+// ✅ YENİ: ramadan_2026_tm.json'u ekle
+import ramadanData from '../data/ramadan_2026_tm.json';
 import { useTranslation } from 'react-i18next';
 
 const SKY_THEMES = {
@@ -31,17 +32,24 @@ const COLORS = {
 export default function RamadanCalendarScreen() {
     const { t } = useTranslation();
     const navigation = useNavigation();
-    const { prayerTimes, placeKey } = useCity();
+    const { prayerTimes, placeKey, placeLabel } = useCity();
     const currentYear = useMemo(() => TimeService.now().getFullYear().toString(), []);
 
+    // ✅ YENİ: ramadan_2026_tm.json'dan veri çek
     const imsakiye = useMemo(() => {
-        if (!globalVakitler || !(globalVakitler.years as any)[currentYear]) return [];
-        const yearData = (globalVakitler.years as any)[currentYear];
-        const cityData = yearData.regions[placeKey] || Object.values(yearData.regions)[0];
+        const regionData = (ramadanData.tables as any)[placeKey];
+        if (!regionData || !regionData.days) {
+            console.warn(`Ramazan verisi bulunamadı: ${placeKey}`);
+            return [];
+        }
+        return regionData.days;
+    }, [placeKey]);
 
-        if (!cityData || !cityData.days) return [];
-        return cityData.days.filter((d: any) => d.ir);
-    }, [placeKey, currentYear]);
+    // ✅ YENİ: Bölge adını da al
+    const regionName = useMemo(() => {
+        const regionData = (ramadanData.tables as any)[placeKey];
+        return regionData ? regionData.region : placeLabel;
+    }, [placeKey, placeLabel]);
 
     const currentPrayer = useMemo(() => {
         if (!prayerTimes) return 'Dhuhr';
@@ -54,27 +62,36 @@ export default function RamadanCalendarScreen() {
     const renderItem = ({ item, index }: any) => (
         <View style={styles.card}>
             <View style={styles.dayBadge}>
-                <Text style={styles.dayText}>{index + 1}</Text>
+                <Text style={styles.dayText}>{item.day || (index + 1)}</Text>
             </View>
             <View style={styles.timeInfo}>
                 <View style={styles.timeItem}>
                     <Text style={styles.timeLabel}>{t('ramadan.sahur').toUpperCase()}</Text>
-                    <Text style={styles.timeValue}>{item.f}</Text>
+                    {/* ✅ YENİ: item.f → item.imsak */}
+                    <Text style={styles.timeValue}>{item.imsak}</Text>
                 </View>
                 <View style={styles.vDivider} />
                 <View style={styles.timeItem}>
                     <Text style={styles.timeLabel}>{t('ramadan.iftar').toUpperCase()}</Text>
-                    <Text style={styles.timeValue}>{item.a}</Text>
+                    {/* ✅ YENİ: item.a → item.iftar */}
+                    <Text style={styles.timeValue}>{item.iftar}</Text>
                 </View>
             </View>
-            <Text style={styles.dateText}>{item.dt}</Text>
+            {/* ✅ YENİ: Tarih formatı item.dt → item.date */}
+            <Text style={styles.dateText}>{item.date}</Text>
+            {/* ✅ YENİ: Özel notları göster (Kadir Gecesi, Bayram) */}
+            {item.note && (
+                <View style={styles.noteContainer}>
+                    <Text style={styles.noteText}>{item.note}</Text>
+                </View>
+            )}
         </View>
     );
 
     return (
         <View style={styles.container}>
             <StatusBar barStyle="light-content" />
-            <LinearGradient colors={theme as any} style={Sheet.absoluteFill} />
+            <LinearGradient colors={theme as any} style={StyleSheet.absoluteFill} />
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={styles.header}>
                     <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
@@ -83,12 +100,14 @@ export default function RamadanCalendarScreen() {
                     <View style={styles.titleBox}>
                         <Text style={styles.title}>{t('common.ramadan').toUpperCase()}-{currentYear}</Text>
                         <Text style={styles.subtitle}>IMSAKIÝE</Text>
+                        {/* ✅ YENİ: Bölge adını göster */}
+                        <Text style={styles.regionName}>{regionName}</Text>
                     </View>
                     <View style={{ width: 40 }} />
                 </View>
                 <FlatList
                     data={imsakiye}
-                    keyExtractor={(item, i) => i.toString()}
+                    keyExtractor={(item, i) => `${item.date || i}`}
                     renderItem={renderItem}
                     contentContainerStyle={styles.list}
                     showsVerticalScrollIndicator={false}
@@ -98,23 +117,93 @@ export default function RamadanCalendarScreen() {
     );
 }
 
-const Sheet = StyleSheet;
-
 const styles = StyleSheet.create({
     container: { flex: 1 },
-    header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12 },
-    backButton: { width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.1)', alignItems: 'center', justifyContent: 'center' },
+    header: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        paddingHorizontal: 16,
+        paddingVertical: 12
+    },
+    backButton: {
+        width: 40,
+        height: 40,
+        borderRadius: 20,
+        backgroundColor: 'rgba(255,255,255,0.1)',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     titleBox: { alignItems: 'center' },
-    title: { fontSize: 18, fontWeight: '900', color: '#FFF', letterSpacing: 2 },
-    subtitle: { fontSize: 11, color: 'rgba(255,255,255,0.7)', fontWeight: '800', letterSpacing: 4, marginTop: 2 },
+    title: {
+        fontSize: 18,
+        fontWeight: '900',
+        color: '#FFF',
+        letterSpacing: 2
+    },
+    subtitle: {
+        fontSize: 11,
+        color: 'rgba(255,255,255,0.7)',
+        fontWeight: '800',
+        letterSpacing: 4,
+        marginTop: 2
+    },
+    // ✅ YENİ: Bölge adı stili
+    regionName: {
+        fontSize: 12,
+        color: 'rgba(255,255,255,0.8)',
+        fontWeight: '600',
+        marginTop: 4
+    },
     list: { padding: 24, paddingTop: 10 },
-    card: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.glassCard, borderRadius: 24, padding: 20, marginBottom: 12, shadowOpacity: 0, elevation: 0, borderWidth: 1, borderColor: COLORS.glassBorder },
-    dayBadge: { width: 36, height: 36, borderRadius: 12, backgroundColor: 'rgba(196,160,80,0.1)', alignItems: 'center', justifyContent: 'center', marginRight: 16 },
+    card: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: COLORS.glassCard,
+        borderRadius: 24,
+        padding: 20,
+        marginBottom: 12,
+        borderWidth: 1,
+        borderColor: COLORS.glassBorder
+    },
+    dayBadge: {
+        width: 36,
+        height: 36,
+        borderRadius: 12,
+        backgroundColor: 'rgba(196,160,80,0.1)',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 16
+    },
     dayText: { fontSize: 14, fontWeight: '900', color: COLORS.gold },
     timeInfo: { flex: 1, flexDirection: 'row', alignItems: 'center' },
     timeItem: { alignItems: 'center', flex: 1 },
-    timeLabel: { fontSize: 9, fontWeight: '900', color: COLORS.textSecondary, letterSpacing: 1, marginBottom: 4 },
+    timeLabel: {
+        fontSize: 9,
+        fontWeight: '900',
+        color: COLORS.textSecondary,
+        letterSpacing: 1,
+        marginBottom: 4
+    },
     timeValue: { fontSize: 17, fontWeight: '800', color: COLORS.textPrimary },
     vDivider: { width: 1, height: 24, backgroundColor: 'rgba(0,0,0,0.05)' },
-    dateText: { fontSize: 11, color: COLORS.textSecondary, fontWeight: '700', marginLeft: 12 }
+    dateText: {
+        fontSize: 11,
+        color: COLORS.textSecondary,
+        fontWeight: '700',
+        marginLeft: 12
+    },
+    // ✅ YENİ: Özel not stili (Kadir Gecesi, Bayram)
+    noteContainer: {
+        backgroundColor: 'rgba(196,160,80,0.1)',
+        paddingHorizontal: 8,
+        paddingVertical: 4,
+        borderRadius: 8,
+        marginLeft: 8
+    },
+    noteText: {
+        fontSize: 10,
+        fontWeight: '700',
+        color: COLORS.gold
+    }
 });

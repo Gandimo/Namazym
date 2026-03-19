@@ -4,14 +4,12 @@ import {
     Text,
     StyleSheet,
     Pressable,
-    ScrollView,
     Animated,
     Dimensions,
     StatusBar,
     Platform,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Ionicons, Feather } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Haptics from 'expo-haptics';
 
@@ -23,7 +21,6 @@ import { TURKMEN_SURAH_NAMES } from '../constants/surahNames';
 import { useCity } from '../context/CityContext';
 import { getNextPrayer, getCurrentPrayer } from '../utils/prayerUtils';
 import { PrayerTimesService } from '../services/PrayerTimesService';
-import globalVakitler from '../data/global_vakitler_v3.json';
 import { DataService } from '../services/DataService';
 import quranAr from '../data/quran_ar_full.json';
 import { CitySelectorModal } from '../components/CitySelectorModal';
@@ -35,6 +32,13 @@ import { DailyPrayersList } from '../components/DailyPrayersList';
 import { PillNavigationBar } from '../components/PillNavigationBar';
 import { HeroSkeletonLoader } from '../components/HeroSkeletonLoader';
 import { PremiumIcon } from '../components/icons/PremiumIcon';
+import {
+    QiblaIcon,
+    BookIcon,
+    BeadsIcon,
+    MosqueIcon,
+    CrescentIcon
+} from '../components/icons';
 import { DateStrip } from '../components/DateStrip';
 import { ICON_SIZES, ICON_GRADIENTS } from '../theme/iconConstants';
 import { tokens2026 } from '../theme/tokens2026';
@@ -42,15 +46,16 @@ import AudioPlayerService from '../services/AudioPlayerService';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const dailyCards = require('../data/daily_cards.json');
 
 // Premium Design Tokens V1.1
 const SKY_THEMES = {
-    Fajr: ['#4A90E2', '#B8D8F4'],
-    Sunrise: ['#FF9E80', '#FBE9E7'],
-    Dhuhr: ['#1e90ff', '#c8eaff'],
-    Asr: ['#F57C00', '#FFF3E0'],
-    Maghrib: ['#311B92', '#FF8A65'],
-    Isha: ['#1A237E', '#121212'],
+    Fajr: ['#DCE7F5', '#F6F0E8'],
+    Sunrise: ['#F2D8C2', '#FBF3EA'],
+    Dhuhr: ['#E9EEF2', '#F8F5EF'],
+    Asr: ['#E8D8BE', '#F6EFE5'],
+    Maghrib: ['#8E6E6A', '#E8C7B0'],
+    Isha: ['#1E2430', '#12161F'],
 };
 
 const SectionHeader = ({ title }: { title: string }) => (
@@ -59,7 +64,7 @@ const SectionHeader = ({ title }: { title: string }) => (
     </View>
 );
 
-const DEEP_SPACE_GRADIENT = ['#0A0A0F', '#1A1A2E'];
+const DEEP_SPACE_GRADIENT = ['#161A22', '#0F1218'];
 
 export default function HomeScreen({ navigation }: any) {
     const { t, i18n } = useTranslation();
@@ -109,21 +114,27 @@ export default function HomeScreen({ navigation }: any) {
     }, [current]);
 
     const isDarkTheme = useMemo(() => {
-        return current?.key === 'Isha' || current?.key === 'Fajr';
+        // Only Isha and Maghrib remain visually 'dark' enough for primary white text in the new luxury palette
+        return current?.key === 'Isha' || current?.key === 'Maghrib';
     }, [current]);
+
+    const headerContentColor = isDarkTheme ? '#FFFFFF' : '#2D2D35';
+
+    // Theme-aware Glass Tokens
+    const glassTextPrimary = isDarkTheme ? '#FFFFFF' : '#2A2A32';
+    const glassTextSecondary = isDarkTheme ? 'rgba(255,255,255,0.72)' : 'rgba(45,45,53,0.62)';
+    const glassSurface = isDarkTheme ? 'rgba(255,255,255,0.13)' : 'rgba(255,255,255,0.38)';
+    const glassBorder = isDarkTheme ? 'rgba(255,255,255,0.28)' : 'rgba(255,255,255,0.52)';
 
     // Ramadan Logic
     const currentYear = useMemo(() => now.getFullYear().toString(), [now]);
     const todayStr = useMemo(() => TimeService.getTodayDateString(), [now]);
-    const ramadanConfig = useMemo(() => (globalVakitler.years as any)[currentYear]?.ramadan, [currentYear]);
 
-    const isRamadanActive = useMemo(() => (selectedPrayerTimes as any)?.ir || false, [selectedPrayerTimes]);
 
     // Dynamic Dataset Selection
     const quranData = useMemo(() => DataService.getQuran(t('i18n.language')), [t('i18n.language')]);
     const currentLang = i18n.language;
     const hadithData = useMemo(() => DataService.getHadiths(currentLang), [currentLang]);
-    const dailyCards = useMemo(() => require('../data/daily_cards.json'), []); // Base structure
 
     const versesPool = useMemo(() => {
         const pool = [];
@@ -143,7 +154,7 @@ export default function HomeScreen({ navigation }: any) {
             }
         }
         return pool;
-    }, [quranData, t('i18n.language')]);
+    }, [quranData, i18n.language]);
 
     const dailyContent = useMemo(() => {
         try {
@@ -153,7 +164,7 @@ export default function HomeScreen({ navigation }: any) {
             const fullVerse = versesPool[verseIndex];
 
             if (fullVerse) {
-                const surahName = lang === 'tk' && TURKMEN_SURAH_NAMES[fullVerse.surah - 1] ? TURKMEN_SURAH_NAMES[fullVerse.surah - 1] : `Surah ${fullVerse.surah}`;
+                const surahName = currentLang === 'tk' && TURKMEN_SURAH_NAMES[fullVerse.surah - 1] ? TURKMEN_SURAH_NAMES[fullVerse.surah - 1] : `Surah ${fullVerse.surah}`;
                 content.ayat = {
                     type: 'verse',
                     surah: fullVerse.surah,
@@ -168,23 +179,24 @@ export default function HomeScreen({ navigation }: any) {
             const hIdx = getDailyIndex(now, hadithData.hadiths.length);
             const localizedHadith = hadithData.hadiths[hIdx];
             if (localizedHadith) {
+                // hadith.json uses `text_turkmen` and `narrator`; daily_cards uses `text_tm` and `speaker`
+                const tmText = localizedHadith.text_tm || localizedHadith.text_turkmen || '';
                 content.hadith = {
                     ...content.hadith,
-                    text_localized: currentLang === 'ru' ? (localizedHadith.text_ru || localizedHadith.text_en || localizedHadith.text_tm) :
-                        currentLang === 'en' ? (localizedHadith.text_en || localizedHadith.text_tm) :
-                            currentLang === 'tr' ? (localizedHadith.text_tr || localizedHadith.text_en || localizedHadith.text_tm) :
-                                currentLang === 'fr' ? (localizedHadith.text_fr || localizedHadith.text_en || localizedHadith.text_tm) :
-                                    (localizedHadith.text_tm || ""),
-                    speaker: localizedHadith.speaker,
-                    narrator_chain: localizedHadith.narrator_chain,
+                    text_localized: currentLang === 'ru' ? (localizedHadith.text_ru || localizedHadith.text_en || tmText) :
+                        currentLang === 'en' ? (localizedHadith.text_en || tmText) :
+                            currentLang === 'tr' ? (localizedHadith.text_tr || localizedHadith.text_en || tmText) :
+                                currentLang === 'fr' ? (localizedHadith.text_fr || localizedHadith.text_en || tmText) :
+                                    (tmText || content.hadith?.text_tm || ''),
+                    speaker: localizedHadith.speaker || localizedHadith.narrator || 'Hz. Muhammed (s.a.w.)',
+                    narrator_chain: localizedHadith.narrator_chain || '',
                 };
             }
-
             return content;
         } catch (error) {
             return dailyCards.cards?.[0] || null;
         }
-    }, [now, versesPool, hadithData, t('i18n.language')]);
+    }, [now, versesPool, hadithData, i18n.language]);
 
     // Entrance Animations
     const ayatEntrance = useAnimatedEntrance(260);
@@ -223,7 +235,7 @@ export default function HomeScreen({ navigation }: any) {
 
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
+            <StatusBar barStyle={isDarkTheme ? "light-content" : "dark-content"} translucent backgroundColor="transparent" />
 
             <Animated.View style={[StyleSheet.absoluteFill, { transform: [{ translateY: backgroundTranslateY }] }]}>
                 <LinearGradient colors={activeSky as [string, string, ...string[]]} style={StyleSheet.absoluteFill} />
@@ -239,15 +251,15 @@ export default function HomeScreen({ navigation }: any) {
                             }}
                             style={styles.locationSelector}
                         >
-                            <Text style={styles.locationText}>{placeLabel}</Text>
+                            <Text style={[styles.locationText, { color: headerContentColor }]}>{placeLabel}</Text>
                             <PremiumIcon
                                 name="chevron-down"
                                 size="SMALL"
-                                color="white"
+                                color={headerContentColor}
                                 style={{ marginLeft: 4 }}
                             />
                         </Pressable>
-                        <Text style={styles.dateText}>{formattedDate}</Text>
+                        <Text style={[styles.dateText, !isDarkTheme && { color: 'rgba(0,0,0,0.5)' }]}>{formattedDate}</Text>
                     </View>
                     <View style={styles.headerRight}>
                         <Pressable
@@ -255,12 +267,12 @@ export default function HomeScreen({ navigation }: any) {
                                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                                 navigation.navigate('Settings');
                             }}
-                            style={styles.settingsBtn}
+                            style={[styles.settingsBtn, !isDarkTheme && { backgroundColor: 'rgba(0,0,0,0.05)' }]}
                         >
                             <PremiumIcon
                                 name="settings-outline"
                                 size="STANDARD"
-                                color="white"
+                                color={headerContentColor}
                                 interactive
                                 onPress={() => navigation.navigate('Settings')}
                             />
@@ -385,46 +397,54 @@ export default function HomeScreen({ navigation }: any) {
                         </AnimatedPressable>
                     )}
 
-                    {isRamadanActive && (
-                        <>
 
-                            <AnimatedPressable
-                                onPressIn={ramadanPress.onPressIn}
-                                onPressOut={ramadanPress.onPressOut}
-                                onPress={() => {
-                                    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                                    navigation.navigate('RamadanCalendar');
-                                }}
-                                style={[styles.ramadanCard, ramadanEntrance, ramadanPress.scaleStyle]}
-                            >
-                                <View style={styles.ramadanContent}>
-                                    <PremiumIcon
-                                        name="moon-outline"
-                                        size="MEDIUM"
-                                        gradient="RAMADAN_MOON"
-                                        interactive
-                                    />
-                                    <View style={{ marginLeft: 16 }}>
-                                        <Text style={styles.ramadanTitle}>Ramazan {currentYear}</Text>
-                                        <Text style={styles.ramadanSubtitle}>{''}</Text>
-                                    </View>
-                                </View>
-                                <PremiumIcon
-                                    name="chevron-forward"
-                                    size="SMALL"
-                                    color={tokens2026.colors.brandGold}
-                                />
-                            </AnimatedPressable>
-                        </>
-                    )}
 
 
                     <Animated.View style={[styles.grid, shortcutsEntrance]}>
-                        <ShortcutCard icon="calendar-outline" label={t('common.sahetli_gun')} gradient="TIME_CALENDAR" onPress={() => navigation.navigate('SahetliGun')} />
-                        <ShortcutCard icon="navigate-circle-outline" label={t('common.kybla')} gradient="QIBLA_COMPASS" onPress={() => navigation.navigate('QiblaScreen')} />
-                        <ShortcutCard icon="journal-outline" label={t('common.namaz_kitaby')} gradient="QURAN_BOOK" onPress={() => navigation.navigate('NamazKitaby')} />
-                        <ShortcutCard icon="book-outline" label={t('common.quran')} gradient="QURAN_BOOK" onPress={() => navigation.navigate('QuranMain')} />
-                        <ShortcutCard icon="ellipse-outline" label={t('common.tasbih')} gradient="PRAYER_GOLD" onPress={() => navigation.navigate('TasbihScreen')} />
+                        <ShortcutCard
+                            icon="calendar-outline"
+                            label={t('common.sahetli_gun')}
+                            gradient="TIME_CALENDAR"
+                            onPress={() => navigation.navigate('SahetliGun')}
+                            textColor={glassTextPrimary}
+                            cardStyle={{ backgroundColor: glassSurface, borderColor: glassBorder }}
+                        />
+                        <ShortcutCard
+                            CustomIcon={QiblaIcon}
+                            icon="navigate-circle-outline"
+                            label={t('common.kybla')}
+                            gradient="QIBLA_COMPASS"
+                            onPress={() => navigation.navigate('QiblaScreen')}
+                            textColor={glassTextPrimary}
+                            cardStyle={{ backgroundColor: glassSurface, borderColor: glassBorder }}
+                        />
+                        <ShortcutCard
+                            CustomIcon={BookIcon}
+                            icon="journal-outline"
+                            label={t('common.namaz_kitaby')}
+                            gradient="QURAN_BOOK"
+                            onPress={() => navigation.navigate('NamazKitaby')}
+                            textColor={glassTextPrimary}
+                            cardStyle={{ backgroundColor: glassSurface, borderColor: glassBorder }}
+                        />
+                        <ShortcutCard
+                            CustomIcon={BookIcon}
+                            icon="book-outline"
+                            label={t('common.quran')}
+                            gradient="QURAN_BOOK"
+                            onPress={() => navigation.navigate('QuranMain')}
+                            textColor={glassTextPrimary}
+                            cardStyle={{ backgroundColor: glassSurface, borderColor: glassBorder }}
+                        />
+                        <ShortcutCard
+                            CustomIcon={BeadsIcon}
+                            icon="ellipse-outline"
+                            label={t('common.tasbih')}
+                            gradient="PRAYER_GOLD"
+                            onPress={() => navigation.navigate('TasbihScreen')}
+                            textColor={glassTextPrimary}
+                            cardStyle={{ backgroundColor: glassSurface, borderColor: glassBorder }}
+                        />
                     </Animated.View>
 
 
@@ -435,12 +455,12 @@ export default function HomeScreen({ navigation }: any) {
                             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
                             navigation.navigate('Kaza');
                         }}
-                        style={[styles.glassCardWide, kazaEntrance, kazaPress.scaleStyle]}
+                        style={[styles.glassCardWide, { backgroundColor: glassSurface, borderColor: glassBorder }, kazaEntrance, kazaPress.scaleStyle]}
                     >
                         <View style={styles.kazaRow}>
                             <View style={styles.kazaTextContent}>
-                                <Text style={styles.kazaTitle}>{t('common.kaza')}</Text>
-                                <Text style={styles.kazaSubtitle}>{t('home.kaza_subtitle')}</Text>
+                                <Text style={[styles.kazaTitle, { color: glassTextPrimary }]}>{t('common.kaza')}</Text>
+                                <Text style={[styles.kazaSubtitle, { color: glassTextSecondary }]}>{t('home.kaza_subtitle')}</Text>
                             </View>
                             <View style={styles.kazaBadge}>
                                 <Text style={styles.kazaCount}>0</Text>
@@ -450,10 +470,41 @@ export default function HomeScreen({ navigation }: any) {
 
 
                     <Animated.View style={[styles.grid, infoEntrance]}>
-                        <InfoCard icon="sparkles-outline" label="99" gradient="HADITH_STAR" onPress={() => navigation.navigate('AsmaulHusna')} />
-                        <InfoCard icon="moon-outline" label={t('common.islamic_holidays')} gradient="TIME_CALENDAR" onPress={() => navigation.navigate('IslamBayramlary')} />
-                        <InfoCard icon="business-outline" label={t('common.mosques')} gradient="PRAYER_GOLD" onPress={() => navigation.navigate('Metjitler')} />
-                        <InfoCard icon="flower-outline" label={t('common.dogalar')} gradient="PRAYER_GOLD" onPress={() => navigation.navigate('Dogalar')} />
+                        <InfoCard
+                            icon="sparkles-outline"
+                            label="99"
+                            gradient="HADITH_STAR"
+                            onPress={() => navigation.navigate('AsmaulHusna')}
+                            textColor={glassTextPrimary}
+                            cardStyle={{ backgroundColor: glassSurface, borderColor: glassBorder }}
+                        />
+                        <InfoCard
+                            CustomIcon={CrescentIcon}
+                            icon="moon-outline"
+                            label={t('common.islamic_holidays')}
+                            gradient="TIME_CALENDAR"
+                            onPress={() => navigation.navigate('IslamBayramlary')}
+                            textColor={glassTextPrimary}
+                            cardStyle={{ backgroundColor: glassSurface, borderColor: glassBorder }}
+                        />
+                        <InfoCard
+                            CustomIcon={MosqueIcon}
+                            icon="business-outline"
+                            label={t('common.mosques')}
+                            gradient="PRAYER_GOLD"
+                            onPress={() => navigation.navigate('Metjitler')}
+                            textColor={glassTextPrimary}
+                            cardStyle={{ backgroundColor: glassSurface, borderColor: glassBorder }}
+                        />
+                        <InfoCard
+                            CustomIcon={BeadsIcon}
+                            icon="flower-outline"
+                            label={t('common.dogalar')}
+                            gradient="PRAYER_GOLD"
+                            onPress={() => navigation.navigate('Dogalar')}
+                            textColor={glassTextPrimary}
+                            cardStyle={{ backgroundColor: glassSurface, borderColor: glassBorder }}
+                        />
                     </Animated.View>
 
                     <View style={{ height: 100 }} />
@@ -492,35 +543,39 @@ export default function HomeScreen({ navigation }: any) {
     );
 }
 
-const ShortcutCard = ({ icon, label, gradient, onPress }: any) => (
+const ShortcutCard = ({ icon, label, gradient, onPress, textColor, cardStyle, CustomIcon }: any) => (
     <Pressable
         onPress={() => { Haptics.selectionAsync(); onPress(); }}
-        style={styles.shortcutCard}
+        style={[styles.shortcutCard, cardStyle]}
     >
-        <PremiumIcon
-            name={icon}
-            size="MEDIUM"
-            gradient={gradient}
-            interactive
-            onPress={onPress}
-        />
-        <Text style={styles.shortcutLabel}>{label}</Text>
+        {CustomIcon ? (
+            <CustomIcon color={textColor} size={24} />
+        ) : (
+            <PremiumIcon
+                name={icon}
+                size="MEDIUM"
+                gradient={gradient}
+            />
+        )}
+        <Text style={[styles.shortcutLabel, { color: textColor }]}>{label}</Text>
     </Pressable>
 );
 
-const InfoCard = ({ icon, label, gradient, onPress }: any) => (
+const InfoCard = ({ icon, label, gradient, onPress, textColor, cardStyle, CustomIcon }: any) => (
     <Pressable
         onPress={() => { Haptics.selectionAsync(); onPress(); }}
-        style={styles.infoCard}
+        style={[styles.infoCard, cardStyle]}
     >
-        <PremiumIcon
-            name={icon}
-            size="MEDIUM"
-            gradient={gradient}
-            interactive
-            onPress={onPress}
-        />
-        <Text style={styles.infoLabel}>{label}</Text>
+        {CustomIcon ? (
+            <CustomIcon color={textColor} size={24} />
+        ) : (
+            <PremiumIcon
+                name={icon}
+                size="MEDIUM"
+                gradient={gradient}
+            />
+        )}
+        <Text style={[styles.infoLabel, { color: textColor }]}>{label}</Text>
     </Pressable>
 );
 
@@ -534,35 +589,35 @@ const styles = StyleSheet.create({
     locationText: { fontSize: 20, fontWeight: '900', color: tokens2026.colors.text.primary },
     dateText: { fontSize: 13, color: tokens2026.colors.text.secondary, fontWeight: '600', marginTop: 2 },
     scrollPadding: { paddingHorizontal: tokens2026.layout.screenPadding, paddingBottom: 40 },
-    sectionHeader: { marginTop: 28, marginBottom: 12, marginLeft: 4 },
-    sectionTitle: { fontSize: 11, fontWeight: '900', color: tokens2026.colors.text.secondary, letterSpacing: 2 },
+    sectionHeader: { marginTop: 32, marginBottom: 14, marginLeft: 4 },
+    sectionTitle: { fontSize: 10, fontWeight: '900', color: tokens2026.colors.text.secondary, letterSpacing: 2.5 },
     glassCardWide: {
-        backgroundColor: 'rgba(255,255,255,0.12)',
+        backgroundColor: 'rgba(255,255,255,0.13)',
         borderRadius: 28,
         padding: 24,
-        marginBottom: 12,
+        marginBottom: 14,
         borderWidth: 0.5,
-        borderColor: 'rgba(255,255,255,0.25)',
+        borderColor: 'rgba(255,255,255,0.28)',
         shadowColor: '#000',
-        shadowOpacity: 0.06,
+        shadowOpacity: 0.15,
         shadowRadius: 16,
         shadowOffset: { width: 0, height: 8 },
     },
     grid: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' },
     shortcutCard: {
         width: (SCREEN_WIDTH - 54) / 2,
-        backgroundColor: 'rgba(255,255,255,0.12)',
+        backgroundColor: 'rgba(255,255,255,0.13)',
         borderRadius: 24,
-        padding: 20,
+        padding: 22,
         marginBottom: 12,
         alignItems: 'center',
-        gap: 12,
+        gap: 14,
         borderWidth: 0.5,
-        borderColor: 'rgba(255,255,255,0.25)',
+        borderColor: 'rgba(255,255,255,0.28)',
         shadowColor: '#000',
-        shadowOpacity: 0.08,
-        shadowRadius: 12,
-        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.15,
+        shadowRadius: 14,
+        shadowOffset: { width: 0, height: 6 },
     },
     shortcutLabel: {
         fontSize: 13,
@@ -573,7 +628,7 @@ const styles = StyleSheet.create({
     },
     infoCard: {
         width: (SCREEN_WIDTH - 54) / 2,
-        backgroundColor: 'rgba(255,255,255,0.12)',
+        backgroundColor: 'rgba(255,255,255,0.13)',
         borderRadius: 24,
         padding: 20,
         marginBottom: 12,
@@ -581,11 +636,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 12,
         borderWidth: 0.5,
-        borderColor: 'rgba(255,255,255,0.25)',
+        borderColor: 'rgba(255,255,255,0.28)',
         shadowColor: '#000',
-        shadowOpacity: 0.08,
-        shadowRadius: 12,
-        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.15,
+        shadowRadius: 14,
+        shadowOffset: { width: 0, height: 6 },
     },
     infoLabel: {
         fontSize: 13,
@@ -595,17 +650,17 @@ const styles = StyleSheet.create({
         letterSpacing: 0.3,
     },
     cardContainer: {
-        backgroundColor: 'rgba(255, 255, 255, 0.97)',
+        backgroundColor: 'rgba(250,248,243,0.96)',
         borderRadius: 28,
         padding: 24,
         marginBottom: 16,
         borderWidth: 1,
-        borderColor: 'rgba(201,168,76,0.15)',
+        borderColor: 'rgba(201,168,76,0.14)',
         shadowColor: '#C4A050',
-        shadowOpacity: 0.12,
-        shadowRadius: 32,
-        shadowOffset: { width: 0, height: 16 },
-        elevation: 16,
+        shadowOpacity: 0.10,
+        shadowRadius: 22,
+        shadowOffset: { width: 0, height: 10 },
+        elevation: 12,
     },
     cardHeaderRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 },
     cardHeaderTitle: { fontSize: 13, fontWeight: '700', letterSpacing: 1, color: '#666' },

@@ -36,7 +36,7 @@ export class PrayerTimesService {
                     Maghrib: dayData.a || "00:00",
                     Isha: dayData.y || "00:00"
                 },
-                is_ramadan: dayData.ir || false,
+                ir: dayData.ir || false,
                 method: "Authoritative",
                 school: "Hanafi",
                 source: "Official TKM"

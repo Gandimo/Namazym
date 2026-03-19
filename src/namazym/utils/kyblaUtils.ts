@@ -1,143 +1,237 @@
 /**
- * Kybla (Qibla) Direction Calculation Utilities
- * Provides accurate bearing to Kaaba from any location using great-circle calculation
+ * Qibla Engine V2 — Core Utilities
+ * All calculations are fully offline.
  */
 
-// Kaaba coordinates (hardcoded)
+// ─── Kaaba coordinates ────────────────────────────────────────────────────────
 export const KAABA_LAT = 21.4225;
 export const KAABA_LON = 39.8262;
 
-/**
- * Calculate great-circle bearing from user location to Kaaba
- * Uses Haversine formula variation for accurate bearing
- * 
- * @param userLat User latitude in degrees
- * @param userLon User longitude in degrees
- * @returns Bearing in degrees (0-360, where 0 is North)
- */
-export function bearingToKaaba(userLat: number, userLon: number): number {
-    // Convert to radians
-    const φ1 = (userLat * Math.PI) / 180;
-    const φ2 = (KAABA_LAT * Math.PI) / 180;
-    const Δλ = ((KAABA_LON - userLon) * Math.PI) / 180;
+// ─── Threshold config ─────────────────────────────────────────────────────────
+export const THR_HOLD_FLAT_DEG = 35;    // tilt above this → holdFlat state
+export const THR_STABILITY_LOW = 0.30; // below → unstable state
+export const THR_STABILITY_MED = 0.55; // below → no celebration feedback
+export const THR_STABILITY_HIGH = 0.75; // above → full feedback allowed
+export const THR_NEAR_DEG = 10;   // diff ≤ this → near state
+export const THR_ALIGNED_DEG = 5;    // diff ≤ this → aligned state
+export const THR_PERFECT_DEG = 3;    // diff ≤ this → perfect state
+export const THR_KAABA_ICON_DEG = 3;    // same as perfect
 
-    // Great-circle bearing formula
+// ─── State machine types ──────────────────────────────────────────────────────
+export type CompassState =
+    | 'calibrating'
+    | 'hold_flat'
+    | 'unstable'
+    | 'far'
+    | 'near'
+    | 'aligned'
+    | 'perfect';
+
+export interface CompassStateInfo {
+    state: CompassState;
+    label: string;          // i18n key
+    color: string;          // hex color for badge
+    glow: number;           // 0–1 target opacity
+    pulse: boolean;
+    showKaabaIcon: boolean;
+    isStable: boolean;
+}
+
+// Map state → i18n key (the screen uses t(info.label))
+const STATE_LABEL_KEY: Record<CompassState, string> = {
+    calibrating: 'qibla.status_calibrating',
+    hold_flat: 'qibla.status_hold_flat',
+    unstable: 'qibla.status_unstable',
+    far: 'qibla.status_far',
+    near: 'qibla.status_near',
+    aligned: 'qibla.status_aligned',
+    perfect: 'qibla.status_perfect',
+};
+
+const GLOW_BY_STATE: Record<CompassState, number> = {
+    calibrating: 0,
+    hold_flat: 0,
+    unstable: 0,
+    far: 0.10,
+    near: 0.35,
+    aligned: 0.65,
+    perfect: 1.00,
+};
+
+const COLOR_BY_STATE: Record<CompassState, string> = {
+    calibrating: '#FFB300', // Amber
+    hold_flat: '#F44336',   // Red
+    unstable: '#FF9800',    // Orange
+    far: '#9E9E9E',         // Gray
+    near: '#D4AF37',        // Gold
+    aligned: '#4CAF50',     // Green
+    perfect: '#43A047',     // Dark Green
+};
+
+export function getStateInfo(state: CompassState, diff: number): CompassStateInfo {
+    return {
+        state,
+        label: STATE_LABEL_KEY[state],
+        color: COLOR_BY_STATE[state],
+        glow: GLOW_BY_STATE[state],
+        pulse: state === 'aligned' || state === 'perfect',
+        showKaabaIcon: state === 'perfect' && Math.abs(diff) <= THR_KAABA_ICON_DEG,
+        isStable: state === 'far' || state === 'near' || state === 'aligned' || state === 'perfect',
+    };
+}
+
+/**
+ * Resolve compass state from inputs — pure function, no side effects.
+ * Includes hysteresis to prevent flickering between states.
+ */
+export function resolveCompassState(
+    currentState: CompassState,
+    diff: number,
+    stability: number,
+    tiltDeg: number,
+    sampleCount: number,
+): CompassState {
+    if (sampleCount < 12) return 'calibrating';
+    if (tiltDeg > THR_HOLD_FLAT_DEG) return 'hold_flat';
+
+    // Hysteresis for unstable: Enter < LOW, Exit > LOW + 0.05
+    if (currentState === 'unstable' && stability < (THR_STABILITY_LOW + 0.05)) return 'unstable';
+    if (stability < THR_STABILITY_LOW) return 'unstable';
+
+    // Hysteresis for distance states (enter at threshold, exit at threshold + margin)
+    const margin = 2.5;
+
+    if (currentState === 'perfect' && diff <= THR_PERFECT_DEG + margin) return 'perfect';
+    if (diff <= THR_PERFECT_DEG) return 'perfect';
+
+    if (currentState === 'aligned' && diff <= THR_ALIGNED_DEG + margin) return 'aligned';
+    if (diff <= THR_ALIGNED_DEG) return 'aligned';
+
+    if (currentState === 'near' && diff <= THR_NEAR_DEG + margin) return 'near';
+    if (diff <= THR_NEAR_DEG) return 'near';
+
+    return 'far';
+}
+
+// ─── Great-circle bearing ─────────────────────────────────────────────────────
+export function bearingToKaaba(userLat: number, userLon: number): number {
+    const φ1 = toRad(userLat), φ2 = toRad(KAABA_LAT);
+    const Δλ = toRad(KAABA_LON - userLon);
     const θ = Math.atan2(
         Math.sin(Δλ) * Math.cos(φ2),
-        Math.cos(φ1) * Math.sin(φ2) -
-        Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ)
+        Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ),
     );
-
-    // Convert to degrees and normalize to 0-360
     return (θ * 180 / Math.PI + 360) % 360;
 }
 
-/**
- * Magnetic declination values for Turkmenistan regions (approximate for 2026)
- * Values in degrees (positive = East declination)
- */
-export const DECLINATION_MAP: Record<string, number> = {
-    'asgabat': 3.5,
-    'mary': 3.8,
-    'dasoguz': 4.2,
-    'balkan': 2.9,
-    'lebap': 4.0,
-    'ahal': 3.5
-};
-
-/**
- * Get magnetic declination for a given city
- * @param cityKey City key (lowercase)
- * @returns Declination in degrees (defaults to Aşgabat if not found)
- */
-export function getDeclination(cityKey: string): number {
-    return DECLINATION_MAP[cityKey.toLowerCase()] || 3.5;
+// ─── Haversine distance ───────────────────────────────────────────────────────
+export function haversineDistance(
+    lat1: number, lon1: number,
+    lat2: number, lon2: number,
+): number {
+    const R = 6371;
+    const dLat = toRad(lat2 - lat1), dLon = toRad(lon2 - lon1);
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 }
 
+// ─── Tilt-compensated heading ─────────────────────────────────────────────────
 /**
- * Convert magnetic heading to true heading using declination
- * @param magneticHeading Heading from compass (degrees)
- * @param declination Magnetic declination for location (degrees)
- * @returns True heading (degrees, 0-360)
+ * Returns heading in degrees (0–360), or NaN if sensor data is degenerate.
+ * Also returns tiltDeg so the caller can check against THR_HOLD_FLAT_DEG.
  */
-export function magneticToTrue(magneticHeading: number, declination: number): number {
-    return (magneticHeading + declination + 360) % 360;
+export function tiltCompensatedHeading(
+    mx: number, my: number, mz: number,
+    ax: number, ay: number, az: number,
+): { heading: number; tiltDeg: number } {
+    const aNorm = Math.sqrt(ax * ax + ay * ay + az * az);
+    if (aNorm < 0.5) return { heading: NaN, tiltDeg: 0 };
+
+    const nx = ax / aNorm, ny = ay / aNorm, nz = az / aNorm;
+    // Tilt angle from horizontal (0° = flat, 90° = upright)
+    const tiltDeg = Math.acos(Math.abs(nz)) * 180 / Math.PI;
+
+    const pitch = Math.asin(-nx);               // rotation about Y
+    const roll = Math.atan2(ny, nz);           // rotation about X
+
+    const Xh = mx * Math.cos(pitch) + mz * Math.sin(pitch);
+    const Yh = mx * Math.sin(roll) * Math.sin(pitch)
+        + my * Math.cos(roll)
+        - mz * Math.sin(roll) * Math.cos(pitch);
+
+    const heading = (Math.atan2(-Yh, Xh) * 180 / Math.PI + 360) % 360;
+    return { heading, tiltDeg };
 }
 
+// ─── Circular vector smoother (sin/cos EMA) ───────────────────────────────────
 /**
- * Exponential Moving Average filter for smooth angle transitions
- * Handles 0/360 wrap-around properly
+ * Smooths angles using sin/cos EMA — correctly handles 0°/360° wrap-around.
+ * α ≈ 0.12–0.18 gives natural compass inertia.
  */
-export class AngleSmoother {
-    private value: number = 0;
-    private alpha: number;
-    private initialized: boolean = false;
+export class CircularEMA {
+    private sinEMA = 0;
+    private cosEMA = 1;
+    private initialized = false;
+    readonly alpha: number;
 
-    constructor(alpha: number = 0.2) {
-        this.alpha = Math.max(0.1, Math.min(0.5, alpha)); // Clamp between 0.1 and 0.5
+    constructor(alpha = 0.22) {
+        this.alpha = Math.max(0.05, Math.min(0.5, alpha));
     }
 
-    /**
-     * Smooth a new angle value using EMA
-     * @param newAngle New angle in degrees (0-360)
-     * @returns Smoothed angle (0-360)
-     */
-    smooth(newAngle: number): number {
-        // Initialize on first call
+    smooth(angleDeg: number): number {
+        const r = toRad(angleDeg);
+        const s = Math.sin(r), c = Math.cos(r);
         if (!this.initialized) {
-            this.value = newAngle;
+            this.sinEMA = s; this.cosEMA = c;
             this.initialized = true;
-            return this.value;
+        } else {
+            this.sinEMA = this.alpha * s + (1 - this.alpha) * this.sinEMA;
+            this.cosEMA = this.alpha * c + (1 - this.alpha) * this.cosEMA;
         }
-
-        // Calculate shortest angular difference (handles wrap-around)
-        let diff = newAngle - this.value;
-        if (diff > 180) diff -= 360;
-        if (diff < -180) diff += 360;
-
-        // Apply EMA
-        this.value = (this.value + diff * this.alpha + 360) % 360;
-        return this.value;
+        return (Math.atan2(this.sinEMA, this.cosEMA) * 180 / Math.PI + 360) % 360;
     }
 
-    /**
-     * Reset the smoother
-     */
-    reset(): void {
-        this.initialized = false;
-        this.value = 0;
+    reset() { this.initialized = false; }
+}
+
+// ─── Stability tracker (circular variance) ────────────────────────────────────
+export class StabilityTracker {
+    private samples: number[] = [];
+    readonly maxSamples: number;
+
+    constructor(maxSamples = 20) { this.maxSamples = maxSamples; }
+
+    /** Returns circular-mean resultant length R (0 = random, 1 = perfectly stable). */
+    add(angleDeg: number): number {
+        this.samples.push(angleDeg);
+        if (this.samples.length > this.maxSamples) this.samples.shift();
+        if (this.samples.length < 4) return 0;
+        let sS = 0, cS = 0;
+        for (const a of this.samples) {
+            sS += Math.sin(toRad(a));
+            cS += Math.cos(toRad(a));
+        }
+        return Math.sqrt(sS ** 2 + cS ** 2) / this.samples.length;
     }
+
+    get count() { return this.samples.length; }
+    reset() { this.samples = []; }
 }
 
-/**
- * Calculate the shortest angular difference between two angles
- * @param angle1 First angle (degrees)
- * @param angle2 Second angle (degrees)
- * @returns Shortest angular distance (-180 to 180)
- */
-export function angularDifference(angle1: number, angle2: number): number {
-    let diff = angle2 - angle1;
-    while (diff > 180) diff -= 360;
-    while (diff < -180) diff += 360;
-    return diff;
+// ─── Angular helpers ──────────────────────────────────────────────────────────
+/** Shortest angular distance from a1 to a2 (result: -180..180) */
+export function angularDifference(a1: number, a2: number): number {
+    let d = a2 - a1;
+    while (d > 180) d -= 360;
+    while (d < -180) d += 360;
+    return d;
 }
 
-/**
- * Alignment thresholds (in degrees)
- */
-export const ALIGNED_THRESHOLD = 2;  // Within 2° = aligned
-export const NEAR_THRESHOLD = 5;     // Within 5° = near
-
+// ─── Legacy exports (kept for backward compat) ───────────────────────────────
+export const ALIGNED_THRESHOLD = THR_PERFECT_DEG;
+export const KAABA_LAT_EXPORT = KAABA_LAT;
+export const KAABA_LON_EXPORT = KAABA_LON;
 export type AlignmentStatus = 'aligned' | 'near' | 'searching';
 
-/**
- * Get alignment status based on angular difference
- * @param diff Angular difference in degrees
- * @returns Alignment status
- */
-export function getAlignmentStatus(diff: number): AlignmentStatus {
-    const absDiff = Math.abs(diff);
-    if (absDiff <= ALIGNED_THRESHOLD) return 'aligned';
-    if (absDiff <= NEAR_THRESHOLD) return 'near';
-    return 'searching';
-}
+// ─── Internal ─────────────────────────────────────────────────────────────────
+function toRad(d: number) { return d * Math.PI / 180; }

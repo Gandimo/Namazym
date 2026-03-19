@@ -6,11 +6,11 @@ import { PremiumIconProps, ICON_DEFAULTS } from './PremiumIcon';
  * Mosque Icon — Metjitler
  * Abstract silhouette, no internal details
  */
-export function MosqueIcon({
+export const MosqueIcon = React.memo(({
   size = ICON_DEFAULTS.size,
   color = ICON_DEFAULTS.color,
-  strokeWidth = ICON_DEFAULTS.strokeWidth,
-}: PremiumIconProps) {
+  strokeWidth = ICON_DEFAULTS.strokeWidth ?? 1.6,
+}: PremiumIconProps) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       {/* Dome */}

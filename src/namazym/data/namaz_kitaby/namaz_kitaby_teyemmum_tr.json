@@ -1,0 +1,31 @@
+{
+  "id": "namaz_kitaby_teyemmum",
+  "type": "book_entry",
+  "listTitle": "Teyemmüm",
+  "detailTitle": "Teyemmüm",
+  "content": [
+    { "type": "heading", "text": "Teyemmüm: Amaç ve Şartlar" },
+    { "type": "paragraph", "text": "Teyemmüm, suyun bulunmadığı veya kullanılmasının zararlı olduğu durumlarda abdest veya gusül yerine yapılan kuru temizliktir. İslam'da kolaylık ve merhamet ilkesinin bir uygulamasıdır." },
+    { "type": "section_heading", "text": "Teyemmümün caiz olduğu durumlar" },
+    { "type": "unordered_list", "items": [
+      "Hiç su yoksa veya su kullanmak zararlıysa (hastalık, yaralanma).",
+      "Yolculukta su yetersizse.",
+      "Suyu içmek için saklamak gerekiyorsa."
+    ]},
+    { "type": "section_heading", "text": "Teyemmümün yapılışı" },
+    { "type": "ordered_list", "items": [
+      "Niyet edin: temizlenmek için teyemmüm yapıyorum.",
+      "Her iki elinizi temiz toprağa, toza veya taşa hafifçe vurun.",
+      "Ellerinizi yüzünüze sürün.",
+      "Ellerinizi bileklere kadar sürün."
+    ]},
+    { "type": "paragraph", "text": "Teyemmüm semboliktir ve su bulunmadığı sürece geçerlidir; su bulunduğunda sonraki namazlar için su ile abdest/gusül yapmak gerekir." },
+    { "type": "section_heading", "text": "Teyemmümü bozan şeyler" },
+    { "type": "unordered_list", "items": [
+      "Suyun bulunması.",
+      "Abdesti bozan her şey.",
+      "Su varken bilerek teyemmüm yapmak."
+    ]},
+    { "type": "quote", "text": "Teyemmüm, zorluk karşısında İslam'ın gösterdiği kolaylıktır — ibadet için engel kalkınca kolaylık sağlanır." }
+  ]
+}

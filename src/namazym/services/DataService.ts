@@ -39,12 +39,13 @@ export class DataService {
     }
 
     static getHadithText(hadith: any, lang: string): string {
+        const tmText = hadith.text_tm || hadith.text_turkmen || '';
         switch (lang) {
-            case 'ru': return hadith.text_ru || hadith.text_en || hadith.text_tm || "";
-            case 'en': return hadith.text_en || hadith.text_tm || "";
-            case 'tr': return hadith.text_tr || hadith.text_en || hadith.text_tm || "";
-            case 'fr': return hadith.text_fr || hadith.text_en || hadith.text_tm || "";
-            default: return hadith.text_tm || "";
+            case 'ru': return hadith.text_ru || hadith.text_en || tmText;
+            case 'en': return hadith.text_en || tmText;
+            case 'tr': return hadith.text_tr || hadith.text_en || tmText;
+            case 'fr': return hadith.text_fr || hadith.text_en || tmText;
+            default: return tmText;
         }
     }
 }

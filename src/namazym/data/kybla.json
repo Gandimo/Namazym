@@ -1,0 +1,27 @@
+[
+    {
+        "key": "asgabat_arkadag_ahal",
+        "label": "Aşgabat",
+        "qibla": 229.19
+    },
+    {
+        "key": "mary",
+        "label": "Mary",
+        "qibla": 235.78
+    },
+    {
+        "key": "dasoguz",
+        "label": "Daşoguz",
+        "qibla": 225.88
+    },
+    {
+        "key": "lebap",
+        "label": "Lebap",
+        "qibla": 235.88
+    },
+    {
+        "key": "balkan",
+        "label": "Balkan",
+        "qibla": 218.72
+    }
+]

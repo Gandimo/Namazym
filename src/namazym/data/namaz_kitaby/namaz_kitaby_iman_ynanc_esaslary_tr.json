@@ -1,0 +1,32 @@
+{
+  "id": "namaz_kitaby_iman_ynanc_esaslary",
+  "type": "book_entry",
+  "listTitle": "İnanç Esasları",
+  "detailTitle": "İnanç Esasları",
+  "content": [
+    { "type": "heading", "text": "İman: İslam'da İnanç Esasları" },
+    { "type": "paragraph", "text": "İman (inanç), İslam'ın temel inanç maddelerini kapsar: Allah, melekler, kitaplar, peygamberler, ahiret günü ve kader. Bu esaslar müminin inanç iskeletidir." },
+    { "type": "section_heading", "text": "Altı iman esası" },
+    { "type": "ordered_list", "items": [
+      "Allah'a inanmak — bir ve eşsiz olan.",
+      "Meleklerin varlığına inanmak.",
+      "Vahiy kitaplarına inanmak (özellikle Kuran).",
+      "Peygamberlere ve elçilere inanmak (Hz. Muhammed son peygamberdir).",
+      "Ahiret gününe, kıyamet ve hesap gününe inanmak.",
+      "Kader konusunda Allah'ın ilmi ve iradesine inanmak."
+    ]},
+    { "type": "section_heading", "text": "İman ve amel ilişkisi" },
+    { "type": "paragraph", "text": "İman, samimi niyet ve düzenli ibadetlerle artar; yalnızca söylem değil, davranışla da doğrulanmalıdır. İhlas ve tövbe iman için merkezi unsurlardır." },
+    { "type": "subsection_heading", "text": "İhlas ve tövbe" },
+    { "type": "paragraph", "text": "İhlas — niyetin samimiyeti — ve sürekli tövbe imanın temelidir; insanın kalbini yeniler ve amelini berraklaştırır." },
+    { "type": "quote", "text": "İman sözde kalmamalı; kalpte yerleşmeli ve davranışa dönüşmelidir." },
+    { "type": "section", "title": "Hızlı hatırlatma", "items": [
+      "Allah'a inanmak",
+      "Meleklere inanmak",
+      "Kitaplara inanmak",
+      "Peygamberlere inanmak",
+      "Ahiret gününe inanmak",
+      "Kader inancı"
+    ]}
+  ]
+}

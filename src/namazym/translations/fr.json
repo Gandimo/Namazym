@@ -60,5 +60,43 @@
         "verse_of_day": "Verset du jour",
         "hadith_of_day": "Hadith du jour",
         "kaza_subtitle": "Suivi et calendrier"
+    },
+    "namaz_book": {
+        "kyrk_parz": "Quarante Obligations",
+        "iman": "Fondements de la Foi",
+        "tamizlik": "Purification",
+        "taret": "Ablution",
+        "gusul": "Bain Rituel",
+        "teyemmum": "Ablution Sèche",
+        "ybadat": "Adoration",
+        "namaz": "Prière",
+        "hukumler": "Règles de la Prière",
+        "rekagat": "Unités de Prière",
+        "okalysy": "Comment Prier",
+        "bes_wagt": "Cinq Prières Quotidiennes",
+        "namazdan_son": "Après la Prière",
+        "jemagat": "Prière en Congrégation",
+        "sejde": "Prosternation",
+        "juma": "Vendredi et Voyage",
+        "tarawa": "Fête et Tarawih",
+        "jynaza": "Prière Funèbre",
+        "nepil": "Prières Surérogatoires",
+        "pitre": "Aïd al-Fitr",
+        "nezir": "Vœu et Retraite Spirituelle"
+    },
+    "qibla": {
+        "compass": "Boussole",
+        "status_calibrating": "Calibrage de la boussole",
+        "status_hold_flat": "Tenez le téléphone à plat",
+        "status_unstable": "Interférence magnétique détectée",
+        "status_far": "Recherche de la Qibla",
+        "status_near": "Proche de la Qibla",
+        "status_aligned": "Approche de la Qibla",
+        "status_perfect": "Aligné avec la Qibla",
+        "heading": "Direction",
+        "bearing": "Direction Qibla",
+        "difference": "Écart",
+        "distance": "Vers La Mecque",
+        "stable": "Stable"
     }
 }

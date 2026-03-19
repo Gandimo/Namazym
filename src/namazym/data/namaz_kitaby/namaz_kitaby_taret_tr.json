@@ -1,0 +1,81 @@
+{
+  "id": "namaz_kitaby_taret",
+  "type": "book_entry",
+  "listTitle": "Abdest",
+  "detailTitle": "Abdest",
+  "content": [
+    { "type": "heading", "text": "III. BÖLÜM" },
+    { "type": "subheading", "text": "ABDEST" },
+    {
+      "type": "paragraph",
+      "text": "Abdest; yüzü, kolları dirseklere kadar, başın dörtte birini ve ayakları topuklara kadar yıkamak ve meshetmekten oluşan dini temizliktir. Namaz kılmak başta olmak üzere birçok ibadet için abdest şarttır."
+    },
+    {
+      "type": "quote",
+      "text": "«Ey iman edenler! Namaza kalktığınızda yüzlerinizi ve dirseklere kadar ellerinizi yıkayın, başlarınızı meshedin ve topuklara kadar ayaklarınızı yıkayın» (Maide suresi, 6)."
+    },
+    {
+      "type": "section_heading",
+      "text": "Abdestin Farzları"
+    },
+    {
+      "type": "ordered_list",
+      "items": [
+        "Yüzü yıkamak (alnın saç bitiminden çeneye, kulaktan kulağa kadar).",
+        "Elleri dirseklerle birlikte yıkamak.",
+        "Başın dörtte birini meshetmek.",
+        "Ayakları topuklarla birlikte yıkamak."
+      ]
+    },
+    {
+      "type": "section_heading",
+      "text": "Abdestin Sünnetleri"
+    },
+    {
+      "type": "ordered_list",
+      "items": [
+        "«Bismillahirrahmanirrahim» ile başlamak.",
+        "Elleri bileklere kadar üç kez yıkamak.",
+        "Ağzı üç kez çalkalamak.",
+        "Burnu üç kez su ile temizlemek.",
+        "Başın tamamını meshetmek.",
+        "Kulakları meshetmek.",
+        "Her uzvu üç kez yıkamak.",
+        "Tertibe riayet etmek."
+      ]
+    },
+    {
+      "type": "section_heading",
+      "text": "Abdestin Alınışı"
+    },
+    {
+      "type": "ordered_list",
+      "items": [
+        "Niyet edilir.",
+        "«Bismillah» denir.",
+        "Eller bileklere kadar üç kez yıkanır.",
+        "Ağız üç kez çalkalanır, burun temizlenir.",
+        "Yüz üç kez yıkanır.",
+        "Sağ kol, ardından sol kol dirseklere kadar üç kez yıkanır.",
+        "Başın dörtte biri bir kez meshedidir.",
+        "Kulaklar meshedidir.",
+        "Sağ ayak, ardından sol ayak topuklara kadar üç kez yıkanır."
+      ]
+    },
+    {
+      "type": "section_heading",
+      "text": "Abdesti Bozan Şeyler"
+    },
+    {
+      "type": "ordered_list",
+      "items": [
+        "İdrar, dışkı veya gaz çıkması.",
+        "Kan, irin veya sarı su akması.",
+        "Ağız dolusu kusmuk.",
+        "Uzanarak uyumak.",
+        "Bayılmak, sarhoş olmak veya delirmek.",
+        "Namazda yüksek sesle gülmek."
+      ]
+    }
+  ]
+}

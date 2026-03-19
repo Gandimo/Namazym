@@ -1,0 +1,31 @@
+{
+  "id": "namaz_kitaby_teyemmum",
+  "type": "book_entry",
+  "listTitle": "Tayammum",
+  "detailTitle": "Tayammum (Dry Ablution)",
+  "content": [
+    { "type": "heading", "text": "Tayammum: Purpose and Conditions" },
+    { "type": "paragraph", "text": "Tayammum is a permitted alternative to wudu or ghusl when water is unavailable, harmful, or its use is impossible." },
+    { "type": "section_heading", "text": "When tayammum is allowed" },
+    { "type": "unordered_list", "items": [
+      "No water available or using it would cause harm (illness, wound).",
+      "Travel where water is insufficient.",
+      "Water is needed for other essential uses (e.g., drinking) and scarce."
+    ]},
+    { "type": "section_heading", "text": "Procedure" },
+    { "type": "ordered_list", "items": [
+      "Intend (niyya) to perform tayammum for purification.",
+      "Strike both hands lightly on clean earth, dust, stone or similar natural surface.",
+      "Brush the face with both hands.",
+      "Brush both hands up to the wrists."
+    ]},
+    { "type": "paragraph", "text": "Tayammum is valid only while water remains unavailable. When water becomes available, it must be used for future prayers." },
+    { "type": "section_heading", "text": "What invalidates tayammum" },
+    { "type": "unordered_list", "items": [
+      "Water becomes available.",
+      "Anything that would break wudu.",
+      "Deliberate avoidance of water without valid reason."
+    ]},
+    { "type": "quote", "text": "Tayammum shows Islam's mercy — concessions exist when hardship occurs." }
+  ]
+}

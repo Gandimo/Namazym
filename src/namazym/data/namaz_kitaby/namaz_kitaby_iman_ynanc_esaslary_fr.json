@@ -1,0 +1,32 @@
+{
+  "id": "namaz_kitaby_iman_ynanc_esaslary",
+  "type": "book_entry",
+  "listTitle": "Iman",
+  "detailTitle": "Iman (Croyances fondamentales)",
+  "content": [
+    { "type": "heading", "text": "Iman : croyances fondamentales en islam" },
+    { "type": "paragraph", "text": "Iman (foi) désigne la croyance aux articles fondamentaux : Allah, Ses anges, Ses livres, Ses messagers, le Jour dernier et le décret divin (qadar)." },
+    { "type": "section_heading", "text": "Les six points de la foi" },
+    { "type": "ordered_list", "items": [
+      "Croyance en Allah — l'Unique, sans associés.",
+      "Croyance aux anges créés par Allah.",
+      "Croyance aux Livres révélés (dont le Coran).",
+      "Croyance aux Prophètes et Messagers (dont Muhammad, paix sur lui).",
+      "Croyance au Jour dernier (résurrection, jugement).",
+      "Croyance au décret divin (qadar) : le bien et le mal viennent d'Allah."
+    ]},
+    { "type": "section_heading", "text": "Foi et actions" },
+    { "type": "paragraph", "text": "La foi augmente par les bonnes actions, le souvenir d'Allah et l'intention sincère; elle s'exprime par la croyance et la pratique." },
+    { "type": "subsection_heading", "text": "Sincérité (Ikhlas) et repentir" },
+    { "type": "paragraph", "text": "Ikhlas — la sincérité de l'intention — et le tawbah (repentir) régulier sont essentiels à l'iman." },
+    { "type": "quote", "text": "L'iman n'est pas que des paroles mais un engagement vivant exprimé par le cœur et les actes." },
+    { "type": "section", "title": "Rappel rapide", "items": [
+      "Croire en Allah",
+      "Croire aux anges",
+      "Croire aux Livres révélés",
+      "Croire aux Prophètes",
+      "Croire au Jour dernier",
+      "Croire au décret divin"
+    ]}
+  ]
+}

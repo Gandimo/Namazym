@@ -4,6 +4,7 @@ import { BlurView } from 'expo-blur';
 import { Feather, Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { tokens2026 } from '../theme/tokens2026';
+import { BookIcon, BeadsIcon, MosqueIcon } from './icons';
 
 const { width } = Dimensions.get('window');
 
@@ -12,13 +13,14 @@ interface NavItem {
     icon: string;
     library: 'Feather' | 'Ionicons';
     label: string;
+    customIcon?: React.ComponentType<any>;
 }
 
 const NAV_ITEMS: NavItem[] = [
     { id: 'Home', icon: 'home', library: 'Feather', label: 'Ana' },
-    { id: 'QuranMain', icon: 'book', library: 'Feather', label: 'Gurhan' },
-    { id: 'TasbihScreen', icon: 'activity', library: 'Feather', label: 'Tasbih' },
-    { id: 'Metjitler', icon: 'business-outline', library: 'Ionicons', label: 'Metjit' },
+    { id: 'QuranMain', icon: 'book', library: 'Feather', label: 'Gurhan', customIcon: BookIcon },
+    { id: 'TasbihScreen', icon: 'activity', library: 'Feather', label: 'Tasbih', customIcon: BeadsIcon },
+    { id: 'Metjitler', icon: 'business-outline', library: 'Ionicons', label: 'Metjit', customIcon: MosqueIcon },
 ];
 
 export const PillNavigationBar = ({ navigation, activeRoute = 'Home' }: any) => {
@@ -46,11 +48,18 @@ export const PillNavigationBar = ({ navigation, activeRoute = 'Home' }: any) => 
                             style={styles.navItem}
                         >
                             {isActive && <View style={styles.activeIndicator} />}
-                            <IconComponent
-                                name={item.icon as any}
-                                size={24}
-                                color={isActive ? tokens2026.colors.accent : tokens2026.colors.text.secondary}
-                            />
+                            {item.customIcon ? (
+                                <item.customIcon
+                                    size={24}
+                                    color={isActive ? tokens2026.colors.accent : tokens2026.colors.text.secondary}
+                                />
+                            ) : (
+                                <IconComponent
+                                    name={item.icon as any}
+                                    size={24}
+                                    color={isActive ? tokens2026.colors.accent : tokens2026.colors.text.secondary}
+                                />
+                            )}
                         </Pressable>
                     );
                 })}

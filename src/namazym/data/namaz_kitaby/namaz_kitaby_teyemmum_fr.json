@@ -1,0 +1,31 @@
+{
+  "id": "namaz_kitaby_teyemmum",
+  "type": "book_entry",
+  "listTitle": "Tayammum",
+  "detailTitle": "Tayammum (Ablution sèche)",
+  "content": [
+    { "type": "heading", "text": "Tayammum : but et conditions" },
+    { "type": "paragraph", "text": "Le tayammum est une alternative permise au wudu ou au ghusl lorsque l'eau est indisponible, dangereuse à utiliser ou impossible à utiliser." },
+    { "type": "section_heading", "text": "Quand le tayammum est autorisé" },
+    { "type": "unordered_list", "items": [
+      "Pas d'eau disponible ou son utilisation causerait un préjudice (maladie, blessure).",
+      "En voyage avec eau insuffisante.",
+      "L'eau est nécessaire pour d'autres usages essentiels et rare."
+    ]},
+    { "type": "section_heading", "text": "Procédure" },
+    { "type": "ordered_list", "items": [
+      "Intention (niyya) d'accomplir le tayammum pour la purification.",
+      "Frapper légèrement les deux mains sur une surface naturelle propre (terre, poussière, pierre).",
+      "Passer les mains sur le visage.",
+      "Passer les mains sur les poignets."
+    ]},
+    { "type": "paragraph", "text": "Le tayammum est valide seulement tant que l'eau demeure indisponible. Dès que l'eau est accessible, elle doit être utilisée." },
+    { "type": "section_heading", "text": "Ce qui invalide le tayammum" },
+    { "type": "unordered_list", "items": [
+      "L'eau devient disponible.",
+      "Tout ce qui annule le wudu.",
+      "Évitement délibéré de l'eau sans raison valable."
+    ]},
+    { "type": "quote", "text": "Le tayammum montre la miséricorde de l'islam — des concessions existent en cas de difficulté." }
+  ]
+}

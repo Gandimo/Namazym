@@ -1,0 +1,31 @@
+{
+  "id": "namaz_kitaby_gusul",
+  "type": "book_entry",
+  "listTitle": "Ghusl",
+  "detailTitle": "Ghusl (Bain rituel complet)",
+  "content": [
+    { "type": "heading", "text": "Ghusl : objet et moments requis" },
+    { "type": "paragraph", "text": "Le ghusl est le bain rituel complet requis après des impuretés majeures comme les rapports sexuels, l'éjaculation, la fin des règles ou des saignements post-partum." },
+    { "type": "section_heading", "text": "Quand le ghusl est obligatoire" },
+    { "type": "unordered_list", "items": [
+      "Après un rapport sexuel ou une éjaculation.",
+      "À la fin des règles (haidh) ou des saignements post-partum (nifas).",
+      "Lors de la conversion à l'islam (recommandé)."
+    ]},
+    { "type": "section_heading", "text": "Procédure de base" },
+    { "type": "ordered_list", "items": [
+      "Intention (niyya) de se purifier par le ghusl.",
+      "Laver les mains et les parties intimes, éliminer les impuretés majeures.",
+      "Faire le wudu.",
+      "Verser de l'eau sur tout le corps en veillant à mouiller la peau et les cheveux ; commencer par la tête, puis le côté droit, puis le gauche."
+    ]},
+    { "type": "paragraph", "text": "Assurez-vous que l'eau atteint toutes les parties du corps. Si l'eau manque, utilisez le tayammum." },
+    { "type": "section_heading", "text": "Ce qui est interdit sans ghusl" },
+    { "type": "unordered_list", "items": [
+      "Accomplir la prière (salat).",
+      "Toucher ou réciter le Coran.",
+      "Effectuer le tawaf autour de la Ka'ba."
+    ]},
+    { "type": "quote", "text": "Le ghusl remet le croyant en état d'adoration — un renouvellement du corps et de l'esprit." }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "namaz_kitaby_tamizlik",
+  "type": "book_entry",
+  "listTitle": "Propreté",
+  "detailTitle": "Propreté (Purification en Islam)",
+  "content": [
+    { "type": "heading", "text": "Propreté : importance et aperçu" },
+    { "type": "paragraph", "text": "La propreté est une valeur centrale en islam — physique et spirituelle. La pureté rituelle est requise pour de nombreux actes d'adoration, notamment la prière." },
+    { "type": "section_heading", "text": "Types de pureté" },
+    { "type": "unordered_list", "items": [
+      "Impureté mineure (wudu — ablution).",
+      "Impureté majeure (ghusl — bain complet).",
+      "Tayammum quand l'eau n'est pas disponible."
+    ]},
+    { "type": "section_heading", "text": "Pratiques quotidiennes" },
+    { "type": "paragraph", "text": "Hygiène personnelle, couper les ongles, vêtements propres et un lieu de prière propre sont encouragés." },
+    { "type": "section_heading", "text": "Quand faire le wudu" },
+    { "type": "ordered_list", "items": [
+      "Avant la prière obligatoire si annulée.",
+      "Après certains actes annulant le wudu (sécrétions naturelles, sommeil profond, etc.).",
+      "Avant de toucher le Mushaf dans certaines écoles."
+    ]},
+    { "type": "quote", "text": "La propreté est la moitié de la foi — gardez le corps et le cœur purs." },
+    { "type": "section", "title": "Liste rapide", "items": [
+      "Wudu quand nécessaire",
+      "Ghusl après impureté majeure",
+      "Tayammum s'il n'y a pas d'eau",
+      "Maintenir l'hygiène personnelle"
+    ]}
+  ]
+}

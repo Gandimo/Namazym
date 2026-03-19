@@ -61,5 +61,43 @@
         "verse_of_day": "Verse of the Day",
         "hadith_of_day": "Hadith of the Day",
         "kaza_subtitle": "Tracking and calendar"
+    },
+    "namaz_book": {
+        "kyrk_parz": "Forty Obligations",
+        "iman": "Fundamentals of Faith",
+        "tamizlik": "Purification",
+        "taret": "Ablution",
+        "gusul": "Ritual Bath",
+        "teyemmum": "Dry Ablution",
+        "ybadat": "Worship",
+        "namaz": "Prayer",
+        "hukumler": "Rules of Prayer",
+        "rekagat": "Prayer Units",
+        "okalysy": "How to Pray",
+        "bes_wagt": "Five Daily Prayers",
+        "namazdan_son": "After Prayer",
+        "jemagat": "Congregation",
+        "sejde": "Prostration",
+        "juma": "Friday & Travel",
+        "tarawa": "Eid & Tarawih",
+        "jynaza": "Funeral Prayer",
+        "nepil": "Supererogatory Prayers",
+        "pitre": "Eid al-Fitr",
+        "nezir": "Vow & Itikaf"
+    },
+    "qibla": {
+        "compass": "Compass",
+        "status_calibrating": "Calibrating compass",
+        "status_hold_flat": "Hold phone flat",
+        "status_unstable": "Magnetic interference detected",
+        "status_far": "Searching Qibla",
+        "status_near": "Near Qibla",
+        "status_aligned": "Approaching Qibla",
+        "status_perfect": "Aligned with Qibla",
+        "heading": "Heading",
+        "bearing": "Qibla bearing",
+        "difference": "Difference",
+        "distance": "To Mecca",
+        "stable": "Stable"
     }
 }

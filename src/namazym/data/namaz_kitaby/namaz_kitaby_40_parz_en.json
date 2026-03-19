@@ -1,0 +1,100 @@
+{
+  "id": "namaz_kitaby_40_parz",
+  "type": "book_entry",
+  "listTitle": "The Forty Obligations",
+  "detailTitle": "The Forty Obligations",
+  "content": [
+    { "type": "heading", "text": "THE FORTY OBLIGATIONS (FARD)" },
+    {
+      "type": "section",
+      "title": "Six Pillars of Faith (Iman)",
+      "items": [
+        "1. To believe in the oneness of Allah (Tawhid).",
+        "2. To believe in the angels of Allah.",
+        "3. To believe in the revealed books of Allah.",
+        "4. To believe in the prophets and messengers of Allah.",
+        "5. To believe in the Day of Judgment (Akhirah).",
+        "6. To believe in divine decree (Qadar) — that both good and evil come from Allah."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Five Pillars of Islam",
+      "items": [
+        "7. To recite the Shahada: 'Ashhadu alla ilaha illallah wa ashhadu anna Muhammadan abduhu wa rasuluh.'",
+        "8. To perform the five daily prayers (Salah).",
+        "9. To fast during the month of Ramadan (Sawm).",
+        "10. To pay the obligatory charity (Zakat).",
+        "11. To perform the Hajj pilgrimage at least once in a lifetime if able."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Twelve Obligations of Prayer (Salah)",
+      "items": [
+        "12. To be purified from ritual impurity (Hadath) through Wudu, Ghusl, or Tayammum.",
+        "13. To be free from physical impurity (Najasah) on the body, clothing, and place of prayer.",
+        "14. To cover the private parts (Awrah).",
+        "15. To face the Qiblah (direction of the Ka'bah).",
+        "16. To pray within the designated prayer time (Waqt).",
+        "17. To make the intention (Niyyah) for prayer.",
+        "18. To pronounce the opening Takbir: 'Allahu Akbar.'",
+        "19. To stand upright (Qiyam) during prayer.",
+        "20. To recite verses from the Quran (Qira'at).",
+        "21. To perform the bowing (Ruku').",
+        "22. To perform the prostration (Sujud).",
+        "23. To sit for the final Tashahhud (Qa'da al-Akhira)."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Four Obligations of Wudu (Ablution)",
+      "items": [
+        "24. To wash the entire face (from the hairline to the chin, ear to ear).",
+        "25. To wash both arms up to and including the elbows.",
+        "26. To wipe at least one quarter of the head (Masah).",
+        "27. To wash both feet up to and including the ankles."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Three Obligations of Ghusl (Full Purification)",
+      "items": [
+        "28. To rinse the mouth thoroughly.",
+        "29. To rinse the nostrils with water.",
+        "30. To wash the entire body without leaving any dry spot."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Two Obligations of Tayammum (Dry Purification)",
+      "items": [
+        "31. To make the intention (Niyyah).",
+        "32. To strike clean earth and wipe the face and both arms to the elbows."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Commanding Good and Forbidding Evil (2)",
+      "items": [
+        "33. To guide people toward good and righteous conduct.",
+        "34. To prevent people from wrongdoing and evil."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Specific to Women (2)",
+      "items": [
+        "35. For women to know the rulings concerning menstruation (Hayd).",
+        "36. For women to know the rulings concerning postpartum bleeding (Nifas)."
+      ]
+    },
+    {
+      "type": "section",
+      "title": "Knowledge (1)",
+      "items": [
+        "37. To seek and impart religious knowledge."
+      ]
+    }
+  ]
+}

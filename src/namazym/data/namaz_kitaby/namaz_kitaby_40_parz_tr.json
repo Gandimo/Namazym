@@ -1,0 +1,45 @@
+{
+  "id": "namaz_kitaby_40_parz",
+  "type": "book_entry",
+  "listTitle": "Kırk Farz",
+  "detailTitle": "Kırk Farz",
+  "content": [
+    { "type": "heading", "text": "Kırk Farz — Temel İbadet ve Ahlâk Yükümlülükleri" },
+    { "type": "paragraph", "text": "Bu bölüm, İslam'da sıkça 'farz' olarak adlandırılan temel yükümlülüklerden ve ilkelerden oluşan pratik bir özet sunar. Öğrenme ve ezberleme için kısa bir rehberdir." },
+    { "type": "section_heading", "text": "Önemli farzlar" },
+    { "type": "ordered_list", "items": [
+      "Allah'ın birliğine inanmak (Tevhid).",
+      "Peygamber Muhammed'e (s.a.v.) inanmak.",
+      "Günde beş vakit namazı kılmak.",
+      "Mal nisabı ulaşanlar için zekât vermek.",
+      "Ramazan ayında oruç tutmak.",
+      "İmkân varsa Hac görevini yerine getirmek.",
+      "Dürüstlük ve sözünde durmak.",
+      "İnsan hayatına ve malına saygı göstermek.",
+      "Anne-babaya hürmet etmek.",
+      "Ahlâki erdemleri korumak (edep, haya)."
+    ]},
+    { "type": "section_heading", "text": "İmanî ve ahlâkî ilkeler" },
+    { "type": "paragraph", "text": "Farzlar sadece ritüeller değil; niyet, samimiyet ve sürekli tövbe ile desteklenen içsel bir bağlılık gerektirir. Bilgi pratiğe dökülmelidir." },
+    { "type": "subsection_heading", "text": "Günlük davranışlar" },
+    { "type": "unordered_list", "items": [
+      "Yalan ve iftiradan kaçınmak.",
+      "İhtiyacı olana yardım etmek.",
+      "İş ve sözleşmelerde adil olmak.",
+      "Komşuya iyi davranmak."
+    ]},
+    { "type": "quote", "text": "Farz, kalple başlayan ve davranışa dökülen bir sorumluluktur." },
+    { "type": "section", "title": "Kısa kontrol listesi", "items": [
+      "Tevhid",
+      "Peygamberlere inanmak",
+      "Beş vakit namaz",
+      "Zekât",
+      "Oruç",
+      "Hac",
+      "Dürüstlük",
+      "Anne-babaya saygı",
+      "Yardımlaşma",
+      "Ahlâk"
+    ]}
+  ]
+}

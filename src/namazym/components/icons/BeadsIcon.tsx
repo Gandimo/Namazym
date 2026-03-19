@@ -6,11 +6,11 @@ import { PremiumIconProps, ICON_DEFAULTS } from './PremiumIcon';
  * Beads Icon — Tesbih
  * Abstract loop with a few beads, zen aesthetic
  */
-export function BeadsIcon({
+export const BeadsIcon = React.memo(({
   size = ICON_DEFAULTS.size,
   color = ICON_DEFAULTS.color,
-  strokeWidth = ICON_DEFAULTS.strokeWidth,
-}: PremiumIconProps) {
+  strokeWidth = ICON_DEFAULTS.strokeWidth ?? 1.6,
+}: PremiumIconProps) => {
   return (
     <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       {/* Main Loop */}
@@ -35,4 +35,4 @@ export function BeadsIcon({
       <Circle cx="5" cy="11" r="1.5" stroke={color} strokeWidth={strokeWidth} />
     </Svg>
   );
-}
+});

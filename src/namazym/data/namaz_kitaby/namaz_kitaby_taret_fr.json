@@ -1,0 +1,35 @@
+{
+  "id": "namaz_kitaby_taret",
+  "type": "book_entry",
+  "listTitle": "Ablution",
+  "detailTitle": "Ablution (Wudu) — Guide pratique",
+  "content": [
+    { "type": "heading", "text": "Wudu : objectif et essentiels" },
+    { "type": "paragraph", "text": "Le wudu (ablution) est la purification mineure requise pour la prière et certains autres actes d'adoration. Il prépare le croyant physiquement et spirituellement." },
+    { "type": "section_heading", "text": "Quand faire le wudu" },
+    { "type": "unordered_list", "items": [
+      "Avant les cinq prières quotidiennes si le wudu est annulé.",
+      "Après des actes qui annulent le wudu (sécrétions naturelles, sommeil profond, perte de conscience).",
+      "Avant de toucher le Mushaf dans certaines écoles."
+    ]},
+    { "type": "section_heading", "text": "Étapes" },
+    { "type": "ordered_list", "items": [
+      "Formuler l'intention (niyya).",
+      "Laver les mains jusqu'aux poignets trois fois.",
+      "Rincer la bouche et le nez trois fois.",
+      "Laver le visage trois fois.",
+      "Laver les avant-bras jusqu'aux coudes trois fois (d'abord la droite).",
+      "Faire le masah sur la tête une fois.",
+      "Essuyer les oreilles une fois.",
+      "Laver les pieds jusqu'aux chevilles trois fois (d'abord la droite)."
+    ]},
+    { "type": "section_heading", "text": "Ce qui annule le wudu" },
+    { "type": "unordered_list", "items": [
+      "Sécrétions naturelles (urine, selles, gaz).",
+      "Saignement ou pus en grande quantité.",
+      "Sommeil profond en position allongée.",
+      "Perte de conscience ou ivresse."
+    ]},
+    { "type": "quote", "text": "Le wudu est à la fois un nettoyage physique et un instant de concentration spirituelle avant la prière." }
+  ]
+}

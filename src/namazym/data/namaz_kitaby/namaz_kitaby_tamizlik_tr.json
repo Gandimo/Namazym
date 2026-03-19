@@ -1,0 +1,37 @@
+{
+  "id": "namaz_kitaby_tamizlik",
+  "type": "book_entry",
+  "listTitle": "Temizlik",
+  "detailTitle": "Temizlik",
+  "content": [
+    { "type": "heading", "text": "Temizlik: Önemi ve Genel Bakış" },
+    { "type": "paragraph", "text": "Temizlik İslam'da hem bedenî hem de ruhî bir değer taşır. Birçok ibadet için ritüel temizlik şarttır; bu yüzden kişisel ve çevresel hijyen teşvik edilir." },
+    { "type": "section_heading", "text": "Temizliğin türleri" },
+    { "type": "unordered_list", "items": [
+      "Küçük hades: abdest (wudu).",
+      "Büyük hades: gusül (tam yıkanma).",
+      "Teyemmüm: su yoksa kuru olarak yapılan temizlik."
+    ]},
+    { "type": "section_heading", "text": "Günlük uygulamalar" },
+    { "type": "paragraph", "text": "Tırnak kesmek, ağız ve diş temizliği, temiz kıyafet ve namaz yeri bulundurmak günlük temizliğin parçalarıdır." },
+    { "type": "section_heading", "text": "Abdest ne zaman yapılır" },
+    { "type": "ordered_list", "items": [
+      "Farz namazdan önce (abdest bozulmuşsa).",
+      "Abdest bozan hâllerden sonra (doğal boşalma, derin uyku vb.).",
+      "Bazı mezheplerde Mushaf'a dokunmadan önce."
+    ]},
+    { "type": "section_heading", "text": "Pratik öneriler" },
+    { "type": "unordered_list", "items": [
+      "Su tasarrufu yapın fakat gerekli temizlikten kaçınmayın.",
+      "Su sınırlıysa her uzvun bir kez yıkanması yeterlidir.",
+      "Hastalık veya yaralanma durumunda tıbbi önerilere uyun."
+    ]},
+    { "type": "quote", "text": "Temizlik imanın yarısıdır — bedeninizi ve kalbinizi temiz tutun." },
+    { "type": "section", "title": "Hızlı kontrol listesi", "items": [
+      "Gerektiğinde abdest",
+      "Büyük hades için gusül",
+      "Su yoksa teyemmüm",
+      "Kişisel hijyen"
+    ]}
+  ]
+}

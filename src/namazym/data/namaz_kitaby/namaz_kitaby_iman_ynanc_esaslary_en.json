@@ -1,0 +1,32 @@
+{
+  "id": "namaz_kitaby_iman_ynanc_esaslary",
+  "type": "book_entry",
+  "listTitle": "Faith",
+  "detailTitle": "Faith (Core Beliefs / Iman)",
+  "content": [
+    { "type": "heading", "text": "Iman: Core Beliefs in Islam" },
+    { "type": "paragraph", "text": "Iman (faith) refers to belief in fundamental articles: Allah, His angels, His books, His messengers, the Last Day, and divine decree (qadar)." },
+    { "type": "section_heading", "text": "Six Articles of Faith" },
+    { "type": "ordered_list", "items": [
+      "Belief in Allah — the One, without partners.",
+      "Belief in the angels created by Allah.",
+      "Belief in the revealed Books (including the Quran).",
+      "Belief in the Prophets and Messengers (including Muhammad, peace be upon him).",
+      "Belief in the Last Day (resurrection, judgment).",
+      "Belief in Divine Decree (qadar): good and bad from Allah."
+    ]},
+    { "type": "section_heading", "text": "Faith and Actions" },
+    { "type": "paragraph", "text": "Faith increases with righteous deeds, remembrance of Allah, and sincere intention; it is expressed through both belief and practice." },
+    { "type": "subsection_heading", "text": "Sincerity (Ikhlas) and Repentance" },
+    { "type": "paragraph", "text": "Ikhlas — sincerity of intention — and regular repentance (tawbah) are essential dimensions of iman." },
+    { "type": "quote", "text": "Iman is not only words but a living commitment expressed through action and heart." },
+    { "type": "section", "title": "Quick checklist", "items": [
+      "Believe in Allah",
+      "Believe in angels",
+      "Believe in revealed books",
+      "Believe in prophets",
+      "Believe in the Last Day",
+      "Believe in Divine Decree"
+    ]}
+  ]
+}

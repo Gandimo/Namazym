@@ -1,0 +1,31 @@
+{
+  "id": "namaz_kitaby_gusul",
+  "type": "book_entry",
+  "listTitle": "Ghusl",
+  "detailTitle": "Ghusl (Full Bath)",
+  "content": [
+    { "type": "heading", "text": "Ghusl: Purpose and When Required" },
+    { "type": "paragraph", "text": "Ghusl is the full ritual bath required after major impurities such as sexual intercourse, ejaculation, completion of menstruation or postpartum bleeding." },
+    { "type": "section_heading", "text": "When ghusl is obligatory" },
+    { "type": "unordered_list", "items": [
+      "After sexual intercourse or ejaculation.",
+      "At the end of menstruation (haidh) or postpartum bleeding (nifas).",
+      "Upon converting to Islam (recommended)."
+    ]},
+    { "type": "section_heading", "text": "Basic procedure" },
+    { "type": "ordered_list", "items": [
+      "Intend (niyya) to purify oneself with ghusl.",
+      "Wash the hands and private parts, remove major impurities.",
+      "Perform wudu.",
+      "Pour water over the entire body ensuring wetting the hair and skin; start from head then right side, then left."
+    ]},
+    { "type": "paragraph", "text": "Ensure water reaches all parts of the body. If water is unavailable, tayammum is permitted as concession." },
+    { "type": "section_heading", "text": "What is forbidden without ghusl" },
+    { "type": "unordered_list", "items": [
+      "Performing prayer (salah).",
+      "Touching or reciting the Quran.",
+      "Performing tawaf around the Ka'bah."
+    ]},
+    { "type": "quote", "text": "Ghusl returns the believer to a state fit for formal worship — a renewal of body and spirit." }
+  ]
+}

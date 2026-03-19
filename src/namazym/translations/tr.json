@@ -60,5 +60,43 @@
         "verse_of_day": "Günün Ayeti",
         "hadith_of_day": "Günün Hadisi",
         "kaza_subtitle": "Kayıt ve takvim"
+    },
+    "namaz_book": {
+        "kyrk_parz": "Kırk Farz",
+        "iman": "İnanç Esasları",
+        "tamizlik": "Temizlik",
+        "taret": "Abdest",
+        "gusul": "Gusül",
+        "teyemmum": "Teyemmüm",
+        "ybadat": "İbadet",
+        "namaz": "Namaz",
+        "hukumler": "Namaz Hükümleri",
+        "rekagat": "Namaz Rekâatları",
+        "okalysy": "Namaz Kılınışı",
+        "bes_wagt": "Beş Vakit Namaz",
+        "namazdan_son": "Namazdan Sonra",
+        "jemagat": "Cemaat",
+        "sejde": "Secde",
+        "juma": "Cuma ve Seferî",
+        "tarawa": "Bayram ve Teravih",
+        "jynaza": "Cenaze Namazı",
+        "nepil": "Nafile Namazlar",
+        "pitre": "Fitre",
+        "nezir": "Adak ve İtikaf"
+    },
+    "qibla": {
+        "compass": "Pusulası",
+        "status_calibrating": "Pusula hazırlanıyor",
+        "status_hold_flat": "Telefonu düz tutun",
+        "status_unstable": "Manyetik parazit olabilir",
+        "status_far": "Kıble aranıyor",
+        "status_near": "Kıble yakın",
+        "status_aligned": "Kıbleye yaklaşılıyor",
+        "status_perfect": "Kıble bulundu",
+        "heading": "Yön",
+        "bearing": "Kıble yönü",
+        "difference": "Fark",
+        "distance": "Mekke'ye",
+        "stable": "Kararlı"
     }
 }

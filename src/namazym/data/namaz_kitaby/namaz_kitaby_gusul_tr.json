@@ -1,0 +1,31 @@
+{
+  "id": "namaz_kitaby_gusul",
+  "type": "book_entry",
+  "listTitle": "Gusül",
+  "detailTitle": "Gusül",
+  "content": [
+    { "type": "heading", "text": "Gusül: Amaç ve Ne Zaman Gerekir" },
+    { "type": "paragraph", "text": "Gusül, büyük hades sonrası yapılan tam yıkanmadır. Cinsel ilişki, meninin çıkması, adet ve lohusalık sonrasında gusül gereklidir." },
+    { "type": "section_heading", "text": "Guslün farz olduğu haller" },
+    { "type": "unordered_list", "items": [
+      "Cinsel ilişki veya meni gelmesi.",
+      "Adet (hayız) bittikten sonra.",
+      "Doğum sonrası kanamanın (lohusalık) bitiminde."
+    ]},
+    { "type": "section_heading", "text": "Temel prosedür" },
+    { "type": "ordered_list", "items": [
+      "Niyet ederek gusl yapmaya karar verin.",
+      "Ellerinizi yıkayın ve mahrem yerleri temizleyin.",
+      "Abdest alın ya da en azından yüz, kollar, baş ve boyun yıkansın.",
+      "Tüm vücuda su dökün; suyun her yere ulaştığından emin olun (önce baş, sonra sağ taraf, sonra sol taraf)."
+    ]},
+    { "type": "paragraph", "text": "Uzun saçlar varsa suyun deriye ulaşması için saçlar hafifçe ayrılmalıdır. Su yoksa teyemmüm uygulanır." },
+    { "type": "section_heading", "text": "Guslsüz yapılamayacaklar" },
+    { "type": "unordered_list", "items": [
+      "Namaz kılmak.",
+      "Kur'an'a dokunmak veya okumak.",
+      "Kâbe'yi tavaf etmek."
+    ]},
+    { "type": "quote", "text": "Gusül, ibadete uygun hale dönmeyi sağlayan hem bedensel hem de ruhsal bir yenilenmedir." }
+  ]
+}

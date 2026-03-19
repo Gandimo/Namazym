@@ -1,0 +1,35 @@
+{
+  "id": "namaz_kitaby_taret",
+  "type": "book_entry",
+  "listTitle": "Ablution",
+  "detailTitle": "Ablution (Wudu) — Practical Guide",
+  "content": [
+    { "type": "heading", "text": "Wudu: Purpose and Essentials" },
+    { "type": "paragraph", "text": "Wudu (ablution) is the minor ritual purification required for prayer and some other acts of worship. It prepares the believer physically and spiritually." },
+    { "type": "section_heading", "text": "When wudu is required" },
+    { "type": "unordered_list", "items": [
+      "Before the five daily prayers if wudu was broken.",
+      "After acts that nullify wudu (natural discharges, deep sleep, loss of consciousness).",
+      "Before touching the Mushaf in some schools."
+    ]},
+    { "type": "section_heading", "text": "Step-by-step" },
+    { "type": "ordered_list", "items": [
+      "Make the intention (niyya).",
+      "Wash hands to the wrists three times.",
+      "Rinse mouth and nose three times.",
+      "Wash the face three times.",
+      "Wash arms up to the elbows three times (right then left).",
+      "Perform masah over the head once.",
+      "Wipe the ears once.",
+      "Wash the feet up to the ankles three times (right then left)."
+    ]},
+    { "type": "section_heading", "text": "What breaks wudu" },
+    { "type": "unordered_list", "items": [
+      "Natural discharges (urine, stool, gas).",
+      "Bleeding or pus in large amounts.",
+      "Deep sleep lying down.",
+      "Loss of consciousness or intoxication."
+    ]},
+    { "type": "quote", "text": "Wudu is both physical cleansing and a moment of spiritual focus before prayer." }
+  ]
+}

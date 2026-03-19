@@ -25,7 +25,22 @@ interface PremiumIconProps {
   source?: string; // For analytics tracking
   pulse?: boolean; // Pulse animation for proximity
   style?: StyleProp<ViewStyle>;
+  strokeWidth?: number; // For custom SVG icons
 }
+
+// Senior Architect Note: Using double-layered fallbacks for maximum production safety
+export const ICON_DEFAULTS = {
+  size: 24,
+  color: 'rgba(0, 0, 0, 0.54)',
+  strokeWidth: 1.6,
+} as const;
+
+// Internal hard fallbacks to prevent crash if ICON_DEFAULTS is tampered with
+export const SAFE_ICON_DEFAULTS = {
+  size: ICON_DEFAULTS.size || 24,
+  color: ICON_DEFAULTS.color || '#000',
+  strokeWidth: ICON_DEFAULTS.strokeWidth || 1.6,
+};
 
 export const PremiumIcon: React.FC<PremiumIconProps> = ({
   library = 'ionicons',
