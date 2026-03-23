@@ -2,7 +2,7 @@ import type { CityYearDataset } from '../../../services/prayer/types';
 import { ahalDataset } from './ahal';
 
 /**
- * Ashgabat intentionally reuses Ahal canonical official timetable.
+ * Arkadag intentionally reuses Ahal canonical official timetable.
  * This is an approved controlled dataset reuse, not computed interpolation.
  */
-export const ashgabatDataset: CityYearDataset | null = ahalDataset;
+export const arkadagDataset: CityYearDataset | null = ahalDataset;

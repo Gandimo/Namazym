@@ -29,6 +29,24 @@ const MONTH_TO_NUMBER: Record<string, string> = {
     'Dekabr': '12',
 };
 
+const HEADER_TOKENS = new Set([
+    'Aý',
+    'Ay',
+    'Gün',
+    'Gun',
+    'Agyz beklenýän',
+    'Agyz beklenen',
+    'Agyz beklenýän wagty',
+    'Ertir namazy',
+    'Günüň dogýan',
+    'Günüň dogýan wagty',
+    'Gun dogyany',
+    'Öýle namazy',
+    'Ikindi namazy',
+    'Agşam namazy',
+    'Ýassy namazy',
+]);
+
 export interface YearImportInput {
     readonly city: SupportedCity;
     readonly year: number;
@@ -73,7 +91,7 @@ function scanDuplicateKeys(rawText: string): string[] {
         .sort();
 }
 
-function readTxtSource(sourcePath: string): { rawText: string; rowsRead: number } {
+function readDelimitedSource(sourcePath: string): { rawText: string; rowsRead: number } {
     const rawText = fs.readFileSync(sourcePath, 'utf8').trim();
     const rowsRead = Math.max(
         0,
@@ -85,6 +103,90 @@ function readTxtSource(sourcePath: string): { rawText: string; rowsRead: number 
     return { rawText, rowsRead };
 }
 
+function readRtfSource(sourcePath: string): { rawText: string; rowsRead: number } {
+    const converted = childProcess.spawnSync(
+        'textutil',
+        ['-convert', 'txt', '-stdout', sourcePath],
+        { encoding: 'utf8', maxBuffer: 50 * 1024 * 1024 },
+    );
+    if (converted.status !== 0) {
+        throw new Error(`Failed to parse rtf source: ${converted.stderr || converted.stdout}`);
+    }
+
+    const tokens = String(converted.stdout)
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter((line) => line.length > 0);
+
+    const rows: string[] = [];
+    let currentMonth: string | null = null;
+
+    let i = 0;
+    while (i < tokens.length) {
+        const token = tokens[i];
+
+        if (HEADER_TOKENS.has(token)) {
+            i += 1;
+            continue;
+        }
+
+        if (MONTH_TO_NUMBER[token]) {
+            currentMonth = token;
+            i += 1;
+            continue;
+        }
+
+        if (!currentMonth) {
+            i += 1;
+            continue;
+        }
+
+        const rangeMatch = token.match(/^(\d{1,2})-(\d{1,2})$/);
+        const singleMatch = token.match(/^\d{1,2}$/);
+        if (!rangeMatch && !singleMatch) {
+            i += 1;
+            continue;
+        }
+
+        const timeTokens = tokens.slice(i + 1, i + 8);
+        if (timeTokens.length < 7) {
+            throw new Error(`Malformed rtf source near token "${token}"`);
+        }
+
+        const normalizedTimes = timeTokens.map(normalizeTime);
+        const startDay = rangeMatch ? Number(rangeMatch[1]) : Number(singleMatch![0]);
+        const endDay = rangeMatch ? Number(rangeMatch[2]) : Number(singleMatch![0]);
+        if (!Number.isInteger(startDay) || !Number.isInteger(endDay) || startDay < 1 || endDay > 31 || startDay > endDay) {
+            throw new Error(`Invalid day token in rtf source: "${token}"`);
+        }
+
+        for (let day = startDay; day <= endDay; day += 1) {
+            rows.push([
+                currentMonth,
+                String(day),
+                normalizedTimes[0],
+                normalizedTimes[1],
+                normalizedTimes[2],
+                normalizedTimes[3],
+                normalizedTimes[4],
+                normalizedTimes[5],
+                normalizedTimes[6],
+            ].join(';'));
+        }
+
+        i += 8;
+    }
+
+    if (rows.length === 0) {
+        throw new Error('RTF source did not produce any timetable rows');
+    }
+
+    return {
+        rawText: `${HEADER}\n${rows.join('\n')}`,
+        rowsRead: rows.length,
+    };
+}
+
 function readXlsxSource(sourcePath: string): { rawText: string; rowsRead: number; sheetsUsed: string[] } {
     const script = `
 import json, zipfile, xml.etree.ElementTree as ET
@@ -94,34 +196,93 @@ path = Path(${JSON.stringify(sourcePath)})
 ns = {'a': 'http://schemas.openxmlformats.org/spreadsheetml/2006/main'}
 
 month_map = {
+    'Aý': 'Ýanwar',
+    'Ay': 'Ýanwar',
+    'month': 'Ýanwar',
+    'January': 'Ýanwar',
     'Yanwar': 'Ýanwar',
+    'Ýanwar': 'Ýanwar',
+    'Ocak': 'Ýanwar',
     'Fewral': 'Fewral',
+    'Şubat': 'Fewral',
+    'Subat': 'Fewral',
     'Mart': 'Mart',
     'Aprel': 'Aprel',
+    'Nisan': 'Aprel',
     'Maý': 'Maý',
+    'May': 'Maý',
+    'Mayıs': 'Maý',
+    'Mayis': 'Maý',
     'Iýun': 'Iýun',
+    'Haziran': 'Iýun',
     'Iýul': 'Iýul',
+    'Temmuz': 'Iýul',
     'Awgust': 'Awgust',
+    'Ağustos': 'Awgust',
+    'Agustos': 'Awgust',
     'Sentyabr': 'Sentýabr',
+    'Sentýabr': 'Sentýabr',
+    'Eylül': 'Sentýabr',
+    'Eylul': 'Sentýabr',
     'Oktyabr': 'Oktýabr',
+    'Oktýabr': 'Oktýabr',
+    'Ekim': 'Oktýabr',
+    'Ekım': 'Oktýabr',
     'Noýabr': 'Noýabr',
+    'Kasım': 'Noýabr',
+    'Kasim': 'Noýabr',
     'Dekabr': 'Dekabr',
+    'Aralık': 'Dekabr',
+    'Aralik': 'Dekabr',
 }
+
+def normalize_day(value):
+    text = str(value).strip().rstrip('.')
+    return str(int(float(text)))
+
+def normalize_time(value):
+    text = str(value).strip()
+    if text == '':
+        raise ValueError('Empty time value')
+
+    normalized = text.replace(',', '.')
+    try:
+        numeric = float(normalized)
+        if 0 <= numeric < 1:
+            total_minutes = int(round(numeric * 24 * 60))
+            total_minutes = max(0, min(total_minutes, 23 * 60 + 59))
+            h, m = divmod(total_minutes, 60)
+            return f'{h:02d}:{m:02d}'
+    except Exception:
+        pass
+
+    if ':' in text:
+        parts = text.split(':')
+        if len(parts) >= 2:
+            h = int(float(parts[0]))
+            m = int(float(parts[1]))
+            if h < 0 or h > 23 or m < 0 or m > 59:
+                raise ValueError(f'Invalid time value: {value}')
+            return f'{h:02d}:{m:02d}'
+
+    raise ValueError(f'Unsupported time value: {value}')
 
 with zipfile.ZipFile(path) as z:
     workbook = ET.fromstring(z.read('xl/workbook.xml'))
     sheet_names = [s.attrib['name'] for s in workbook.find('a:sheets', ns)]
 
     shared = []
-    sst = ET.fromstring(z.read('xl/sharedStrings.xml'))
-    for si in sst.findall('a:si', ns):
-        shared.append(''.join(t.text or '' for t in si.iterfind('.//a:t', ns)))
+    if 'xl/sharedStrings.xml' in z.namelist():
+        sst = ET.fromstring(z.read('xl/sharedStrings.xml'))
+        for si in sst.findall('a:si', ns):
+            shared.append(''.join(t.text or '' for t in si.iterfind('.//a:t', ns)))
 
     rows = []
     for idx, sheet_name in enumerate(sheet_names, start=1):
         root = ET.fromstring(z.read(f'xl/worksheets/sheet{idx}.xml'))
         sheet_rows = list(root.find('a:sheetData', ns))
-        month = None
+        active_month = month_map.get(sheet_name)
+
         for row_idx, row in enumerate(sheet_rows):
             values = []
             for c in row.findall('a:c', ns):
@@ -132,15 +293,49 @@ with zipfile.ZipFile(path) as z:
                     value = shared[int(value)]
                 values.append(str(value).strip())
 
-            if row_idx == 0:
-                month = values[0]
-                continue
-            if len(values) < 8:
+            if not values:
                 continue
 
-            day = values[0].rstrip('.')
-            agyz, fajr, sunrise, dhuhr, asr, maghrib, isha = values[1:8]
-            month_tk = month_map.get(month, month)
+            first = values[0].strip().strip('"') if len(values) > 0 else ''
+            second = values[1].strip().strip('"') if len(values) > 1 else ''
+            first_lower = first.lower()
+            second_lower = second.lower()
+
+            if first_lower in {'aý', 'ay', 'month'} and second_lower in {'gün', 'gun', 'day'}:
+                continue
+
+            month_tk = None
+            day = None
+            payload = []
+
+            # Format A: One-sheet tabular export. Example row:
+            # Ocak;1;0.2868;0.3145;...
+            if first in month_map and second != '':
+                month_tk = month_map.get(first)
+                active_month = month_tk
+                day = normalize_day(second)
+                payload = values[2:9]
+            elif first in {'', '"'} and active_month and second != '':
+                # One-sheet exports commonly keep month only on the first row of the block.
+                month_tk = active_month
+                day = normalize_day(second)
+                payload = values[2:9]
+            else:
+                # Format B: Sheet-per-month export. Example row:
+                # 1;06:14;06:54;...
+                if row_idx == 0 and first in month_map and second_lower in {'gün', 'gun', 'day', ''}:
+                    continue
+                month_tk = month_map.get(sheet_name) or month_map.get(first) or active_month
+                if not month_tk:
+                    continue
+                active_month = month_tk
+                day = normalize_day(first)
+                payload = values[1:8]
+
+            if len(payload) < 7:
+                continue
+
+            agyz, fajr, sunrise, dhuhr, asr, maghrib, isha = [normalize_time(v) for v in payload[:7]]
             rows.append(';'.join([month_tk, str(int(day)), agyz, fajr, sunrise, dhuhr, asr, maghrib, isha]))
 
 header = 'Aý;Gün;Agyz beklenýän wagty;Ertir namazy;Günüň dogýan wagty;Öýle namazy;Ikindi namazy;Agşam namazy;Ýassy namazy'
@@ -164,7 +359,16 @@ print(json.dumps({'raw_text': raw_text, 'rows_read': len(rows), 'sheets_used': s
 }
 
 export function importYearSource(input: YearImportInput): YearImportOutput {
-    const sourcePath = path.resolve(input.sourcePath);
+    const requestedPath = path.resolve(input.sourcePath);
+    const sourcePath = (() => {
+        if (fs.existsSync(requestedPath)) return requestedPath;
+        if (path.extname(requestedPath)) return requestedPath;
+        const candidates = ['.txt', '.csv', '.xlsx', '.rtf']
+            .map((ext) => `${requestedPath}${ext}`)
+            .filter((candidate) => fs.existsSync(candidate));
+        return candidates[0] ?? requestedPath;
+    })();
+
     if (!fs.existsSync(sourcePath)) {
         throw new Error(`Source file not found: ${sourcePath}`);
     }
@@ -173,21 +377,31 @@ export function importYearSource(input: YearImportInput): YearImportOutput {
     let rawText = '';
     let rowsRead = 0;
     let sheetsUsed: string[] = [];
-    let sourceType: 'txt' | 'xlsx';
+    let sourceType: 'txt' | 'csv' | 'xlsx' | 'rtf';
 
     if (ext === '.txt') {
         sourceType = 'txt';
-        const txt = readTxtSource(sourcePath);
+        const txt = readDelimitedSource(sourcePath);
         rawText = txt.rawText;
         rowsRead = txt.rowsRead;
+    } else if (ext === '.csv') {
+        sourceType = 'csv';
+        const csv = readDelimitedSource(sourcePath);
+        rawText = csv.rawText;
+        rowsRead = csv.rowsRead;
     } else if (ext === '.xlsx') {
         sourceType = 'xlsx';
         const xlsx = readXlsxSource(sourcePath);
         rawText = xlsx.rawText;
         rowsRead = xlsx.rowsRead;
         sheetsUsed = xlsx.sheetsUsed;
+    } else if (ext === '.rtf') {
+        sourceType = 'rtf';
+        const rtf = readRtfSource(sourcePath);
+        rawText = rtf.rawText;
+        rowsRead = rtf.rowsRead;
     } else {
-        throw new Error(`Unsupported source extension: ${ext}. Expected .txt or .xlsx`);
+        throw new Error(`Unsupported source extension: ${ext}. Expected .txt, .csv, .xlsx, or .rtf`);
     }
 
     const normalizedLines = rawText

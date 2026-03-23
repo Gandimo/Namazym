@@ -78,6 +78,7 @@ export type Dataset = Record<string, DailyPrayerTimes>;
 export type SupportedCity =
     | 'ashgabat'
     | 'ahal'
+    | 'arkadag'
     | 'balkan'
     | 'dashoguz'
     | 'lebap'
@@ -130,7 +131,7 @@ export interface ImportResult {
 
 export interface ImportSourceMeta {
     readonly sourcePath: string;
-    readonly sourceType: 'txt' | 'xlsx';
+    readonly sourceType: 'txt' | 'csv' | 'xlsx' | 'rtf';
     readonly sheetsUsed: readonly string[];
     readonly rowsRead: number;
     readonly duplicateKeys: readonly string[];
@@ -148,7 +149,7 @@ export interface YearChangeReport {
     readonly city: SupportedCity;
     readonly year: number;
     readonly sourcePath: string;
-    readonly sourceType: 'txt' | 'xlsx';
+    readonly sourceType: 'txt' | 'csv' | 'xlsx' | 'rtf';
     readonly rowsRead: number;
     readonly rowsGenerated: number;
     readonly duplicates: number;
@@ -164,7 +165,7 @@ export interface YearChangeReport {
 
 export interface CityManifestEntry {
     readonly canonicalYears: readonly number[];
-    readonly sourceType: 'none' | 'txt' | 'xlsx' | 'mixed';
+    readonly sourceType: 'none' | 'txt' | 'csv' | 'xlsx' | 'rtf' | 'mixed';
     readonly lastImportedAt: string | null;
     readonly status: 'empty' | 'ready' | 'failed';
 }

@@ -12,7 +12,7 @@ export const MANIFEST_FILE_PATH = path.join(
     'src/namazym/data/prayer/cityManifest.ts',
 );
 
-function detectSourceType(existing: CityManifest[SupportedCity] | undefined, nextType?: 'txt' | 'xlsx') {
+function detectSourceType(existing: CityManifest[SupportedCity] | undefined, nextType?: 'txt' | 'csv' | 'xlsx' | 'rtf') {
     const current = existing?.sourceType ?? 'none';
     if (!nextType) return current;
     if (current === 'none') return nextType;
@@ -25,7 +25,7 @@ export function buildManifest(
     update?: {
         city: SupportedCity;
         year: number;
-        sourceType: 'txt' | 'xlsx';
+        sourceType: 'txt' | 'csv' | 'xlsx' | 'rtf';
         importedAt: string;
         status: 'ready' | 'failed';
     },

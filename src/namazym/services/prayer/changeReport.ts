@@ -49,7 +49,7 @@ export function buildYearChangeReport(input: {
     city: YearChangeReport['city'];
     year: number;
     sourcePath: string;
-    sourceType: 'txt' | 'xlsx';
+    sourceType: 'txt' | 'csv' | 'xlsx' | 'rtf';
     rowsRead: number;
     rowsGenerated: number;
     duplicates: number;

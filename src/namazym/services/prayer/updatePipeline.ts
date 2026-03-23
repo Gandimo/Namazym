@@ -28,7 +28,7 @@ function parseCliArgs(argv: string[]): { city: SupportedCity; year: number; sour
     const yearText = args.get('year');
     const source = args.get('source');
     if (!city || !yearText || !source) {
-        throw new Error('Usage: --city=<city> --year=<year> --source=<txt|xlsx path>');
+        throw new Error('Usage: --city=<city> --year=<year> --source=<txt|csv|xlsx|rtf path>');
     }
     const year = Number(yearText);
     if (!Number.isInteger(year) || year < 1900 || year > 2500) {

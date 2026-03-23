@@ -1,6 +1,7 @@
 import type { PrayerDataset } from '../../services/prayer/types';
 import { ashgabatDataset } from './cities/ashgabat';
 import { ahalDataset }     from './cities/ahal';
+import { arkadagDataset }  from './cities/arkadag';
 import { balkanDataset }   from './cities/balkan';
 import { dashoguzDataset } from './cities/dashoguz';
 import { lebapDataset }    from './cities/lebap';
@@ -14,6 +15,7 @@ function hasYears(data: unknown): boolean {
 export const PRAYER_DATASET: PrayerDataset = {
     ashgabat: { city: 'ashgabat', data: ashgabatDataset, status: hasYears(ashgabatDataset) ? 'available' : 'empty' },
     ahal:     { city: 'ahal',     data: ahalDataset,     status: hasYears(ahalDataset)     ? 'available' : 'empty' },
+    arkadag:  { city: 'arkadag',  data: arkadagDataset,  status: hasYears(arkadagDataset)  ? 'available' : 'empty' },
     balkan:   { city: 'balkan',   data: balkanDataset,   status: hasYears(balkanDataset)   ? 'available' : 'empty' },
     dashoguz: { city: 'dashoguz', data: dashoguzDataset, status: hasYears(dashoguzDataset) ? 'available' : 'empty' },
     lebap:    { city: 'lebap',    data: lebapDataset,    status: hasYears(lebapDataset)    ? 'available' : 'empty' },
