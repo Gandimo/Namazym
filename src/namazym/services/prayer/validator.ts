@@ -1,10 +1,10 @@
 /**
  * Offline Prayer Engine — Dataset Validator
  *
- * Validates a 366-day MM-DD keyed Dataset before it is accepted as official data.
+ * Validates a year-specific MM-DD keyed Dataset before it is accepted as official data.
  *
  * Checks:
- *   1. Exactly 366 entries (Jan 1 → Dec 31, including Feb 29)
+ *   1. Year-aware day count (365 / 366)
  *   2. All keys are valid "MM-DD" pairs
  *   3. No missing calendar days
  *   4. All time strings are valid "HH:MM"
@@ -15,11 +15,10 @@ import { Dataset, DailyPrayerTimes, ValidationSummary } from './types';
 
 // ─── Calendar helpers ─────────────────────────────────────────────────────────
 
-/** All 366 "MM-DD" keys that must be present in a complete base dataset. */
-function allMmDdKeys(): string[] {
+/** Full leap-style key list (contains 02-29). */
+function allMmDdKeysLeap(): string[] {
     const keys: string[] = [];
-    // Use a fixed known leap year to generate all 366 day combinations
-    const d = new Date(Date.UTC(2000, 0, 1)); // 2000 is a leap year
+    const d = new Date(Date.UTC(2000, 0, 1));
     while (d.getUTCFullYear() === 2000) {
         const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
         const dd = String(d.getUTCDate()).padStart(2, '0');
@@ -28,9 +27,6 @@ function allMmDdKeys(): string[] {
     }
     return keys;
 }
-
-const EXPECTED_KEYS = allMmDdKeys(); // computed once at module load
-const EXPECTED_COUNT = 366;
 
 // ─── Time helpers ─────────────────────────────────────────────────────────────
 
@@ -77,35 +73,65 @@ function validateDay(key: string, day: DailyPrayerTimes): string[] {
 
 // ─── Public API ───────────────────────────────────────────────────────────────
 
+export interface ValidationOptions {
+    readonly year: number;
+    readonly sourceRows: number;
+    readonly duplicateKeys?: readonly string[];
+    readonly allowFeb29?: boolean;
+}
+
 /**
- * Validates a 366-day MM-DD keyed Dataset.
+ * Validates a year-specific MM-DD keyed Dataset.
  *
  * @param dataset - Output of `parseRaw()`
+ * @param options - Year/source metadata
  * @returns ValidationSummary — check `isValid` before accepting
  */
-export function validate(dataset: Dataset): ValidationSummary {
+export function validate(
+    dataset: Dataset,
+    options: ValidationOptions = {
+        year: 2000,
+        sourceRows: Object.keys(dataset).length,
+        duplicateKeys: [],
+    },
+): ValidationSummary {
     const errors:   string[] = [];
     const warnings: string[] = [];
 
+    const keySet = new Set(Object.keys(dataset));
+    const includeFeb29 = options.allowFeb29 ?? (keySet.has('02-29') || options.sourceRows === 366);
+    const expectedKeys = allMmDdKeysLeap().filter((key) => includeFeb29 || key !== '02-29');
+    const expectedCount = expectedKeys.length;
     const keys       = Object.keys(dataset);
     const totalDays  = keys.length;
+    const duplicates = options.duplicateKeys?.length ?? 0;
 
     // 1. Total count
-    if (totalDays !== EXPECTED_COUNT) {
-        errors.push(`Day count: expected ${EXPECTED_COUNT}, got ${totalDays}`);
+    if (options.sourceRows !== totalDays) {
+        errors.push(`Source rows mismatch: source=${options.sourceRows}, generated=${totalDays}`);
+    }
+    if (totalDays !== expectedCount) {
+        errors.push(`Day count mismatch: expected=${expectedCount}, got=${totalDays}`);
     }
 
     // 2. Missing or extra keys
     const datasetKeySet = new Set(keys);
-    for (const expected of EXPECTED_KEYS) {
+    let missing = 0;
+    for (const expected of expectedKeys) {
         if (!datasetKeySet.has(expected)) {
+            missing++;
             errors.push(`Missing: ${expected}`);
         }
     }
+    let extra = 0;
     for (const key of keys) {
-        if (!EXPECTED_KEYS.includes(key)) {
+        if (!expectedKeys.includes(key)) {
+            extra++;
             errors.push(`Unexpected key: "${key}"`);
         }
+    }
+    if (duplicates > 0) {
+        errors.push(`Duplicate keys found in source: ${duplicates}`);
     }
 
     // 3. Per-day time validation
@@ -123,7 +149,13 @@ export function validate(dataset: Dataset): ValidationSummary {
 
     return {
         isValid:   errors.length === 0,
+        sourceRows: options.sourceRows,
+        expectedRows: expectedCount,
         totalDays,
+        duplicates,
+        missing,
+        extra,
+        orderingErrors: orderErrors,
         errors,
         warnings,
     };

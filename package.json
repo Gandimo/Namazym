@@ -13,6 +13,7 @@
     "clean:expo": "rm -rf .expo node_modules/.cache || true",
     "clean:watchman": "watchman watch-del-all || true",
     "clean:ports": "lsof -ti:8081 | xargs kill -9 2>/dev/null || lsof -ti:8082 | xargs kill -9 2>/dev/null || true",
+    "prayer:update": "./node_modules/.bin/tsc --outDir /tmp/namazym-prayer-update --module commonjs --target es2020 --esModuleInterop true --skipLibCheck src/namazym/services/prayer/updatePipeline.ts && node /tmp/namazym-prayer-update/services/prayer/updatePipeline.js",
     "android": "expo start --android --port 8081",
     "ios": "expo start --ios --port 8081",
     "web": "expo start --web --port 8081",

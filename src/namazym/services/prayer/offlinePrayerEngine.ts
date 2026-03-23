@@ -1,5 +1,6 @@
 import { PrayerEngine } from './engine';
-import { DailyPrayerTimes, SupportedCity } from './types';
+import { SupportedCity } from './types';
+import { PRAYER_DATASET } from '../../data/prayer/prayerDataset';
 
 // Deprecated wrapper; moving towards PrayerEngine
 export const OfflinePrayerEngine = {
@@ -20,7 +21,14 @@ export const OfflinePrayerEngine = {
         return PrayerEngine.getSupportedCities();
     },
 
-    getDateCount(city: SupportedCity): number {
-        return PrayerEngine.hasPrayerData(city) ? 366 : 0;
+    getDateCount(city: SupportedCity, year?: number): number {
+        if (!PrayerEngine.hasPrayerData(city, year)) return 0;
+        const targetYear = year ? String(year) : PrayerEngine.getSupportedYears(city)[0];
+        if (!targetYear) return 0;
+        const cityData = PRAYER_DATASET[city].data;
+        if (!cityData) return 0;
+        const yearData = cityData[targetYear];
+        if (!yearData) return 0;
+        return Object.keys(yearData).length;
     },
 } as const;

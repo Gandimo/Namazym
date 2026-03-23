@@ -34,21 +34,21 @@ Dekabr;31;...
 import { importOfficialData } from '../../services/prayer/generator';
 
 const raw = fs.readFileSync('./data/prayer/raw/ashgabat_official.txt', 'utf8');
-const result = importOfficialData(raw, 'ashgabat');
+const result = importOfficialData(raw, 'ashgabat', 2027);
 
 if (result.success) {
-    console.log('✅ Valid — 366 days imported');
+    console.log('✅ Valid import');
     // Paste result into: src/namazym/data/prayer/cities/ashgabat.ts
 } else {
     console.error('❌ Import failed:', result.validation.errors);
 }
 ```
 
-## Required day count
+## Yearly update command
 
-The dataset must contain **exactly 366 entries** (one per MM-DD key, including Feb 29).
-
-Non-leap years: Feb 29 is present in the dataset but the engine skips it at runtime.
+```bash
+npm run prayer:update -- --city=ashgabat --year=2027 --source=data_sources/incoming/2027/ashgabat_official.txt
+```
 
 ## Status
 

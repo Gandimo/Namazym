@@ -1,110 +1,97 @@
 /**
  * Offline Prayer Engine — Import Generator
  *
- * Wraps the parser + validator into a single import pipeline.
- * Used at build time / data import time only — never at runtime.
- *
- * Workflow:
- *   1. Receive official raw text for a city
- *   2. parseRaw()  → throws on structural issues
- *   3. validate()  → returns ValidationSummary
- *   4. Return ImportResult with dataset (or null on failure)
- *
- * Example:
- *   const result = importOfficialData(rawText, 'ashgabat');
- *   if (result.success) {
- *     // write result.dataset to src/namazym/data/prayer/cities/ashgabat.ts
- *   }
+ * Wraps parser + validator for one city-year import.
+ * This module never calculates prayer times; it only processes official inputs.
  */
 
-import { parseRaw }  from './parser';
-import { validate }  from './validator';
-import type {
-    SupportedCity,
-    Dataset,
-    ImportResult,
-    ValidationSummary,
-} from './types';
+import { parseRaw } from './parser';
+import { validate } from './validator';
+import type { SupportedCity, Dataset, ImportResult, ValidationSummary } from './types';
 
-// ─── Public API ───────────────────────────────────────────────────────────────
+function countSourceRows(raw: string): number {
+    const lines = raw
+        .split(/\r?\n/)
+        .map((line) => line.trim())
+        .filter((line) => line.length > 0);
+    return Math.max(0, lines.length - 1);
+}
 
-/**
- * Full import pipeline: raw text → validated 366-day Dataset.
- *
- * @param raw  - Full semicolon-separated official timetable text
- * @param city - Target city identifier
- * @returns ImportResult — check `.success` before using `.dataset`
- */
-export function importOfficialData(raw: string, city: SupportedCity): ImportResult {
-    // ─ Step 1: Parse ─────────────────────────────────────────────────────────
-    let dataset: Dataset | null = null;
-    let parseError: string | null = null;
-
-    try {
-        dataset = parseRaw(raw);
-    } catch (err) {
-        parseError = err instanceof Error ? err.message : String(err);
-    }
-
-    if (!dataset) {
-        const failSummary: ValidationSummary = {
-            isValid:   false,
-            totalDays: 0,
-            errors:    [parseError ?? 'Parse failed with unknown error'],
-            warnings:  [],
-        };
-        return { city, dataset: null, validation: failSummary, success: false };
-    }
-
-    // ─ Step 2: Validate ───────────────────────────────────────────────────────
-    const validation = validate(dataset);
-
+function failSummary(message: string): ValidationSummary {
     return {
-        city,
-        dataset:  validation.isValid ? dataset : null,
-        validation,
-        success:  validation.isValid,
+        isValid: false,
+        sourceRows: 0,
+        expectedRows: 0,
+        totalDays: 0,
+        duplicates: 0,
+        missing: 0,
+        extra: 0,
+        orderingErrors: 0,
+        errors: [message],
+        warnings: [],
     };
 }
 
 /**
- * Generates the TypeScript source code for a city's data file.
- * Paste the output into `src/namazym/data/prayer/cities/<city>.ts`.
- *
- * @param raw  - Official raw text
- * @param city - Target city
- * @returns { code: string, result: ImportResult }
+ * Full import pipeline: official raw text -> validated city-year dataset.
+ */
+export function importOfficialData(raw: string, city: SupportedCity, year: number): ImportResult {
+    let dataset: Dataset;
+
+    try {
+        dataset = parseRaw(raw);
+    } catch (err) {
+        return {
+            city,
+            year,
+            dataset: null,
+            validation: failSummary(err instanceof Error ? err.message : String(err)),
+            success: false,
+        };
+    }
+
+    const sourceRows = countSourceRows(raw);
+    const validation = validate(dataset, {
+        year,
+        sourceRows,
+        duplicateKeys: [],
+    });
+
+    return {
+        city,
+        year,
+        dataset: validation.isValid ? dataset : null,
+        validation,
+        success: validation.isValid,
+    };
+}
+
+/**
+ * Generates TypeScript source code for a city file with a single year.
  */
 export function generateCityDataFile(
-    raw:  string,
+    raw: string,
     city: SupportedCity,
+    year: number,
 ): { code: string; result: ImportResult } {
-    const result = importOfficialData(raw, city);
-
+    const result = importOfficialData(raw, city, year);
     if (!result.success) {
         return {
-            code:   `// ❌ Import failed for ${city}. Fix errors and re-run.\n// ${result.validation.errors.join('\n// ')}`,
+            code: `// Import failed for ${city}/${year}\n// ${result.validation.errors.join('\n// ')}`,
             result,
         };
     }
 
-    // Escape backticks in raw text for template literal embedding
     const escapedRaw = raw.replace(/`/g, '\\`').replace(/\$\{/g, '\\${');
-
     const code = [
-        `/**`,
-        ` * ${city.charAt(0).toUpperCase() + city.slice(1)} official prayer timetable`,
-        ` * 366 days, MM-DD keyed, year-agnostic.`,
-        ` *`,
-        ` * Generated by: generator.generateCityDataFile()`,
-        ` * DO NOT EDIT — regenerate from official source if data changes.`,
-        ` */`,
+        `import { parseRaw } from '../../../services/prayer/parser';`,
         ``,
-        `import { parseRaw } from '../../services/prayer/parser';`,
+        `const RAW_${year} = \`${escapedRaw}\`;`,
+        `const YEAR_${year} = parseRaw(RAW_${year});`,
         ``,
-        `const RAW = \`${escapedRaw}\`;`,
-        ``,
-        `export const ${city}Dataset = parseRaw(RAW);`,
+        `export const ${city}Dataset = {`,
+        `  '${year}': YEAR_${year},`,
+        `} as const;`,
     ].join('\n');
 
     return { code, result };

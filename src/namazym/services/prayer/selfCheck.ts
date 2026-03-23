@@ -18,6 +18,7 @@ import { PrayerEngine }        from './engine';
 import {
     EmptyCityDatasetError,
     UnsupportedDateError,
+    UnsupportedYearError,
     InvalidDateError,
 } from './types';
 
@@ -97,9 +98,11 @@ assert(jan1.maghrib === '17:44', `Jan 1 maghrib=17:44 (got ${jan1.maghrib})`);
 const dec31 = PrayerEngine.getPrayerTimes('dashoguz', '2026-12-31');
 assert(dec31.isha === '19:03', `Dec 31 isha=19:03 (got ${dec31.isha})`);
 
-// Same MM-DD key works across years (year-agnostic)
-const sameDay2028 = PrayerEngine.getPrayerTimes('dashoguz', '2028-01-01');
-assert(sameDay2028.fajr === jan1.fajr, 'Jan 1 times identical for 2026 and 2028 (year-agnostic)');
+assertThrows(
+    () => PrayerEngine.getPrayerTimes('dashoguz', '2028-01-01'),
+    UnsupportedYearError,
+    '2028-01-01 unsupported year → UnsupportedYearError',
+);
 
 section('Engine: Lebap — populated city');
 assert(PrayerEngine.getCityStatus('lebap') === 'available', 'lebap → available');
@@ -121,11 +124,15 @@ assert(lebapDec31.isha === '19:00', `Lebap Dec 31 isha=19:00 (got ${lebapDec31.i
 // ─── 5. Engine: Feb 29 handling ──────────────────────────────────────────────
 
 section('Engine: Feb 29 leap-year guard');
-// 2028 is a leap year — Feb 29 should resolve
-const feb29_2028 = PrayerEngine.getPrayerTimes('dashoguz', '2028-02-29');
-assert(typeof feb29_2028.fajr === 'string', `2028-02-29 resolves (fajr=${feb29_2028.fajr})`);
+const feb28_2026 = PrayerEngine.getPrayerTimes('dashoguz', '2026-02-28');
+assert(typeof feb28_2026.fajr === 'string', `2026-02-28 resolves (fajr=${feb28_2026.fajr})`);
 
-// 2026 is not a leap year — Feb 29 must throw
+// Non-leap calendar date must throw
+assertThrows(
+    () => PrayerEngine.getPrayerTimes('dashoguz', '2027-02-29'),
+    UnsupportedDateError,
+    '2027-02-29 (non-leap) → UnsupportedDateError',
+);
 assertThrows(
     () => PrayerEngine.getPrayerTimes('dashoguz', '2026-02-29'),
     UnsupportedDateError,
@@ -181,7 +188,7 @@ assert(v.errors.some(e => e.includes('asr')), 'error message mentions asr');
 
 section('Generator: import pipeline');
 const mockRaw = `${HEADER}\nÝanwar;15;6:00;7:17;8:27;13:30;16:04;17:44;19:04`;
-const importResult = importOfficialData(mockRaw, 'ashgabat');
+const importResult = importOfficialData(mockRaw, 'ashgabat', 2026);
 assert(!importResult.success, 'partial import (1 row) → failed (not 366 days)');
 assert(importResult.validation.errors.length > 0, 'validation errors present');
 assert(importResult.dataset === null, 'dataset is null when validation fails');

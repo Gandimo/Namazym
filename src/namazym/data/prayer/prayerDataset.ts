@@ -6,11 +6,16 @@ import { dashoguzDataset } from './cities/dashoguz';
 import { lebapDataset }    from './cities/lebap';
 import { maryDataset }     from './cities/mary';
 
+function hasYears(data: unknown): boolean {
+    if (!data || typeof data !== 'object') return false;
+    return Object.keys(data as Record<string, unknown>).length > 0;
+}
+
 export const PRAYER_DATASET: PrayerDataset = {
-    ashgabat: { city: 'ashgabat', data: ashgabatDataset, status: ashgabatDataset ? 'available' : 'empty' },
-    ahal:     { city: 'ahal',     data: ahalDataset,     status: ahalDataset     ? 'available' : 'empty' },
-    balkan:   { city: 'balkan',   data: balkanDataset,   status: balkanDataset   ? 'available' : 'empty' },
-    dashoguz: { city: 'dashoguz', data: dashoguzDataset, status: dashoguzDataset ? 'available' : 'empty' },
-    lebap:    { city: 'lebap',    data: lebapDataset,    status: lebapDataset    ? 'available' : 'empty' },
-    mary:     { city: 'mary',     data: maryDataset,     status: maryDataset     ? 'available' : 'empty' },
+    ashgabat: { city: 'ashgabat', data: ashgabatDataset, status: hasYears(ashgabatDataset) ? 'available' : 'empty' },
+    ahal:     { city: 'ahal',     data: ahalDataset,     status: hasYears(ahalDataset)     ? 'available' : 'empty' },
+    balkan:   { city: 'balkan',   data: balkanDataset,   status: hasYears(balkanDataset)   ? 'available' : 'empty' },
+    dashoguz: { city: 'dashoguz', data: dashoguzDataset, status: hasYears(dashoguzDataset) ? 'available' : 'empty' },
+    lebap:    { city: 'lebap',    data: lebapDataset,    status: hasYears(lebapDataset)    ? 'available' : 'empty' },
+    mary:     { city: 'mary',     data: maryDataset,     status: hasYears(maryDataset)     ? 'available' : 'empty' },
 };

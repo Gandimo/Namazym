@@ -28,10 +28,19 @@ export type PrayerDatasetDay = DailyPrayerTimes;
 
 /**
  * A full year's prayer times.
- * Key format: "YYYY-MM-DD" — used when year-specific datasets exist.
- * For year-agnostic (fixed annual) datasets, use `Dataset` (MM-DD keyed) instead.
+ * Key format: "MM-DD".
  */
 export type PrayerDatasetYear = Record<string, DailyPrayerTimes>;
+
+/**
+ * Canonical city data keyed by year.
+ * Example:
+ * {
+ *   "2026": { "01-01": { ... } },
+ *   "2027": { "01-01": { ... } }
+ * }
+ */
+export type CityYearDataset = Record<string, PrayerDatasetYear>;
 
 /**
  * One city's entry in the central registry.
@@ -40,7 +49,7 @@ export type PrayerDatasetYear = Record<string, DailyPrayerTimes>;
 export interface PrayerDatasetCity {
     readonly city:   SupportedCity;
     /** null = no official data imported yet for this city */
-    readonly data:   Dataset | null;
+    readonly data:   CityYearDataset | null;
     /** Human-readable status for debugging and self-checks. */
     readonly status: 'available' | 'empty';
 }
@@ -54,9 +63,7 @@ export type PrayerDataset = Readonly<Record<SupportedCity, PrayerDatasetCity>>;
 // ─── Dataset key formats ──────────────────────────────────────────────────────
 
 /**
- * Year-agnostic base dataset — 366 days keyed "MM-DD".
- * Used for fixed annual timetables (same times every year).
- * Leap-year handling (Feb 29) is done at the engine layer.
+ * One year's MM-DD keyed dataset.
  */
 export type Dataset = Record<string, DailyPrayerTimes>;
 
@@ -95,7 +102,13 @@ export interface RawPrayerRow {
 
 export interface ValidationSummary {
     readonly isValid:     boolean;
+    readonly sourceRows:  number;
+    readonly expectedRows: number;
     readonly totalDays:   number;
+    readonly duplicates:  number;
+    readonly missing:     number;
+    readonly extra:       number;
+    readonly orderingErrors: number;
     readonly errors:      readonly string[];
     readonly warnings:    readonly string[];
 }
@@ -109,10 +122,54 @@ export interface ValidationSummary {
  */
 export interface ImportResult {
     readonly city:       SupportedCity;
+    readonly year:       number;
     readonly dataset:    Dataset | null;
     readonly validation: ValidationSummary;
     readonly success:    boolean;
 }
+
+export interface ImportSourceMeta {
+    readonly sourcePath: string;
+    readonly sourceType: 'txt' | 'xlsx';
+    readonly sheetsUsed: readonly string[];
+    readonly rowsRead: number;
+    readonly duplicateKeys: readonly string[];
+}
+
+export interface DriftWarning {
+    readonly key: string;
+    readonly prayer: PrayerName;
+    readonly previous: string;
+    readonly current: string;
+    readonly deltaMinutes: number;
+}
+
+export interface YearChangeReport {
+    readonly city: SupportedCity;
+    readonly year: number;
+    readonly sourcePath: string;
+    readonly sourceType: 'txt' | 'xlsx';
+    readonly rowsRead: number;
+    readonly rowsGenerated: number;
+    readonly duplicates: number;
+    readonly missing: number;
+    readonly extra: number;
+    readonly orderingErrors: number;
+    readonly parseErrors: readonly string[];
+    readonly validationErrors: readonly string[];
+    readonly driftWarnings: readonly DriftWarning[];
+    readonly selfCheckPassed: boolean;
+    readonly pass: boolean;
+}
+
+export interface CityManifestEntry {
+    readonly canonicalYears: readonly number[];
+    readonly sourceType: 'none' | 'txt' | 'xlsx' | 'mixed';
+    readonly lastImportedAt: string | null;
+    readonly status: 'empty' | 'ready' | 'failed';
+}
+
+export type CityManifest = Readonly<Record<SupportedCity, CityManifestEntry>>;
 
 // ─── Engine errors ────────────────────────────────────────────────────────────
 
@@ -140,5 +197,18 @@ export class UnsupportedDateError extends Error {
             (reason ? ` — ${reason}` : ''),
         );
         this.name = 'UnsupportedDateError';
+    }
+}
+
+/** The city has data, but not for the requested year. */
+export class UnsupportedYearError extends Error {
+    constructor(city: SupportedCity, year: number, supportedYears: readonly string[]) {
+        super(
+            `UnsupportedYearError: "${city}" has no canonical data for ${year}` +
+            (supportedYears.length > 0
+                ? ` — supported years: ${supportedYears.join(', ')}`
+                : ''),
+        );
+        this.name = 'UnsupportedYearError';
     }
 }

@@ -17,15 +17,21 @@ import { Dataset, DailyPrayerTimes } from './types';
 // ─── Turkmen month → zero-padded month number ─────────────────────────────────
 const MONTHS: Readonly<Record<string, string>> = {
     'Ýanwar':   '01',
+    'Yanwar':   '01',
     'Fewral':   '02',
     'Mart':     '03',
     'Aprel':    '04',
     'Maý':      '05',
+    'May':      '05',
     'Iýun':     '06',
+    'Iyun':     '06',
     'Iýul':     '07',
+    'Iyul':     '07',
     'Awgust':   '08',
     'Sentýabr': '09',
+    'Sentyabr': '09',
     'Oktýabr':  '10',
+    'Oktyabr':  '10',
     'Noýabr':   '11',
     'Dekabr':   '12',
 };
