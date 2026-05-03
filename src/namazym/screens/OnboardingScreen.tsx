@@ -5,7 +5,6 @@ import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
-import { NotificationService } from '../services/NotificationService';
 
 const { width, height } = Dimensions.get('window');
 
