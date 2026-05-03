@@ -21,6 +21,17 @@ export interface NotificationPreferences {
         sound_type: 'standard' | 'silent';
         types: ("ayah" | "hadith")[];
     };
+    /** Ramadan-specific alerts. Added in v1.2 — migrated with safe defaults. */
+    ramadan: {
+        /** Master toggle for all Ramadan notifications. */
+        enabled: boolean;
+        /** Alert N minutes before Imsak (Sahur end). Default: 15. */
+        imsak_alert: boolean;
+        imsak_offset_minutes: number;
+        /** Alert N minutes before Iftar. Default: 10. */
+        iftar_alert: boolean;
+        iftar_offset_minutes: number;
+    };
 }
 
 const STORAGE_KEY = '@namazym_notifications';
@@ -45,6 +56,13 @@ const DEFAULT_PREFS: NotificationPreferences = {
         time: "09:00",
         sound_type: "standard",
         types: ["ayah", "hadith"]
+    },
+    ramadan: {
+        enabled: true,
+        imsak_alert: true,
+        imsak_offset_minutes: 15,
+        iftar_alert: true,
+        iftar_offset_minutes: 10,
     }
 };
 
@@ -54,7 +72,7 @@ export const NotificationStorage = {
             const json = await AsyncStorage.getItem(STORAGE_KEY);
             if (!json) return DEFAULT_PREFS;
             const stored = JSON.parse(json);
-            // Deep merge to ensure all fields exist
+            // Deep merge — ensures any newly added fields are present for existing installs
             return {
                 ...DEFAULT_PREFS,
                 ...stored,
@@ -69,6 +87,10 @@ export const NotificationStorage = {
                 daily_content: {
                     ...DEFAULT_PREFS.daily_content,
                     ...stored.daily_content
+                },
+                ramadan: {
+                    ...DEFAULT_PREFS.ramadan,
+                    ...(stored.ramadan || {})
                 }
             };
         } catch (error) {

@@ -7,6 +7,8 @@ import { PrayerTimeDisplay } from './PrayerTimesAdapter';
 import { getDailyIndex } from '../utils/localizationUtils';
 import hadithData from '../data/hadith.json';
 import quranData from '../data/quran_tm_full.json';
+import ramadanData from '../data/ramadan_2026_tm.json';
+import { RAMADAN_COPY } from '../constants/notificationCopy';
 
 /**
  * Senior Notification Engine
@@ -193,5 +195,98 @@ export class NotificationService {
      */
     static async clearAll() {
         await Notifications.cancelAllScheduledNotificationsAsync();
+    }
+
+    /**
+     * Schedules Ramadan imsak / iftar alerts for the current year.
+     *
+     * Uses ramadan_2026_tm.json keyed by placeKey (e.g. "asgabat_arkadag_ahal").
+     * Falls back to "asgabat_arkadag_ahal" if the placeKey has no Ramadan table.
+     *
+     * Notification identifiers follow the pattern:
+     *   ramadan_imsak_YYYY-MM-DD
+     *   ramadan_iftar_YYYY-MM-DD
+     * so they can be individually cancelled / re-scheduled without touching prayer alerts.
+     *
+     * @param placeKey  City key matching ramadan_2026_tm.json table keys
+     * @param cityLabel Human-readable city name (used in notification body, optional)
+     */
+    static async scheduleRamadanNotifications(placeKey: string, cityLabel: string = ''): Promise<void> {
+        try {
+            const prefs = await NotificationStorage.getPreferences();
+            if (!prefs.ramadan.enabled) return;
+            if (!prefs.ramadan.imsak_alert && !prefs.ramadan.iftar_alert) return;
+
+            const tables = (ramadanData as any).tables;
+            // Fall back to Ashgabat table when city has no dedicated Ramadan data
+            const regionTable = tables[placeKey] ?? tables['asgabat_arkadag_ahal'];
+            if (!regionTable?.days) return;
+
+            const now = new Date();
+            const todayStr = now.toISOString().split('T')[0];
+
+            for (const dayEntry of regionTable.days) {
+                // Only schedule future days; skip Eid day (no imsak/iftar)
+                if (!dayEntry.date || dayEntry.date < todayStr) continue;
+                if (!dayEntry.imsak && !dayEntry.iftar) continue;
+
+                const [year, month, day] = dayEntry.date.split('-').map(Number);
+
+                // --- Imsak alert ---
+                if (prefs.ramadan.imsak_alert && dayEntry.imsak) {
+                    const [iHour, iMinute] = dayEntry.imsak.split(':').map(Number);
+                    const imsakDate = new Date(year, month - 1, day, iHour, iMinute, 0, 0);
+                    imsakDate.setMinutes(imsakDate.getMinutes() - prefs.ramadan.imsak_offset_minutes);
+
+                    if (imsakDate > now) {
+                        await Notifications.scheduleNotificationAsync({
+                            identifier: `ramadan_imsak_${dayEntry.date}`,
+                            content: {
+                                title: RAMADAN_COPY.suhoor.title,
+                                body: `${RAMADAN_COPY.suhoor.body}${cityLabel ? ` · ${cityLabel}` : ''}`,
+                                data: { type: 'ramadan_imsak', date: dayEntry.date },
+                                color: this.BRAND_GOLD,
+                                sound: true,
+                            },
+                            trigger: {
+                                type: Notifications.SchedulableTriggerInputTypes.DATE,
+                                date: imsakDate,
+                                channelId: 'default_content',
+                            } as any,
+                        });
+                    }
+                }
+
+                // --- Iftar alert ---
+                if (prefs.ramadan.iftar_alert && dayEntry.iftar) {
+                    const [fHour, fMinute] = dayEntry.iftar.split(':').map(Number);
+                    const iftarDate = new Date(year, month - 1, day, fHour, fMinute, 0, 0);
+                    iftarDate.setMinutes(iftarDate.getMinutes() - prefs.ramadan.iftar_offset_minutes);
+
+                    if (iftarDate > now) {
+                        await Notifications.scheduleNotificationAsync({
+                            identifier: `ramadan_iftar_${dayEntry.date}`,
+                            content: {
+                                title: RAMADAN_COPY.iftar.title,
+                                body: `${RAMADAN_COPY.iftar.body}${cityLabel ? ` · ${cityLabel}` : ''}`,
+                                data: { type: 'ramadan_iftar', date: dayEntry.date },
+                                color: this.BRAND_GOLD,
+                                sound: true,
+                            },
+                            trigger: {
+                                type: Notifications.SchedulableTriggerInputTypes.DATE,
+                                date: iftarDate,
+                                channelId: 'default_content',
+                            } as any,
+                        });
+                    }
+                }
+            }
+
+            const scheduled = await Notifications.getAllScheduledNotificationsAsync();
+            console.log(`[NotificationEngine] Ramadan notifications scheduled. Total: ${scheduled.length}`);
+        } catch (error) {
+            console.error('[NotificationEngine] Ramadan scheduling error:', error);
+        }
     }
 }
