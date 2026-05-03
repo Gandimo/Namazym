@@ -39,6 +39,12 @@ const LANGUAGES = [
     { code: 'fr', label: 'Français', flag: '🇫🇷' },
 ];
 
+/** Preset hourly times available in the daily-content time picker (06:00 – 22:00). */
+const TIME_OPTIONS = Array.from({ length: 17 }, (_, i) => {
+    const h = String(i + 6).padStart(2, '0');
+    return `${h}:00`;
+});
+
 export default function SettingsScreen() {
     const navigation = useNavigation<any>();
     const { t, i18n } = useTranslation();
@@ -47,6 +53,7 @@ export default function SettingsScreen() {
     const [lang, setLang] = useState(i18n.language);
     const [prefs, setPrefs] = useState<NotificationPreferences | null>(null);
     const [langModalVisible, setLangModalVisible] = useState(false);
+    const [timeModalVisible, setTimeModalVisible] = useState(false);
 
     React.useEffect(() => {
         NotificationStorage.getPreferences().then(setPrefs);
@@ -92,6 +99,18 @@ export default function SettingsScreen() {
         if (!prefs) return;
         const updated = await NotificationStorage.savePreferences({
             daily_content: { ...prefs.daily_content, enabled: !prefs.daily_content.enabled }
+        });
+        if (updated) {
+            setPrefs(updated);
+            if (prayerTimes) NotificationService.rescheduleAll(prayerTimes);
+        }
+    };
+
+    const handleTimeChange = async (newTime: string) => {
+        if (!prefs) return;
+        setTimeModalVisible(false);
+        const updated = await NotificationStorage.savePreferences({
+            daily_content: { ...prefs.daily_content, time: newTime }
         });
         if (updated) {
             setPrefs(updated);
@@ -192,7 +211,15 @@ export default function SettingsScreen() {
                                 <PremiumIcon name="chevron-forward" size="SMALL" color="rgba(0,0,0,0.3)" />
                             </View>
                         </Pressable>
-                        {renderSwitchOption('book-outline', t('settings.daily_content'), prefs?.daily_content.enabled || false, toggleDailyContent, 'TIME_CALENDAR', true)}
+                        {renderSwitchOption('book-outline', t('settings.daily_content'), prefs?.daily_content.enabled || false, toggleDailyContent, 'TIME_CALENDAR')}
+                        {renderOption(
+                            'time-outline',
+                            'Günüň mazmuny sagady',
+                            prefs?.daily_content.time || '09:00',
+                            () => setTimeModalVisible(true),
+                            'TIME_CALENDAR',
+                            true
+                        )}
                     </View>
 
                     {/* EKSTRALAR */}
@@ -224,6 +251,25 @@ export default function SettingsScreen() {
                                 <Text style={styles.langFlag}>{l.flag}</Text>
                                 <Text style={[styles.langLabel, lang === l.code && styles.langLabelActive]}>{l.label}</Text>
                                 {lang === l.code && <PremiumIcon name="checkmark" size="SMALL" color={COLORS.gold} />}
+                            </TouchableOpacity>
+                        ))}
+                    </View>
+                </TouchableOpacity>
+            </Modal>
+
+            {/* SAGAT SEÇİM MODALI — günüň mazmuny */}
+            <Modal visible={timeModalVisible} transparent animationType="fade" onRequestClose={() => setTimeModalVisible(false)}>
+                <TouchableOpacity style={styles.modalOverlay} activeOpacity={1} onPress={() => setTimeModalVisible(false)}>
+                    <View style={styles.modalCard}>
+                        <Text style={styles.modalTitle}>Bildiriş sagady</Text>
+                        {TIME_OPTIONS.map((t) => (
+                            <TouchableOpacity
+                                key={t}
+                                style={[styles.langOption, prefs?.daily_content.time === t && styles.langOptionActive]}
+                                onPress={() => handleTimeChange(t)}
+                            >
+                                <Text style={[styles.langLabel, prefs?.daily_content.time === t && styles.langLabelActive]}>{t}</Text>
+                                {prefs?.daily_content.time === t && <PremiumIcon name="checkmark" size="SMALL" color={COLORS.gold} />}
                             </TouchableOpacity>
                         ))}
                     </View>

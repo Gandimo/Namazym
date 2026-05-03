@@ -43,6 +43,7 @@ import { DateStrip } from '../components/DateStrip';
 import { ICON_SIZES, ICON_GRADIENTS } from '../theme/iconConstants';
 import { tokens2026 } from '../theme/tokens2026';
 import AudioPlayerService from '../services/AudioPlayerService';
+import { PrayerTrackerService } from '../services/PrayerTrackerService';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -73,6 +74,7 @@ export default function HomeScreen({ navigation }: any) {
     const [now, setNow] = useState(TimeService.now());
     const [selectedDate, setSelectedDate] = useState(TimeService.getTodayDateString());
     const [isCityModalVisible, setCityModalVisible] = useState(false);
+    const [streak, setStreak] = useState(0);
     const fadeAnim = useRef(new Animated.Value(0)).current;
     const scrollY = useRef(new Animated.Value(0)).current;
 
@@ -81,6 +83,10 @@ export default function HomeScreen({ navigation }: any) {
         Animated.timing(fadeAnim, { toValue: 1, duration: 800, useNativeDriver: true }).start();
         return () => clearInterval(timer);
     }, [fadeAnim]);
+
+    useEffect(() => {
+        PrayerTrackerService.getStreakCount().then(setStreak);
+    }, []);
 
     const current = useMemo(() => prayerTimes ? getCurrentPrayer(now, prayerTimes.timings as any) : null, [prayerTimes, now]);
     const next = useMemo(() => prayerTimes ? getNextPrayer(now, prayerTimes.timings as any) : null, [prayerTimes, now]);
@@ -260,6 +266,11 @@ export default function HomeScreen({ navigation }: any) {
                             />
                         </Pressable>
                         <Text style={[styles.dateText, !isDarkTheme && { color: 'rgba(0,0,0,0.5)' }]}>{formattedDate}</Text>
+                        {streak > 0 && (
+                            <Text style={[styles.streakBadge, { color: headerContentColor }]}>
+                                {`🔥 ${streak} günlük seri`}
+                            </Text>
+                        )}
                     </View>
                     <View style={styles.headerRight}>
                         <Pressable
@@ -588,6 +599,7 @@ const styles = StyleSheet.create({
     locationSelector: { flexDirection: 'row', alignItems: 'center' },
     locationText: { fontSize: 20, fontWeight: '900', color: tokens2026.colors.text.primary },
     dateText: { fontSize: 13, color: tokens2026.colors.text.secondary, fontWeight: '600', marginTop: 2 },
+    streakBadge: { fontSize: 12, fontWeight: '700', marginTop: 3, opacity: 0.85 },
     scrollPadding: { paddingHorizontal: tokens2026.layout.screenPadding, paddingBottom: 40 },
     sectionHeader: { marginTop: 32, marginBottom: 14, marginLeft: 4 },
     sectionTitle: { fontSize: 10, fontWeight: '900', color: tokens2026.colors.text.secondary, letterSpacing: 2.5 },

@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
+import { NotificationService } from '../services/NotificationService';
 
 const { width, height } = Dimensions.get('window');
 
@@ -47,6 +48,8 @@ export default function OnboardingScreen() {
     const completeOnboarding = async () => {
         try {
             await AsyncStorage.setItem('@onboarding_complete', 'true');
+            // Request notification permission non-blocking — app never crashes on denial
+            NotificationService.requestPermissions().catch(() => {});
             navigation.replace('LaunchLoader');
         } catch (e) {
             navigation.replace('LaunchLoader');
