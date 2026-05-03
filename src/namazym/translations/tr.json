@@ -38,6 +38,8 @@
         "notifications": "Bildirimler",
         "prayer_reminder": "Namaz Hatırlatıcı (15 dk)",
         "daily_content": "Günün Ayeti ve Hadisi",
+        "daily_content_time": "Bildirim Saati",
+        "notification_time_title": "Bildirim Saatini Seçin",
         "sound_preference": "Ses Ayarı",
         "extras": "Ekstralar",
         "share": "Uygulamayı Paylaş",
@@ -59,7 +61,8 @@
     "home": {
         "verse_of_day": "Günün Ayeti",
         "hadith_of_day": "Günün Hadisi",
-        "kaza_subtitle": "Kayıt ve takvim"
+        "kaza_subtitle": "Kayıt ve takvim",
+        "streak_badge": "🔥 {{count}} günlük seri"
     },
     "namaz_book": {
         "kyrk_parz": "Kırk Farz",

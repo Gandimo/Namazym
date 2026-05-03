@@ -268,7 +268,7 @@ export default function HomeScreen({ navigation }: any) {
                         <Text style={[styles.dateText, !isDarkTheme && { color: 'rgba(0,0,0,0.5)' }]}>{formattedDate}</Text>
                         {streak > 0 && (
                             <Text style={[styles.streakBadge, { color: headerContentColor }]}>
-                                {`🔥 ${streak} günlük seri`}
+                                {t('home.streak_badge', { count: streak })}
                             </Text>
                         )}
                     </View>

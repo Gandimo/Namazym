@@ -10,6 +10,29 @@ import quranData from '../data/quran_tm_full.json';
 import ramadanData from '../data/ramadan_2026_tm.json';
 import { RAMADAN_COPY } from '../constants/notificationCopy';
 
+/** Shape of a single day entry in ramadan_2026_tm.json */
+interface RamadanDay {
+    date: string;
+    day: number;
+    imsak?: string;
+    ertir?: string;
+    iftar?: string;
+    yassy?: string;
+    note?: string;
+    eid_prayer?: string;
+}
+
+interface RamadanRegion {
+    region: string;
+    eid_time: string;
+    days: RamadanDay[];
+}
+
+interface RamadanData {
+    metadata: { year: number; source: string };
+    tables: Record<string, RamadanRegion>;
+}
+
 /**
  * Senior Notification Engine
  * Handles offline-first scheduling for prayer alerts and daily content.
@@ -217,7 +240,7 @@ export class NotificationService {
             if (!prefs.ramadan.enabled) return;
             if (!prefs.ramadan.imsak_alert && !prefs.ramadan.iftar_alert) return;
 
-            const tables = (ramadanData as any).tables;
+            const tables = (ramadanData as unknown as RamadanData).tables;
             // Fall back to Ashgabat table when city has no dedicated Ramadan data
             const regionTable = tables[placeKey] ?? tables['asgabat_arkadag_ahal'];
             if (!regionTable?.days) return;

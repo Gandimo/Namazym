@@ -38,6 +38,8 @@
         "notifications": "Notifications",
         "prayer_reminder": "Rappel de prière (15 min)",
         "daily_content": "Verset et Hadith du jour",
+        "daily_content_time": "Heure de notification",
+        "notification_time_title": "Choisir l'heure de notification",
         "sound_preference": "Préférence Sonore",
         "extras": "Extras",
         "share": "Partager l'application",
@@ -59,7 +61,8 @@
     "home": {
         "verse_of_day": "Verset du jour",
         "hadith_of_day": "Hadith du jour",
-        "kaza_subtitle": "Suivi et calendrier"
+        "kaza_subtitle": "Suivi et calendrier",
+        "streak_badge": "🔥 {{count}} jour(s) de suite"
     },
     "namaz_book": {
         "kyrk_parz": "Quarante Obligations",

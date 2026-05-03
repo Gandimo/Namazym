@@ -38,6 +38,8 @@
         "notifications": "Bildirişler",
         "prayer_reminder": "Namaz ýatlatmalary (15 min)",
         "daily_content": "Günüň aýady we hadysy",
+        "daily_content_time": "Bildiriş sagady",
+        "notification_time_title": "Bildiriş sagadyny saýlaň",
         "sound_preference": "Ses sazlamasy",
         "extras": "Goşmaça",
         "share": "Programmany paýlaş",
@@ -60,7 +62,8 @@
     "home": {
         "verse_of_day": "Günüň aýady",
         "hadith_of_day": "Günüň hadysy",
-        "kaza_subtitle": "Hasaba alyş we takiwm"
+        "kaza_subtitle": "Hasaba alyş we takiwm",
+        "streak_badge": "🔥 {{count}} günlük seri"
     },
     "namaz_book": {
         "kyrk_parz": "Kyrk parz",

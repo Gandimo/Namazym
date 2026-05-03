@@ -38,6 +38,8 @@
         "notifications": "Notifications",
         "prayer_reminder": "Prayer Reminder (15 min)",
         "daily_content": "Daily Verse & Hadith",
+        "daily_content_time": "Notification Time",
+        "notification_time_title": "Select Notification Time",
         "sound_preference": "Sound Preference",
         "extras": "Extras",
         "share": "Share App",
@@ -60,7 +62,8 @@
     "home": {
         "verse_of_day": "Verse of the Day",
         "hadith_of_day": "Hadith of the Day",
-        "kaza_subtitle": "Tracking and calendar"
+        "kaza_subtitle": "Tracking and calendar",
+        "streak_badge": "🔥 {{count}} day streak"
     },
     "namaz_book": {
         "kyrk_parz": "Forty Obligations",

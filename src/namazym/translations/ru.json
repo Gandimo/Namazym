@@ -38,6 +38,8 @@
         "notifications": "Уведомления",
         "prayer_reminder": "Напоминание (15 мин)",
         "daily_content": "Аят и Хадис дня",
+        "daily_content_time": "Время уведомления",
+        "notification_time_title": "Выберите время уведомления",
         "sound_preference": "Звуковые настройки",
         "extras": "Дополнительно",
         "share": "Поделиться приложением",
@@ -59,7 +61,8 @@
     "home": {
         "verse_of_day": "Аят дня",
         "hadith_of_day": "Хадис дня",
-        "kaza_subtitle": "Учет и календарь"
+        "kaza_subtitle": "Учет и календарь",
+        "streak_badge": "🔥 {{count}} дней подряд"
     },
     "namaz_book": {
         "kyrk_parz": "Сорок обязанностей",

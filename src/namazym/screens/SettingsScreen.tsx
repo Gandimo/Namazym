@@ -214,7 +214,7 @@ export default function SettingsScreen() {
                         {renderSwitchOption('book-outline', t('settings.daily_content'), prefs?.daily_content.enabled || false, toggleDailyContent, 'TIME_CALENDAR')}
                         {renderOption(
                             'time-outline',
-                            'Günüň mazmuny sagady',
+                            t('settings.daily_content_time'),
                             prefs?.daily_content.time || '09:00',
                             () => setTimeModalVisible(true),
                             'TIME_CALENDAR',
@@ -261,15 +261,15 @@ export default function SettingsScreen() {
             <Modal visible={timeModalVisible} transparent animationType="fade" onRequestClose={() => setTimeModalVisible(false)}>
                 <TouchableOpacity style={styles.modalOverlay} activeOpacity={1} onPress={() => setTimeModalVisible(false)}>
                     <View style={styles.modalCard}>
-                        <Text style={styles.modalTitle}>Bildiriş sagady</Text>
-                        {TIME_OPTIONS.map((t) => (
+                        <Text style={styles.modalTitle}>{t('settings.notification_time_title')}</Text>
+                        {TIME_OPTIONS.map((opt) => (
                             <TouchableOpacity
-                                key={t}
-                                style={[styles.langOption, prefs?.daily_content.time === t && styles.langOptionActive]}
-                                onPress={() => handleTimeChange(t)}
+                                key={opt}
+                                style={[styles.langOption, prefs?.daily_content.time === opt && styles.langOptionActive]}
+                                onPress={() => handleTimeChange(opt)}
                             >
-                                <Text style={[styles.langLabel, prefs?.daily_content.time === t && styles.langLabelActive]}>{t}</Text>
-                                {prefs?.daily_content.time === t && <PremiumIcon name="checkmark" size="SMALL" color={COLORS.gold} />}
+                                <Text style={[styles.langLabel, prefs?.daily_content.time === opt && styles.langLabelActive]}>{opt}</Text>
+                                {prefs?.daily_content.time === opt && <PremiumIcon name="checkmark" size="SMALL" color={COLORS.gold} />}
                             </TouchableOpacity>
                         ))}
                     </View>
