@@ -1,11 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Animated, Dimensions } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, Animated } from 'react-native';
 import { tokens2026 } from '../theme/tokens2026';
 import { useAnimatedEntrance } from '../hooks/useAnimatedEntrance';
 import { PremiumIcon } from './icons/PremiumIcon';
 import { useTranslation } from 'react-i18next';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const ARABIC_NAMES: Record<string, string> = {
     Fajr: 'الفجر',
@@ -23,43 +21,63 @@ interface PrayerItemProps {
     isNext: boolean;
     isPast?: boolean;
     progress?: number;
+    isDarkTheme?: boolean;
 }
 
-const PrayerRow = ({ item, time, isCurrent, isPast }: PrayerItemProps) => {
-    // Secondary Card Spec: radius: 20, elevation: soft, glass: false
-    const secondaryColors = tokens2026.colors.text.secondary;
-    const primaryColors = tokens2026.colors.text.primary;
+const PrayerRow = ({ item, time, isCurrent, isNext, isPast, isDarkTheme = true }: PrayerItemProps) => {
+    const palette = isDarkTheme ? tokens2026.colors.prayerList.dark : tokens2026.colors.prayerList.light;
+    const isCompleted = Boolean(isPast);
+
+    const cardTone = isCurrent
+        ? styles.currentCard
+        : isNext
+            ? styles.nextCard
+        : isCompleted
+            ? styles.completedCard
+            : styles.defaultCard;
+
+    const dynamicCardStyle = isCurrent
+        ? { backgroundColor: palette.cardCurrent, borderColor: palette.borderCurrent }
+        : isNext
+            ? { backgroundColor: palette.cardNext, borderColor: palette.borderNext }
+        : isCompleted
+            ? { backgroundColor: palette.cardCompleted, borderColor: palette.borderCompleted }
+            : { backgroundColor: palette.cardDefault, borderColor: palette.borderDefault };
+
+    const primaryColor = isCurrent ? palette.accentText : isCompleted ? palette.textSecondary : palette.textPrimary;
+    const iconColor = isCurrent ? palette.accentText : isCompleted ? palette.textMuted : isNext ? tokens2026.colors.brandGold : palette.textSecondary;
 
     return (
         <View style={styles.rowWrapper}>
             <View style={[
                 styles.card,
-                isCurrent ? styles.activeCard : styles.inactiveCard,
+                cardTone,
+                dynamicCardStyle,
                 tokens2026.elevation.soft
             ]}>
 
-                <Text style={styles.arabicWatermark}>{ARABIC_NAMES[item.key]}</Text>
+                <Text style={[styles.arabicWatermark, { color: palette.watermark }]}>{ARABIC_NAMES[item.key]}</Text>
 
                 <View style={styles.content}>
                     <View style={styles.nameGroup}>
                         <PremiumIcon
                             name={isPast ? "checkmark-circle" : (isCurrent ? "ellipse" : "ellipse-outline")}
                             size="SMALL"
-                            gradient={isPast || isCurrent ? "PRAYER_GOLD" : undefined}
-                            color={isCurrent ? tokens2026.colors.brandGold : tokens2026.colors.text.secondary}
+                            gradient={isCurrent ? "PRAYER_GOLD" : undefined}
+                            color={iconColor}
                             pulse={isCurrent}
                             style={{ marginRight: 10 }}
                         />
                         <Text style={[
                             styles.prayerName,
-                            { color: isCurrent ? tokens2026.colors.brandGold : primaryColors }
+                            { color: primaryColor }
                         ]}>
                             {item.label}
                         </Text>
                     </View>
                     <Text style={[
                         styles.prayerTime,
-                        { color: isCurrent ? tokens2026.colors.brandGold : primaryColors }
+                        { color: isCurrent ? palette.accentText : isCompleted ? palette.textSecondary : palette.textPrimary }
                     ]}>
                         {time}
                     </Text>
@@ -69,7 +87,7 @@ const PrayerRow = ({ item, time, isCurrent, isPast }: PrayerItemProps) => {
     );
 };
 
-export const DailyPrayersList = ({ prayerTimes, current, next, progress, delay = 0 }: any) => {
+export const DailyPrayersList = ({ prayerTimes, current, next, progress, delay = 0, isDarkTheme = true }: any) => {
     const { t } = useTranslation();
     const entranceStyle = useAnimatedEntrance(delay);
     const ORDER = [
@@ -80,13 +98,13 @@ export const DailyPrayersList = ({ prayerTimes, current, next, progress, delay =
         { key: 'Maghrib', label: t('prayer.maghrib') },
         { key: 'Isha', label: t('prayer.isha') },
     ];
-
     const currentIndex = ORDER.findIndex(o => o.key === current?.key);
+    const palette = isDarkTheme ? tokens2026.colors.prayerList.dark : tokens2026.colors.prayerList.light;
 
     return (
         <Animated.View style={[styles.container, entranceStyle]}>
             <View style={styles.sectionHeader}>
-                <Text style={styles.sectionTitle}>{t('common.prayer_times').toUpperCase()}</Text>
+                <Text style={[styles.sectionTitle, { color: palette.textSecondary }]}>{t('common.prayer_times').toUpperCase()}</Text>
             </View>
             {ORDER.map((item, index) => (
                 <PrayerRow
@@ -97,6 +115,7 @@ export const DailyPrayersList = ({ prayerTimes, current, next, progress, delay =
                     isNext={next?.key === item.key}
                     isPast={index < currentIndex}
                     progress={current?.key === item.key ? progress : 0}
+                    isDarkTheme={isDarkTheme}
                 />
             ))}
         </Animated.View>
@@ -114,12 +133,12 @@ const styles = StyleSheet.create({
     },
     sectionTitle: {
         fontSize: tokens2026.typography.caption,
-        fontWeight: '900',
-        color: tokens2026.colors.text.secondary,
-        letterSpacing: 2,
+        fontWeight: '800',
+        color: 'rgba(255,255,255,0.76)',
+        letterSpacing: 1.65,
     },
     rowWrapper: {
-        marginBottom: tokens2026.layout.spacing,
+        marginBottom: 10,
     },
     card: {
         height: 74,
@@ -127,14 +146,21 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         justifyContent: 'center',
         paddingHorizontal: tokens2026.layout.componentPadding,
-    },
-    activeCard: {
-        backgroundColor: 'rgba(255, 255, 255, 0.09)',
         borderWidth: 1,
-        borderColor: `rgba(196, 160, 80, 0.85)`,
     },
-    inactiveCard: {
-        backgroundColor: 'rgba(255, 255, 255, 0.07)',
+    currentCard: {
+        shadowOpacity: 0.12,
+        shadowRadius: 20,
+        elevation: 6,
+    },
+    completedCard: {
+        shadowOpacity: 0.05,
+    },
+    defaultCard: {
+        shadowOpacity: 0.08,
+    },
+    nextCard: {
+        shadowOpacity: 0.09,
     },
     content: {
         flexDirection: 'row',
@@ -145,16 +171,20 @@ const styles = StyleSheet.create({
     nameGroup: {
         flexDirection: 'row',
         alignItems: 'center',
+        flex: 1,
+        paddingRight: 12,
     },
     prayerName: {
         fontSize: tokens2026.typography.body,
         fontWeight: '700',
-        letterSpacing: 0.5,
+        letterSpacing: 0.2,
+        flexShrink: 1,
     },
     prayerTime: {
         fontSize: tokens2026.typography.body + 1,
-        fontWeight: '800',
-        letterSpacing: 1.2,
+        fontWeight: '700',
+        letterSpacing: 0.45,
+        marginLeft: 12,
     },
     arabicWatermark: {
         position: 'absolute',
@@ -162,7 +192,6 @@ const styles = StyleSheet.create({
         bottom: -15,
         fontSize: 70,
         fontFamily: 'Amiri_400Regular',
-        color: 'rgba(255, 255, 255, 0.04)',
         zIndex: 1,
     },
 });

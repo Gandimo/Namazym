@@ -50,12 +50,12 @@ const dailyCards = require('../data/daily_cards.json');
 
 // Premium Design Tokens V1.1
 const SKY_THEMES = {
-    Fajr: ['#DCE7F5', '#F6F0E8'],
-    Sunrise: ['#F2D8C2', '#FBF3EA'],
-    Dhuhr: ['#E9EEF2', '#F8F5EF'],
-    Asr: ['#E8D8BE', '#F6EFE5'],
-    Maghrib: ['#8E6E6A', '#E8C7B0'],
-    Isha: ['#1E2430', '#12161F'],
+    Fajr: ['#B9CAD8', '#E8EFF4'],
+    Sunrise: ['#E4C8AE', '#F6E6D4'],
+    Dhuhr: ['#D5E0E7', '#F3EFE8'],
+    Asr: ['#E0C9B0', '#F2E1CF'],
+    Maghrib: ['#9A756C', '#DEC0AE'],
+    Isha: ['#222A3A', '#151B26'],
 };
 
 const SectionHeader = ({ title }: { title: string }) => (
