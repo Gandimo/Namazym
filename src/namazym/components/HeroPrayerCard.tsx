@@ -40,6 +40,10 @@ type HeroVisualConfig = {
 
 const fajrKaabaAsset = require('../assets/hero/hero-fajr-kaaba-final.png');
 const sunriseMosqueAsset = require('../assets/hero/hero-sunrise-mosque-final.png');
+const dhuhrKaabaAsset = require('../assets/hero/hero-dhuhr-final.png');
+const asrCamelAsset = require('../assets/hero/hero-asr-camel-final.png');
+const maghribAsset = require('../assets/hero/hero-maghrib-final.png');
+const ishaAsset = require('../assets/hero/hero-isha-final.png');
 
 const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
     Fajr: {
@@ -76,6 +80,7 @@ const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
         progressTrack: 'rgba(184, 217, 255, 0.18)',
         microCopy: 'Günün merkezinde kısa bir durak',
         icon: 'dhuhr',
+        showDecorativeImage: true,
     },
     Asr: {
         accent: '#DDBB73',
@@ -87,6 +92,7 @@ const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
         progressTrack: 'rgba(221, 187, 115, 0.18)',
         microCopy: 'Günü toparlama vakti',
         icon: 'asr',
+        showDecorativeImage: true,
     },
     Maghrib: {
         accent: '#F0B08D',
@@ -98,6 +104,7 @@ const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
         progressTrack: 'rgba(240, 176, 141, 0.18)',
         microCopy: 'Akşama huzurla geç',
         icon: 'maghrib',
+        showDecorativeImage: true,
     },
     Isha: {
         accent: '#B6C7F1',
@@ -109,6 +116,7 @@ const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
         progressTrack: 'rgba(182, 199, 241, 0.18)',
         microCopy: 'Gecenin huzuru',
         icon: 'isha',
+        showDecorativeImage: true,
     },
 };
 
@@ -165,7 +173,9 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
     const isNearPrayer = !isPassengerMode && remainingMs < 15 * 60 * 1000 && remainingMs > 0;
     const isCompactLayout = width <= 390;
     const isLargeLayout = width >= 430;
-    const periodKey = ((current?.key || 'Dhuhr') in HERO_VISUALS ? current?.key : 'Dhuhr') as PrayerPeriodKey;
+    const visualKey = isPassengerMode ? current?.key : next?.key;
+    const resolvedPeriodKey = visualKey || current?.key || 'Dhuhr';
+    const periodKey = (resolvedPeriodKey in HERO_VISUALS ? resolvedPeriodKey : 'Dhuhr') as PrayerPeriodKey;
     const visual = HERO_VISUALS[periodKey];
     const showDecorativeImage = visual.showDecorativeImage === true;
 
@@ -200,10 +210,62 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
             decorativeGlowTop = isCompactLayout ? 30 : isLargeLayout ? 28 : 30;
             decorativeContentPaddingRight = isCompactLayout ? 104 : isLargeLayout ? 158 : 138;
             customGlowColor = 'rgba(230, 180, 90, 0.14)';
+        } else if (periodKey === 'Dhuhr') {
+            decorativeImageSize = isCompactLayout ? 118 : isLargeLayout ? 156 : 140;
+            decorativeImageRight = isCompactLayout ? 4 : 6;
+            decorativeImageBottom = isCompactLayout ? 40 : isLargeLayout ? 34 : 36;
+            decorativeImageOpacity = isCompactLayout ? 0.95 : 0.97;
+            decorativeGlowSize = isCompactLayout ? 108 : isLargeLayout ? 146 : 130;
+            decorativeGlowRight = isCompactLayout ? 14 : isLargeLayout ? 20 : 16;
+            decorativeGlowTop = isCompactLayout ? 28 : isLargeLayout ? 26 : 28;
+            decorativeContentPaddingRight = isCompactLayout ? 108 : isLargeLayout ? 152 : 136;
+            customGlowColor = 'rgba(184, 217, 255, 0.16)';
+        } else if (periodKey === 'Asr') {
+            decorativeImageSize = isCompactLayout ? 118 : isLargeLayout ? 156 : 140;
+            decorativeImageRight = isCompactLayout ? 4 : 6;
+            decorativeImageBottom = isCompactLayout ? 40 : isLargeLayout ? 34 : 36;
+            decorativeImageOpacity = isCompactLayout ? 0.95 : 0.97;
+            decorativeGlowSize = isCompactLayout ? 108 : isLargeLayout ? 146 : 130;
+            decorativeGlowRight = isCompactLayout ? 14 : isLargeLayout ? 20 : 16;
+            decorativeGlowTop = isCompactLayout ? 28 : isLargeLayout ? 26 : 28;
+            decorativeContentPaddingRight = isCompactLayout ? 108 : isLargeLayout ? 152 : 136;
+            customGlowColor = 'rgba(221, 187, 115, 0.16)';
+        } else if (periodKey === 'Maghrib') {
+            decorativeImageSize = isCompactLayout ? 124 : isLargeLayout ? 164 : 146;
+            decorativeImageRight = isCompactLayout ? 4 : 6;
+            decorativeImageBottom = isCompactLayout ? 36 : isLargeLayout ? 30 : 32;
+            decorativeImageOpacity = isCompactLayout ? 0.95 : 0.97;
+            decorativeGlowSize = isCompactLayout ? 118 : isLargeLayout ? 154 : 138;
+            decorativeGlowRight = isCompactLayout ? 12 : isLargeLayout ? 16 : 14;
+            decorativeGlowTop = isCompactLayout ? 28 : isLargeLayout ? 24 : 26;
+            decorativeContentPaddingRight = isCompactLayout ? 114 : isLargeLayout ? 160 : 142;
+            customGlowColor = 'rgba(240, 176, 141, 0.16)';
+        } else if (periodKey === 'Isha') {
+            decorativeImageSize = isCompactLayout ? 126 : isLargeLayout ? 166 : 148;
+            decorativeImageRight = isCompactLayout ? 4 : 6;
+            decorativeImageBottom = isCompactLayout ? 34 : isLargeLayout ? 28 : 30;
+            decorativeImageOpacity = isCompactLayout ? 0.95 : 0.97;
+            decorativeGlowSize = isCompactLayout ? 120 : isLargeLayout ? 156 : 140;
+            decorativeGlowRight = isCompactLayout ? 12 : isLargeLayout ? 18 : 14;
+            decorativeGlowTop = isCompactLayout ? 24 : isLargeLayout ? 22 : 24;
+            decorativeContentPaddingRight = isCompactLayout ? 116 : isLargeLayout ? 162 : 144;
+            customGlowColor = 'rgba(111, 134, 198, 0.16)';
         }
     }
 
-    const decorativeAsset = periodKey === 'Fajr' ? fajrKaabaAsset : sunriseMosqueAsset;
+    const decorativeAsset = periodKey === 'Fajr'
+        ? fajrKaabaAsset
+        : periodKey === 'Sunrise'
+            ? sunriseMosqueAsset
+            : periodKey === 'Dhuhr'
+                ? dhuhrKaabaAsset
+                : periodKey === 'Asr'
+                    ? asrCamelAsset
+                    : periodKey === 'Maghrib'
+                        ? maghribAsset
+                        : periodKey === 'Isha'
+                            ? ishaAsset
+                            : null;
     const nextLabelText = isPassengerMode
         ? t('common.prayer_times').toUpperCase()
         : `${t(`prayer.${next?.key?.toLowerCase()}`).toUpperCase()} NAMAZYNA`;
@@ -252,7 +314,7 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
                             },
                         ]}
                     >
-                        {showDecorativeImage ? (
+                        {showDecorativeImage && decorativeAsset ? (
                             <Image
                                 source={decorativeAsset}
                                 resizeMode="contain"
