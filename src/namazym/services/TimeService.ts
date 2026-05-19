@@ -1,46 +1,44 @@
-import { format, utcToZonedTime, formatInTimeZone } from 'date-fns-tz';
+import { format } from 'date-fns-tz';
 import { DEMO_MODE } from '../constants/demo';
 import { getDemoDateTime } from '../constants/demoData';
 
-// KİLİTLİ TIMEZONE: Türkmenistan
-const TIMEZONE = 'Asia/Ashgabat';
-
 export const TimeService = {
     /**
-     * Şu anki zamanı Türkmenistan saatine göre döndürür.
-     * Cihazın nerede olduğu önemsiz.
+     * Returns the current device wall-clock time.
+     * Prayer timetable values are local HH:MM values, so current/next comparisons
+     * must use the same visible wall-clock that the user is testing in Expo Go.
      * DEMO_MODE aktifse sabit demo zamanı döndürür.
      */
     now: (): Date => {
         if (DEMO_MODE) {
             return getDemoDateTime();
         }
-        return utcToZonedTime(new Date(), TIMEZONE);
+        return new Date();
     },
 
     /**
-     * Bugünün tarihini YYYY-MM-DD formatında döndürür (Türkmenistan saati).
+     * Bugünün tarihini YYYY-MM-DD formatında döndürür.
      */
     getTodayDateString: (): string => {
         if (DEMO_MODE) {
-            return format(getDemoDateTime(), 'yyyy-MM-dd', { timeZone: TIMEZONE });
+            return format(getDemoDateTime(), 'yyyy-MM-dd');
         }
-        return formatInTimeZone(new Date(), TIMEZONE, 'yyyy-MM-dd');
+        return format(new Date(), 'yyyy-MM-dd');
     },
 
     /**
-     * Yılın kaçıncı günü olduğunu döndürür (1-366) (Türkmenistan saati).
+     * Yılın kaçıncı günü olduğunu döndürür (1-366).
      */
     getDayOfYear: (): number => {
         const now = TimeService.now();
-        const start = utcToZonedTime(new Date(Date.UTC(now.getFullYear(), 0, 1, 0, 0, 0)), TIMEZONE);
+        const start = new Date(now.getFullYear(), 0, 1);
         const diff = now.getTime() - start.getTime();
         const oneDay = 1000 * 60 * 60 * 24;
         return Math.floor(diff / oneDay) + 1;
     },
 
     /**
-     * Verilen saatin (HH:MM) şu an geçip geçmediğini kontrol eder (Türkmenistan saati).
+     * Verilen saatin (HH:MM) şu an geçip geçmediğini kontrol eder.
      */
     isTimePassed: (timeStr: string): boolean => {
         const now = TimeService.now();

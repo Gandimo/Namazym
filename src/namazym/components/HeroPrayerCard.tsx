@@ -33,7 +33,6 @@ type HeroVisualConfig = {
     glowSecondary: string;
     iconColor: string;
     progressTrack: string;
-    microCopy: string;
     icon: 'fajr' | 'sunrise' | 'dhuhr' | 'asr' | 'maghrib' | 'isha';
     showDecorativeImage?: boolean;
 };
@@ -54,7 +53,6 @@ const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
         glowSecondary: 'rgba(212, 175, 83, 0.14)',
         iconColor: '#DDE8FF',
         progressTrack: 'rgba(143, 183, 255, 0.18)',
-        microCopy: 'Güne huzurla başla',
         icon: 'fajr',
         showDecorativeImage: true,
     },
@@ -66,7 +64,6 @@ const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
         glowSecondary: 'rgba(255, 221, 156, 0.14)',
         iconColor: '#FFE2B3',
         progressTrack: 'rgba(240, 179, 94, 0.20)',
-        microCopy: 'Yeni gün doğuyor',
         icon: 'sunrise',
         showDecorativeImage: true,
     },
@@ -78,7 +75,6 @@ const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
         glowSecondary: 'rgba(255, 255, 255, 0.10)',
         iconColor: '#EAF4FF',
         progressTrack: 'rgba(184, 217, 255, 0.18)',
-        microCopy: 'Günün merkezinde kısa bir durak',
         icon: 'dhuhr',
         showDecorativeImage: true,
     },
@@ -90,7 +86,6 @@ const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
         glowSecondary: 'rgba(255, 229, 172, 0.10)',
         iconColor: '#F5E1B5',
         progressTrack: 'rgba(221, 187, 115, 0.18)',
-        microCopy: 'Günü toparlama vakti',
         icon: 'asr',
         showDecorativeImage: true,
     },
@@ -102,7 +97,6 @@ const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
         glowSecondary: 'rgba(255, 213, 168, 0.12)',
         iconColor: '#FFE1CE',
         progressTrack: 'rgba(240, 176, 141, 0.18)',
-        microCopy: 'Akşama huzurla geç',
         icon: 'maghrib',
         showDecorativeImage: true,
     },
@@ -114,7 +108,6 @@ const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
         glowSecondary: 'rgba(212, 175, 83, 0.12)',
         iconColor: '#E2EAFF',
         progressTrack: 'rgba(182, 199, 241, 0.18)',
-        microCopy: 'Gecenin huzuru',
         icon: 'isha',
         showDecorativeImage: true,
     },
@@ -173,7 +166,7 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
     const isNearPrayer = !isPassengerMode && remainingMs < 15 * 60 * 1000 && remainingMs > 0;
     const isCompactLayout = width <= 390;
     const isLargeLayout = width >= 430;
-    const visualKey = isPassengerMode ? current?.key : next?.key;
+    const visualKey = isPassengerMode ? current?.key : current?.key ?? next?.key;
     const resolvedPeriodKey = visualKey || current?.key || 'Dhuhr';
     const periodKey = (resolvedPeriodKey in HERO_VISUALS ? resolvedPeriodKey : 'Dhuhr') as PrayerPeriodKey;
     const visual = HERO_VISUALS[periodKey];
@@ -241,14 +234,14 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
             decorativeContentPaddingRight = isCompactLayout ? 114 : isLargeLayout ? 160 : 142;
             customGlowColor = 'rgba(240, 176, 141, 0.16)';
         } else if (periodKey === 'Isha') {
-            decorativeImageSize = isCompactLayout ? 126 : isLargeLayout ? 166 : 148;
-            decorativeImageRight = isCompactLayout ? 4 : 6;
-            decorativeImageBottom = isCompactLayout ? 34 : isLargeLayout ? 28 : 30;
+            decorativeImageSize = isCompactLayout ? 146 : isLargeLayout ? 188 : 168;
+            decorativeImageRight = isCompactLayout ? -10 : isLargeLayout ? -6 : -8;
+            decorativeImageBottom = isCompactLayout ? 22 : isLargeLayout ? 16 : 18;
             decorativeImageOpacity = isCompactLayout ? 0.95 : 0.97;
-            decorativeGlowSize = isCompactLayout ? 120 : isLargeLayout ? 156 : 140;
-            decorativeGlowRight = isCompactLayout ? 12 : isLargeLayout ? 18 : 14;
-            decorativeGlowTop = isCompactLayout ? 24 : isLargeLayout ? 22 : 24;
-            decorativeContentPaddingRight = isCompactLayout ? 116 : isLargeLayout ? 162 : 144;
+            decorativeGlowSize = isCompactLayout ? 136 : isLargeLayout ? 176 : 158;
+            decorativeGlowRight = isCompactLayout ? 8 : isLargeLayout ? 10 : 8;
+            decorativeGlowTop = isCompactLayout ? 20 : isLargeLayout ? 18 : 20;
+            decorativeContentPaddingRight = isCompactLayout ? 108 : isLargeLayout ? 146 : 126;
             customGlowColor = 'rgba(111, 134, 198, 0.16)';
         }
     }
@@ -266,6 +259,7 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
                         : periodKey === 'Isha'
                             ? ishaAsset
                             : null;
+    const hasDecorativeImage = showDecorativeImage && decorativeAsset !== null;
     const nextLabelText = isPassengerMode
         ? t('common.prayer_times').toUpperCase()
         : `${t(`prayer.${next?.key?.toLowerCase()}`).toUpperCase()} NAMAZYNA`;
@@ -289,7 +283,7 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
                         style={[
                             styles.primaryGlow,
                             isCompactLayout && styles.primaryGlowCompact,
-                            showDecorativeImage && {
+                            hasDecorativeImage && {
                                 right: decorativeGlowRight,
                                 top: decorativeGlowTop,
                                 width: decorativeGlowSize,
@@ -303,18 +297,18 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
                     <View
                         style={[
                             styles.heroVisualStage,
-                            !showDecorativeImage && isCompactLayout && styles.heroVisualStageCompact,
-                            showDecorativeImage && {
+                            !hasDecorativeImage && styles.heroVisualStageIcon,
+                            !hasDecorativeImage && isCompactLayout && styles.heroVisualStageCompact,
+                            hasDecorativeImage && {
                                 right: decorativeImageRight,
                                 bottom: decorativeImageBottom,
-                                top: undefined,
                                 width: decorativeImageSize,
                                 height: decorativeImageSize,
                                 opacity: decorativeImageOpacity,
                             },
                         ]}
                     >
-                        {showDecorativeImage && decorativeAsset ? (
+                        {hasDecorativeImage ? (
                             <Image
                                 source={decorativeAsset}
                                 resizeMode="contain"
@@ -329,17 +323,21 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
                 <View style={[
                     styles.content,
                     isCompactLayout && styles.contentCompact,
-                    showDecorativeImage && { paddingRight: decorativeContentPaddingRight },
+                    hasDecorativeImage && { paddingRight: decorativeContentPaddingRight },
                 ]}>
                     <View style={[styles.nextChip, { backgroundColor: visual.chipBackground, borderColor: visual.chipBorder }]}>
                         <Text style={styles.nextLabel}>
                             {nextLabelText}
                         </Text>
                     </View>
-                    <Text style={styles.timer}>
+                    <Text
+                        style={styles.timer}
+                        numberOfLines={1}
+                        adjustsFontSizeToFit
+                        minimumFontScale={0.82}
+                    >
                         {isPassengerMode ? (current?.time || '--:--') : countdown}
                     </Text>
-                    {!isPassengerMode && !isCompactLayout ? <Text style={styles.microCopy}>{visual.microCopy}</Text> : null}
 
                     {!isPassengerMode && (
                         <View style={[styles.progressTrack, { backgroundColor: visual.progressTrack }]}>
@@ -403,12 +401,14 @@ const styles = StyleSheet.create({
     heroVisualStage: {
         position: 'absolute',
         right: 18,
-        top: 26,
         width: 82,
         height: 82,
         alignItems: 'center',
         justifyContent: 'center',
         opacity: 0.94,
+    },
+    heroVisualStageIcon: {
+        top: 26,
     },
     heroVisualStageImage: {
         right: 12,
@@ -535,12 +535,6 @@ const styles = StyleSheet.create({
         textShadowColor: 'rgba(0,0,0,0.12)',
         textShadowOffset: { width: 0, height: 2 },
         textShadowRadius: 4,
-    },
-    microCopy: {
-        fontSize: 12,
-        color: 'rgba(255,255,255,0.66)',
-        fontWeight: '500',
-        marginTop: 4,
     },
     progressTrack: {
         width: '100%',

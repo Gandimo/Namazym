@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         alignSelf: 'center',
         width: '92%',
+        maxWidth: 400,
         height: 75,
         backgroundColor: 'rgba(255, 255, 255, 0.15)',
         borderRadius: 38,
@@ -147,7 +148,8 @@ const styles = StyleSheet.create({
     item: {
         alignItems: 'center',
         justifyContent: 'center',
-        paddingHorizontal: 12,
+        paddingHorizontal: 20,
+        paddingVertical: 8,
     },
     iconWrapper: {
         width: 32,

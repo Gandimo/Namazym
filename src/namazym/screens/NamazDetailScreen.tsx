@@ -59,17 +59,19 @@ export default function NamazDetailScreen() {
                 </View>
 
                 <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-                    <View style={styles.glassCard}>
-                        <View style={styles.timeBox}>
-                            <Text style={styles.timeLabel}>WAGTY</Text>
-                            <Text style={styles.timeText}>{time}</Text>
+                    <View style={styles.contentColumn}>
+                        <View style={styles.glassCard}>
+                            <View style={styles.timeBox}>
+                                <Text style={styles.timeLabel}>WAGTY</Text>
+                                <Text style={styles.timeText}>{time}</Text>
+                            </View>
+                            <View style={styles.divider} />
+                            <Text style={styles.infoTitle}>MAGLUMATY</Text>
+                            <Text style={styles.infoText}>
+                                {prayer.label} namazy günüň dowamyndaky esasy ybadatlaryň biridir.
+                                Bu wagtda okaljak namaz musulman adamynyň Allah bilen ruhy bağlanyşygyny berkitmäge kömek edýär.
+                            </Text>
                         </View>
-                        <View style={styles.divider} />
-                        <Text style={styles.infoTitle}>MAGLUMAT</Text>
-                        <Text style={styles.infoText}>
-                            {prayer.label} namazy günüň dowamyndaky esasy ybadatlaryň biridir.
-                            Bu wagtda okaljak namaz musulman adamynyň Allah bilen ruhy bağlanyşygyny berkitmäge kömek edýär.
-                        </Text>
                     </View>
                 </ScrollView>
             </SafeAreaView>
@@ -79,6 +81,8 @@ export default function NamazDetailScreen() {
 
 const Sheet = StyleSheet;
 
+const TABLET_MAX_WIDTH = 600;
+
 const styles = StyleSheet.create({
     container: { flex: 1 },
     header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12 },
@@ -86,7 +90,8 @@ const styles = StyleSheet.create({
     titleBox: { alignItems: 'center' },
     title: { fontSize: 18, fontWeight: '900', color: '#FFF', letterSpacing: 2 },
     subtitle: { fontSize: 11, color: 'rgba(255,255,255,0.7)', fontWeight: '800', letterSpacing: 4, marginTop: 2 },
-    content: { padding: 24 },
+    content: { padding: 24, alignItems: 'center' },
+    contentColumn: { width: '100%', maxWidth: TABLET_MAX_WIDTH, alignSelf: 'center' },
     glassCard: { backgroundColor: COLORS.glassCard, borderRadius: 32, padding: 32, shadowOpacity: 0, elevation: 0, borderWidth: 1, borderColor: COLORS.glassBorder },
     timeBox: { alignItems: 'center', marginBottom: 24 },
     timeLabel: { fontSize: 11, fontWeight: '900', color: COLORS.textSecondary, letterSpacing: 2, marginBottom: 8 },

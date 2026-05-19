@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { Alert } from "react-native";
+import { Alert, AppState } from "react-native";
 import { PrayerTimeDisplay } from "../services/PrayerTimesAdapter";
 import { PrayerTimesService } from "../services/PrayerTimesService";
 import { StorageService } from "../services/StorageService";
@@ -8,9 +8,6 @@ import { TimeService } from "../services/TimeService";
 
 import { CITIES } from "../constants/cities";
 import { verifyAllPrayerTimes } from "../utils/verifyTimings";
-import * as Location from 'expo-location';
-import { AdhanService } from "../services/AdhanService";
-import { isPointInTKM } from "../utils/geoUtils";
 
 interface CityContextType {
     placeKey: string;
@@ -26,7 +23,7 @@ interface CityContextType {
 const CityContext = createContext<CityContextType | undefined>(undefined);
 
 export const CityProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [placeKey, setPlaceKey] = useState<string>("asgabat");
+    const [placeKey, setPlaceKey] = useState<string>("asgabat_arkadag_ahal");
     const [placeLabel, setPlaceLabel] = useState<string>("Aşgabat");
     const [cityId, setCityId] = useState<number>(1);
     const [prayerTimes, setPrayerTimes] = useState<PrayerTimeDisplay | null>(null);
@@ -60,7 +57,7 @@ export const CityProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 const times = PrayerTimesService.getToday(place.key);
                 setPrayerTimes(times);
                 if (times) {
-                    NotificationService.rescheduleAll(times, place.label)
+                    NotificationService.rescheduleAll(times, place.label, place.key)
                         .catch((err: any) => console.error("Initial scheduling failed:", err));
                 }
             } catch (error) {
@@ -73,6 +70,44 @@ export const CityProvider: React.FC<{ children: React.ReactNode }> = ({ children
         };
         init();
     }, []);
+
+    useEffect(() => {
+        if (isLoading) return;
+
+        const refreshIfNeeded = async () => {
+            try {
+                const rebuilt = await NotificationService.refreshIfDateChanged(
+                    prayerTimes,
+                    placeLabel,
+                    placeKey,
+                );
+
+                if (rebuilt) {
+                    const refreshedTimes = PrayerTimesService.getToday(placeKey);
+                    if (refreshedTimes) {
+                        setPrayerTimes(refreshedTimes);
+                    }
+                }
+            } catch (error) {
+                console.error("Date-change notification refresh failed:", error);
+            }
+        };
+
+        const interval = setInterval(() => {
+            refreshIfNeeded().catch((error) => console.error("Interval refresh failed:", error));
+        }, 15 * 60 * 1000);
+
+        const appStateSubscription = AppState.addEventListener("change", (state) => {
+            if (state === "active") {
+                refreshIfNeeded().catch((error) => console.error("Foreground refresh failed:", error));
+            }
+        });
+
+        return () => {
+            clearInterval(interval);
+            appStateSubscription.remove();
+        };
+    }, [isLoading, placeKey, placeLabel, prayerTimes]);
 
     const setPlace = async (key: string) => {
         try {
@@ -101,7 +136,7 @@ export const CityProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
             // Non-blocking background scheduling
             if (times) {
-                NotificationService.rescheduleAll(times, place.label)
+                NotificationService.rescheduleAll(times, place.label, place.key)
                     .catch((err: any) => console.error("Background scheduling failed:", err));
             }
         } catch (e) {
@@ -120,34 +155,14 @@ export const CityProvider: React.FC<{ children: React.ReactNode }> = ({ children
             setCityId(place.cityId);
             const times = PrayerTimesService.getToday(place.key);
             setPrayerTimes(times);
+            if (times) {
+                NotificationService.rescheduleAll(times, place.label, place.key)
+                    .catch((err: any) => console.error("Auto-location off scheduling failed:", err));
+            }
             return;
         }
-        setIsLoading(true);
-        try {
-            const { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                Alert.alert("GPS Gerekli", "Awto-lokasiýa üçin rugsat beriň.");
-                setIsAutoLocation(false);
-                return;
-            }
-            const location = await Location.getCurrentPositionAsync({});
-            const { latitude, longitude } = location.coords;
-            if (isPointInTKM(latitude, longitude)) {
-                setIsAutoLocation(false);
-                Alert.alert("Türkmenistan", "Siz Türkmenistanda. Sebit saýlaň.");
-            } else {
-                setIsAutoLocation(true);
-                const times = AdhanService.calculatePrayerTimes(latitude, longitude, new Date());
-                setPrayerTimes(times);
-                setPlaceLabel("GPS Location");
-                NotificationService.rescheduleAll(times, "GPS Location")
-                    .catch((err: any) => console.error("GPS scheduling failed:", err));
-            }
-        } catch (e) {
-            console.error("toggleAutoLocation Error:", e);
-        } finally {
-            setIsLoading(false);
-        }
+        setIsAutoLocation(false);
+        Alert.alert("Awto-lokasiýa öçürildi", "Bu wersiýada awto-lokasiýa elýeterli däl. Sebit saýlaň.");
     };
 
     return (

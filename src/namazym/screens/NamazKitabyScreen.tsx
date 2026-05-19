@@ -6,7 +6,7 @@ import {
     Pressable,
     StatusBar,
     ScrollView,
-    Dimensions
+    useWindowDimensions
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -18,6 +18,11 @@ import { useTranslation } from 'react-i18next';
 import { useCity } from '../context/CityContext';
 import { TimeService } from '../services/TimeService';
 import { getCurrentPrayer } from '../utils/prayerUtils';
+import {
+    getAdaptiveCardWidth,
+    getBoundedContentWidth,
+    getResponsiveLayoutMetrics,
+} from '../utils/responsiveLayout';
 
 const SKY_THEMES = {
     Fajr: ['#4A90E2', '#B8D8F4'],
@@ -42,7 +47,33 @@ const COLORS = {
 export default function NamazKitabyScreen() {
     const navigation = useNavigation<any>();
     const { t } = useTranslation();
+    const { width } = useWindowDimensions();
     const { prayerTimes } = useCity();
+    const responsiveLayout = useMemo(() => getResponsiveLayoutMetrics(width), [width]);
+    const contentWidth = useMemo(
+        () => getBoundedContentWidth(width, responsiveLayout.horizontalPadding, responsiveLayout.contentMaxWidth),
+        [responsiveLayout.contentMaxWidth, responsiveLayout.horizontalPadding, width],
+    );
+    const gridColumns = responsiveLayout.isTablet ? 2 : 1;
+    const cardGap = responsiveLayout.cardGap;
+    const tabletCardWidth = useMemo(
+        () => getAdaptiveCardWidth(
+            contentWidth,
+            gridColumns,
+            cardGap,
+            260,
+            responsiveLayout.isLargeTablet ? 420 : 360,
+        ),
+        [cardGap, contentWidth, gridColumns, responsiveLayout.isLargeTablet],
+    );
+    const gridWidth = useMemo(
+        () => (
+            responsiveLayout.isTablet
+                ? Math.min(contentWidth, (tabletCardWidth * gridColumns) + (cardGap * (gridColumns - 1)))
+                : contentWidth
+        ),
+        [cardGap, contentWidth, gridColumns, responsiveLayout.isTablet, tabletCardWidth],
+    );
 
     const KITABY_ITEMS = [
         { id: 'namaz_kitaby_40_parz', title: t('namaz_book.kyrk_parz'), icon: 'list-outline' },
@@ -82,7 +113,7 @@ export default function NamazKitabyScreen() {
             <LinearGradient colors={theme as any} style={StyleSheet.absoluteFill} />
 
             <SafeAreaView style={styles.safeArea}>
-                <View style={styles.header}>
+                <View style={[styles.header, { width: contentWidth, alignSelf: 'center' }]}>
                     <Pressable
                         onPress={() => navigation.goBack()}
                         style={styles.backButton}
@@ -98,27 +129,48 @@ export default function NamazKitabyScreen() {
 
                 <ScrollView
                     style={styles.scrollView}
-                    contentContainerStyle={styles.scrollContent}
+                    contentContainerStyle={[
+                        styles.scrollContent,
+                        { paddingHorizontal: responsiveLayout.horizontalPadding },
+                    ]}
                     showsVerticalScrollIndicator={false}
                 >
-                    {KITABY_ITEMS.map((item, idx) => (
-                        <Pressable
-                            key={item.id}
-                            onPress={() => navigation.navigate('NamazKitabyReader', { contentId: item.id })}
-                            style={({ pressed }) => [
-                                styles.itemCard,
-                                pressed && styles.pressed
+                    <View style={[styles.contentColumn, { width: contentWidth }]}>
+                        <View
+                            style={[
+                                styles.itemsGrid,
+                                responsiveLayout.isTablet && styles.itemsGridTablet,
+                                responsiveLayout.isTablet && {
+                                    width: gridWidth,
+                                    alignSelf: 'center',
+                                },
                             ]}
                         >
-                            <View style={styles.numberBadge}>
-                                <Ionicons name={item.icon as any} size={18} color={COLORS.gold} />
-                            </View>
-                            <Text style={styles.itemTitle}>{item.title}</Text>
-                            <Ionicons name="chevron-forward" size={18} color={COLORS.gold} />
-                        </Pressable>
-                    ))}
+                            {KITABY_ITEMS.map((item) => (
+                                <Pressable
+                                    key={item.id}
+                                    onPress={() => navigation.navigate('NamazKitabyReader', { contentId: item.id })}
+                                    style={({ pressed }) => [
+                                        styles.itemCard,
+                                        responsiveLayout.isTablet && styles.itemCardTablet,
+                                        responsiveLayout.isTablet && {
+                                            width: tabletCardWidth,
+                                            marginBottom: cardGap,
+                                        },
+                                        pressed && styles.pressed,
+                                    ]}
+                                >
+                                    <View style={styles.numberBadge}>
+                                        <Ionicons name={item.icon as any} size={18} color={COLORS.gold} />
+                                    </View>
+                                    <Text style={styles.itemTitle}>{item.title}</Text>
+                                    <Ionicons name="chevron-forward" size={18} color={COLORS.gold} />
+                                </Pressable>
+                            ))}
+                        </View>
 
-                    <View style={{ height: 40 }} />
+                        <View style={{ height: 40 }} />
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         </View>
@@ -167,8 +219,19 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     scrollContent: {
-        padding: 24,
         paddingTop: 10,
+    },
+    contentColumn: {
+        width: '100%',
+        alignSelf: 'center',
+    },
+    itemsGrid: {
+        width: '100%',
+    },
+    itemsGridTablet: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
     },
     itemCard: {
         flexDirection: 'row',
@@ -181,6 +244,10 @@ const styles = StyleSheet.create({
         elevation: 0,
         borderWidth: 1,
         borderColor: COLORS.glassBorder,
+    },
+    itemCardTablet: {
+        minHeight: 92,
+        alignSelf: 'flex-start',
     },
     pressed: {
         opacity: 0.8,

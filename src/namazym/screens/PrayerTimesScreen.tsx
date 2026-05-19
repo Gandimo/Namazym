@@ -55,24 +55,26 @@ export default function PrayerTimesScreen() {
                 </View>
 
                 <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-                    <View style={styles.glassCard}>
-                        {ORDER.map((item, index) => {
-                            const time = (prayerTimes?.timings as any)[item.key];
-                            const isLast = index === ORDER.length - 1;
-                            return (
-                                <Pressable
-                                    key={item.key}
-                                    style={[styles.row, !isLast && styles.rowBorder]}
-                                    onPress={() => navigation.navigate('NamazDetail', { prayerKey: item.key })}
-                                >
-                                    <Text style={styles.label}>{item.label}</Text>
-                                    <View style={styles.right}>
-                                        <Text style={styles.time}>{time}</Text>
-                                        <Ionicons name="chevron-forward" size={16} color="rgba(0,0,0,0.2)" />
-                                    </View>
-                                </Pressable>
-                            );
-                        })}
+                    <View style={styles.contentColumn}>
+                        <View style={styles.glassCard}>
+                            {ORDER.map((item, index) => {
+                                const time = (prayerTimes?.timings as any)[item.key];
+                                const isLast = index === ORDER.length - 1;
+                                return (
+                                    <Pressable
+                                        key={item.key}
+                                        style={[styles.row, !isLast && styles.rowBorder]}
+                                        onPress={() => navigation.navigate('NamazDetail', { prayerKey: item.key })}
+                                    >
+                                        <Text style={styles.label}>{item.label}</Text>
+                                        <View style={styles.right}>
+                                            <Text style={styles.time}>{time}</Text>
+                                            <Ionicons name="chevron-forward" size={16} color="rgba(0,0,0,0.2)" />
+                                        </View>
+                                    </Pressable>
+                                );
+                            })}
+                        </View>
                     </View>
                 </ScrollView>
             </SafeAreaView>
@@ -82,6 +84,8 @@ export default function PrayerTimesScreen() {
 
 const Sheet = StyleSheet;
 
+const TABLET_MAX_WIDTH = 640;
+
 const styles = StyleSheet.create({
     container: { flex: 1 },
     header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12 },
@@ -89,7 +93,8 @@ const styles = StyleSheet.create({
     titleBox: { alignItems: 'center' },
     title: { fontSize: 18, fontWeight: '900', color: '#FFF', letterSpacing: 2 },
     subtitle: { fontSize: 11, color: 'rgba(255,255,255,0.7)', fontWeight: '800', letterSpacing: 4, marginTop: 2 },
-    content: { padding: 24 },
+    content: { padding: 24, alignItems: 'center' },
+    contentColumn: { width: '100%', maxWidth: TABLET_MAX_WIDTH, alignSelf: 'center' },
     glassCard: { backgroundColor: COLORS.glassCard, borderRadius: 28, overflow: 'hidden', shadowOpacity: 0, elevation: 0, borderWidth: 1, borderColor: COLORS.glassBorder },
     row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 24 },
     rowBorder: { borderBottomWidth: 1, borderBottomColor: 'rgba(0,0,0,0.05)' },

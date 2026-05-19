@@ -55,22 +55,24 @@ export default function LegalScreen() {
                 </View>
 
                 <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-                    <View style={styles.glassCard}>
-                        <Text style={styles.legalTitle}>Privacy Policy</Text>
-                        <Text style={styles.legalText}>
-                            {"We value your privacy. This application does not collect any personal data without your explicit consent. All prayer calculation data is processed locally on your device based on your selected city.\n\n"}
-                            {"Namazym App operates strictly as a religious utility tool and does not share your location data with third parties."}
-                        </Text>
+                    <View style={styles.contentColumn}>
+                        <View style={styles.glassCard}>
+                            <Text style={styles.legalTitle}>Privacy Policy</Text>
+                            <Text style={styles.legalText}>
+                                {"We value your privacy. This application does not collect any personal data without your explicit consent. All prayer calculation data is processed locally on your device based on your selected city.\n\n"}
+                                {"Namazym App operates strictly as a religious utility tool and does not share your location data with third parties."}
+                            </Text>
 
-                        <View style={styles.divider} />
+                            <View style={styles.divider} />
 
-                        <Text style={styles.legalTitle}>Terms of Use</Text>
-                        <Text style={styles.legalText}>
-                            {"By using this app, you agree to the terms listed here. All content is for educational and religious purposes only.\n\n"}
-                            {"While we strive for 100% accuracy in prayer times, please verify crucial timings with your local mosque or authority."}
-                        </Text>
+                            <Text style={styles.legalTitle}>Terms of Use</Text>
+                            <Text style={styles.legalText}>
+                                {"By using this app, you agree to the terms listed here. All content is for educational and religious purposes only.\n\n"}
+                                {"While we strive for 100% accuracy in prayer times, please verify crucial timings with your local mosque or authority."}
+                            </Text>
+                        </View>
+                        <View style={{ height: 40 }} />
                     </View>
-                    <View style={{ height: 40 }} />
                 </ScrollView>
             </SafeAreaView>
         </View>
@@ -79,6 +81,8 @@ export default function LegalScreen() {
 
 const Sheet = StyleSheet;
 
+const TABLET_MAX_WIDTH = 640;
+
 const styles = StyleSheet.create({
     container: { flex: 1 },
     header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12 },
@@ -86,7 +90,8 @@ const styles = StyleSheet.create({
     titleBox: { alignItems: 'center' },
     title: { fontSize: 18, fontWeight: '900', color: '#FFF', letterSpacing: 2 },
     subtitle: { fontSize: 11, color: 'rgba(255,255,255,0.7)', fontWeight: '800', letterSpacing: 4, marginTop: 2 },
-    content: { padding: 24 },
+    content: { padding: 24, alignItems: 'center' },
+    contentColumn: { width: '100%', maxWidth: TABLET_MAX_WIDTH, alignSelf: 'center' },
     glassCard: { backgroundColor: COLORS.glassCard, borderRadius: 32, padding: 32, shadowOpacity: 0, elevation: 0, borderWidth: 1, borderColor: COLORS.glassBorder },
     legalTitle: { fontSize: 18, fontWeight: '900', color: COLORS.textPrimary, marginBottom: 16 },
     legalText: { fontSize: 15, color: COLORS.textSecondary, lineHeight: 24, fontWeight: '600' },

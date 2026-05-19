@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import {
     View, Text, StyleSheet, Pressable, StatusBar,
-    ScrollView, LayoutAnimation, Platform, UIManager, Animated, Dimensions
+    ScrollView, LayoutAnimation, Platform, UIManager, Animated, useWindowDimensions
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
@@ -53,6 +53,7 @@ import besWagtEn from '../data/namaz_kitaby/namaz_kitaby_bes_wagt_okalysy_en.jso
 import besWagtRu from '../data/namaz_kitaby/namaz_kitaby_bes_wagt_okalysy_ru.json';
 import besWagtTr from '../data/namaz_kitaby/namaz_kitaby_bes_wagt_okalysy_tr.json';
 import besWagtFr from '../data/namaz_kitaby/namaz_kitaby_bes_wagt_okalysy_fr.json';
+import { getBoundedContentWidth, getResponsiveLayoutMetrics } from '../utils/responsiveLayout';
 
 // Localized versions — Chapters 1-6 (en, ru, fr, tr)
 import parzEn from '../data/namaz_kitaby/namaz_kitaby_40_parz_en.json';
@@ -121,8 +122,6 @@ const LOCALIZED_CONTENT_MAP: Record<string, Record<string, any>> = {
     namaz_kitaby_bes_wagt_okalysy: { en: besWagtEn, ru: besWagtRu, tr: besWagtTr, fr: besWagtFr },
 };
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
-
 const SKY_THEMES = {
     Fajr: ['#4A90E2', '#B8D8F4'],
     Sunrise: ['#FF9E80', '#FBE9E7'],
@@ -188,7 +187,17 @@ export default function NamazKitabyReaderScreen() {
     const route = useRoute<any>();
     const { contentId } = route.params ?? {};
     const { i18n } = useTranslation();
+    const { width } = useWindowDimensions();
     const { prayerTimes } = useCity();
+    const responsiveLayout = useMemo(() => getResponsiveLayoutMetrics(width), [width]);
+    const contentWidth = useMemo(
+        () => getBoundedContentWidth(width, responsiveLayout.horizontalPadding, responsiveLayout.contentMaxWidth),
+        [responsiveLayout.contentMaxWidth, responsiveLayout.horizontalPadding, width],
+    );
+    const readableWidth = useMemo(
+        () => Math.min(contentWidth, responsiveLayout.isTablet ? 760 : contentWidth),
+        [contentWidth, responsiveLayout.isTablet],
+    );
 
     const [fontSize, setFontSize] = useState(18);
     const [lineHeightMult, setLineHeightMult] = useState(1.8);
@@ -420,7 +429,7 @@ export default function NamazKitabyReaderScreen() {
             <LinearGradient colors={bgTheme as any} style={StyleSheet.absoluteFill} />
 
             <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
-                <View style={styles.header}>
+                <View style={[styles.header, { width: contentWidth, alignSelf: 'center' }]}>
                     <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
                         <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
                     </Pressable>
@@ -439,7 +448,7 @@ export default function NamazKitabyReaderScreen() {
                 </View>
 
                 {controlsVisible && (
-                    <View style={styles.controlsPanel}>
+                    <View style={[styles.controlsPanel, { width: readableWidth, alignSelf: 'center' }]}>
                         <View style={styles.themeRow}>
                             {(['light', 'sepia', 'dark'] as const).map((m) => (
                                 <Pressable
@@ -471,13 +480,20 @@ export default function NamazKitabyReaderScreen() {
                     style={[
                         styles.paperContainer,
                         {
+                            width: readableWidth,
                             backgroundColor: theme.bg,
                             opacity: fadeAnim,
                         }
                     ]}
                 >
                     <Animated.ScrollView
-                        contentContainerStyle={styles.scrollContent}
+                        contentContainerStyle={[
+                            styles.scrollContent,
+                            {
+                                paddingHorizontal: responsiveLayout.isTablet ? 36 : 24,
+                                paddingTop: responsiveLayout.isTablet ? 36 : 32,
+                            }
+                        ]}
                         showsVerticalScrollIndicator={true}
                         scrollEventThrottle={16}
                         onScroll={Animated.event(
@@ -519,7 +535,7 @@ const styles = StyleSheet.create({
     progressBarFill: { height: 2 },
     controlsPanel: {
         backgroundColor: 'rgba(255,255,255,0.95)',
-        marginHorizontal: 16, marginBottom: 8,
+        marginBottom: 8,
         borderRadius: 16, padding: 16,
         shadowColor: '#000', shadowOpacity: 0.1, shadowRadius: 12, elevation: 4,
     },
@@ -540,11 +556,12 @@ const styles = StyleSheet.create({
     },
     stepValue: { fontSize: 16, fontWeight: '700', color: '#1A1A1A', minWidth: 24, textAlign: 'center' },
     paperContainer: {
-        flex: 1, marginHorizontal: 12, marginBottom: 8,
+        flex: 1, marginBottom: 8,
         borderRadius: 20, overflow: 'hidden',
         shadowColor: '#000', shadowOpacity: 0.08, shadowRadius: 16, elevation: 4,
+        alignSelf: 'center',
     },
-    scrollContent: { paddingHorizontal: 24, paddingTop: 32, paddingBottom: 48 },
+    scrollContent: { paddingBottom: 48 },
     headingBox: { alignItems: 'center', marginBottom: 8 },
     mainHeading: { fontSize: 13, fontWeight: '900', letterSpacing: 3, textAlign: 'center' },
     subheadingBox: { alignItems: 'center', marginBottom: 28, marginTop: 8 },

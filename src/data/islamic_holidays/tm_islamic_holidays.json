@@ -1,61 +1,300 @@
 {
-    "years": {
-        "2026": [
+  "title": "Yslam baýramlary",
+  "subtitle": "Türkmenistan diyanet işleri tablosy",
+  "years": [
+    {
+      "year": 2026,
+      "months": [
+        {
+          "month": "Ýanwar",
+          "items": [
             {
-                "id": "miraj",
-                "title": "Magray gijesi",
-                "date_gregorian": "2026-01-15",
-                "date_hijri": "26 Rejep 1447 AH"
-            },
-            {
-                "id": "baraat",
-                "title": "Beragat gijesi",
-                "date_gregorian": "2026-02-02",
-                "date_hijri": "14 Meret 1447 AH"
-            },
-            {
-                "id": "ramadan_start",
-                "title": "Orazanyň başlanmagy",
-                "date_gregorian": "2026-02-18",
-                "date_hijri": "1 Oraz 1447 AH"
-            },
-            {
-                "id": "qadr",
-                "title": "Gadyr gijesi",
-                "date_gregorian": "2026-03-15",
-                "date_hijri": "26 Oraz 1447 AH"
-            },
-            {
-                "id": "eid_fitr",
-                "title": "Oraza baýramy",
-                "date_gregorian": "2026-03-20",
-                "date_hijri": "1 Baýram 1447 AH"
-            },
-            {
-                "id": "eid_adha",
-                "title": "Gurban baýramy",
-                "date_gregorian": "2026-05-27",
-                "date_hijri": "10 Gurban 1447 AH"
-            },
-            {
-                "id": "hijri_new_year",
-                "title": "Hijri täze ýyl",
-                "date_gregorian": "2026-06-16",
-                "date_hijri": "1 Aşyr 1448 AH"
-            },
-            {
-                "id": "ashura",
-                "title": "Aşura güni",
-                "date_gregorian": "2026-06-25",
-                "date_hijri": "10 Aşyr 1448 AH"
-            },
-            {
-                "id": "mawlid",
-                "title": "Möwlit gijesi",
-                "date_gregorian": "2026-08-24",
-                "date_hijri": "11 Tirkesik 1448 AH"
+              "day": 15,
+              "month_short": "Ýan",
+              "title": "Magraj gijesi (Lailat al Miraj)",
+              "hijri": "26 Rejep 1447 AH",
+              "relative": "62 gün öň"
             }
-        ],
-        "2027": []
+          ]
+        },
+        {
+          "month": "Fewral",
+          "items": [
+            {
+              "day": 2,
+              "month_short": "Few",
+              "title": "Beragat gijesi (Lailat al Bara'a)",
+              "hijri": "14 Meret 1447 AH",
+              "relative": "44 gün öň"
+            },
+            {
+              "day": 18,
+              "month_short": "Few",
+              "title": "Oraza aýynyň başlanmagy (Ramadan)",
+              "hijri": "1 Oraza 1447 AH",
+              "relative": "28 gün öň"
+            }
+          ]
+        },
+        {
+          "month": "Mart",
+          "items": [
+            {
+              "day": 15,
+              "month_short": "Mart",
+              "title": "Gadyr gijesi (Laylat al-Qadr)",
+              "hijri": "26 Oraza 1447 AH",
+              "relative": "3 gün öň"
+            },
+            {
+              "day": 20,
+              "month_short": "Mart",
+              "title": "Oraza baýramy (Chaand Raat)",
+              "hijri": "1 Baýram 1447 AH",
+              "relative": "1 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Maý",
+          "items": [
+            {
+              "day": 27,
+              "month_short": "Maý",
+              "title": "Gurban baýramy (Eid al-Adha)",
+              "hijri": "10 Gurban 1447 AH",
+              "relative": "69 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Iýun",
+          "items": [
+            {
+              "day": 16,
+              "month_short": "Iýun",
+              "title": "Hijri täze ýyly (Al-Hijra)",
+              "hijri": "1 Aşyr 1448 AH",
+              "relative": "89 gün galdy"
+            },
+            {
+              "day": 25,
+              "month_short": "Iýun",
+              "title": "Aşura güni (Ashura)",
+              "hijri": "10 Aşyr 1448 AH",
+              "relative": "98 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Awgust",
+          "items": [
+            {
+              "day": 24,
+              "month_short": "Awg",
+              "title": "Möwlit gijesi (Mawlid-al Nabi)",
+              "hijri": "11 4 Tirkeşik 1448 AH",
+              "relative": "158 gün galdy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2027,
+      "months": [
+        {
+          "month": "Ýanwar",
+          "items": [
+            {
+              "day": 4,
+              "month_short": "Ýan",
+              "title": "Magraj gijesi (Lailat al Miraj)",
+              "hijri": "26 Rejep 1448 AH",
+              "relative": "291 gün galdy"
+            },
+            {
+              "day": 22,
+              "month_short": "Ýan",
+              "title": "Beragat gijesi (Lailat al Bara'a)",
+              "hijri": "14 Meret 1448 AH",
+              "relative": "309 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Fewral",
+          "items": [
+            {
+              "day": 8,
+              "month_short": "Few",
+              "title": "Oraza aýynyň başlanmagy (Ramadan)",
+              "hijri": "1 Oraza 1448 AH",
+              "relative": "326 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Mart",
+          "items": [
+            {
+              "day": 5,
+              "month_short": "Mart",
+              "title": "Gadyr gijesi (Laylat al-Qadr)",
+              "hijri": "26 Oraza 1448 AH",
+              "relative": "351 gün galdy"
+            },
+            {
+              "day": 9,
+              "month_short": "Mart",
+              "title": "Oraza baýramy (Chaand Raat)",
+              "hijri": "1 Baýram 1448 AH",
+              "relative": "355 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Maý",
+          "items": [
+            {
+              "day": 16,
+              "month_short": "Maý",
+              "title": "Gurban baýramy (Eid al-Adha)",
+              "hijri": "10 Gurban 1448 AH",
+              "relative": "423 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Iýun",
+          "items": [
+            {
+              "day": 6,
+              "month_short": "Iýun",
+              "title": "Hijri täze ýyly (Al-Hijra)",
+              "hijri": "1 Aşyr 1449 AH",
+              "relative": "444 gün galdy"
+            },
+            {
+              "day": 15,
+              "month_short": "Iýun",
+              "title": "Aşura güni (Ashura)",
+              "hijri": "10 Aşyr 1449 AH",
+              "relative": "453 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Awgust",
+          "items": [
+            {
+              "day": 13,
+              "month_short": "Awg",
+              "title": "Möwlit gijesi (Mawlid-al Nabi)",
+              "hijri": "11 4 Tirkeşik 1449 AH",
+              "relative": "512 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Dekabr",
+          "items": [
+            {
+              "day": 13,
+              "month_short": "Dek",
+              "title": "Magraj gijesi (Lailat al Miraj)",
+              "hijri": "26 Rejep 1450 AH",
+              "relative": "1000 gün galdy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "year": 2028,
+      "months": [
+        {
+          "month": "Ýanwar",
+          "items": [
+            {
+              "day": 11,
+              "month_short": "Ýan",
+              "title": "Beragat gijesi (Lailat al Bara'a)",
+              "hijri": "14 Meret 1449 AH",
+              "relative": "663 gün galdy"
+            },
+            {
+              "day": 28,
+              "month_short": "Ýan",
+              "title": "Oraza aýynyň başlanmagy (Ramadan)",
+              "hijri": "1 Oraza 1449 AH",
+              "relative": "680 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Fewral",
+          "items": [
+            {
+              "day": 22,
+              "month_short": "Few",
+              "title": "Gadyr gijesi (Laylat al-Qadr)",
+              "hijri": "26 Oraza 1449 AH",
+              "relative": "705 gün galdy"
+            },
+            {
+              "day": 26,
+              "month_short": "Few",
+              "title": "Oraza baýramy (Chaand Raat)",
+              "hijri": "1 Baýram 1449 AH",
+              "relative": "709 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Maý",
+          "items": [
+            {
+              "day": 5,
+              "month_short": "Maý",
+              "title": "Gurban baýramy (Eid al-Adha)",
+              "hijri": "10 Gurban 1449 AH",
+              "relative": "778 gün galdy"
+            },
+            {
+              "day": 25,
+              "month_short": "Maý",
+              "title": "Hijri täze ýyly (Al-Hijra)",
+              "hijri": "1 Aşyr 1450 AH",
+              "relative": "798 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Iýun",
+          "items": [
+            {
+              "day": 3,
+              "month_short": "Iýun",
+              "title": "Aşura güni (Ashura)",
+              "hijri": "10 Aşyr 1450 AH",
+              "relative": "807 gün galdy"
+            }
+          ]
+        },
+        {
+          "month": "Awgust",
+          "items": [
+            {
+              "day": 2,
+              "month_short": "Awg",
+              "title": "Möwlit gijesi (Mawlid-al Nabi)",
+              "hijri": "11 4 Tirkeşik 1450 AH",
+              "relative": "867 gün galdy"
+            }
+          ]
+        }
+      ]
     }
+  ]
 }

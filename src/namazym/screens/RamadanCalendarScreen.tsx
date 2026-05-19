@@ -60,31 +60,29 @@ export default function RamadanCalendarScreen() {
     const theme = SKY_THEMES[currentPrayer as keyof typeof SKY_THEMES] || SKY_THEMES.Dhuhr;
 
     const renderItem = ({ item, index }: any) => (
-        <View style={styles.card}>
-            <View style={styles.dayBadge}>
-                <Text style={styles.dayText}>{item.day || (index + 1)}</Text>
+        <View style={styles.itemWrapper}>
+            <View style={styles.card}>
+                <View style={styles.dayBadge}>
+                    <Text style={styles.dayText}>{item.day || (index + 1)}</Text>
+                </View>
+                <View style={styles.timeInfo}>
+                    <View style={styles.timeItem}>
+                        <Text style={styles.timeLabel}>{t('ramadan.sahur').toUpperCase()}</Text>
+                        <Text style={styles.timeValue}>{item.imsak}</Text>
+                    </View>
+                    <View style={styles.vDivider} />
+                    <View style={styles.timeItem}>
+                        <Text style={styles.timeLabel}>{t('ramadan.iftar').toUpperCase()}</Text>
+                        <Text style={styles.timeValue}>{item.iftar}</Text>
+                    </View>
+                </View>
+                <Text style={styles.dateText}>{item.date}</Text>
+                {item.note && (
+                    <View style={styles.noteContainer}>
+                        <Text style={styles.noteText}>{item.note}</Text>
+                    </View>
+                )}
             </View>
-            <View style={styles.timeInfo}>
-                <View style={styles.timeItem}>
-                    <Text style={styles.timeLabel}>{t('ramadan.sahur').toUpperCase()}</Text>
-                    {/* ✅ YENİ: item.f → item.imsak */}
-                    <Text style={styles.timeValue}>{item.imsak}</Text>
-                </View>
-                <View style={styles.vDivider} />
-                <View style={styles.timeItem}>
-                    <Text style={styles.timeLabel}>{t('ramadan.iftar').toUpperCase()}</Text>
-                    {/* ✅ YENİ: item.a → item.iftar */}
-                    <Text style={styles.timeValue}>{item.iftar}</Text>
-                </View>
-            </View>
-            {/* ✅ YENİ: Tarih formatı item.dt → item.date */}
-            <Text style={styles.dateText}>{item.date}</Text>
-            {/* ✅ YENİ: Özel notları göster (Kadir Gecesi, Bayram) */}
-            {item.note && (
-                <View style={styles.noteContainer}>
-                    <Text style={styles.noteText}>{item.note}</Text>
-                </View>
-            )}
         </View>
     );
 
@@ -116,6 +114,8 @@ export default function RamadanCalendarScreen() {
         </View>
     );
 }
+
+const TABLET_MAX_WIDTH = 680;
 
 const styles = StyleSheet.create({
     container: { flex: 1 },
@@ -155,7 +155,8 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         marginTop: 4
     },
-    list: { padding: 24, paddingTop: 10 },
+    list: { padding: 24, paddingTop: 10, alignItems: 'center' },
+    itemWrapper: { width: '100%', maxWidth: TABLET_MAX_WIDTH, alignSelf: 'center' },
     card: {
         flexDirection: 'row',
         alignItems: 'center',

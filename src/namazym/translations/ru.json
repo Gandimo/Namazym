@@ -36,7 +36,9 @@
     },
     "settings": {
         "notifications": "Уведомления",
-        "prayer_reminder": "Напоминание (15 мин)",
+        "juma_reminder": "Напоминание о джума",
+        "prayer_reminder": "Уведомления о намазе",
+        "notification_lead_time": "Время напоминания о намазе",
         "daily_content": "Аят и Хадис дня",
         "sound_preference": "Звуковые настройки",
         "extras": "Дополнительно",

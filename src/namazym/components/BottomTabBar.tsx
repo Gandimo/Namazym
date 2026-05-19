@@ -1,7 +1,7 @@
 /**
  * BottomTabBar — Spiritual Quiet Luxury Navigation
  *
- * 4 Tabs: Pusula · Kuran · Dogalar · Namaz Kitaby
+ * 4 Tabs: Kybla ugruny tap · Kuran · Dogalar · Namaz Kitaby
  *
  * Design Spec:
  *  - Warm off-white frosted panel (no expo-blur dependency)
@@ -31,7 +31,7 @@ const BAR_BG = Platform.select({
 const TABS = [
     {
         key: 'Kybla',
-        label: 'Pusula',
+        label: 'Kybla ugruny tap',
         Icon: QiblaIcon,
     },
     {

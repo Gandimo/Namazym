@@ -1,12 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Pressable, Dimensions, Platform } from 'react-native';
+import { View, StyleSheet, Pressable, Platform, useWindowDimensions } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { Feather, Ionicons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { tokens2026 } from '../theme/tokens2026';
 import { BookIcon, BeadsIcon, MosqueIcon } from './icons';
-
-const { width } = Dimensions.get('window');
+import { getResponsiveLayoutMetrics } from '../utils/responsiveLayout';
 
 interface NavItem {
     id: string;
@@ -19,13 +18,29 @@ interface NavItem {
 const NAV_ITEMS: NavItem[] = [
     { id: 'Home', icon: 'home', library: 'Feather', label: 'Ana' },
     { id: 'QuranMain', icon: 'book', library: 'Feather', label: 'Gurhan', customIcon: BookIcon },
-    { id: 'TasbihScreen', icon: 'activity', library: 'Feather', label: 'Tasbih', customIcon: BeadsIcon },
+    { id: 'TasbihScreen', icon: 'activity', library: 'Feather', label: 'Tesbih', customIcon: BeadsIcon },
     { id: 'Metjitler', icon: 'business-outline', library: 'Ionicons', label: 'Metjit', customIcon: MosqueIcon },
 ];
 
 export const PillNavigationBar = ({ navigation, activeRoute = 'Home' }: any) => {
+    const { width } = useWindowDimensions();
+    const responsiveLayout = React.useMemo(() => getResponsiveLayoutMetrics(width), [width]);
+    const navWidth = Math.min(width - (responsiveLayout.horizontalPadding * 2), responsiveLayout.navigationMaxWidth);
+    const navHeight = responsiveLayout.isTablet ? 78 : 70;
+
     return (
-        <View style={[styles.container, tokens2026.elevation.soft]}>
+        <View
+            style={[
+                styles.container,
+                tokens2026.elevation.soft,
+                {
+                    width: navWidth,
+                    height: navHeight,
+                    borderRadius: navHeight / 2,
+                    bottom: Platform.OS === 'ios' ? (responsiveLayout.isTablet ? 48 : 40) : (responsiveLayout.isTablet ? 34 : 30),
+                },
+            ]}
+        >
             <BlurView
                 intensity={tokens2026.glass.blurRadius}
                 tint="dark"
@@ -33,7 +48,7 @@ export const PillNavigationBar = ({ navigation, activeRoute = 'Home' }: any) => 
             />
             <View style={[StyleSheet.absoluteFill, { backgroundColor: tokens2026.colors.surface.glass }]} />
 
-            <View style={styles.navContent}>
+            <View style={[styles.navContent, responsiveLayout.isTablet && styles.navContentTablet]}>
                 {NAV_ITEMS.map((item) => {
                     const isActive = activeRoute === item.id;
                     const IconComponent = item.library === 'Feather' ? Feather : Ionicons;
@@ -45,18 +60,18 @@ export const PillNavigationBar = ({ navigation, activeRoute = 'Home' }: any) => 
                                 Haptics.selectionAsync();
                                 navigation.navigate(item.id);
                             }}
-                            style={styles.navItem}
+                            style={[styles.navItem, responsiveLayout.isTablet && styles.navItemTablet]}
                         >
-                            {isActive && <View style={styles.activeIndicator} />}
+                            {isActive && <View style={[styles.activeIndicator, responsiveLayout.isTablet && styles.activeIndicatorTablet]} />}
                             {item.customIcon ? (
                                 <item.customIcon
-                                    size={24}
+                                    size={responsiveLayout.isTablet ? 26 : 24}
                                     color={isActive ? tokens2026.colors.accent : tokens2026.colors.text.secondary}
                                 />
                             ) : (
                                 <IconComponent
                                     name={item.icon as any}
-                                    size={24}
+                                    size={responsiveLayout.isTablet ? 26 : 24}
                                     color={isActive ? tokens2026.colors.accent : tokens2026.colors.text.secondary}
                                 />
                             )}
@@ -71,11 +86,7 @@ export const PillNavigationBar = ({ navigation, activeRoute = 'Home' }: any) => 
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
-        bottom: Platform.OS === 'ios' ? 40 : 30,
-        left: 20,
-        right: 20,
-        height: 70,
-        borderRadius: 35,
+        alignSelf: 'center',
         overflow: 'hidden',
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.05)',
@@ -88,6 +99,9 @@ const styles = StyleSheet.create({
         height: '100%',
         paddingHorizontal: 10,
     },
+    navContentTablet: {
+        paddingHorizontal: 18,
+    },
     navItem: {
         width: 60,
         height: 50,
@@ -95,11 +109,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 25,
     },
+    navItemTablet: {
+        width: 72,
+        height: 56,
+        borderRadius: 28,
+    },
     activeIndicator: {
         position: 'absolute',
         width: 48,
         height: 32,
         borderRadius: 16,
         backgroundColor: 'rgba(111, 168, 255, 0.08)', // Accent Glass
-    }
+    },
+    activeIndicatorTablet: {
+        width: 56,
+        height: 36,
+        borderRadius: 18,
+    },
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import { NotificationService } from '../services/NotificationService';
+import { scheduleDevJumaReminderTestNotification } from '../services/notifications/jumaReminder';
 
 /**
  * Dev-Only Notification Test Screen
@@ -101,6 +102,22 @@ export function NotificationTestScreen() {
         }
     };
 
+    const testJumaReminderNotification = async () => {
+        try {
+            setStatus('Triggering DEV JUMA reminder test...');
+
+            const identifier = await scheduleDevJumaReminderTestNotification();
+            if (!identifier) {
+                setStatus('❌ DEV Juma test not scheduled');
+                return;
+            }
+
+            setStatus('✅ DEV JUMA test scheduled (~1 min)');
+        } catch (error: any) {
+            setStatus(`❌ Error: ${error.message}`);
+        }
+    };
+
     const clearAllNotifications = async () => {
         try {
             await NotificationService.clearAll();
@@ -139,6 +156,11 @@ export function NotificationTestScreen() {
                 <Pressable style={styles.buttonVerse} onPress={testDailyVerseNotification}>
                     <Text style={styles.buttonText}>📖 Test DAILY VERSE</Text>
                     <Text style={styles.buttonSubtext}>Uses REMINDER channel</Text>
+                </Pressable>
+
+                <Pressable style={styles.buttonJuma} onPress={testJumaReminderNotification}>
+                    <Text style={styles.buttonText}>🕌 Test JUMA Reminder</Text>
+                    <Text style={styles.buttonSubtext}>DEV only, fires in about 1 minute</Text>
                 </Pressable>
             </View>
 
@@ -212,6 +234,12 @@ const styles = StyleSheet.create({
     },
     buttonVerse: {
         backgroundColor: '#5A6B7A',
+        padding: 16,
+        borderRadius: 12,
+        marginBottom: 12,
+    },
+    buttonJuma: {
+        backgroundColor: '#6B4F9C',
         padding: 16,
         borderRadius: 12,
         marginBottom: 12,

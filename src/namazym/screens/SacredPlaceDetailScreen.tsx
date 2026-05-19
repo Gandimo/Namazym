@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, StatusBar, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Pressable, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -8,8 +8,6 @@ import { useCity } from '../context/CityContext';
 import { TimeService } from '../services/TimeService';
 import { getCurrentPrayer } from '../utils/prayerUtils';
 import sacredData from '../data/sacred_places_tm.json';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const SKY_THEMES = {
     Fajr: ['#4A90E2', '#B8D8F4'],
@@ -64,29 +62,33 @@ export default function SacredPlaceDetailScreen() {
                 </View>
 
                 <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-                    <View style={styles.mainCard}>
-                        <View style={styles.section}>
-                            <Ionicons name="location" size={20} color={COLORS.gold} />
-                            <Text style={styles.locationText}>{place.location}</Text>
-                        </View>
-
-                        <View style={styles.divider} />
-
-                        <Text style={styles.description}>{place.description}</Text>
-
-                        {place.history && (
-                            <View style={styles.historyBox}>
-                                <Text style={styles.historyTitle}>TARYHY</Text>
-                                <Text style={styles.historyText}>{place.history}</Text>
+                    <View style={styles.contentColumn}>
+                        <View style={styles.mainCard}>
+                            <View style={styles.section}>
+                                <Ionicons name="location" size={20} color={COLORS.gold} />
+                                <Text style={styles.locationText}>{place.location}</Text>
                             </View>
-                        )}
+
+                            <View style={styles.divider} />
+
+                            <Text style={styles.description}>{place.description}</Text>
+
+                            {place.history && (
+                                <View style={styles.historyBox}>
+                                    <Text style={styles.historyTitle}>TARYHY</Text>
+                                    <Text style={styles.historyText}>{place.history}</Text>
+                                </View>
+                            )}
+                        </View>
+                        <View style={{ height: 40 }} />
                     </View>
-                    <View style={{ height: 40 }} />
                 </ScrollView>
             </SafeAreaView>
         </View>
     );
 }
+
+const TABLET_MAX_WIDTH = 680;
 
 const styles = StyleSheet.create({
     container: { flex: 1 },
@@ -95,7 +97,8 @@ const styles = StyleSheet.create({
     titleBox: { alignItems: 'center', flex: 1, paddingHorizontal: 12 },
     title: { fontSize: 16, fontWeight: '900', color: '#FFF', letterSpacing: 1, textAlign: 'center' },
     subtitle: { fontSize: 11, color: 'rgba(255,255,255,0.7)', fontWeight: '800', letterSpacing: 3, marginTop: 2 },
-    content: { padding: 24 },
+    content: { padding: 24, alignItems: 'center' },
+    contentColumn: { width: '100%', maxWidth: TABLET_MAX_WIDTH, alignSelf: 'center' },
     mainCard: { backgroundColor: COLORS.glassCard, borderRadius: 32, padding: 32, shadowOpacity: 0, elevation: 0, borderWidth: 1, borderColor: COLORS.glassBorder },
     section: { flexDirection: 'row', alignItems: 'center', marginBottom: 24, justifyContent: 'center' },
     locationText: { fontSize: 14, fontWeight: '800', color: COLORS.gold, marginLeft: 8, letterSpacing: 0.5 },

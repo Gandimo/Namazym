@@ -37,7 +37,7 @@ export interface SensorHeadingResult {
     sampleCount: number;
 }
 
-const UPDATE_MS = 50; // 20 Hz — good balance of responsiveness vs battery
+const UPDATE_MS = 33; // ~30 Hz — improves responsiveness with modest battery cost
 
 export function useSensorHeading(): SensorHeadingResult {
     const [result, setResult] = useState<SensorHeadingResult>({
@@ -54,7 +54,7 @@ export function useSensorHeading(): SensorHeadingResult {
     const gyroRef = useRef({ x: 0, y: 0, z: 0 });
     const gyroLastTimeRef = useRef<number>(0);
 
-    const smoother = useRef(new CircularEMA(0.22)).current;
+    const smoother = useRef(new CircularEMA(0.30)).current;
     const stabilizer = useRef(new StabilityTracker(20)).current;
     const kalmanFilter = useRef(new KalmanHeadingFilter(0.015, 3.0)).current;
     const fusionEngine = useRef(new HeadingFusion(0.05)).current;
@@ -121,13 +121,13 @@ export function useSensorHeading(): SensorHeadingResult {
                 lastUnwrapped.current = smoothed;
                 initializedRef.current = true;
             } else {
-                // Pipeline Step 4: Micro-jitter guard (ignore changes < 0.6°)
+                // Pipeline Step 4: Micro-jitter guard (ignore changes < 0.4°)
                 const lastSmoothed = (lastUnwrapped.current % 360 + 360) % 360;
                 let delta = smoothed - lastSmoothed;
                 if (delta > 180) delta -= 360;
                 if (delta < -180) delta += 360;
 
-                if (Math.abs(delta) < 0.6) {
+                if (Math.abs(delta) < 0.4) {
                     smoothed = lastSmoothed;
                     delta = 0;
                 }

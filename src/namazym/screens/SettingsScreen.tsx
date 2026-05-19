@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { View, Text, StyleSheet, ScrollView, Pressable, StatusBar, Switch, Platform, Modal, TouchableOpacity, Share } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Pressable, StatusBar, Switch, Platform, Modal, TouchableOpacity, Share, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -12,6 +12,8 @@ import { getCurrentPrayer } from '../utils/prayerUtils';
 import { NotificationStorage, NotificationPreferences } from '../utils/notificationStorage';
 import { NotificationService } from '../services/NotificationService';
 import { ContentLoaderService } from '../services/ContentLoaderService';
+import { cancelScheduledJumaReminders, scheduleWeeklyJumaReminder } from '../services/notifications/jumaReminder';
+import { getBoundedContentWidth, getResponsiveLayoutMetrics } from '../utils/responsiveLayout';
 
 const SKY_THEMES = {
     Fajr: ['#4A90E2', '#B8D8F4'],
@@ -42,7 +44,8 @@ const LANGUAGES = [
 export default function SettingsScreen() {
     const navigation = useNavigation<any>();
     const { t, i18n } = useTranslation();
-    const { prayerTimes, isAutoLocation, toggleAutoLocation } = useCity();
+    const { width } = useWindowDimensions();
+    const { prayerTimes, placeKey, isAutoLocation, toggleAutoLocation } = useCity();
 
     const [lang, setLang] = useState(i18n.language);
     const [prefs, setPrefs] = useState<NotificationPreferences | null>(null);
@@ -84,7 +87,43 @@ export default function SettingsScreen() {
         });
         if (updated) {
             setPrefs(updated);
-            if (prayerTimes) NotificationService.rescheduleAll(prayerTimes);
+            if (prayerTimes) NotificationService.rescheduleAll(prayerTimes, '', placeKey);
+        }
+    };
+
+    const cyclePrayerLeadMinutes = async () => {
+        if (!prefs) return;
+        const options: Array<0 | 5 | 10 | 15> = [0, 5, 10, 15];
+        const currentIdx = options.indexOf(prefs.prayer_notifications.lead_minutes);
+        const nextLead = options[(currentIdx + 1) % options.length];
+        const updated = await NotificationStorage.savePreferences({
+            prayer_notifications: {
+                ...prefs.prayer_notifications,
+                lead_minutes: nextLead,
+            },
+        });
+        if (updated) {
+            setPrefs(updated);
+            if (prayerTimes) NotificationService.rescheduleAll(prayerTimes, '', placeKey);
+        }
+    };
+
+    const togglePrayerType = async (
+        prayer: keyof NotificationPreferences['prayer_notifications']['prayers'],
+    ) => {
+        if (!prefs) return;
+        const updated = await NotificationStorage.savePreferences({
+            prayer_notifications: {
+                ...prefs.prayer_notifications,
+                prayers: {
+                    ...prefs.prayer_notifications.prayers,
+                    [prayer]: !prefs.prayer_notifications.prayers[prayer],
+                },
+            },
+        });
+        if (updated) {
+            setPrefs(updated);
+            if (prayerTimes) NotificationService.rescheduleAll(prayerTimes, '', placeKey);
         }
     };
 
@@ -95,7 +134,27 @@ export default function SettingsScreen() {
         });
         if (updated) {
             setPrefs(updated);
-            if (prayerTimes) NotificationService.rescheduleAll(prayerTimes);
+            if (prayerTimes) NotificationService.rescheduleAll(prayerTimes, '', placeKey);
+        }
+    };
+
+    const toggleJumaReminder = async () => {
+        if (!prefs) return;
+        const updated = await NotificationStorage.savePreferences({
+            juma_reminder: { ...prefs.juma_reminder, enabled: !prefs.juma_reminder.enabled }
+        });
+        if (updated) {
+            setPrefs(updated);
+            if (prayerTimes) {
+                NotificationService.rescheduleAll(prayerTimes, '', placeKey);
+                return;
+            }
+
+            if (updated.juma_reminder.enabled) {
+                await scheduleWeeklyJumaReminder(updated.juma_reminder.hour, updated.juma_reminder.minute);
+            } else {
+                await cancelScheduledJumaReminders();
+            }
         }
     };
 
@@ -104,6 +163,11 @@ export default function SettingsScreen() {
         const p = getCurrentPrayer(TimeService.now(), prayerTimes.timings as any);
         return p ? p.key : 'Dhuhr';
     }, [prayerTimes]);
+    const responsiveLayout = useMemo(() => getResponsiveLayoutMetrics(width), [width]);
+    const contentWidth = useMemo(
+        () => getBoundedContentWidth(width, responsiveLayout.horizontalPadding, responsiveLayout.compactContentMaxWidth),
+        [responsiveLayout.compactContentMaxWidth, responsiveLayout.horizontalPadding, width],
+    );
 
     const theme = SKY_THEMES[currentPrayer as keyof typeof SKY_THEMES] || SKY_THEMES.Dhuhr;
     const currentLangLabel = LANGUAGES.find(l => l.code === lang);
@@ -141,7 +205,7 @@ export default function SettingsScreen() {
             <StatusBar barStyle="light-content" />
             <LinearGradient colors={theme as any} style={StyleSheet.absoluteFill} />
             <SafeAreaView style={{ flex: 1 }}>
-                <View style={styles.header}>
+                <View style={[styles.header, { width: contentWidth, alignSelf: 'center' }]}>
                     <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
                         <PremiumIcon name="chevron-back" size="STANDARD" color="#FFFFFF" interactive onPress={() => navigation.goBack()} />
                     </Pressable>
@@ -152,7 +216,11 @@ export default function SettingsScreen() {
                     <View style={{ width: 40 }} />
                 </View>
 
-                <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+                <ScrollView
+                    contentContainerStyle={[styles.content, { paddingHorizontal: responsiveLayout.horizontalPadding }]}
+                    showsVerticalScrollIndicator={false}
+                >
+                    <View style={[styles.contentColumn, { width: contentWidth }]}>
 
                     {/* GENEL */}
                     <View style={styles.glassCard}>
@@ -167,6 +235,7 @@ export default function SettingsScreen() {
                     {/* BİLDİRİMLER */}
                     <Text style={styles.sectionTitle}>{t('settings.notifications').toUpperCase()}</Text>
                     <View style={styles.glassCard}>
+                        {renderSwitchOption('calendar-outline', t('settings.juma_reminder'), prefs?.juma_reminder.enabled || false, toggleJumaReminder, 'PRAYER_GOLD')}
                         {renderSwitchOption('notifications-outline', t('settings.prayer_reminder'), prefs?.pre_prayer_alert.enabled || false, togglePrayerReminders, 'PRAYER_GOLD')}
                         <Pressable
                             onPress={() => {
@@ -176,7 +245,11 @@ export default function SettingsScreen() {
                                 const next = types[(currentIdx + 1) % types.length];
                                 NotificationStorage.savePreferences({
                                     pre_prayer_alert: { ...prefs.pre_prayer_alert, sound_type: next }
-                                }).then(updated => updated && setPrefs(updated));
+                                }).then(updated => {
+                                    if (!updated) return;
+                                    setPrefs(updated);
+                                    if (prayerTimes) NotificationService.rescheduleAll(prayerTimes, '', placeKey);
+                                });
                             }}
                             style={[styles.option, styles.optionBorder]}
                         >
@@ -192,6 +265,23 @@ export default function SettingsScreen() {
                                 <PremiumIcon name="chevron-forward" size="SMALL" color="rgba(0,0,0,0.3)" />
                             </View>
                         </Pressable>
+                        <Pressable onPress={cyclePrayerLeadMinutes} style={[styles.option, styles.optionBorder]}>
+                            <View style={styles.optionLeft}>
+                                <PremiumIcon name="time-outline" size="STANDARD" color={COLORS.gold} gradient="PRAYER_GOLD" />
+                                <Text style={styles.optionLabel}>{t('settings.notification_lead_time')}</Text>
+                            </View>
+                            <View style={styles.optionRight}>
+                                <Text style={styles.optionValue}>
+                                    {prefs?.prayer_notifications.lead_minutes ?? 15} min
+                                </Text>
+                                <PremiumIcon name="chevron-forward" size="SMALL" color="rgba(0,0,0,0.3)" />
+                            </View>
+                        </Pressable>
+                        {renderSwitchOption('sunny-outline', t('prayer.fajr'), prefs?.prayer_notifications.prayers.fajr || false, () => togglePrayerType('fajr'), 'PRAYER_GOLD')}
+                        {renderSwitchOption('sunny', t('prayer.dhuhr'), prefs?.prayer_notifications.prayers.dhuhr || false, () => togglePrayerType('dhuhr'), 'PRAYER_GOLD')}
+                        {renderSwitchOption('partly-sunny-outline', t('prayer.asr'), prefs?.prayer_notifications.prayers.asr || false, () => togglePrayerType('asr'), 'PRAYER_GOLD')}
+                        {renderSwitchOption('moon-outline', t('prayer.maghrib'), prefs?.prayer_notifications.prayers.maghrib || false, () => togglePrayerType('maghrib'), 'PRAYER_GOLD')}
+                        {renderSwitchOption('moon', t('prayer.isha'), prefs?.prayer_notifications.prayers.isha || false, () => togglePrayerType('isha'), 'PRAYER_GOLD')}
                         {renderSwitchOption('book-outline', t('settings.daily_content'), prefs?.daily_content.enabled || false, toggleDailyContent, 'TIME_CALENDAR', true)}
                     </View>
 
@@ -207,13 +297,14 @@ export default function SettingsScreen() {
                         <Text style={styles.versionText}>NAMAZYM APP V1.1.0</Text>
                         <Text style={styles.copyrightText}>{t('settings.copyright')}</Text>
                     </View>
+                    </View>
                 </ScrollView>
             </SafeAreaView>
 
             {/* DİL SEÇİM MODALI */}
             <Modal visible={langModalVisible} transparent animationType="fade" onRequestClose={() => setLangModalVisible(false)}>
                 <TouchableOpacity style={styles.modalOverlay} activeOpacity={1} onPress={() => setLangModalVisible(false)}>
-                    <View style={styles.modalCard}>
+                    <View style={[styles.modalCard, { width: Math.min(width - 32, responsiveLayout.modalMaxWidth) }]}>
                         <Text style={styles.modalTitle}>{t('common.language')}</Text>
                         {LANGUAGES.map((l) => (
                             <TouchableOpacity
@@ -240,7 +331,8 @@ const styles = StyleSheet.create({
     titleBox: { alignItems: 'center' },
     title: { fontSize: 18, fontWeight: '900', color: '#FFF', letterSpacing: 2 },
     subtitle: { fontSize: 11, color: 'rgba(255,255,255,0.7)', fontWeight: '800', letterSpacing: 4, marginTop: 2 },
-    content: { padding: 24 },
+    content: { paddingVertical: 24 },
+    contentColumn: { width: '100%', alignSelf: 'center' },
     glassCard: { backgroundColor: COLORS.glassCard, borderRadius: 28, overflow: 'hidden', borderWidth: 1, borderColor: COLORS.glassBorder, marginBottom: 32 },
     option: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 20 },
     optionBorder: { borderBottomWidth: 1, borderBottomColor: 'rgba(0,0,0,0.05)' },
@@ -253,7 +345,7 @@ const styles = StyleSheet.create({
     versionText: { fontSize: 11, fontWeight: '900', color: 'rgba(255,255,255,0.5)', letterSpacing: 2 },
     copyrightText: { fontSize: 10, fontWeight: '800', color: 'rgba(255,255,255,0.3)', marginTop: 4, letterSpacing: 1 },
     modalOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
-    modalCard: { backgroundColor: '#fff', borderRadius: 24, padding: 24, width: '80%' },
+    modalCard: { backgroundColor: '#fff', borderRadius: 24, padding: 24 },
     modalTitle: { fontSize: 18, fontWeight: '900', color: COLORS.textPrimary, marginBottom: 16, textAlign: 'center' },
     langOption: { flexDirection: 'row', alignItems: 'center', paddingVertical: 14, paddingHorizontal: 12, borderRadius: 12, marginBottom: 6 },
     langOptionActive: { backgroundColor: 'rgba(196,160,80,0.12)' },

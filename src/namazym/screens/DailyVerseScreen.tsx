@@ -6,7 +6,8 @@ import {
     ScrollView,
     Pressable,
     StatusBar,
-    Platform
+    Platform,
+    Dimensions,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -91,29 +92,33 @@ export default function DailyVerseScreen() {
                     contentContainerStyle={styles.scrollContent}
                     showsVerticalScrollIndicator={false}
                 >
-                    <View style={styles.mainCard}>
-                        <Text style={styles.turkmenText}>{content.ayat.text_tm}</Text>
+                    <View style={styles.contentColumn}>
+                        <View style={styles.mainCard}>
+                            <Text style={styles.turkmenText}>{content.ayat.text_tm}</Text>
 
-                        <View style={styles.divider} />
+                            <View style={styles.divider} />
 
-                        <View style={styles.referenceContainer}>
-                            <Ionicons name="bookmark" size={16} color={COLORS.gold} />
-                            <Text style={styles.referenceText}>{content.ayat.reference}</Text>
+                            <View style={styles.referenceContainer}>
+                                <Ionicons name="bookmark" size={16} color={COLORS.gold} />
+                                <Text style={styles.referenceText}>{content.ayat.reference}</Text>
+                            </View>
                         </View>
-                    </View>
 
-                    <View style={styles.hadithSmallCard}>
-                        <Text style={styles.smallCardTitle}>GÜNÜŇ HADYŞY</Text>
-                        <Text numberOfLines={6} style={styles.smallCardText}>{content.hadith.text_tm}</Text>
-                        <Text style={styles.smallCardRef}>{content.hadith.source}</Text>
-                    </View>
+                        <View style={styles.hadithSmallCard}>
+                            <Text style={styles.smallCardTitle}>GÜNÜŇ HADYŞY</Text>
+                            <Text numberOfLines={6} style={styles.smallCardText}>{content.hadith.text_tm}</Text>
+                            <Text style={styles.smallCardRef}>{content.hadith.source}</Text>
+                        </View>
 
-                    <View style={{ height: 40 }} />
+                        <View style={{ height: 40 }} />
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         </View>
     );
 }
+
+const TABLET_MAX_WIDTH = 680;
 
 const styles = StyleSheet.create({
     container: { flex: 1 },
@@ -130,7 +135,12 @@ const styles = StyleSheet.create({
     titleContainer: { alignItems: 'center' },
     headerTitle: { fontSize: 18, fontWeight: '800', color: '#FFFFFF', letterSpacing: 2 },
     headerSubtitle: { fontSize: 11, color: 'rgba(255, 255, 255, 0.7)', fontWeight: '700', letterSpacing: 3, marginTop: 2 },
-    scrollContent: { padding: 24, paddingTop: 10 },
+    scrollContent: { padding: 24, paddingTop: 10, alignItems: 'center' },
+    contentColumn: {
+        width: '100%',
+        maxWidth: TABLET_MAX_WIDTH,
+        alignSelf: 'center',
+    },
     mainCard: {
         backgroundColor: COLORS.glassCard,
         borderRadius: 32,

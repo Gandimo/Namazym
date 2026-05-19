@@ -36,7 +36,9 @@
     },
     "settings": {
         "notifications": "Notifications",
-        "prayer_reminder": "Prayer Reminder (15 min)",
+        "juma_reminder": "Friday Reminder",
+        "prayer_reminder": "Prayer Notifications",
+        "notification_lead_time": "Prayer Lead Time",
         "daily_content": "Daily Verse & Hadith",
         "sound_preference": "Sound Preference",
         "extras": "Extras",

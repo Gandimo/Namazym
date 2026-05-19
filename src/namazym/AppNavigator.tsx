@@ -38,8 +38,6 @@ export const navigationRef = createNavigationContainerRef();
 
 import { PremiumProvider } from "./context/PremiumContext";
 
-import OnboardingScreen from "./screens/OnboardingScreen";
-import { StorageService } from "./services/StorageService";
 import { View, ActivityIndicator, Platform } from "react-native";
 import { colors } from "./theme/colors";
 
@@ -75,6 +73,9 @@ export function AppNavigator() {
                         nav.navigate('Home');
                         // Trigger foreground audio
                         AudioPlayerService.playFullAzan();
+                        break;
+                    case 'juma_reminder':
+                        nav.navigate('Home');
                         break;
                     default:
                         console.log('[NotificationRouting] Unknown type:', data.type);
@@ -136,7 +137,6 @@ export function AppNavigator() {
                         <Stack.Screen name="NamazLearnDetail" component={NamazLearnDetailScreen} />
                         <Stack.Screen name="DogaDetail" component={DogaDetailScreen} />
                         <Stack.Screen name="Legal" component={LegalScreen} />
-                        <Stack.Screen name="Onboarding" component={OnboardingScreen} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </CityProvider>

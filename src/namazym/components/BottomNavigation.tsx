@@ -5,14 +5,12 @@ import {
     StyleSheet,
     Pressable,
     Animated,
-    Dimensions,
-    Platform,
+    useWindowDimensions,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { VAKIT_PALETTES, VAKIT_TO_PALETTE } from '../theme/colors';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+import { getResponsiveLayoutMetrics } from '../utils/responsiveLayout';
 
 const GOLD = '#C9A84C';
 const INACTIVE_LIGHT = 'rgba(0,0,0,0.35)';
@@ -69,16 +67,26 @@ export function BottomNavigation({
     next?: any,
 }) {
     const insets = useSafeAreaInsets();
+    const { width } = useWindowDimensions();
+    const responsiveLayout = React.useMemo(() => getResponsiveLayoutMetrics(width), [width]);
+    const navWidth = Math.min(width - (responsiveLayout.horizontalPadding * 2), responsiveLayout.navigationMaxWidth);
+    const navHeight = responsiveLayout.isTablet ? 72 : 64;
 
     // Check if it's night mode based on next prayer
     const isNight = next?.key === 'Fajr' || next?.key === 'Isha' || next?.key === 'Sunrise';
 
     return (
-        <View style={styles.outerContainer}>
+        <View style={[styles.outerContainer, { bottom: responsiveLayout.isTablet ? 30 : 24 }]}>
             <View
                 style={[
                     styles.container,
-                    isNight ? styles.containerNight : styles.containerLight
+                    isNight ? styles.containerNight : styles.containerLight,
+                    {
+                        width: navWidth,
+                        height: navHeight,
+                        borderRadius: navHeight / 2,
+                        paddingHorizontal: responsiveLayout.isTablet ? 14 : 8,
+                    },
                 ]}
             >
                 {NAVIGATION_ITEMS.map((item) => (
@@ -88,6 +96,7 @@ export function BottomNavigation({
                         isActive={activeId === item.id}
                         onPress={() => navigation.navigate(item.destination, item.params)}
                         isNight={isNight}
+                        isTablet={responsiveLayout.isTablet}
                     />
                 ))}
             </View>
@@ -95,21 +104,22 @@ export function BottomNavigation({
     );
 }
 
-function NavItem({ item, isActive, onPress, isNight }: {
+function NavItem({ item, isActive, onPress, isNight, isTablet }: {
     item: NavigationItem,
     isActive: boolean,
     onPress: () => void,
-    isNight: boolean
+    isNight: boolean,
+    isTablet: boolean,
 }) {
     const iconColor = isActive ? GOLD : (isNight ? INACTIVE_DARK : INACTIVE_LIGHT);
 
     return (
         <Pressable onPress={onPress} style={styles.navItem}>
             <View style={{ alignItems: 'center' }}>
-                <View style={styles.iconWrapper}>
+                <View style={[styles.iconWrapper, isTablet && styles.iconWrapperTablet]}>
                     <Ionicons
                         name={isActive ? (item.icon as any) : (`${item.icon}-outline` as any)}
-                        size={24}
+                        size={isTablet ? 26 : 24}
                         color={iconColor}
                     />
                 </View>
@@ -132,13 +142,9 @@ const styles = StyleSheet.create({
         zIndex: 1000,
     },
     container: {
-        width: '85%', // Pill width
-        height: 64,
-        borderRadius: 32,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        paddingHorizontal: 8,
         borderWidth: 1,
         // Glassmorphism shadows (Strong shadow spec)
         shadowColor: "#000000",
@@ -166,6 +172,10 @@ const styles = StyleSheet.create({
         height: 32,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    iconWrapperTablet: {
+        width: 36,
+        height: 36,
     },
     activeIndicator: {
         width: 4,

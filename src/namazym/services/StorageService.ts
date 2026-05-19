@@ -19,13 +19,4 @@ export class StorageService {
     static async getPlaceLabel(): Promise<string | null> {
         return await AsyncStorage.getItem(PLACE_LABEL);
     }
-
-    static async setOnboardingCompleted(completed: boolean): Promise<void> {
-        await AsyncStorage.setItem('onboarding_completed', completed ? 'true' : 'false');
-    }
-
-    static async getOnboardingCompleted(): Promise<boolean> {
-        const value = await AsyncStorage.getItem('onboarding_completed');
-        return value === 'true';
-    }
 }

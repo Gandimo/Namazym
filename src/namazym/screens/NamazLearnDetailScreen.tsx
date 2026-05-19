@@ -6,7 +6,7 @@ import {
     Pressable,
     StatusBar,
     ScrollView,
-    Dimensions
+    useWindowDimensions
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -17,8 +17,7 @@ import { useCity } from '../context/CityContext';
 import { TimeService } from '../services/TimeService';
 import { getCurrentPrayer } from '../utils/prayerUtils';
 import namazLearnData from '../data/learn/namaz_learn_tm.json';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+import { getBoundedContentWidth, getResponsiveLayoutMetrics } from '../utils/responsiveLayout';
 
 const SKY_THEMES = {
     Fajr: ['#4A90E2', '#B8D8F4'],
@@ -39,9 +38,19 @@ const COLORS = {
 };
 
 export default function NamazLearnDetailScreen({ route, navigation }: { route: any; navigation: any }) {
+    const { width } = useWindowDimensions();
     const { gender } = route.params as { gender: 'male' | 'female' };
     const { prayerTimes } = useCity();
     const [activeTab, setActiveTab] = useState<'taret' | 'namazOkalysy'>('taret');
+    const responsiveLayout = useMemo(() => getResponsiveLayoutMetrics(width), [width]);
+    const contentWidth = useMemo(
+        () => getBoundedContentWidth(width, responsiveLayout.horizontalPadding, responsiveLayout.contentMaxWidth),
+        [responsiveLayout.contentMaxWidth, responsiveLayout.horizontalPadding, width],
+    );
+    const readableWidth = useMemo(
+        () => Math.min(contentWidth, responsiveLayout.isTablet ? 760 : contentWidth),
+        [contentWidth, responsiveLayout.isTablet],
+    );
 
     const data = (namazLearnData as any)[gender];
     const taretData = data.tabs.taret;
@@ -63,7 +72,7 @@ export default function NamazLearnDetailScreen({ route, navigation }: { route: a
             <LinearGradient colors={theme as any} style={StyleSheet.absoluteFill} />
 
             <SafeAreaView style={styles.safeArea}>
-                <View style={styles.header}>
+                <View style={[styles.header, { width: contentWidth, alignSelf: 'center' }]}>
                     <Pressable
                         onPress={() => navigation.goBack()}
                         style={styles.backButton}
@@ -77,8 +86,15 @@ export default function NamazLearnDetailScreen({ route, navigation }: { route: a
                     <View style={{ width: 40 }} />
                 </View>
 
-                <View style={styles.tabContainer}>
-                    <View style={styles.tabGlass}>
+                <View
+                    style={[
+                        styles.tabContainer,
+                        {
+                            paddingHorizontal: responsiveLayout.horizontalPadding,
+                        },
+                    ]}
+                >
+                    <View style={[styles.tabGlass, { width: readableWidth, alignSelf: 'center' }]}>
                         <Pressable
                             style={[styles.tab, activeTab === 'taret' && styles.tabActive]}
                             onPress={() => setActiveTab('taret')}
@@ -96,52 +112,71 @@ export default function NamazLearnDetailScreen({ route, navigation }: { route: a
 
                 <ScrollView
                     style={styles.scrollView}
-                    contentContainerStyle={styles.scrollContent}
+                    contentContainerStyle={[
+                        styles.scrollContent,
+                        {
+                            paddingHorizontal: responsiveLayout.horizontalPadding,
+                        },
+                    ]}
                     showsVerticalScrollIndicator={false}
                 >
-                    <Text style={styles.sectionTitle}>{currentData.stepsTitle.toUpperCase()}</Text>
+                    <View style={[styles.contentColumn, { width: readableWidth }]}>
+                        <Text style={styles.sectionTitle}>{currentData.stepsTitle.toUpperCase()}</Text>
 
-                    {currentData.steps.map((step: any) => (
-                        <View key={step.no} style={styles.stepCard}>
-                            <View style={styles.stepHeader}>
-                                <View style={styles.stepBadge}>
-                                    <Text style={styles.stepBadgeText}>{step.no}</Text>
-                                </View>
-                                <Text style={styles.stepTitle}>{step.title}</Text>
-                            </View>
-                            <Text style={styles.stepText}>{step.text}</Text>
-                        </View>
-                    ))}
-
-                    {activeTab === 'namazOkalysy' && namazData.rakats && (
-                        <View style={styles.rakatsSection}>
-                            <Text style={styles.sectionTitle}>{namazData.rakatsTitle.toUpperCase()}</Text>
-                            <Text style={styles.sectionSubtitle}>{namazData.rakatsIntro}</Text>
-
-                            {namazData.rakats.map((rakat: any) => (
-                                <View key={rakat.key} style={styles.rakatCard}>
-                                    <View style={styles.rakatHeader}>
-                                        <Text style={styles.rakatTitle}>{rakat.title}</Text>
-                                        <View style={styles.totalBadge}>
-                                            <Text style={styles.totalBadgeText}>{rakat.total}</Text>
-                                        </View>
+                        {currentData.steps.map((step: any) => (
+                            <View
+                                key={step.no}
+                                style={[
+                                    styles.stepCard,
+                                    responsiveLayout.isTablet && styles.stepCardTablet,
+                                ]}
+                            >
+                                <View style={styles.stepHeader}>
+                                    <View style={styles.stepBadge}>
+                                        <Text style={styles.stepBadgeText}>{step.no}</Text>
                                     </View>
-
-                                    {rakat.parts.map((part: any, idx: number) => (
-                                        <View key={idx} style={styles.rakatPart}>
-                                            <View style={styles.rakatPartHeader}>
-                                                <Ionicons name="checkmark-circle" size={16} color={COLORS.gold} />
-                                                <Text style={styles.rakatPartTitle}>{part.title}</Text>
-                                            </View>
-                                            <Text style={styles.rakatPartText}>{part.text}</Text>
-                                        </View>
-                                    ))}
+                                    <Text style={styles.stepTitle}>{step.title}</Text>
                                 </View>
-                            ))}
-                        </View>
-                    )}
+                                <Text style={styles.stepText}>{step.text}</Text>
+                            </View>
+                        ))}
 
-                    <View style={{ height: 40 }} />
+                        {activeTab === 'namazOkalysy' && namazData.rakats && (
+                            <View style={styles.rakatsSection}>
+                                <Text style={styles.sectionTitle}>{namazData.rakatsTitle.toUpperCase()}</Text>
+                                <Text style={styles.sectionSubtitle}>{namazData.rakatsIntro}</Text>
+
+                                {namazData.rakats.map((rakat: any) => (
+                                    <View
+                                        key={rakat.key}
+                                        style={[
+                                            styles.rakatCard,
+                                            responsiveLayout.isTablet && styles.rakatCardTablet,
+                                        ]}
+                                    >
+                                        <View style={styles.rakatHeader}>
+                                            <Text style={styles.rakatTitle}>{rakat.title}</Text>
+                                            <View style={styles.totalBadge}>
+                                                <Text style={styles.totalBadgeText}>{rakat.total}</Text>
+                                            </View>
+                                        </View>
+
+                                        {rakat.parts.map((part: any, idx: number) => (
+                                            <View key={idx} style={styles.rakatPart}>
+                                                <View style={styles.rakatPartHeader}>
+                                                    <Ionicons name="checkmark-circle" size={16} color={COLORS.gold} />
+                                                    <Text style={styles.rakatPartTitle}>{part.title}</Text>
+                                                </View>
+                                                <Text style={styles.rakatPartText}>{part.text}</Text>
+                                            </View>
+                                        ))}
+                                    </View>
+                                ))}
+                            </View>
+                        )}
+
+                        <View style={{ height: 40 }} />
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         </View>
@@ -187,7 +222,6 @@ const styles = StyleSheet.create({
         marginTop: 2,
     },
     tabContainer: {
-        paddingHorizontal: 24,
         marginTop: 10,
     },
     tabGlass: {
@@ -218,7 +252,11 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     scrollContent: {
-        padding: 24,
+        paddingTop: 24,
+    },
+    contentColumn: {
+        width: '100%',
+        alignSelf: 'center',
     },
     sectionTitle: {
         fontSize: 12,
@@ -245,6 +283,10 @@ const styles = StyleSheet.create({
         elevation: 0,
         borderWidth: 1,
         borderColor: COLORS.glassBorder,
+    },
+    stepCardTablet: {
+        paddingHorizontal: 34,
+        paddingVertical: 32,
     },
     stepHeader: {
         flexDirection: 'row',
@@ -289,6 +331,10 @@ const styles = StyleSheet.create({
         elevation: 0,
         borderWidth: 1,
         borderColor: COLORS.glassBorder,
+    },
+    rakatCardTablet: {
+        paddingHorizontal: 34,
+        paddingVertical: 32,
     },
     rakatHeader: {
         flexDirection: 'row',

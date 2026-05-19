@@ -10,22 +10,19 @@ import { getCurrentPrayer } from '../utils/prayerUtils';
 import quranData from '../data/quran_tm.json';
 import { SURAH_NAMES, TURKMEN_SURAH_NAMES } from '../constants/surahNames';
 
-const SKY_THEMES = {
-    Fajr: ['#4A90E2', '#B8D8F4'],
-    Sunrise: ['#FF9E80', '#FBE9E7'],
-    Dhuhr: ['#1e90ff', '#c8eaff'],
-    Asr: ['#F57C00', '#FFF3E0'],
-    Maghrib: ['#311B92', '#FF8A65'],
-    Isha: ['#1A237E', '#121212'],
-};
+const BACKGROUND_GRADIENT = ['#F4ECDD', '#EFE5D4'] as const;
 
 const COLORS = {
-    white: '#FFFFFF',
-    glassCard: 'rgba(255, 255, 255, 0.95)',
-    textPrimary: '#1A1A1A',
-    textSecondary: '#555555',
-    gold: '#C4A050',
-    glassBorder: 'rgba(0,0,0,0.02)',
+    background: '#F1E8D8',
+    surface: 'rgba(252, 247, 238, 0.96)',
+    surfaceBorder: 'rgba(112, 86, 52, 0.10)',
+    surfaceBorderSoft: 'rgba(255,255,255,0.50)',
+    textPrimary: '#32281F',
+    textSecondary: '#7E6C59',
+    textTertiary: '#A3927F',
+    gold: '#B89254',
+    goldSoft: 'rgba(184, 146, 84, 0.12)',
+    iconSurface: 'rgba(255, 251, 245, 0.68)',
 };
 
 export default function GurhanLibraryScreen() {
@@ -37,8 +34,6 @@ export default function GurhanLibraryScreen() {
         const p = getCurrentPrayer(TimeService.now(), prayerTimes.timings as any);
         return p ? p.key : 'Dhuhr';
     }, [prayerTimes]);
-
-    const theme = SKY_THEMES[currentPrayer as keyof typeof SKY_THEMES] || SKY_THEMES.Dhuhr;
 
     const surahs = useMemo(() => {
         return quranData.surahs.map(s => ({
@@ -71,8 +66,8 @@ export default function GurhanLibraryScreen() {
 
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" />
-            <LinearGradient colors={theme as any} style={StyleSheet.absoluteFill} />
+            <StatusBar barStyle="dark-content" />
+            <LinearGradient colors={BACKGROUND_GRADIENT} style={StyleSheet.absoluteFill} />
 
             <SafeAreaView style={styles.safeArea}>
                 <View style={styles.header}>
@@ -83,7 +78,7 @@ export default function GurhanLibraryScreen() {
                         <PremiumIcon
                             name="chevron-back"
                             size="STANDARD"
-                            color="#FFFFFF"
+                            color={COLORS.textPrimary}
                             interactive
                             onPress={() => navigation.goBack()}
                         />
@@ -108,72 +103,83 @@ export default function GurhanLibraryScreen() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1 },
+    container: { flex: 1, backgroundColor: COLORS.background },
     safeArea: { flex: 1 },
     header: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: 16,
-        paddingVertical: 12,
+        paddingHorizontal: 18,
+        paddingVertical: 14,
     },
     backButton: {
-        width: 40,
-        height: 40,
-        borderRadius: 20,
+        width: 42,
+        height: 42,
+        borderRadius: 21,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+        backgroundColor: COLORS.iconSurface,
+        borderWidth: 1,
+        borderColor: COLORS.surfaceBorderSoft,
     },
     titleContainer: { alignItems: 'center' },
     headerTitle: {
         fontSize: 18,
         fontWeight: '800',
-        color: '#FFFFFF',
-        letterSpacing: 2,
+        color: COLORS.textPrimary,
+        letterSpacing: 1.2,
     },
     headerSubtitle: {
         fontSize: 11,
-        color: 'rgba(255, 255, 255, 0.7)',
+        color: COLORS.textSecondary,
         fontWeight: '700',
-        letterSpacing: 1.5,
-        marginTop: 2,
+        letterSpacing: 1.2,
+        marginTop: 3,
+        textTransform: 'uppercase',
     },
-    list: { padding: 16, paddingBottom: 40 },
+    list: { paddingHorizontal: 16, paddingTop: 8, paddingBottom: 44 },
     surahCard: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        borderRadius: 20,
-        padding: 16,
-        marginBottom: 12,
+        backgroundColor: COLORS.surface,
+        borderRadius: 24,
+        paddingHorizontal: 16,
+        paddingVertical: 17,
+        marginBottom: 14,
         borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.1)',
+        borderColor: COLORS.surfaceBorder,
+        shadowColor: '#8A7358',
+        shadowOpacity: 0.08,
+        shadowRadius: 12,
+        shadowOffset: { width: 0, height: 4 },
+        elevation: 2,
     },
     surahNumberBox: {
         width: 44,
         height: 44,
-        borderRadius: 12,
-        backgroundColor: 'rgba(196, 160, 80, 0.1)',
+        borderRadius: 14,
+        backgroundColor: COLORS.goldSoft,
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: 16,
+        borderWidth: 1,
+        borderColor: 'rgba(184, 146, 84, 0.10)',
     },
     surahNumber: { fontSize: 13, fontWeight: '800', color: COLORS.gold },
     surahInfo: { flex: 1 },
-    surahName: { fontSize: 16, fontWeight: '700', color: COLORS.textPrimary },
+    surahName: { fontSize: 16, fontWeight: '700', color: COLORS.textPrimary, letterSpacing: 0.2 },
     surahMeta: {
         fontSize: 11,
         color: COLORS.textSecondary,
-        fontWeight: '800',
-        marginTop: 2,
+        fontWeight: '700',
+        marginTop: 4,
         textTransform: 'uppercase',
-        letterSpacing: 0.5,
+        letterSpacing: 0.8,
     },
     arabicInfo: { alignItems: 'flex-end', marginRight: 12 },
     arabicName: {
-        fontSize: 20,
-        color: COLORS.gold,
+        fontSize: 21,
+        color: '#6C563C',
         fontWeight: '500',
         fontFamily: Platform.OS === 'ios' ? 'System' : 'serif'
     },

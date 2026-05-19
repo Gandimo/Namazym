@@ -1,21 +1,42 @@
 import holidaysData from '../../data/islamic_holidays/tm_islamic_holidays.json';
 
 export interface Holiday {
-    id: string;
+    day: number;
+    month_short: string;
     title: string;
-    date_gregorian: string;
-    date_hijri: string;
+    hijri: string;
+    relative: string;
 }
+
+export interface HolidayMonth {
+    month: string;
+    items: Holiday[];
+}
+
+export interface HolidayYear {
+    year: number;
+    months: HolidayMonth[];
+}
+
+export interface HolidaysDataset {
+    title: string;
+    subtitle: string;
+    years: HolidayYear[];
+}
+
+const MONTH_SHORT_MAP = [
+    'Ýan', 'Few', 'Mart', 'Apr', 'Maý', 'Iýun',
+    'Iýul', 'Awg', 'Sen', 'Okt', 'Noý', 'Dek'
+];
 
 export const BayramUtils = {
     /**
      * Returns the list of holidays for a specific year from the dataset.
      * Returns empty list if no data for that year.
      */
-    getHolidays(year: number): Holiday[] {
-        const y = String(year);
-        // @ts-ignore - Importing JSON directly
-        return (holidaysData.years as any)[y] || [];
+    getHolidays(year: number): HolidayMonth[] {
+        const data = holidaysData as HolidaysDataset;
+        return data.years.find((entry) => entry.year === year)?.months || [];
     },
 
     /**
@@ -23,28 +44,37 @@ export const BayramUtils = {
      * Returns the Holiday object or null.
      */
     checkBayram(date: Date): Holiday | null {
-        // Format date to YYYY-MM-DD to match dataset
-        const yyyy = date.getFullYear();
-        const mm = String(date.getMonth() + 1).padStart(2, '0');
-        const dd = String(date.getDate()).padStart(2, '0');
-        const dateString = `${yyyy}-${mm}-${dd}`;
+        const targetYear = date.getFullYear();
+        const targetDay = date.getDate();
+        const shortMonth = MONTH_SHORT_MAP[date.getMonth()];
 
-        const holidays = this.getHolidays(yyyy);
-        return holidays.find(h => h.date_gregorian === dateString) || null;
+        const holidays = this.getHolidays(targetYear);
+        for (const month of holidays) {
+            const match = month.items.find(
+                (item) =>
+                    item.day === targetDay &&
+                    item.month_short === shortMonth
+            );
+
+            if (match) return match;
+        }
+
+        return null;
     },
 
     /**
-     * Calculates days remaining until the holiday.
-     * Returns 0 if today, negative if passed.
+     * Returns parsed countdown value from the canonical relative text.
+     * Positive = future, negative = past.
      */
-    getDaysRemaining(holidayDateStr: string): number {
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
+    getDaysRemaining(relativeText: string): number {
+        if (relativeText.includes('galdy')) {
+            return Number(relativeText.replace(/\D/g, '')) || 0;
+        }
 
-        const target = new Date(holidayDateStr);
-        target.setHours(0, 0, 0, 0);
+        if (relativeText.includes('öň')) {
+            return -(Number(relativeText.replace(/\D/g, '')) || 0);
+        }
 
-        const diffTime = target.getTime() - today.getTime();
-        return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        return 0;
     }
 };

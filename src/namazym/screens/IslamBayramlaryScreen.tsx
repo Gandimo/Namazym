@@ -1,39 +1,59 @@
-import React, { useMemo } from 'react';
-import { View, Text, StyleSheet, ScrollView, Pressable, StatusBar } from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { View, StyleSheet, ScrollView, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
 import { useCity } from '../context/CityContext';
 import { TimeService } from '../services/TimeService';
 import { getCurrentPrayer } from '../utils/prayerUtils';
+import holidaysData from '../../data/islamic_holidays/tm_islamic_holidays.json';
+import { PremiumScreenHeader } from '../components/premium/PremiumScreenHeader';
+import { PremiumSectionTitle } from '../components/premium/PremiumSectionTitle';
+import { PremiumEmptyState } from '../components/premium/PremiumEmptyState';
+import { PremiumYearSwitcher } from '../components/premium/PremiumYearSwitcher';
+import { PremiumScreenIntro } from '../components/premium/PremiumScreenIntro';
+import { CalendarEventCard } from '../components/premium/CalendarEventCard';
+import { PREMIUM_SKY_THEMES, premiumScreenTokens } from '../theme/premiumScreenTheme';
 
-const SKY_THEMES = {
-    Fajr: ['#4A90E2', '#B8D8F4'],
-    Sunrise: ['#FF9E80', '#FBE9E7'],
-    Dhuhr: ['#1e90ff', '#c8eaff'],
-    Asr: ['#F57C00', '#FFF3E0'],
-    Maghrib: ['#311B92', '#FF8A65'],
-    Isha: ['#1A237E', '#121212'],
+type HolidayItem = {
+    day: number;
+    month_short: string;
+    title: string;
+    hijri: string;
+    relative: string;
 };
 
-const COLORS = {
-    white: '#FFFFFF',
-    glassCard: 'rgba(255, 255, 255, 0.95)',
-    textPrimary: '#1A1A1A',
-    textSecondary: '#555555',
-    gold: '#C4A050',
-    glassBorder: 'rgba(0,0,0,0.02)',
+type HolidayMonth = {
+    month: string;
+    items: HolidayItem[];
 };
 
-const BAYRAMLAR = [
-    { date: '27-28 Mart', title: 'Leýletül-kadr gijesi', type: 'Mübärek gije' },
-    { date: '30 Mart', title: 'Oraza baýramy', type: 'Baýram' },
-    { date: '5 Iýun', title: 'Arafa güni', type: 'Baýram' },
-    { date: '6-7-8 Iýun', title: 'Gurban baýramy', type: 'Baýram' },
-    { date: '26 Iýun', title: 'Hijri täze ýyl', type: 'Mübärek gün' },
-    { date: '5 Iýul', title: 'Aşura güni', type: 'Mübärek gün' },
+type HolidayYear = {
+    year: number;
+    months: HolidayMonth[];
+};
+
+type HolidaysDataset = {
+    title: string;
+    subtitle: string;
+    years: HolidayYear[];
+};
+
+const HOLIDAYS = holidaysData as HolidaysDataset;
+const FEATURED_EVENTS = [
+    'Oraza baýramy',
+    'Gurban baýramy',
+    'Gadyr gijesi',
+    'Möwlit gijesi'
 ];
+
+function isFeaturedEvent(title: string) {
+    const normalizedTitle = title.trim();
+
+    return FEATURED_EVENTS.some((featuredTitle) =>
+        normalizedTitle === featuredTitle || normalizedTitle.startsWith(`${featuredTitle} `)
+    );
+}
 
 export default function IslamBayramlaryScreen() {
     const navigation = useNavigation();
@@ -45,37 +65,91 @@ export default function IslamBayramlaryScreen() {
         return p ? p.key : 'Dhuhr';
     }, [prayerTimes]);
 
-    const theme = SKY_THEMES[currentPrayer as keyof typeof SKY_THEMES] || SKY_THEMES.Dhuhr;
+    const theme = PREMIUM_SKY_THEMES[currentPrayer as keyof typeof PREMIUM_SKY_THEMES] || PREMIUM_SKY_THEMES.Dhuhr;
+    const years = Array.isArray(HOLIDAYS.years) ? HOLIDAYS.years : [];
+    const yearValues = years.map((entry) => entry.year);
+    const initialYear = yearValues.includes(TimeService.now().getFullYear())
+        ? TimeService.now().getFullYear()
+        : yearValues[0];
+    const [selectedYear, setSelectedYear] = useState<number | undefined>(initialYear);
+
+    const selectedYearIndex = Math.max(0, years.findIndex((entry) => entry.year === selectedYear));
+    const selectedYearBlock = years[selectedYearIndex] || years[0];
+    const months = Array.isArray(selectedYearBlock?.months) ? selectedYearBlock.months : [];
+
+    const canGoPrev = selectedYearIndex > 0;
+    const canGoNext = selectedYearIndex >= 0 && selectedYearIndex < years.length - 1;
+
+    const handlePrevYear = () => {
+        if (!canGoPrev) return;
+        setSelectedYear(years[selectedYearIndex - 1]?.year);
+    };
+
+    const handleNextYear = () => {
+        if (!canGoNext) return;
+        setSelectedYear(years[selectedYearIndex + 1]?.year);
+    };
 
     return (
         <View style={styles.container}>
             <StatusBar barStyle="light-content" />
             <LinearGradient colors={theme as any} style={StyleSheet.absoluteFill} />
             <SafeAreaView style={{ flex: 1 }}>
-                <View style={styles.header}>
-                    <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
-                        <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
-                    </Pressable>
-                    <View style={styles.titleBox}>
-                        <Text style={styles.title}>MÜBÄREK GÜNLER</Text>
-                        <Text style={styles.subtitle}>2026 ÝYL SENENAMASY</Text>
-                    </View>
-                    <View style={{ width: 40 }} />
-                </View>
+                <PremiumScreenHeader
+                    title={HOLIDAYS.title}
+                    subtitle={HOLIDAYS.subtitle}
+                    onBack={() => navigation.goBack()}
+                />
 
                 <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false}>
-                    {BAYRAMLAR.map((item, i) => (
-                        <View key={i} style={styles.card}>
-                            <View style={styles.dateBox}>
-                                <Text style={styles.dateText}>{item.date}</Text>
-                            </View>
-                            <View style={styles.info}>
-                                <Text style={styles.cardTitle}>{item.title}</Text>
-                                <Text style={styles.cardType}>{item.type.toUpperCase()}</Text>
-                            </View>
+                    <PremiumScreenIntro
+                        eyebrow="Mukaddes senenama"
+                        title="Baýramlar we möhüm gijeler"
+                        body="Türkmenistan üçin taýýarlanan yslam baýramlarynyň tertibi ýyl we aý boýunça görkezilýär."
+                    />
+                    {selectedYearBlock ? (
+                        <View key={selectedYearBlock.year} style={styles.yearSection}>
+                            <PremiumYearSwitcher
+                                year={selectedYearBlock.year}
+                                canGoPrev={canGoPrev}
+                                canGoNext={canGoNext}
+                                onPrev={handlePrevYear}
+                                onNext={handleNextYear}
+                            />
+
+                            {months.length > 0 ? (
+                                months.map((monthBlock, monthIndex) => {
+                                    const items = Array.isArray(monthBlock?.items) ? monthBlock.items : [];
+
+                                    return (
+                                        <View key={`${selectedYearBlock.year}-${monthBlock?.month || monthIndex}`} style={styles.monthSection}>
+                                            <PremiumSectionTitle title={monthBlock?.month || ''} />
+
+                                            {items.map((item, i) => (
+                                                <CalendarEventCard
+                                                    key={`${selectedYearBlock.year}-${monthBlock?.month || monthIndex}-${item?.day || i}-${i}`}
+                                                    day={item?.day}
+                                                    monthShort={item?.month_short}
+                                                    title={item?.title || ''}
+                                                    hijri={item?.hijri || ''}
+                                                    relative={item?.relative || ''}
+                                                    featured={
+                                                        typeof item?.title === 'string' &&
+                                                        isFeaturedEvent(item.title)
+                                                    }
+                                                />
+                                            ))}
+                                        </View>
+                                    );
+                                })
+                            ) : (
+                                <PremiumEmptyState text="Bu ýyl üçin maglumat ýok" />
+                            )}
                         </View>
-                    ))}
-                    <View style={{ height: 40 }} />
+                    ) : (
+                        <PremiumEmptyState text="Maglumat tapylmady" />
+                    )}
+                    <View style={styles.bottomSpace} />
                 </ScrollView>
             </SafeAreaView>
         </View>
@@ -84,16 +158,9 @@ export default function IslamBayramlaryScreen() {
 
 const styles = StyleSheet.create({
     container: { flex: 1 },
-    header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12 },
-    backButton: { width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.1)', alignItems: 'center', justifyContent: 'center' },
-    titleBox: { alignItems: 'center' },
-    title: { fontSize: 18, fontWeight: '900', color: '#FFF', letterSpacing: 2 },
-    subtitle: { fontSize: 11, color: 'rgba(255,255,255,0.7)', fontWeight: '800', letterSpacing: 4, marginTop: 2 },
-    list: { padding: 24 },
-    card: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.glassCard, borderRadius: 24, padding: 24, marginBottom: 16, shadowOpacity: 0, elevation: 0, borderWidth: 1, borderColor: COLORS.glassBorder },
-    dateBox: { width: 90, paddingVertical: 8, borderRadius: 12, backgroundColor: 'rgba(196,160,80,0.1)', alignItems: 'center', justifyContent: 'center', marginRight: 20 },
-    dateText: { fontSize: 13, fontWeight: '900', color: COLORS.gold, textAlign: 'center' },
-    info: { flex: 1 },
-    cardTitle: { fontSize: 16, fontWeight: '800', color: COLORS.textPrimary, marginBottom: 4 },
-    cardType: { fontSize: 11, color: COLORS.textSecondary, fontWeight: '800', letterSpacing: 1 }
+    safeArea: { flex: 1 },
+    list: { padding: premiumScreenTokens.spacing.screenX, paddingTop: premiumScreenTokens.spacing.screenTop, paddingBottom: 48 },
+    yearSection: { marginBottom: 18 },
+    monthSection: { marginBottom: 22 },
+    bottomSpace: { height: 40 },
 });

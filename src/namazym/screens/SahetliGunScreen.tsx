@@ -457,7 +457,7 @@ export default function SahetliGunScreen() {
                                         color={COLORS.gold}
                                     />
                                     <Text style={styles.modalDateText}>
-                                        {selectedDay?.day} {selectedDay?.monthTitle} ({selectedDay?.hjDay} Remezan)
+                                        {selectedDay?.day} {selectedDay?.monthTitle}
                                     </Text>
                                 </View>
 

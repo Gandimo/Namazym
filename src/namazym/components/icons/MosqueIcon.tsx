@@ -1,5 +1,5 @@
 import React from 'react';
-import Svg, { Path, Circle } from 'react-native-svg';
+import Svg, { Path } from 'react-native-svg';
 import { PremiumIconProps, ICON_DEFAULTS } from './PremiumIcon';
 
 /**
@@ -42,4 +42,4 @@ export const MosqueIcon = React.memo(({
       />
     </Svg>
   );
-}
+});

@@ -151,15 +151,30 @@ export function tiltCompensatedHeading(
     // Tilt angle from horizontal (0° = flat, 90° = upright)
     const tiltDeg = Math.acos(Math.abs(nz)) * 180 / Math.PI;
 
-    const pitch = Math.asin(-nx);               // rotation about Y
-    const roll = Math.atan2(ny, nz);           // rotation about X
+    // Build a horizontal basis directly from gravity + magnetic vectors.
+    // This is more robust than pitch/roll Euler formulas and avoids axis/sign
+    // errors that appear when the device is tilted away from flat.
+    const eastX = my * nz - mz * ny;
+    const eastY = mz * nx - mx * nz;
+    const eastZ = mx * ny - my * nx;
+    const eastNorm = Math.sqrt(eastX * eastX + eastY * eastY + eastZ * eastZ);
+    if (eastNorm < 1e-6) return { heading: NaN, tiltDeg };
 
-    const Xh = mx * Math.cos(pitch) + mz * Math.sin(pitch);
-    const Yh = mx * Math.sin(roll) * Math.sin(pitch)
-        + my * Math.cos(roll)
-        - mz * Math.sin(roll) * Math.cos(pitch);
+    const ex = eastX / eastNorm;
+    const ey = eastY / eastNorm;
+    const ez = eastZ / eastNorm;
 
-    const heading = (Math.atan2(-Yh, Xh) * 180 / Math.PI + 360) % 360;
+    const northX = ny * ez - nz * ey;
+    const northY = nz * ex - nx * ez;
+    const northZ = nx * ey - ny * ex;
+    const northNorm = Math.sqrt(northX * northX + northY * northY + northZ * northZ);
+    if (northNorm < 1e-6) return { heading: NaN, tiltDeg };
+
+    const nnx = northX / northNorm;
+    const nny = northY / northNorm;
+
+    // Heading of the device's top edge (+Y axis) relative to magnetic north.
+    const heading = (Math.atan2(nnx, nny) * 180 / Math.PI + 360) % 360;
     return { heading, tiltDeg };
 }
 

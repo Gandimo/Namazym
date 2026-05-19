@@ -41,19 +41,21 @@ export default function SacredPlacesListScreen() {
     const theme = SKY_THEMES[currentPrayer as keyof typeof SKY_THEMES] || SKY_THEMES.Dhuhr;
 
     const renderItem = ({ item }: any) => (
-        <Pressable
-            onPress={() => navigation.navigate('SacredPlaceDetail', { placeId: item.id })}
-            style={({ pressed }) => [styles.card, pressed && styles.pressed]}
-        >
-            <View style={styles.imageBox}>
-                <Ionicons name="image-outline" size={24} color={COLORS.gold} />
-            </View>
-            <View style={styles.info}>
-                <Text style={styles.placeName}>{item.name.toUpperCase()}</Text>
-                <Text style={styles.location} numberOfLines={1}>{item.location}</Text>
-            </View>
-            <Ionicons name="chevron-forward" size={18} color={COLORS.gold} />
-        </Pressable>
+        <View style={styles.itemWrapper}>
+            <Pressable
+                onPress={() => navigation.navigate('SacredPlaceDetail', { placeId: item.id })}
+                style={({ pressed }) => [styles.card, pressed && styles.pressed]}
+            >
+                <View style={styles.imageBox}>
+                    <Ionicons name="image-outline" size={24} color={COLORS.gold} />
+                </View>
+                <View style={styles.info}>
+                    <Text style={styles.placeName}>{item.name.toUpperCase()}</Text>
+                    <Text style={styles.location} numberOfLines={1}>{item.location}</Text>
+                </View>
+                <Ionicons name="chevron-forward" size={18} color={COLORS.gold} />
+            </Pressable>
+        </View>
     );
 
     return (
@@ -84,6 +86,8 @@ export default function SacredPlacesListScreen() {
     );
 }
 
+const TABLET_MAX_WIDTH = 680;
+
 const styles = StyleSheet.create({
     container: { flex: 1 },
     header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12 },
@@ -91,7 +95,8 @@ const styles = StyleSheet.create({
     titleBox: { alignItems: 'center' },
     title: { fontSize: 18, fontWeight: '900', color: '#FFF', letterSpacing: 2 },
     subtitle: { fontSize: 11, color: 'rgba(255,255,255,0.7)', fontWeight: '800', letterSpacing: 4, marginTop: 2 },
-    list: { padding: 24, paddingTop: 10 },
+    list: { padding: 24, paddingTop: 10, alignItems: 'center' },
+    itemWrapper: { width: '100%', maxWidth: TABLET_MAX_WIDTH, alignSelf: 'center' },
     card: { flexDirection: 'row', alignItems: 'center', backgroundColor: COLORS.glassCard, borderRadius: 24, padding: 20, marginBottom: 16, shadowOpacity: 0, elevation: 0, borderWidth: 1, borderColor: COLORS.glassBorder },
     pressed: { opacity: 0.8, transform: [{ scale: 0.98 }] },
     imageBox: { width: 64, height: 64, borderRadius: 16, backgroundColor: 'rgba(196,160,80,0.1)', alignItems: 'center', justifyContent: 'center', marginRight: 20 },

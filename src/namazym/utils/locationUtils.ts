@@ -3,7 +3,6 @@
  * Includes validation, haversine distance, and safe location fetching
  */
 
-import * as Location from 'expo-location';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LAST_LOCATION_KEY = 'last_good_location_v1';
@@ -69,35 +68,8 @@ function toRad(degrees: number): number {
  */
 export async function requestLocationSafe(): Promise<Coordinates | null> {
     try {
-        // Check permission
-        const { status } = await Location.requestForegroundPermissionsAsync();
-
-        if (status !== 'granted') {
-            console.log('Location permission denied');
-            // Try to use cached location
-            return await getLastGoodLocation();
-        }
-
-        // Get current position
-        const location = await Location.getCurrentPositionAsync({
-            accuracy: Location.Accuracy.Balanced,
-        });
-
-        const coords: Coordinates = {
-            lat: location.coords.latitude,
-            lng: location.coords.longitude,
-        };
-
-        // Validate before returning
-        if (!isValidLocation(coords)) {
-            console.warn('Location coordinates invalid:', coords);
-            return await getLastGoodLocation();
-        }
-
-        // Save as last good location
-        await saveLastGoodLocation(coords);
-
-        return coords;
+        console.log('Location disabled: expo-location removed');
+        return await getLastGoodLocation();
     } catch (error) {
         console.error('Error getting location:', error);
         return await getLastGoodLocation();

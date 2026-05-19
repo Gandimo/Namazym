@@ -38,10 +38,12 @@ export const CITY_MANIFEST: CityManifest = {
         "status": "ready"
     },
     "lebap": {
-        "canonicalYears": [],
+        "canonicalYears": [
+            2026
+        ],
         "sourceType": "xlsx",
         "lastImportedAt": "2026-03-23T00:00:00.000Z",
-        "status": "empty"
+        "status": "ready"
     },
     "mary": {
         "canonicalYears": [

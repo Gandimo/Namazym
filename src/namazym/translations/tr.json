@@ -36,7 +36,9 @@
     },
     "settings": {
         "notifications": "Bildirimler",
-        "prayer_reminder": "Namaz Hatırlatıcı (15 dk)",
+        "juma_reminder": "Cuma hatırlatıcısı",
+        "prayer_reminder": "Namaz Bildirimleri",
+        "notification_lead_time": "Namaz hatırlatma süresi",
         "daily_content": "Günün Ayeti ve Hadisi",
         "sound_preference": "Ses Ayarı",
         "extras": "Ekstralar",

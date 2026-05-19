@@ -4,7 +4,7 @@
         "ramadan": "Ramazan",
         "city_select": "Şäher saýla",
         "settings": "Sazlamalar",
-        "tasbih": "Tasbih",
+        "tasbih": "Tesbih",
         "quran": "Gurhan",
         "kybla": "Kybla",
         "kaza": "Kaza namazlary",
@@ -36,7 +36,9 @@
     },
     "settings": {
         "notifications": "Bildirişler",
-        "prayer_reminder": "Namaz ýatlatmalary (15 min)",
+        "juma_reminder": "Juma ýatlatmasy",
+        "prayer_reminder": "Namaz bildirişleri",
+        "notification_lead_time": "Namaz ýatlatma wagty",
         "daily_content": "Günüň aýady we hadysy",
         "sound_preference": "Ses sazlamasy",
         "extras": "Goşmaça",
@@ -87,7 +89,7 @@
     },
     "qibla": {
         "compass": "",
-        "status_calibrating": "Pusula taýýarlanýar",
+        "status_calibrating": "Kybla ugruny tap",
         "status_hold_flat": "Telefony düz tutuň",
         "status_unstable": "Magnit päsgelçiligi bolup biler",
         "status_far": "Kybla gözlenýär",
@@ -99,5 +101,10 @@
         "difference": "Tapawut",
         "distance": "Mekgä",
         "stable": "Durnukly"
+    },
+    "kerahat": {
+        "label": "Kerahat wagty",
+        "maghrib_starts": "Agşam {{time}}-da başlanýar",
+        "severe_label": "Kerahat: güýçli döwür"
     }
 }

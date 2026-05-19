@@ -71,7 +71,7 @@ const PALETTES: Record<PrayerIndex, PrayerPalette> = {
 };
 
 const TABS = [
-    { key: 'Kybla', label: 'Pusula', Icon: QiblaIcon },
+    { key: 'Kybla', label: 'Kybla ugruny tap', Icon: QiblaIcon },
     { key: 'Dogalar', label: 'Dogalar', Icon: BeadsIcon },
     { key: 'NamazKitaby', label: 'Namaz Kitaby', Icon: BookIcon },
 ] as const;

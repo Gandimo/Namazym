@@ -7,8 +7,8 @@ import {
     ScrollView,
     Pressable,
     StatusBar,
-    Dimensions,
-    Platform
+    Platform,
+    useWindowDimensions,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { LinearGradient } from 'expo-linear-gradient';
@@ -20,8 +20,7 @@ import { TimeService } from '../services/TimeService';
 import { getCurrentPrayer } from '../utils/prayerUtils';
 import { shareText, buildHadithShareMessage } from "../utils/shareUtils";
 import { DataService } from '../services/DataService';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+import { getBoundedContentWidth, getResponsiveLayoutMetrics } from '../utils/responsiveLayout';
 
 type Hadith = {
     id: number;
@@ -53,7 +52,17 @@ const COLORS = {
 
 export default function HadithReaderScreen({ navigation, route }: any) {
     const { t, i18n } = useTranslation();
+    const { width } = useWindowDimensions();
     const { prayerTimes } = useCity();
+    const responsiveLayout = useMemo(() => getResponsiveLayoutMetrics(width), [width]);
+    const contentWidth = useMemo(
+        () => getBoundedContentWidth(width, responsiveLayout.horizontalPadding, responsiveLayout.compactContentMaxWidth),
+        [responsiveLayout.compactContentMaxWidth, responsiveLayout.horizontalPadding, width],
+    );
+    const readableWidth = useMemo(
+        () => Math.min(contentWidth, responsiveLayout.isTablet ? 720 : contentWidth),
+        [contentWidth, responsiveLayout.isTablet],
+    );
     const hadithData = useMemo(() => DataService.getHadiths(i18n.language), [i18n.language]);
     const hadiths = hadithData.hadiths as Hadith[];
 
@@ -108,7 +117,7 @@ export default function HadithReaderScreen({ navigation, route }: any) {
             <LinearGradient colors={theme as any} style={StyleSheet.absoluteFill} />
 
             <SafeAreaView style={styles.safeArea}>
-                <View style={styles.header}>
+                <View style={[styles.header, { width: contentWidth, alignSelf: 'center' }]}>
                     <Pressable
                         onPress={() => navigation.goBack()}
                         style={styles.backButton}
@@ -126,9 +135,10 @@ export default function HadithReaderScreen({ navigation, route }: any) {
 
                 <ScrollView
                     style={styles.scrollView}
-                    contentContainerStyle={styles.scrollContent}
+                    contentContainerStyle={[styles.scrollContent, { paddingHorizontal: responsiveLayout.horizontalPadding }]}
                     showsVerticalScrollIndicator={false}
                 >
+                    <View style={[styles.contentColumn, { width: readableWidth }]}>
                     <View style={styles.hadithCard}>
                         <View style={styles.cardHeader}>
                             <View style={styles.numberBadge}>
@@ -174,6 +184,7 @@ export default function HadithReaderScreen({ navigation, route }: any) {
                             <Ionicons name="arrow-forward" size={20} color={hasNext ? COLORS.textPrimary : COLORS.textSecondary} />
                         </Pressable>
                     </View>
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         </View>
@@ -189,7 +200,8 @@ const styles = StyleSheet.create({
     headerTitle: { fontSize: 18, fontWeight: "800", color: '#FFFFFF', letterSpacing: 2 },
     headerSubtitle: { fontSize: 11, color: 'rgba(255, 255, 255, 0.7)', fontWeight: "700", letterSpacing: 1.5, marginTop: 2 },
     scrollView: { flex: 1 },
-    scrollContent: { padding: 20, paddingBottom: 40 },
+    scrollContent: { paddingTop: 20, paddingBottom: 40 },
+    contentColumn: { width: '100%', alignSelf: 'center' },
     hadithCard: { backgroundColor: COLORS.glassCard, borderRadius: 32, padding: 40, marginBottom: 24, elevation: 10, borderWidth: 1, borderColor: COLORS.glassBorder },
     cardHeader: { marginBottom: 24 },
     numberBadge: { backgroundColor: 'rgba(196, 160, 80, 0.1)', paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8, alignSelf: 'flex-start' },

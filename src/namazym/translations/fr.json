@@ -36,7 +36,9 @@
     },
     "settings": {
         "notifications": "Notifications",
-        "prayer_reminder": "Rappel de prière (15 min)",
+        "juma_reminder": "Rappel du vendredi",
+        "prayer_reminder": "Notifications de prière",
+        "notification_lead_time": "Délai de rappel de prière",
         "daily_content": "Verset et Hadith du jour",
         "sound_preference": "Préférence Sonore",
         "extras": "Extras",

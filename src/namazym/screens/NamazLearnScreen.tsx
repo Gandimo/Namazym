@@ -6,7 +6,7 @@ import {
     Pressable,
     StatusBar,
     ScrollView,
-    Dimensions
+    useWindowDimensions
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -16,8 +16,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { useCity } from '../context/CityContext';
 import { TimeService } from '../services/TimeService';
 import { getCurrentPrayer } from '../utils/prayerUtils';
-
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
+import {
+    getAdaptiveCardWidth,
+    getBoundedContentWidth,
+    getResponsiveLayoutMetrics,
+} from '../utils/responsiveLayout';
 
 const SKY_THEMES = {
     Fajr: ['#4A90E2', '#B8D8F4'],
@@ -38,7 +41,33 @@ const COLORS = {
 };
 
 export default function NamazLearnScreen({ navigation }: { navigation: any }) {
+    const { width } = useWindowDimensions();
     const { prayerTimes } = useCity();
+    const responsiveLayout = useMemo(() => getResponsiveLayoutMetrics(width), [width]);
+    const contentWidth = useMemo(
+        () => getBoundedContentWidth(width, responsiveLayout.horizontalPadding, responsiveLayout.compactContentMaxWidth),
+        [responsiveLayout.compactContentMaxWidth, responsiveLayout.horizontalPadding, width],
+    );
+    const gridColumns = responsiveLayout.isTablet ? 2 : 1;
+    const cardGap = responsiveLayout.cardGap;
+    const tabletCardWidth = useMemo(
+        () => getAdaptiveCardWidth(
+            contentWidth,
+            gridColumns,
+            cardGap,
+            240,
+            responsiveLayout.isLargeTablet ? 400 : 360,
+        ),
+        [cardGap, contentWidth, gridColumns, responsiveLayout.isLargeTablet],
+    );
+    const gridWidth = useMemo(
+        () => (
+            responsiveLayout.isTablet
+                ? Math.min(contentWidth, (tabletCardWidth * gridColumns) + (cardGap * (gridColumns - 1)))
+                : contentWidth
+        ),
+        [cardGap, contentWidth, gridColumns, responsiveLayout.isTablet, tabletCardWidth],
+    );
 
     // Theme logic
     const currentPrayer = useMemo(() => {
@@ -81,7 +110,7 @@ export default function NamazLearnScreen({ navigation }: { navigation: any }) {
             <LinearGradient colors={theme as any} style={StyleSheet.absoluteFill} />
 
             <SafeAreaView style={styles.safeArea}>
-                <View style={styles.header}>
+                <View style={[styles.header, { width: contentWidth, alignSelf: 'center' }]}>
                     <Pressable
                         onPress={() => navigation.goBack()}
                         style={styles.backButton}
@@ -96,30 +125,55 @@ export default function NamazLearnScreen({ navigation }: { navigation: any }) {
                 </View>
 
                 <ScrollView
-                    contentContainerStyle={styles.scrollContent}
+                    contentContainerStyle={[
+                        styles.scrollContent,
+                        { paddingHorizontal: responsiveLayout.horizontalPadding },
+                    ]}
                     showsVerticalScrollIndicator={false}
                 >
-                    {options.map((option) => (
-                        <Pressable
-                            key={option.id}
-                            style={({ pressed }) => [
-                                styles.optionCard,
-                                pressed && styles.pressed
+                    <View style={[styles.contentColumn, { width: contentWidth }]}>
+                        <View
+                            style={[
+                                styles.optionsGrid,
+                                responsiveLayout.isTablet && styles.optionsGridTablet,
+                                responsiveLayout.isTablet && {
+                                    width: gridWidth,
+                                    alignSelf: 'center',
+                                },
                             ]}
-                            onPress={() => navigation.navigate(option.destination, option.params)}
                         >
-                            <View style={styles.iconContainer}>
-                                <Ionicons name={option.icon as any} size={32} color={COLORS.gold} />
-                            </View>
-                            <View style={styles.optionInfo}>
-                                <Text style={styles.optionTitle}>{option.title}</Text>
-                                <Text style={styles.optionSubtitle}>{option.subtitle}</Text>
-                            </View>
-                            <Ionicons name="chevron-forward" size={20} color={COLORS.gold} />
-                        </Pressable>
-                    ))}
+                            {options.map((option, index) => {
+                                const isTabletFullWidth = responsiveLayout.isTablet && (options.length % 2 === 1) && index === options.length - 1;
 
-                    <View style={{ height: 40 }} />
+                                return (
+                                    <Pressable
+                                        key={option.id}
+                                        style={({ pressed }) => [
+                                            styles.optionCard,
+                                            responsiveLayout.isTablet && styles.optionCardTablet,
+                                            responsiveLayout.isTablet && {
+                                                width: isTabletFullWidth ? gridWidth : tabletCardWidth,
+                                                marginBottom: cardGap,
+                                            },
+                                            pressed && styles.pressed,
+                                        ]}
+                                        onPress={() => navigation.navigate(option.destination, option.params)}
+                                    >
+                                        <View style={styles.iconContainer}>
+                                            <Ionicons name={option.icon as any} size={32} color={COLORS.gold} />
+                                        </View>
+                                        <View style={styles.optionInfo}>
+                                            <Text style={styles.optionTitle}>{option.title}</Text>
+                                            <Text style={styles.optionSubtitle}>{option.subtitle}</Text>
+                                        </View>
+                                        <Ionicons name="chevron-forward" size={20} color={COLORS.gold} />
+                                    </Pressable>
+                                );
+                            })}
+                        </View>
+
+                        <View style={{ height: 40 }} />
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         </View>
@@ -165,8 +219,19 @@ const styles = StyleSheet.create({
         marginTop: 2,
     },
     scrollContent: {
-        padding: 24,
         paddingTop: 10,
+    },
+    contentColumn: {
+        width: '100%',
+        alignSelf: 'center',
+    },
+    optionsGrid: {
+        width: '100%',
+    },
+    optionsGridTablet: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
     },
     optionCard: {
         flexDirection: 'row',
@@ -179,6 +244,10 @@ const styles = StyleSheet.create({
         elevation: 0,
         borderWidth: 1,
         borderColor: COLORS.glassBorder,
+    },
+    optionCardTablet: {
+        minHeight: 128,
+        alignSelf: 'flex-start',
     },
     pressed: {
         opacity: 0.8,

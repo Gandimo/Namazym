@@ -1,3 +1,5 @@
+import { getPrayerTimeLabel, getTurkmenPrayerName } from './prayerNames';
+
 /**
  * Premium Notification Copy
  * Calm, respectful spiritual language
@@ -17,24 +19,24 @@
  */
 export const PRAYER_TIME_COPY = {
     Fajr: {
-        title: 'Ertir namazynyň wagty',
-        body: 'Ertir namazynyň wagty boldy',
+        title: getPrayerTimeLabel('Fajr'),
+        body: `${getPrayerTimeLabel('Fajr')} boldy`,
     },
     Dhuhr: {
-        title: 'Öýle namazynyň wagty',
-        body: 'Öýle namazynyň wagty boldy',
+        title: getPrayerTimeLabel('Dhuhr'),
+        body: `${getPrayerTimeLabel('Dhuhr')} boldy`,
     },
     Asr: {
-        title: 'Ikindi namazynyň wagty',
-        body: 'Ikindi namazynyň wagty boldy',
+        title: getPrayerTimeLabel('Asr'),
+        body: `${getPrayerTimeLabel('Asr')} boldy`,
     },
     Maghrib: {
-        title: 'Agşam namazynyň wagty',
-        body: 'Agşam namazynyň wagty boldy',
+        title: getPrayerTimeLabel('Maghrib'),
+        body: `${getPrayerTimeLabel('Maghrib')} boldy`,
     },
     Isha: {
-        title: 'Ýassy namazynyň wagty',
-        body: 'Ýassy namazynyň wagty boldy',
+        title: getPrayerTimeLabel('Isha'),
+        body: `${getPrayerTimeLabel('Isha')} boldy`,
     },
 } as const;
 
@@ -44,24 +46,24 @@ export const PRAYER_TIME_COPY = {
  */
 export const PRE_PRAYER_COPY = {
     Fajr: {
-        title: 'Ertir namazy',
-        bodyTemplate: (minutes: number) => `Ertir namazyna ${minutes} minut galdy`,
+        title: getTurkmenPrayerName('Fajr'),
+        bodyTemplate: (minutes: number) => `${getTurkmenPrayerName('Fajr')}na ${minutes} minut galdy`,
     },
     Dhuhr: {
-        title: 'Öýle namazy',
-        bodyTemplate: (minutes: number) => `Öýle namazyna ${minutes} minut galdy`,
+        title: getTurkmenPrayerName('Dhuhr'),
+        bodyTemplate: (minutes: number) => `${getTurkmenPrayerName('Dhuhr')}na ${minutes} minut galdy`,
     },
     Asr: {
-        title: 'Ikindi namazy',
-        bodyTemplate: (minutes: number) => `Ikindi namazyna ${minutes} minut galdy`,
+        title: getTurkmenPrayerName('Asr'),
+        bodyTemplate: (minutes: number) => `${getTurkmenPrayerName('Asr')}na ${minutes} minut galdy`,
     },
     Maghrib: {
-        title: 'Agşam namazy',
-        bodyTemplate: (minutes: number) => `Agşam namazyna ${minutes} minut galdy`,
+        title: getTurkmenPrayerName('Maghrib'),
+        bodyTemplate: (minutes: number) => `${getTurkmenPrayerName('Maghrib')}na ${minutes} minut galdy`,
     },
     Isha: {
-        title: 'Ýassy namazy',
-        bodyTemplate: (minutes: number) => `Ýassy namazyna ${minutes} minut galdy`,
+        title: getTurkmenPrayerName('Isha'),
+        bodyTemplate: (minutes: number) => `${getTurkmenPrayerName('Isha')}na ${minutes} minut galdy`,
     },
 } as const;
 

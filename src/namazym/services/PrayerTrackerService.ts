@@ -1,10 +1,17 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TimeService } from './TimeService';
+import { KAZA_PRAYER_KEYS } from '../constants/prayerNames';
 
 const TRACKER_PREFIX = 'namazym_tracker_';
+const KAZA_STORAGE_KEY = 'namazym_kaza_counts_v1';
 
 export interface DailyProgress {
     [prayerKey: string]: boolean;
+}
+
+export interface KazaState {
+    counts: Record<string, number>;
+    updatedAt: number | null;
 }
 
 export class PrayerTrackerService {
@@ -55,5 +62,67 @@ export class PrayerTrackerService {
     static async isCompleted(prayerKey: string, dateStr: string = TimeService.getTodayDateString()): Promise<boolean> {
         const progress = await this.getProgress(dateStr);
         return !!progress[prayerKey];
+    }
+
+    private static normalizeKazaCounts(rawCounts: Record<string, unknown> | null | undefined): Record<string, number> {
+        const normalized: Record<string, number> = {};
+
+        for (const key of KAZA_PRAYER_KEYS) {
+            const rawValue = rawCounts?.[key];
+            const value = typeof rawValue === 'number' ? rawValue : Number(rawValue || 0);
+            normalized[key] = Number.isFinite(value) ? Math.max(0, value) : 0;
+        }
+
+        return normalized;
+    }
+
+    static async getKazaState(): Promise<KazaState> {
+        try {
+            const raw = await AsyncStorage.getItem(KAZA_STORAGE_KEY);
+            if (!raw) {
+                return {
+                    counts: this.normalizeKazaCounts({}),
+                    updatedAt: null,
+                };
+            }
+
+            const parsed = JSON.parse(raw);
+
+            if (parsed && typeof parsed === 'object' && 'counts' in parsed) {
+                return {
+                    counts: this.normalizeKazaCounts((parsed as KazaState).counts),
+                    updatedAt: typeof (parsed as KazaState).updatedAt === 'number' ? (parsed as KazaState).updatedAt : null,
+                };
+            }
+
+            return {
+                counts: this.normalizeKazaCounts(parsed),
+                updatedAt: null,
+            };
+        } catch (e) {
+            console.error("Error loading kaza tracker:", e);
+            return {
+                counts: this.normalizeKazaCounts({}),
+                updatedAt: null,
+            };
+        }
+    }
+
+    static async getKazaCounts(): Promise<Record<string, number>> {
+        const state = await this.getKazaState();
+        return state.counts;
+    }
+
+    static async saveKazaCounts(counts: Record<string, number>): Promise<void> {
+        try {
+            const normalized = this.normalizeKazaCounts(counts);
+            const nextState: KazaState = {
+                counts: normalized,
+                updatedAt: Date.now(),
+            };
+            await AsyncStorage.setItem(KAZA_STORAGE_KEY, JSON.stringify(nextState));
+        } catch (e) {
+            console.error("Error saving kaza tracker:", e);
+        }
     }
 }

@@ -62,26 +62,30 @@ export default function DogaDetailScreen() {
                 </View>
 
                 <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-                    {doga.blocks ? (
-                        doga.blocks.map((block: any, i: number) => (
-                            <View key={i} style={styles.blockContainer}>
-                                {block.type === 'sectionTitle' && <Text style={styles.sectionTitle}>{block.text}</Text>}
-                                {block.type === 'subtitle' && <Text style={styles.subtitleText}>{block.text}</Text>}
-                                {block.type === 'verse_lines' && block.lines.map((line: string, idx: number) => (
-                                    <Text key={idx} style={styles.verseLine}>{line}</Text>
-                                ))}
-                                {block.type === 'text' && <Text style={styles.tmText}>{block.text}</Text>}
+                    <View style={styles.contentColumn}>
+                        {doga.blocks ? (
+                            doga.blocks.map((block: any, i: number) => (
+                                <View key={i} style={styles.blockContainer}>
+                                    {block.type === 'heading' && <Text style={styles.sectionTitle}>{block.text}</Text>}
+                                    {block.type === 'sectionTitle' && <Text style={styles.sectionTitle}>{block.text}</Text>}
+                                    {block.type === 'subtitle' && <Text style={styles.subtitleText}>{block.text}</Text>}
+                                    {block.type === 'verse_lines' && block.lines.map((line: string, idx: number) => (
+                                        <Text key={idx} style={styles.verseLine}>{line}</Text>
+                                    ))}
+                                    {block.type === 'text' && <Text style={styles.tmText}>{block.text}</Text>}
+                                    {block.type === 'list' && <Text style={styles.tmText}>{block.text}</Text>}
+                                </View>
+                            ))
+                        ) : (
+                            <View style={styles.dogaCard}>
+                                <Text style={styles.dogaTitle}>{doga.title}</Text>
+                                <View style={styles.divider} />
+                                <Text style={styles.arabicText}>{doga.text_ar}</Text>
+                                <Text style={styles.tmText}>{doga.text_read}</Text>
                             </View>
-                        ))
-                    ) : (
-                        <View style={styles.dogaCard}>
-                            <Text style={styles.dogaTitle}>{doga.title}</Text>
-                            <View style={styles.divider} />
-                            <Text style={styles.arabicText}>{doga.text_ar}</Text>
-                            <Text style={styles.tmText}>{doga.text_read}</Text>
-                        </View>
-                    )}
-                    <View style={{ height: 40 }} />
+                        )}
+                        <View style={{ height: 40 }} />
+                    </View>
                 </ScrollView>
             </SafeAreaView>
         </View>
@@ -90,6 +94,8 @@ export default function DogaDetailScreen() {
 
 const Sheet = StyleSheet;
 
+const TABLET_MAX_WIDTH = 680;
+
 const styles = StyleSheet.create({
     container: { flex: 1 },
     header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12 },
@@ -97,7 +103,8 @@ const styles = StyleSheet.create({
     titleBox: { alignItems: 'center', flex: 1, paddingHorizontal: 12 },
     title: { fontSize: 16, fontWeight: '900', color: '#FFF', letterSpacing: 1, textAlign: 'center' },
     subtitle: { fontSize: 11, color: 'rgba(255,255,255,0.7)', fontWeight: '800', letterSpacing: 3, marginTop: 2 },
-    content: { padding: 24, paddingTop: 10 },
+    content: { padding: 24, paddingTop: 10, alignItems: 'center' },
+    contentColumn: { width: '100%', maxWidth: TABLET_MAX_WIDTH, alignSelf: 'center' },
     dogaCard: { backgroundColor: COLORS.glassCard, borderRadius: 32, padding: 32, marginBottom: 20, shadowOpacity: 0, elevation: 0, borderWidth: 1, borderColor: COLORS.glassBorder },
     dogaTitle: { fontSize: 17, fontWeight: '900', color: COLORS.gold, marginBottom: 20, textAlign: 'center' },
     divider: { height: 1, backgroundColor: 'rgba(0,0,0,0.05)', marginBottom: 24 },
