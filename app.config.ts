@@ -11,5 +11,10 @@ export default (): ExpoConfig => {
         delete expoConfig.updates;
     }
 
+    expoConfig.plugins = [
+        ...(expoConfig.plugins ?? []),
+        './plugins/withNamazymWidgetBridge',
+    ];
+
     return expoConfig;
 };
