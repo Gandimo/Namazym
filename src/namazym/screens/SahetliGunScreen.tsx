@@ -12,12 +12,12 @@ import { getCurrentPrayer } from '../utils/prayerUtils';
 import { calculateSahetliGun, getHijriDay } from '../utils/sahetli';
 
 const SKY_THEMES = {
-    Fajr: ['#4A90E2', '#B8D8F4'],
-    Sunrise: ['#FF9E80', '#FBE9E7'],
-    Dhuhr: ['#1e90ff', '#c8eaff'],
-    Asr: ['#F57C00', '#FFF3E0'],
-    Maghrib: ['#311B92', '#FF8A65'],
-    Isha: ['#1A237E', '#121212'],
+    Fajr: ['#B9CAD8', '#E8EFF4'],
+    Sunrise: ['#E4C8AE', '#F6E6D4'],
+    Dhuhr: ['#D5E0E7', '#F3EFE8'],
+    Asr: ['#E0C9B0', '#F2E1CF'],
+    Maghrib: ['#9A756C', '#DEC0AE'],
+    Isha: ['#222A3A', '#151B26'],
 };
 
 const COLORS = {
@@ -320,43 +320,51 @@ export default function SahetliGunScreen() {
     }, [prayerTimes, today]);
 
     const theme = SKY_THEMES[currentPrayer as keyof typeof SKY_THEMES] || SKY_THEMES.Dhuhr;
+    const isDark = currentPrayer === 'Isha' || currentPrayer === 'Maghrib';
+    const fg = isDark ? '#FFFFFF' : '#2D2D35';
+    const fgSoft = isDark ? 'rgba(255,255,255,0.5)' : 'rgba(45,45,53,0.45)';
+    const fgMedium = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(45,45,53,0.6)';
+    const cardBg = isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.04)';
+    const cardBorder = isDark ? 'rgba(255,255,255,0.15)' : 'rgba(0,0,0,0.06)';
+    const legendBg = isDark ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.05)';
+    const dayTextColor = isDark ? '#FFF' : '#3A3A42';
 
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" />
+            <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
             <LinearGradient colors={theme as any} style={StyleSheet.absoluteFill} />
             <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
                 <View style={styles.header}>
                     <Pressable
                         onPress={() => navigation.goBack()}
-                        style={styles.backButton}
+                        style={[styles.backButton, { backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)' }]}
                         accessibilityLabel="Go back"
                         accessibilityRole="button"
                     >
                         <PremiumIcon
                             name="chevron-back"
                             size="STANDARD"
-                            color="#FFFFFF"
+                            color={fg}
                             interactive
                             onPress={() => navigation.goBack()}
                         />
                     </Pressable>
                     <View style={styles.titleBox}>
-                        <Text style={styles.title}>SÄHETLI GÜNLER</Text>
-                        <Text style={styles.subtitle}>12 AÝLYK SENENAMA</Text>
+                        <Text style={[styles.title, { color: fg }]}>SÄHETLI GÜNLER</Text>
+                        <Text style={[styles.subtitle, { color: fgSoft }]}>12 AÝLYK SENENAMA</Text>
                     </View>
                     <View style={{ width: 40 }} />
                 </View>
 
                 <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
                     {months.map((month) => (
-                        <View key={month.id} style={styles.monthCard}>
-                            <Text style={styles.monthTitle}>{month.title.toUpperCase()}</Text>
+                        <View key={month.id} style={[styles.monthCard, { backgroundColor: cardBg, borderColor: cardBorder }]}>
+                            <Text style={[styles.monthTitle, { color: fg }]}>{month.title.toUpperCase()}</Text>
 
                             <View style={styles.weekHeader}>
                                 {WEEKDAYS_TKM.map(day => (
                                     <View key={day} style={styles.weekdayBox}>
-                                        <Text style={styles.weekdayText}>{day}</Text>
+                                        <Text style={[styles.weekdayText, { color: fgSoft }]}>{day}</Text>
                                     </View>
                                 ))}
                             </View>
@@ -389,6 +397,7 @@ export default function SahetliGunScreen() {
                                             ]}>
                                                 <Text style={[
                                                     styles.dayNumber,
+                                                    { color: dayTextColor },
                                                     isAuspicious && styles.auspiciousText,
                                                     item.isToday && !isAuspicious && { color: COLORS.gold }
                                                 ]}>
@@ -401,14 +410,14 @@ export default function SahetliGunScreen() {
                             </View>
                         </View>
                     ))}
-                    <View style={styles.legend}>
+                    <View style={[styles.legend, { backgroundColor: legendBg }]}>
                         <View style={styles.legendItem}>
                             <View style={[styles.miniCircle, { backgroundColor: COLORS.gold }]} />
-                            <Text style={styles.legendText}>Sähetli gün</Text>
+                            <Text style={[styles.legendText, { color: fgMedium }]}>Sähetli gün</Text>
                         </View>
                         <View style={styles.legendItem}>
                             <View style={[styles.miniCircle, { backgroundColor: 'transparent', borderWidth: 1.5, borderColor: COLORS.gold }]} />
-                            <Text style={styles.legendText}>Şu gün</Text>
+                            <Text style={[styles.legendText, { color: fgMedium }]}>Şu gün</Text>
                         </View>
                     </View>
                     <View style={{ height: 40 }} />
