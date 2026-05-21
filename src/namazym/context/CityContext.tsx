@@ -5,9 +5,9 @@ import { PrayerTimesService } from "../services/PrayerTimesService";
 import { StorageService } from "../services/StorageService";
 import { NotificationService } from "../services/NotificationService";
 import { TimeService } from "../services/TimeService";
+import { WidgetRefreshService } from "../services/WidgetRefreshService";
 
 import { CITIES } from "../constants/cities";
-import { verifyAllPrayerTimes } from "../utils/verifyTimings";
 
 interface CityContextType {
     placeKey: string;
@@ -56,6 +56,11 @@ export const CityProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 // Safe Initialization: Data is now 100% offline local
                 const times = PrayerTimesService.getToday(place.key);
                 setPrayerTimes(times);
+                void WidgetRefreshService.refresh({
+                    placeKey: place.key,
+                    placeLabel: savedLabel || place.label,
+                    prayerTimes: times,
+                });
                 if (times) {
                     NotificationService.rescheduleAll(times, place.label, place.key)
                         .catch((err: any) => console.error("Initial scheduling failed:", err));
@@ -64,6 +69,11 @@ export const CityProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 console.error("CityContext Initialization Error:", error);
                 const times = PrayerTimesService.getToday("asgabat_arkadag_ahal");
                 setPrayerTimes(times);
+                void WidgetRefreshService.refresh({
+                    placeKey: "asgabat_arkadag_ahal",
+                    placeLabel: "Aşgabat",
+                    prayerTimes: times,
+                });
             } finally {
                 setIsLoading(false);
             }
@@ -86,7 +96,21 @@ export const CityProvider: React.FC<{ children: React.ReactNode }> = ({ children
                     const refreshedTimes = PrayerTimesService.getToday(placeKey);
                     if (refreshedTimes) {
                         setPrayerTimes(refreshedTimes);
+                        void WidgetRefreshService.refresh({
+                            placeKey,
+                            placeLabel,
+                            prayerTimes: refreshedTimes,
+                        });
                     }
+                    return;
+                }
+
+                if (prayerTimes) {
+                    void WidgetRefreshService.refresh({
+                        placeKey,
+                        placeLabel,
+                        prayerTimes,
+                    });
                 }
             } catch (error) {
                 console.error("Date-change notification refresh failed:", error);
@@ -133,6 +157,11 @@ export const CityProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
             // Success
             setPrayerTimes(times);
+            void WidgetRefreshService.refresh({
+                placeKey: place.key,
+                placeLabel: place.label,
+                prayerTimes: times,
+            });
 
             // Non-blocking background scheduling
             if (times) {
@@ -155,6 +184,11 @@ export const CityProvider: React.FC<{ children: React.ReactNode }> = ({ children
             setCityId(place.cityId);
             const times = PrayerTimesService.getToday(place.key);
             setPrayerTimes(times);
+            void WidgetRefreshService.refresh({
+                placeKey: place.key,
+                placeLabel: place.label,
+                prayerTimes: times,
+            });
             if (times) {
                 NotificationService.rescheduleAll(times, place.label, place.key)
                     .catch((err: any) => console.error("Auto-location off scheduling failed:", err));
