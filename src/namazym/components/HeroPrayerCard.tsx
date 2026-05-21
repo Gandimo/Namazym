@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Platform, Animated, Pressable, useWindowDimensions, Image } from 'react-native';
+import { View, Text, StyleSheet, Platform, Animated, Pressable, useWindowDimensions, Image, ImageSourcePropType } from 'react-native';
 import { BlurView } from 'expo-blur';
 import { tokens2026 } from '../theme/tokens2026';
 import { formatCountdown } from '../utils/timeUtils';
@@ -43,6 +43,15 @@ const dhuhrKaabaAsset = require('../assets/hero/hero-dhuhr-final.png');
 const asrCamelAsset = require('../assets/hero/hero-asr-camel-final.png');
 const maghribAsset = require('../assets/hero/hero-maghrib-final.png');
 const ishaAsset = require('../assets/hero/hero-isha-final.png');
+
+const HERO_ASSETS: Record<PrayerPeriodKey, ImageSourcePropType> = {
+    Fajr: fajrKaabaAsset,
+    Sunrise: sunriseMosqueAsset,
+    Dhuhr: dhuhrKaabaAsset,
+    Asr: asrCamelAsset,
+    Maghrib: maghribAsset,
+    Isha: ishaAsset,
+};
 
 const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
     Fajr: {
@@ -113,6 +122,21 @@ const HERO_VISUALS: Record<PrayerPeriodKey, HeroVisualConfig> = {
     },
 };
 
+const NORMALIZED_PERIOD_KEYS: Record<string, PrayerPeriodKey> = {
+    fajr: 'Fajr',
+    sunrise: 'Sunrise',
+    dhuhr: 'Dhuhr',
+    asr: 'Asr',
+    maghrib: 'Maghrib',
+    isha: 'Isha',
+};
+
+const normalizePrayerPeriodKey = (key?: string | null): PrayerPeriodKey | null => {
+    if (!key) return null;
+    if (key in HERO_VISUALS) return key as PrayerPeriodKey;
+    return NORMALIZED_PERIOD_KEYS[key.toLowerCase()] ?? null;
+};
+
 function PeriodAmbientIcon({
     period,
     color,
@@ -167,8 +191,7 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
     const isCompactLayout = width <= 390;
     const isLargeLayout = width >= 430;
     const visualKey = isPassengerMode ? current?.key : current?.key ?? next?.key;
-    const resolvedPeriodKey = visualKey || current?.key || 'Dhuhr';
-    const periodKey = (resolvedPeriodKey in HERO_VISUALS ? resolvedPeriodKey : 'Dhuhr') as PrayerPeriodKey;
+    const periodKey = normalizePrayerPeriodKey(visualKey) ?? normalizePrayerPeriodKey(current?.key) ?? 'Dhuhr';
     const visual = HERO_VISUALS[periodKey];
     const showDecorativeImage = visual.showDecorativeImage === true;
 
@@ -246,20 +269,8 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
         }
     }
 
-    const decorativeAsset = periodKey === 'Fajr'
-        ? fajrKaabaAsset
-        : periodKey === 'Sunrise'
-            ? sunriseMosqueAsset
-            : periodKey === 'Dhuhr'
-                ? dhuhrKaabaAsset
-                : periodKey === 'Asr'
-                    ? asrCamelAsset
-                    : periodKey === 'Maghrib'
-                        ? maghribAsset
-                        : periodKey === 'Isha'
-                            ? ishaAsset
-                            : null;
-    const hasDecorativeImage = showDecorativeImage && decorativeAsset !== null;
+    const decorativeAsset = HERO_ASSETS[periodKey];
+    const hasDecorativeImage = showDecorativeImage && Boolean(decorativeAsset);
     const nextLabelText = isPassengerMode
         ? t('common.prayer_times').toUpperCase()
         : `${t(`prayer.${next?.key?.toLowerCase()}`).toUpperCase()} NAMAZYNA`;
@@ -297,8 +308,10 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
                     <View
                         style={[
                             styles.heroVisualStage,
+                            hasDecorativeImage && styles.heroVisualStageImage,
                             !hasDecorativeImage && styles.heroVisualStageIcon,
                             !hasDecorativeImage && isCompactLayout && styles.heroVisualStageCompact,
+                            hasDecorativeImage && isCompactLayout && styles.heroVisualStageImageCompact,
                             hasDecorativeImage && {
                                 right: decorativeImageRight,
                                 bottom: decorativeImageBottom,
@@ -416,6 +429,8 @@ const styles = StyleSheet.create({
         width: 168,
         height: 168,
         opacity: 1,
+        zIndex: 2,
+        elevation: 2,
     },
     heroVisualStageCompact: {
         right: 14,
@@ -473,6 +488,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         opacity: 0.98,
+        zIndex: 2,
     },
     decorativeImageCompact: {
         opacity: 0.88,
