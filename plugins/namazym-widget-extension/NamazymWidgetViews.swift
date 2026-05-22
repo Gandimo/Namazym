@@ -314,7 +314,7 @@ struct NamazymLargeWidgetView: View {
             .clipShape(Capsule())
         }
 
-        VStack(alignment: .leading, spacing: 12) {
+        VStack(alignment: .leading, spacing: 11) {
           Text("GÜNÜŇ AÝATY")
             .font(.caption2)
             .fontWeight(.heavy)
@@ -323,28 +323,28 @@ struct NamazymLargeWidgetView: View {
             .lineLimit(1)
 
           Text(snapshot.dailyVerse?.text ?? "Namazym açyň, günüň aýatyny widgetde görkeziň.")
-            .font(.system(size: 23, weight: .bold, design: .serif))
+            .font(.system(size: 20, weight: .semibold, design: .serif))
             .foregroundStyle(palette.primary)
-            .lineLimit(6)
-            .minimumScaleFactor(0.72)
-            .fixedSize(horizontal: false, vertical: true)
+            .lineLimit(4)
+            .minimumScaleFactor(0.78)
+            .lineSpacing(2)
 
-          HStack(spacing: 8) {
+          HStack(spacing: 7) {
             Rectangle()
-              .fill(accent.opacity(0.75))
-              .frame(width: 24, height: 2)
+              .fill(accent.opacity(0.66))
+              .frame(width: 20, height: 2)
               .clipShape(Capsule())
 
             Text(snapshot.dailyVerse?.reference ?? "Namazym")
-              .font(.callout)
+              .font(.caption)
               .fontWeight(.semibold)
-              .foregroundStyle(palette.secondary)
+              .foregroundStyle(accent.opacity(0.92))
               .lineLimit(1)
-              .minimumScaleFactor(0.78)
+              .minimumScaleFactor(0.82)
           }
         }
-        .padding(18)
-        .frame(maxWidth: .infinity, minHeight: 188, alignment: .leading)
+        .padding(17)
+        .frame(maxWidth: .infinity, minHeight: 176, alignment: .leading)
         .background(
           RoundedRectangle(cornerRadius: 24, style: .continuous)
             .fill(palette.card)
