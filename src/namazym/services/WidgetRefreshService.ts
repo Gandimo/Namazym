@@ -1,6 +1,7 @@
 import type { PrayerTimeDisplay } from './PrayerTimesAdapter';
 import { TimeService } from './TimeService';
 import { WidgetBridge } from './WidgetBridge';
+import { WidgetDailyVerseService } from './WidgetDailyVerseService';
 import { buildWidgetSnapshot } from './WidgetSnapshotService';
 
 interface RefreshWidgetParams {
@@ -22,11 +23,13 @@ export const WidgetRefreshService = {
         }
 
         try {
+            const dailyVerse = WidgetDailyVerseService.getDailyVerse(now);
             const snapshot = buildWidgetSnapshot({
                 placeKey,
                 placeLabel,
                 prayerTimes,
                 now,
+                dailyVerse,
             });
 
             await WidgetBridge.writeSnapshot(JSON.stringify(snapshot));

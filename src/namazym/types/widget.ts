@@ -28,6 +28,12 @@ export interface WidgetVisualMood {
     backgroundColor: string;
 }
 
+export interface WidgetDailyVerse {
+    text: string;
+    reference: string;
+    source?: string;
+}
+
 export interface NamazymWidgetSnapshotV1 {
     schemaVersion: 1;
     generatedAtISO: string;
@@ -42,4 +48,5 @@ export interface NamazymWidgetSnapshotV1 {
     nextPrayer: WidgetPrayerSummary | null;
     remaining: WidgetRemainingTime | null;
     visualMood: WidgetVisualMood;
+    dailyVerse?: WidgetDailyVerse;
 }

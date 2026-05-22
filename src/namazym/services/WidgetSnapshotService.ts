@@ -6,6 +6,7 @@ import type {
     WidgetPrayerSummary,
     WidgetPrayerTime,
     WidgetVisualMood,
+    WidgetDailyVerse,
 } from '../types/widget';
 
 interface BuildWidgetSnapshotParams {
@@ -13,6 +14,7 @@ interface BuildWidgetSnapshotParams {
     placeLabel: string;
     prayerTimes: PrayerTimeDisplay;
     now: Date;
+    dailyVerse?: WidgetDailyVerse;
 }
 
 const PRAYER_WIDGET_ORDER: PrayerWidgetKey[] = [
@@ -120,6 +122,7 @@ export const buildWidgetSnapshot = ({
     placeLabel,
     prayerTimes,
     now,
+    dailyVerse,
 }: BuildWidgetSnapshotParams): NamazymWidgetSnapshotV1 => {
     const timings = prayerTimes.timings as Record<string, string>;
     const current = getCurrentPrayer(now, timings);
@@ -159,7 +162,8 @@ export const buildWidgetSnapshot = ({
             : {
                 totalMinutes,
                 display: formatRemainingDisplay(totalMinutes),
-            },
+        },
         visualMood: getWidgetVisualMood(moodKey),
+        dailyVerse,
     };
 };
