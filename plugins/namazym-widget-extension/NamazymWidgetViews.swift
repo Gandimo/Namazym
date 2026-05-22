@@ -50,6 +50,7 @@ struct WidgetPalette {
   let accent: Color
   let background: Color
   let colorScheme: ColorScheme
+  let moodKey: String?
 
   var primary: Color {
     colorScheme == .dark ? Color(red: 0.98, green: 0.95, blue: 0.89) : Color(red: 0.16, green: 0.13, blue: 0.10)
@@ -60,14 +61,30 @@ struct WidgetPalette {
   }
 
   var card: Color {
-    colorScheme == .dark ? Color.white.opacity(0.10) : Color.white.opacity(0.44)
+    colorScheme == .dark ? Color.white.opacity(0.12) : Color.white.opacity(0.50)
   }
 
   var chip: Color {
-    colorScheme == .dark ? accent.opacity(0.20) : Color.white.opacity(0.58)
+    colorScheme == .dark ? accent.opacity(0.22) : Color.white.opacity(0.64)
+  }
+
+  var glow: Color {
+    moodStyle?.glow ?? accent.opacity(colorScheme == .dark ? 0.18 : 0.16)
+  }
+
+  var softGlow: Color {
+    moodStyle?.softGlow ?? Color.white.opacity(colorScheme == .dark ? 0.05 : 0.22)
   }
 
   var gradient: LinearGradient {
+    if let moodStyle {
+      return LinearGradient(
+        colors: moodStyle.gradientColors,
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+      )
+    }
+
     if colorScheme == .dark {
       return LinearGradient(
         colors: [
@@ -90,6 +107,94 @@ struct WidgetPalette {
       endPoint: .bottomTrailing
     )
   }
+
+  private var moodStyle: WidgetMoodStyle? {
+    WidgetMoodStyle.style(for: moodKey, colorScheme: colorScheme)
+  }
+}
+
+private struct WidgetMoodStyle {
+  let accent: Color
+  let gradientColors: [Color]
+  let glow: Color
+  let softGlow: Color
+
+  static func style(for key: String?, colorScheme: ColorScheme) -> WidgetMoodStyle? {
+    guard let normalizedKey = key?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() else {
+      return nil
+    }
+
+    switch normalizedKey {
+    case "fajr":
+      return WidgetMoodStyle(
+        accent: colorScheme == .dark ? Color(red: 0.62, green: 0.82, blue: 0.96) : Color(red: 0.34, green: 0.55, blue: 0.84),
+        gradientColors: colorScheme == .dark
+          ? [Color(red: 0.05, green: 0.08, blue: 0.17), Color(red: 0.11, green: 0.13, blue: 0.29), Color(red: 0.05, green: 0.05, blue: 0.11)]
+          : [Color(red: 0.84, green: 0.90, blue: 0.98), Color(red: 0.96, green: 0.91, blue: 0.98), Color(red: 0.91, green: 0.86, blue: 0.76)],
+        glow: Color(red: 0.54, green: 0.76, blue: 0.96).opacity(colorScheme == .dark ? 0.24 : 0.18),
+        softGlow: Color(red: 0.93, green: 0.86, blue: 1.00).opacity(colorScheme == .dark ? 0.10 : 0.28)
+      )
+    case "sunrise":
+      return WidgetMoodStyle(
+        accent: colorScheme == .dark ? Color(red: 0.96, green: 0.70, blue: 0.36) : Color(red: 0.76, green: 0.43, blue: 0.16),
+        gradientColors: colorScheme == .dark
+          ? [Color(red: 0.17, green: 0.10, blue: 0.08), Color(red: 0.36, green: 0.20, blue: 0.13), Color(red: 0.08, green: 0.07, blue: 0.08)]
+          : [Color(red: 1.00, green: 0.92, blue: 0.78), Color(red: 1.00, green: 0.96, blue: 0.88), Color(red: 0.96, green: 0.75, blue: 0.54)],
+        glow: Color(red: 1.00, green: 0.65, blue: 0.28).opacity(colorScheme == .dark ? 0.25 : 0.20),
+        softGlow: Color(red: 1.00, green: 0.88, blue: 0.66).opacity(colorScheme == .dark ? 0.10 : 0.30)
+      )
+    case "dhuhr":
+      return WidgetMoodStyle(
+        accent: colorScheme == .dark ? Color(red: 0.88, green: 0.72, blue: 0.36) : Color(red: 0.62, green: 0.43, blue: 0.12),
+        gradientColors: colorScheme == .dark
+          ? [Color(red: 0.12, green: 0.10, blue: 0.07), Color(red: 0.28, green: 0.23, blue: 0.15), Color(red: 0.06, green: 0.06, blue: 0.05)]
+          : [Color(red: 0.98, green: 0.94, blue: 0.84), Color(red: 1.00, green: 0.98, blue: 0.91), Color(red: 0.91, green: 0.80, blue: 0.55)],
+        glow: Color(red: 0.88, green: 0.65, blue: 0.25).opacity(colorScheme == .dark ? 0.21 : 0.16),
+        softGlow: Color.white.opacity(colorScheme == .dark ? 0.06 : 0.30)
+      )
+    case "asr":
+      return WidgetMoodStyle(
+        accent: colorScheme == .dark ? Color(red: 0.93, green: 0.56, blue: 0.25) : Color(red: 0.65, green: 0.35, blue: 0.15),
+        gradientColors: colorScheme == .dark
+          ? [Color(red: 0.16, green: 0.10, blue: 0.06), Color(red: 0.33, green: 0.20, blue: 0.11), Color(red: 0.08, green: 0.06, blue: 0.05)]
+          : [Color(red: 0.95, green: 0.83, blue: 0.62), Color(red: 0.99, green: 0.91, blue: 0.78), Color(red: 0.82, green: 0.55, blue: 0.32)],
+        glow: Color(red: 0.90, green: 0.47, blue: 0.20).opacity(colorScheme == .dark ? 0.23 : 0.18),
+        softGlow: Color(red: 1.00, green: 0.84, blue: 0.56).opacity(colorScheme == .dark ? 0.09 : 0.25)
+      )
+    case "maghrib":
+      return WidgetMoodStyle(
+        accent: colorScheme == .dark ? Color(red: 0.97, green: 0.58, blue: 0.50) : Color(red: 0.66, green: 0.28, blue: 0.23),
+        gradientColors: colorScheme == .dark
+          ? [Color(red: 0.18, green: 0.08, blue: 0.12), Color(red: 0.34, green: 0.15, blue: 0.20), Color(red: 0.07, green: 0.05, blue: 0.09)]
+          : [Color(red: 0.92, green: 0.72, blue: 0.66), Color(red: 0.98, green: 0.88, blue: 0.77), Color(red: 0.78, green: 0.39, blue: 0.34)],
+        glow: Color(red: 0.95, green: 0.45, blue: 0.38).opacity(colorScheme == .dark ? 0.24 : 0.17),
+        softGlow: Color(red: 1.00, green: 0.78, blue: 0.50).opacity(colorScheme == .dark ? 0.09 : 0.23)
+      )
+    case "isha":
+      return WidgetMoodStyle(
+        accent: colorScheme == .dark ? Color(red: 0.68, green: 0.70, blue: 1.00) : Color(red: 0.35, green: 0.34, blue: 0.72),
+        gradientColors: colorScheme == .dark
+          ? [Color(red: 0.05, green: 0.06, blue: 0.15), Color(red: 0.13, green: 0.11, blue: 0.29), Color(red: 0.04, green: 0.04, blue: 0.09)]
+          : [Color(red: 0.82, green: 0.86, blue: 0.97), Color(red: 0.91, green: 0.88, blue: 0.98), Color(red: 0.64, green: 0.64, blue: 0.86)],
+        glow: Color(red: 0.45, green: 0.50, blue: 1.00).opacity(colorScheme == .dark ? 0.24 : 0.17),
+        softGlow: Color(red: 0.76, green: 0.70, blue: 1.00).opacity(colorScheme == .dark ? 0.10 : 0.24)
+      )
+    default:
+      return nil
+    }
+  }
+}
+
+private func widgetPalette(for snapshot: NamazymWidgetSnapshot, colorScheme: ColorScheme) -> WidgetPalette {
+  let moodKey = snapshot.visualMood.key
+  let fallbackAccent = Color(hex: snapshot.visualMood.accentColor, fallback: Color(red: 0.72, green: 0.48, blue: 0.22))
+
+  return WidgetPalette(
+    accent: WidgetMoodStyle.style(for: moodKey, colorScheme: colorScheme)?.accent ?? fallbackAccent,
+    background: Color(hex: snapshot.visualMood.backgroundColor, fallback: Color(red: 0.96, green: 0.93, blue: 0.87)),
+    colorScheme: colorScheme,
+    moodKey: moodKey
+  )
 }
 
 private struct WidgetBackground: View {
@@ -99,12 +204,14 @@ private struct WidgetBackground: View {
     ZStack {
       palette.gradient
       Circle()
-        .fill(palette.accent.opacity(palette.colorScheme == .dark ? 0.16 : 0.13))
+        .fill(palette.glow)
         .frame(width: 120, height: 120)
+        .blur(radius: 2)
         .offset(x: 70, y: -52)
       Circle()
-        .fill(Color.white.opacity(palette.colorScheme == .dark ? 0.05 : 0.22))
+        .fill(palette.softGlow)
         .frame(width: 132, height: 132)
+        .blur(radius: 1)
         .offset(x: -56, y: 78)
     }
   }
@@ -115,12 +222,8 @@ struct NamazymSmallWidgetView: View {
   let snapshot: NamazymWidgetSnapshot
 
   var body: some View {
-    let accent = Color(hex: snapshot.visualMood.accentColor, fallback: Color(red: 0.72, green: 0.48, blue: 0.22))
-    let palette = WidgetPalette(
-      accent: accent,
-      background: Color(hex: snapshot.visualMood.backgroundColor, fallback: Color(red: 0.96, green: 0.93, blue: 0.87)),
-      colorScheme: colorScheme
-    )
+    let palette = widgetPalette(for: snapshot, colorScheme: colorScheme)
+    let accent = palette.accent
     let current = snapshot.currentPrayer
     let next = snapshot.nextPrayer
 
@@ -191,12 +294,8 @@ struct NamazymMediumWidgetView: View {
   let snapshot: NamazymWidgetSnapshot
 
   var body: some View {
-    let accent = Color(hex: snapshot.visualMood.accentColor, fallback: Color(red: 0.72, green: 0.48, blue: 0.22))
-    let palette = WidgetPalette(
-      accent: accent,
-      background: Color(hex: snapshot.visualMood.backgroundColor, fallback: Color(red: 0.96, green: 0.93, blue: 0.87)),
-      colorScheme: colorScheme
-    )
+    let palette = widgetPalette(for: snapshot, colorScheme: colorScheme)
+    let accent = palette.accent
     let featured = snapshot.nextPrayer ?? snapshot.currentPrayer
 
     ZStack(alignment: .topTrailing) {
@@ -275,12 +374,8 @@ struct NamazymLargeWidgetView: View {
   let snapshot: NamazymWidgetSnapshot
 
   var body: some View {
-    let accent = Color(hex: snapshot.visualMood.accentColor, fallback: Color(red: 0.72, green: 0.48, blue: 0.22))
-    let palette = WidgetPalette(
-      accent: accent,
-      background: Color(hex: snapshot.visualMood.backgroundColor, fallback: Color(red: 0.96, green: 0.93, blue: 0.87)),
-      colorScheme: colorScheme
-    )
+    let palette = widgetPalette(for: snapshot, colorScheme: colorScheme)
+    let accent = palette.accent
 
     ZStack(alignment: .topTrailing) {
       WidgetBackground(palette: palette)
@@ -449,9 +544,10 @@ struct NamazymFallbackView: View {
   var body: some View {
     let accent = Color(hex: mood?.accentColor ?? "#B8843B", fallback: Color(red: 0.72, green: 0.48, blue: 0.22))
     let palette = WidgetPalette(
-      accent: accent,
+      accent: WidgetMoodStyle.style(for: mood?.key, colorScheme: colorScheme)?.accent ?? accent,
       background: Color(hex: mood?.backgroundColor ?? "#F6F1E8", fallback: Color(red: 0.96, green: 0.93, blue: 0.87)),
-      colorScheme: colorScheme
+      colorScheme: colorScheme,
+      moodKey: mood?.key
     )
 
     ZStack(alignment: .topTrailing) {
