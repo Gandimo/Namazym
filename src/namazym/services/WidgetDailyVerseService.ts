@@ -9,6 +9,26 @@ const sanitizeWhitespace = (value: string): string => {
     return value.replace(/\s+/g, ' ').trim();
 };
 
+const isUsableVerseText = (value: string | null | undefined): value is string => {
+    if (typeof value !== 'string') {
+        return false;
+    }
+
+    const text = sanitizeWhitespace(value);
+    const upperText = text.toUpperCase();
+
+    if (!text) {
+        return false;
+    }
+
+    if (upperText.includes('DATA_MISSING') || upperText.includes('PDF_EXTRACTION')) {
+        return false;
+    }
+
+    // Keep legitimate short verses, but reject tiny broken extraction fragments.
+    return text.replace(/[^\p{L}\p{N}]/gu, '').length >= 2;
+};
+
 const truncateForWidget = (value: string): string => {
     const text = sanitizeWhitespace(value);
 
@@ -34,16 +54,16 @@ export const WidgetDailyVerseService = {
             }
 
             for (const ayah of surah.ayahs) {
-                const text = sanitizeWhitespace(DataService.getVerseText(ayah, 'tk'));
+                const rawText = DataService.getVerseText(ayah, 'tk');
 
-                if (!text) {
+                if (!isUsableVerseText(rawText)) {
                     continue;
                 }
 
                 versesPool.push({
                     surah: surah.number,
                     ayah: ayah.number,
-                    text,
+                    text: sanitizeWhitespace(rawText),
                 });
             }
         }
