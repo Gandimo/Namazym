@@ -10,6 +10,6 @@ struct NamazymWidget: Widget {
     }
     .configurationDisplayName("Namazym")
     .description("Namaz wagtlaryny öý ekranynda görkezýär.")
-    .supportedFamilies([.systemSmall, .systemMedium])
+    .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
   }
 }

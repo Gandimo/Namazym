@@ -24,6 +24,7 @@ struct NamazymWidgetSnapshot: Decodable {
   let nextPrayer: WidgetPrayerSummary?
   let remaining: WidgetRemainingTime?
   let visualMood: WidgetVisualMood
+  let dailyVerse: WidgetDailyVerse?
 }
 
 struct WidgetCity: Decodable {
@@ -56,6 +57,12 @@ struct WidgetVisualMood: Decodable {
   let key: String
   let accentColor: String
   let backgroundColor: String
+}
+
+struct WidgetDailyVerse: Decodable {
+  let text: String
+  let reference: String
+  let source: String?
 }
 
 extension Color {
@@ -108,7 +115,12 @@ extension NamazymWidgetSnapshot {
     currentPrayer: WidgetPrayerSummary(key: "Asr", label: "Ikindi", time: "17:24", timestampISO: nil),
     nextPrayer: WidgetPrayerSummary(key: "Maghrib", label: "Agşam", time: "20:27", timestampISO: nil),
     remaining: WidgetRemainingTime(totalMinutes: 96, display: "1 sag 36 min galdy"),
-    visualMood: WidgetVisualMood(key: "Asr", accentColor: "#C47A3C", backgroundColor: "#F4E7D4")
+    visualMood: WidgetVisualMood(key: "Asr", accentColor: "#C47A3C", backgroundColor: "#F4E7D4"),
+    dailyVerse: WidgetDailyVerse(
+      text: "Rebbiňiz aýtdy: Maňa doga ediň, Men size jogap bereýin.",
+      reference: "Mumin, 60",
+      source: "Gurhan"
+    )
   )
 
   static func currentLocalDateISO() -> String {

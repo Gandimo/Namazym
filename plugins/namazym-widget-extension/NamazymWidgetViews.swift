@@ -36,7 +36,9 @@ struct NamazymWidgetEntryView: View {
 
   @ViewBuilder
   private func content(for snapshot: NamazymWidgetSnapshot) -> some View {
-    if family == .systemMedium {
+    if family == .systemLarge {
+      NamazymLargeWidgetView(snapshot: snapshot)
+    } else if family == .systemMedium {
       NamazymMediumWidgetView(snapshot: snapshot)
     } else {
       NamazymSmallWidgetView(snapshot: snapshot)
@@ -255,6 +257,130 @@ struct NamazymMediumWidgetView: View {
         }
       }
       .padding(14)
+    }
+    .widgetCardBackground { WidgetBackground(palette: palette) }
+  }
+}
+
+struct NamazymLargeWidgetView: View {
+  @Environment(\.colorScheme) private var colorScheme
+  let snapshot: NamazymWidgetSnapshot
+
+  var body: some View {
+    let accent = Color(hex: snapshot.visualMood.accentColor, fallback: Color(red: 0.72, green: 0.48, blue: 0.22))
+    let palette = WidgetPalette(
+      accent: accent,
+      background: Color(hex: snapshot.visualMood.backgroundColor, fallback: Color(red: 0.96, green: 0.93, blue: 0.87)),
+      colorScheme: colorScheme
+    )
+
+    ZStack(alignment: .topTrailing) {
+      WidgetBackground(palette: palette)
+      Circle()
+        .fill(accent.opacity(colorScheme == .dark ? 0.18 : 0.14))
+        .frame(width: 210, height: 210)
+        .blur(radius: 6)
+        .offset(x: 82, y: -72)
+      Circle()
+        .stroke(accent.opacity(colorScheme == .dark ? 0.22 : 0.18), lineWidth: 1)
+        .frame(width: 168, height: 168)
+        .offset(x: 70, y: -56)
+      CrescentShape(accent: accent)
+        .frame(width: 104, height: 104)
+        .opacity(colorScheme == .dark ? 0.20 : 0.24)
+        .offset(x: 42, y: -34)
+
+      VStack(alignment: .leading, spacing: 16) {
+        HStack(spacing: 10) {
+          Text(snapshot.city.name)
+            .font(.caption)
+            .fontWeight(.semibold)
+            .foregroundStyle(palette.secondary)
+            .lineLimit(1)
+            .minimumScaleFactor(0.78)
+
+          Spacer(minLength: 10)
+
+          Text(compactRemaining(snapshot.remaining))
+            .font(.caption)
+            .fontWeight(.bold)
+            .monospacedDigit()
+            .foregroundStyle(accent)
+            .lineLimit(1)
+            .minimumScaleFactor(0.76)
+            .padding(.horizontal, 11)
+            .padding(.vertical, 6)
+            .background(palette.chip)
+            .clipShape(Capsule())
+        }
+
+        VStack(alignment: .leading, spacing: 12) {
+          Text("GÜNÜŇ AÝATY")
+            .font(.caption2)
+            .fontWeight(.heavy)
+            .tracking(0.8)
+            .foregroundStyle(accent)
+            .lineLimit(1)
+
+          Text(snapshot.dailyVerse?.text ?? "Namazym açyň, günüň aýatyny widgetde görkeziň.")
+            .font(.system(size: 23, weight: .bold, design: .serif))
+            .foregroundStyle(palette.primary)
+            .lineLimit(6)
+            .minimumScaleFactor(0.72)
+            .fixedSize(horizontal: false, vertical: true)
+
+          HStack(spacing: 8) {
+            Rectangle()
+              .fill(accent.opacity(0.75))
+              .frame(width: 24, height: 2)
+              .clipShape(Capsule())
+
+            Text(snapshot.dailyVerse?.reference ?? "Namazym")
+              .font(.callout)
+              .fontWeight(.semibold)
+              .foregroundStyle(palette.secondary)
+              .lineLimit(1)
+              .minimumScaleFactor(0.78)
+          }
+        }
+        .padding(18)
+        .frame(maxWidth: .infinity, minHeight: 188, alignment: .leading)
+        .background(
+          RoundedRectangle(cornerRadius: 24, style: .continuous)
+            .fill(palette.card)
+            .overlay(
+              RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .stroke(Color.white.opacity(colorScheme == .dark ? 0.11 : 0.34), lineWidth: 1)
+            )
+        )
+        .shadow(color: accent.opacity(colorScheme == .dark ? 0.14 : 0.10), radius: 18, x: 0, y: 10)
+
+        Spacer(minLength: 0)
+
+        HStack(spacing: 8) {
+          Text(snapshot.nextPrayer?.label ?? snapshot.currentPrayer?.label ?? "Indiki")
+            .font(.caption)
+            .fontWeight(.semibold)
+            .foregroundStyle(palette.secondary)
+            .lineLimit(1)
+
+          Text(snapshot.nextPrayer?.time ?? snapshot.currentPrayer?.time ?? "--:--")
+            .font(.caption)
+            .fontWeight(.bold)
+            .monospacedDigit()
+            .foregroundStyle(accent)
+            .lineLimit(1)
+
+          Spacer(minLength: 8)
+
+          Text(snapshot.dailyVerse?.source ?? "Gurhan")
+            .font(.caption2)
+            .fontWeight(.semibold)
+            .foregroundStyle(palette.secondary.opacity(0.86))
+            .lineLimit(1)
+        }
+      }
+      .padding(18)
     }
     .widgetCardBackground { WidgetBackground(palette: palette) }
   }
