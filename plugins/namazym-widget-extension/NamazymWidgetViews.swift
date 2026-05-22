@@ -141,19 +141,22 @@ struct NamazymSmallWidgetView: View {
 
         Spacer(minLength: 0)
 
-        Text(current?.label ?? next?.label ?? "Namazym")
-          .font(.title3)
-          .fontWeight(.bold)
-          .foregroundStyle(palette.primary)
-          .lineLimit(1)
-          .minimumScaleFactor(0.82)
+        VStack(spacing: 3) {
+          Text(current?.label ?? next?.label ?? "Namazym")
+            .font(.callout)
+            .fontWeight(.bold)
+            .foregroundStyle(palette.primary)
+            .lineLimit(1)
+            .minimumScaleFactor(0.82)
 
-        Text(compactRemaining(snapshot.remaining))
-          .font(.system(size: 28, weight: .heavy, design: .rounded))
-          .monospacedDigit()
-          .foregroundStyle(accent)
-          .lineLimit(1)
-          .minimumScaleFactor(0.68)
+          Text(compactRemaining(snapshot.remaining))
+            .font(.system(size: 29, weight: .heavy, design: .rounded))
+            .monospacedDigit()
+            .foregroundStyle(accent)
+            .lineLimit(1)
+            .minimumScaleFactor(0.66)
+        }
+        .frame(maxWidth: .infinity, alignment: .center)
 
         HStack(spacing: 5) {
           Text(next?.label ?? "Indiki")
@@ -167,9 +170,14 @@ struct NamazymSmallWidgetView: View {
         .font(.caption)
         .foregroundStyle(palette.primary)
         .minimumScaleFactor(0.74)
-        .padding(.horizontal, 9)
-        .padding(.vertical, 5)
-        .background(palette.card)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 6)
+        .frame(maxWidth: .infinity)
+        .background(palette.chip)
+        .overlay(
+          Capsule()
+            .stroke(Color.white.opacity(colorScheme == .dark ? 0.10 : 0.30), lineWidth: 1)
+        )
         .clipShape(Capsule())
       }
       .padding(14)
