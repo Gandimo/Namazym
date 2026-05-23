@@ -8,7 +8,7 @@ interface NamazymWidgetBridgeModule {
 const nativeBridge = NativeModules.NamazymWidgetBridge as NamazymWidgetBridgeModule | undefined;
 
 const isAvailable = (): boolean => {
-    return Platform.OS === 'ios'
+    return (Platform.OS === 'ios' || Platform.OS === 'android')
         && !!nativeBridge
         && typeof nativeBridge.writeSnapshot === 'function'
         && typeof nativeBridge.clearSnapshot === 'function';
