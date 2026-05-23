@@ -3,7 +3,7 @@
     "name": "Namazym",
     "slug": "namazym",
     "scheme": "namazym",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -12,7 +12,7 @@
       "backgroundColor": "#F6F1E8"
     },
     "ios": {
-      "buildNumber": "1",
+      "buildNumber": "2",
       "bundleIdentifier": "com.namazym.app",
       "supportsTablet": true,
       "infoPlist": {
