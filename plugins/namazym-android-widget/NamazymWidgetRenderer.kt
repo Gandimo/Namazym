@@ -21,7 +21,10 @@ private data class WidgetPalette(
   val accent: Int,
   val primary: Int,
   val secondary: Int,
-  val muted: Int
+  val muted: Int,
+  val backgroundRes: Int,
+  val chipRes: Int,
+  val activePrayerRes: Int
 )
 
 object NamazymWidgetRenderer {
@@ -73,6 +76,8 @@ object NamazymWidgetRenderer {
     views.setTextColor(R.id.widget_prayer_label, palette.secondary)
     views.setTextColor(R.id.widget_remaining, palette.primary)
     views.setTextColor(R.id.widget_next_pill, palette.primary)
+    views.setInt(R.id.widget_root, "setBackgroundResource", palette.backgroundRes)
+    views.setInt(R.id.widget_next_pill, "setBackgroundResource", palette.chipRes)
     return views
   }
 
@@ -86,6 +91,8 @@ object NamazymWidgetRenderer {
     views.setTextViewText(R.id.widget_city, cityName)
     views.setTextViewText(R.id.widget_remaining_chip, remainingChipText(snapshot))
     views.setTextViewText(R.id.widget_featured, next?.let { "${it.optString("label")} • ${it.optString("time")}" } ?: "Namaz wagtlary")
+    views.setInt(R.id.widget_root, "setBackgroundResource", palette.backgroundRes)
+    views.setInt(R.id.widget_remaining_chip, "setBackgroundResource", palette.chipRes)
 
     val nextKey = next?.optString("key").orEmpty()
     val labelIds = intArrayOf(
@@ -119,7 +126,7 @@ object NamazymWidgetRenderer {
       views.setInt(
         cellIds[index],
         "setBackgroundResource",
-        if (isNext) R.drawable.namazym_widget_prayer_active else R.drawable.namazym_widget_pill
+        if (isNext) palette.activePrayerRes else R.drawable.namazym_widget_pill
       )
       views.setTextViewText(labelIds[index], prayer?.optString("label").orEmpty().ifBlank { "—" })
       views.setTextViewText(timeIds[index], prayer?.optString("time").orEmpty().ifBlank { "--:--" })
@@ -149,6 +156,8 @@ object NamazymWidgetRenderer {
     )
     views.setTextViewText(R.id.widget_reference, verse?.optString("reference").orEmpty().ifBlank { "Gurhan" })
     views.setTextViewText(R.id.widget_footer, next?.let { "${it.optString("label")} • ${it.optString("time")}" } ?: "Namazym")
+    views.setInt(R.id.widget_root, "setBackgroundResource", palette.backgroundRes)
+    views.setInt(R.id.widget_remaining_chip, "setBackgroundResource", palette.chipRes)
     views.setTextColor(R.id.widget_city, palette.secondary)
     views.setTextColor(R.id.widget_remaining_chip, palette.primary)
     views.setTextColor(R.id.widget_section_title, palette.accent)
@@ -170,21 +179,99 @@ object NamazymWidgetRenderer {
   }
 
   private fun paletteFor(snapshot: JSONObject?): WidgetPalette {
-    val moodKey = snapshot?.optJSONObject("visualMood")?.optString("key").orEmpty().lowercase()
+    val moodKey = resolveMoodKey(snapshot)
     return when (moodKey) {
-      "fajr" -> WidgetPalette(Color.rgb(168, 205, 241), Color.rgb(255, 248, 234), Color.rgb(207, 214, 238), Color.rgb(143, 150, 184))
-      "sunrise" -> WidgetPalette(Color.rgb(241, 215, 154), Color.rgb(255, 248, 234), Color.rgb(221, 211, 188), Color.rgb(151, 143, 122))
-      "dhuhr" -> WidgetPalette(Color.rgb(216, 181, 106), Color.rgb(255, 248, 234), Color.rgb(201, 205, 232), Color.rgb(143, 150, 184))
-      "asr" -> WidgetPalette(Color.rgb(229, 166, 93), Color.rgb(255, 248, 234), Color.rgb(218, 198, 167), Color.rgb(150, 132, 105))
-      "maghrib" -> WidgetPalette(Color.rgb(230, 148, 121), Color.rgb(255, 248, 234), Color.rgb(226, 201, 196), Color.rgb(156, 125, 123))
-      "isha" -> WidgetPalette(Color.rgb(174, 178, 255), Color.rgb(255, 248, 234), Color.rgb(211, 211, 239), Color.rgb(143, 150, 184))
+      "fajr" -> WidgetPalette(
+        Color.rgb(181, 214, 255),
+        Color.rgb(255, 248, 234),
+        Color.rgb(212, 221, 245),
+        Color.rgb(143, 150, 184),
+        R.drawable.namazym_widget_background_fajr,
+        R.drawable.namazym_widget_chip_fajr,
+        R.drawable.namazym_widget_prayer_active_fajr
+      )
+      "sunrise" -> WidgetPalette(
+        Color.rgb(111, 82, 19),
+        Color.rgb(42, 43, 52),
+        Color.rgb(81, 77, 73),
+        Color.rgb(116, 110, 103),
+        R.drawable.namazym_widget_background_sunrise,
+        R.drawable.namazym_widget_chip_sunrise,
+        R.drawable.namazym_widget_prayer_active_sunrise
+      )
+      "dhuhr" -> WidgetPalette(
+        Color.rgb(166, 111, 35),
+        Color.rgb(43, 43, 52),
+        Color.rgb(94, 90, 87),
+        Color.rgb(116, 110, 103),
+        R.drawable.namazym_widget_background_dhuhr,
+        R.drawable.namazym_widget_chip_dhuhr,
+        R.drawable.namazym_widget_prayer_active_dhuhr
+      )
+      "asr" -> WidgetPalette(
+        Color.rgb(246, 190, 113),
+        Color.rgb(255, 248, 234),
+        Color.rgb(238, 217, 185),
+        Color.rgb(166, 141, 103),
+        R.drawable.namazym_widget_background_asr,
+        R.drawable.namazym_widget_chip_asr,
+        R.drawable.namazym_widget_prayer_active_asr
+      )
+      "maghrib" -> WidgetPalette(
+        Color.rgb(255, 190, 151),
+        Color.rgb(255, 248, 234),
+        Color.rgb(237, 211, 214),
+        Color.rgb(176, 132, 139),
+        R.drawable.namazym_widget_background_maghrib,
+        R.drawable.namazym_widget_chip_maghrib,
+        R.drawable.namazym_widget_prayer_active_maghrib
+      )
+      "isha" -> nightPalette()
       else -> WidgetPalette(
         parseColor(snapshot?.optJSONObject("visualMood")?.optString("accentColor"), Color.rgb(184, 132, 59)),
         Color.rgb(255, 248, 234),
         Color.rgb(201, 205, 232),
-        Color.rgb(143, 150, 184)
+        Color.rgb(143, 150, 184),
+        R.drawable.namazym_widget_background_isha,
+        R.drawable.namazym_widget_chip_isha,
+        R.drawable.namazym_widget_prayer_active_isha
       )
     }
+  }
+
+  private fun resolveMoodKey(snapshot: JSONObject?): String {
+    val candidates = listOf(
+      snapshot?.optJSONObject("visualMood")?.optString("key"),
+      snapshot?.optJSONObject("currentPrayer")?.optString("key"),
+      snapshot?.optJSONObject("currentPrayer")?.optString("label"),
+      snapshot?.optJSONObject("nextPrayer")?.optString("key"),
+      snapshot?.optJSONObject("nextPrayer")?.optString("label")
+    )
+
+    for (candidate in candidates) {
+      when (candidate.orEmpty().trim().lowercase()) {
+        "fajr", "ertir" -> return "fajr"
+        "sunrise", "gün", "gun" -> return "sunrise"
+        "dhuhr", "öýle", "oyle" -> return "dhuhr"
+        "asr", "ikindi" -> return "asr"
+        "maghrib", "agşam", "agsam" -> return "maghrib"
+        "isha", "ýassy", "yassy" -> return "isha"
+      }
+    }
+
+    return "isha"
+  }
+
+  private fun nightPalette(): WidgetPalette {
+    return WidgetPalette(
+      Color.rgb(174, 178, 255),
+      Color.rgb(255, 248, 234),
+      Color.rgb(211, 211, 239),
+      Color.rgb(143, 150, 184),
+      R.drawable.namazym_widget_background_isha,
+      R.drawable.namazym_widget_chip_isha,
+      R.drawable.namazym_widget_prayer_active_isha
+    )
   }
 
   private fun parseColor(value: String?, fallback: Int): Int {
