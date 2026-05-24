@@ -6,12 +6,34 @@
   android:background="@drawable/namazym_widget_background">
 
   <ImageView
-    android:layout_width="58dp"
-    android:layout_height="58dp"
+    android:layout_width="138dp"
+    android:layout_height="138dp"
+    android:layout_gravity="top|end"
+    android:layout_marginTop="-42dp"
+    android:layout_marginEnd="-42dp"
+    android:alpha="0.72"
+    android:background="@drawable/namazym_widget_glow_gold"
+    android:contentDescription="@null"
+    android:importantForAccessibility="no" />
+
+  <ImageView
+    android:layout_width="132dp"
+    android:layout_height="132dp"
+    android:layout_gravity="bottom|start"
+    android:layout_marginStart="-52dp"
+    android:layout_marginBottom="-48dp"
+    android:alpha="0.46"
+    android:background="@drawable/namazym_widget_glow_blue"
+    android:contentDescription="@null"
+    android:importantForAccessibility="no" />
+
+  <ImageView
+    android:layout_width="68dp"
+    android:layout_height="68dp"
     android:layout_gravity="bottom|end"
-    android:layout_marginEnd="10dp"
-    android:layout_marginBottom="42dp"
-    android:alpha="0.14"
+    android:layout_marginEnd="6dp"
+    android:layout_marginBottom="34dp"
+    android:alpha="0.20"
     android:contentDescription="@null"
     android:importantForAccessibility="no"
     android:scaleType="fitCenter"
@@ -23,16 +45,35 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-      android:id="@+id/widget_city"
+    <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:ellipsize="end"
-      android:fontFamily="sans"
-      android:maxLines="1"
-      android:text="Aşgabat"
-      android:textSize="13sp"
-      android:textStyle="bold" />
+      android:gravity="center_vertical"
+      android:orientation="horizontal">
+
+      <TextView
+        android:id="@+id/widget_city"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:fontFamily="sans"
+        android:letterSpacing="0.02"
+        android:maxLines="1"
+        android:text="Aşgabat"
+        android:textSize="13sp"
+        android:textStyle="bold" />
+
+      <TextView
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:background="@drawable/namazym_widget_logo_orb"
+        android:gravity="center"
+        android:text="☾"
+        android:textColor="#FFF8EA"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+    </LinearLayout>
 
     <TextView
       android:layout_width="42dp"
@@ -51,8 +92,14 @@
       android:id="@+id/widget_prayer_label"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:fontFamily="serif"
       android:gravity="center"
+      android:letterSpacing="0.05"
       android:maxLines="1"
+      android:shadowColor="#66000000"
+      android:shadowDx="0"
+      android:shadowDy="2"
+      android:shadowRadius="4"
       android:text="Ikindi"
       android:textSize="18sp"
       android:textStyle="bold" />
@@ -68,6 +115,10 @@
       android:autoSizeTextType="uniform"
       android:gravity="center"
       android:maxLines="1"
+      android:shadowColor="#77000000"
+      android:shadowDx="0"
+      android:shadowDy="3"
+      android:shadowRadius="6"
       android:text="1 sag 36 min"
       android:textSize="32sp"
       android:textStyle="bold" />

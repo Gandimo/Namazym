@@ -6,12 +6,34 @@
   android:background="@drawable/namazym_widget_background">
 
   <ImageView
-    android:layout_width="76dp"
-    android:layout_height="76dp"
+    android:layout_width="188dp"
+    android:layout_height="188dp"
     android:layout_gravity="top|end"
-    android:layout_marginTop="62dp"
-    android:layout_marginEnd="28dp"
-    android:alpha="0.12"
+    android:layout_marginTop="-66dp"
+    android:layout_marginEnd="-50dp"
+    android:alpha="0.58"
+    android:background="@drawable/namazym_widget_glow_gold"
+    android:contentDescription="@null"
+    android:importantForAccessibility="no" />
+
+  <ImageView
+    android:layout_width="170dp"
+    android:layout_height="170dp"
+    android:layout_gravity="bottom|start"
+    android:layout_marginStart="-66dp"
+    android:layout_marginBottom="-68dp"
+    android:alpha="0.34"
+    android:background="@drawable/namazym_widget_glow_rose"
+    android:contentDescription="@null"
+    android:importantForAccessibility="no" />
+
+  <ImageView
+    android:layout_width="88dp"
+    android:layout_height="88dp"
+    android:layout_gravity="top|end"
+    android:layout_marginTop="54dp"
+    android:layout_marginEnd="18dp"
+    android:alpha="0.16"
     android:contentDescription="@null"
     android:importantForAccessibility="no"
     android:scaleType="fitCenter"
@@ -35,6 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:ellipsize="end"
+        android:letterSpacing="0.02"
         android:maxLines="1"
         android:text="Aşgabat"
         android:textSize="14sp"
@@ -59,7 +82,13 @@
       android:layout_height="wrap_content"
       android:layout_marginTop="9dp"
       android:ellipsize="end"
+      android:fontFamily="serif"
+      android:letterSpacing="0.03"
       android:maxLines="1"
+      android:shadowColor="#66000000"
+      android:shadowDx="0"
+      android:shadowDy="2"
+      android:shadowRadius="4"
       android:text="Agşam • 20:27"
       android:textSize="21sp"
       android:textStyle="bold" />
@@ -83,37 +112,43 @@
 
       <LinearLayout
         android:id="@+id/prayer_0_cell"
-        style="@style/NamazymWidgetPrayerCell">
+        style="@style/NamazymWidgetPrayerCell"
+        android:background="@drawable/namazym_widget_lens_pill">
         <TextView android:id="@+id/prayer_0_label" style="@style/NamazymWidgetPrayerLabel" />
         <TextView android:id="@+id/prayer_0_time" style="@style/NamazymWidgetPrayerTime" />
       </LinearLayout>
       <LinearLayout
         android:id="@+id/prayer_1_cell"
-        style="@style/NamazymWidgetPrayerCell">
+        style="@style/NamazymWidgetPrayerCell"
+        android:background="@drawable/namazym_widget_lens_pill">
         <TextView android:id="@+id/prayer_1_label" style="@style/NamazymWidgetPrayerLabel" />
         <TextView android:id="@+id/prayer_1_time" style="@style/NamazymWidgetPrayerTime" />
       </LinearLayout>
       <LinearLayout
         android:id="@+id/prayer_2_cell"
-        style="@style/NamazymWidgetPrayerCell">
+        style="@style/NamazymWidgetPrayerCell"
+        android:background="@drawable/namazym_widget_lens_pill">
         <TextView android:id="@+id/prayer_2_label" style="@style/NamazymWidgetPrayerLabel" />
         <TextView android:id="@+id/prayer_2_time" style="@style/NamazymWidgetPrayerTime" />
       </LinearLayout>
       <LinearLayout
         android:id="@+id/prayer_3_cell"
-        style="@style/NamazymWidgetPrayerCell">
+        style="@style/NamazymWidgetPrayerCell"
+        android:background="@drawable/namazym_widget_lens_pill">
         <TextView android:id="@+id/prayer_3_label" style="@style/NamazymWidgetPrayerLabel" />
         <TextView android:id="@+id/prayer_3_time" style="@style/NamazymWidgetPrayerTime" />
       </LinearLayout>
       <LinearLayout
         android:id="@+id/prayer_4_cell"
-        style="@style/NamazymWidgetPrayerCell">
+        style="@style/NamazymWidgetPrayerCell"
+        android:background="@drawable/namazym_widget_lens_pill">
         <TextView android:id="@+id/prayer_4_label" style="@style/NamazymWidgetPrayerLabel" />
         <TextView android:id="@+id/prayer_4_time" style="@style/NamazymWidgetPrayerTime" />
       </LinearLayout>
       <LinearLayout
         android:id="@+id/prayer_5_cell"
-        style="@style/NamazymWidgetPrayerCell">
+        style="@style/NamazymWidgetPrayerCell"
+        android:background="@drawable/namazym_widget_lens_pill">
         <TextView android:id="@+id/prayer_5_label" style="@style/NamazymWidgetPrayerLabel" />
         <TextView android:id="@+id/prayer_5_time" style="@style/NamazymWidgetPrayerTime" />
       </LinearLayout>

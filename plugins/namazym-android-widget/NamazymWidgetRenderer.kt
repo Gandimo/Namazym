@@ -72,7 +72,7 @@ object NamazymWidgetRenderer {
     })
     views.setTextViewText(R.id.widget_remaining, remaining)
     views.setTextViewText(R.id.widget_next_pill, next?.let { "${it.optString("label")} ${it.optString("time")}" } ?: "Namazym")
-    views.setTextColor(R.id.widget_city, palette.secondary)
+    views.setTextColor(R.id.widget_city, palette.primary)
     views.setTextColor(R.id.widget_prayer_label, palette.secondary)
     views.setTextColor(R.id.widget_remaining, palette.primary)
     views.setTextColor(R.id.widget_next_pill, palette.primary)
@@ -126,7 +126,7 @@ object NamazymWidgetRenderer {
       views.setInt(
         cellIds[index],
         "setBackgroundResource",
-        if (isNext) palette.activePrayerRes else R.drawable.namazym_widget_pill
+        if (isNext) palette.activePrayerRes else R.drawable.namazym_widget_lens_pill
       )
       views.setTextViewText(labelIds[index], prayer?.optString("label").orEmpty().ifBlank { "—" })
       views.setTextViewText(timeIds[index], prayer?.optString("time").orEmpty().ifBlank { "--:--" })
@@ -134,7 +134,7 @@ object NamazymWidgetRenderer {
       views.setTextColor(timeIds[index], if (isNext) palette.primary else palette.secondary)
     }
 
-    views.setTextColor(R.id.widget_city, palette.secondary)
+    views.setTextColor(R.id.widget_city, palette.primary)
     views.setTextColor(R.id.widget_remaining_chip, palette.primary)
     views.setTextColor(R.id.widget_featured, palette.primary)
     return views
@@ -158,7 +158,7 @@ object NamazymWidgetRenderer {
     views.setTextViewText(R.id.widget_footer, next?.let { "${it.optString("label")} • ${it.optString("time")}" } ?: "Namazym")
     views.setInt(R.id.widget_root, "setBackgroundResource", palette.backgroundRes)
     views.setInt(R.id.widget_remaining_chip, "setBackgroundResource", palette.chipRes)
-    views.setTextColor(R.id.widget_city, palette.secondary)
+    views.setTextColor(R.id.widget_city, palette.primary)
     views.setTextColor(R.id.widget_remaining_chip, palette.primary)
     views.setTextColor(R.id.widget_section_title, palette.accent)
     views.setTextColor(R.id.widget_verse, palette.primary)
@@ -191,19 +191,19 @@ object NamazymWidgetRenderer {
         R.drawable.namazym_widget_prayer_active_fajr
       )
       "sunrise" -> WidgetPalette(
-        Color.rgb(111, 82, 19),
-        Color.rgb(42, 43, 52),
-        Color.rgb(81, 77, 73),
-        Color.rgb(116, 110, 103),
+        Color.rgb(241, 215, 154),
+        Color.rgb(255, 248, 234),
+        Color.rgb(238, 217, 185),
+        Color.rgb(166, 141, 103),
         R.drawable.namazym_widget_background_sunrise,
         R.drawable.namazym_widget_chip_sunrise,
         R.drawable.namazym_widget_prayer_active_sunrise
       )
       "dhuhr" -> WidgetPalette(
-        Color.rgb(166, 111, 35),
-        Color.rgb(43, 43, 52),
-        Color.rgb(94, 90, 87),
-        Color.rgb(116, 110, 103),
+        Color.rgb(241, 215, 154),
+        Color.rgb(255, 248, 234),
+        Color.rgb(238, 217, 185),
+        Color.rgb(166, 141, 103),
         R.drawable.namazym_widget_background_dhuhr,
         R.drawable.namazym_widget_chip_dhuhr,
         R.drawable.namazym_widget_prayer_active_dhuhr
