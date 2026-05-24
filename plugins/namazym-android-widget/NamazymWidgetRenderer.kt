@@ -67,11 +67,18 @@ object NamazymWidgetRenderer {
     val remaining = snapshot?.optJSONObject("remaining")?.optString("display").orEmpty().ifBlank { "Namazym açyň" }
 
     views.setTextViewText(R.id.widget_city, cityName)
-    views.setTextViewText(R.id.widget_prayer_label, current?.optString("label").orEmpty().ifBlank {
-      next?.optString("label").orEmpty().ifBlank { "Namaz" }
+    views.setTextViewText(R.id.widget_prayer_label, next?.optString("label").orEmpty().ifBlank {
+      current?.optString("label").orEmpty().ifBlank { "Namaz" }
     })
     views.setTextViewText(R.id.widget_remaining, remaining)
-    views.setTextViewText(R.id.widget_next_pill, next?.let { "${it.optString("label")} ${it.optString("time")}" } ?: "Namazym")
+    val pillText = current?.optString("label").orEmpty().let { currentLabel ->
+      if (currentLabel.isNotBlank()) {
+        "Häzir: $currentLabel"
+      } else {
+        next?.let { "${it.optString("label")} ${it.optString("time")}" } ?: "Namazym"
+      }
+    }
+    views.setTextViewText(R.id.widget_next_pill, pillText)
     views.setTextColor(R.id.widget_city, palette.primary)
     views.setTextColor(R.id.widget_prayer_label, palette.secondary)
     views.setTextColor(R.id.widget_remaining, palette.primary)
