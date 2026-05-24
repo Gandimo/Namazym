@@ -1,7 +1,9 @@
 package com.namazym.app.widget
 
 import android.appwidget.AppWidgetManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.widget.RemoteViews
 import com.namazym.app.R
@@ -85,6 +87,15 @@ object NamazymWidgetRenderer {
     views.setTextColor(R.id.widget_next_pill, palette.primary)
     views.setInt(R.id.widget_root, "setBackgroundResource", palette.backgroundRes)
     views.setInt(R.id.widget_next_pill, "setBackgroundResource", palette.chipRes)
+    applyLaunchIntent(
+      context,
+      views,
+      R.id.widget_root,
+      R.id.widget_city,
+      R.id.widget_prayer_label,
+      R.id.widget_remaining,
+      R.id.widget_next_pill
+    )
     return views
   }
 
@@ -144,6 +155,32 @@ object NamazymWidgetRenderer {
     views.setTextColor(R.id.widget_city, palette.primary)
     views.setTextColor(R.id.widget_remaining_chip, palette.primary)
     views.setTextColor(R.id.widget_featured, palette.primary)
+    applyLaunchIntent(
+      context,
+      views,
+      R.id.widget_root,
+      R.id.widget_city,
+      R.id.widget_remaining_chip,
+      R.id.widget_featured,
+      R.id.prayer_0_cell,
+      R.id.prayer_1_cell,
+      R.id.prayer_2_cell,
+      R.id.prayer_3_cell,
+      R.id.prayer_4_cell,
+      R.id.prayer_5_cell,
+      R.id.prayer_0_label,
+      R.id.prayer_1_label,
+      R.id.prayer_2_label,
+      R.id.prayer_3_label,
+      R.id.prayer_4_label,
+      R.id.prayer_5_label,
+      R.id.prayer_0_time,
+      R.id.prayer_1_time,
+      R.id.prayer_2_time,
+      R.id.prayer_3_time,
+      R.id.prayer_4_time,
+      R.id.prayer_5_time
+    )
     return views
   }
 
@@ -171,7 +208,33 @@ object NamazymWidgetRenderer {
     views.setTextColor(R.id.widget_verse, palette.primary)
     views.setTextColor(R.id.widget_reference, palette.accent)
     views.setTextColor(R.id.widget_footer, palette.secondary)
+    applyLaunchIntent(
+      context,
+      views,
+      R.id.widget_root,
+      R.id.widget_city,
+      R.id.widget_remaining_chip,
+      R.id.widget_section_title,
+      R.id.widget_verse,
+      R.id.widget_reference,
+      R.id.widget_footer
+    )
     return views
+  }
+
+  private fun applyLaunchIntent(context: Context, views: RemoteViews, vararg viewIds: Int) {
+    val launchIntent = context.packageManager.getLaunchIntentForPackage(context.packageName)?.apply {
+      addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+    } ?: return
+    val pendingIntent = PendingIntent.getActivity(
+      context,
+      0,
+      launchIntent,
+      PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+    )
+    for (viewId in viewIds) {
+      views.setOnClickPendingIntent(viewId, pendingIntent)
+    }
   }
 
   private fun remainingChipText(snapshot: JSONObject?): String {
