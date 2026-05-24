@@ -11,9 +11,10 @@ const HIJRI_MONTH_ABBR_TK = ['Muh', 'Saf', 'RbI', 'RbII', 'JmI', 'JmII', 'Rej', 
 interface DateStripProps {
     selectedDate: string;
     onDateSelect: (date: string) => void;
+    isDarkTheme?: boolean;
 }
 
-export const DateStrip: React.FC<DateStripProps> = ({ selectedDate, onDateSelect }) => {
+export const DateStrip: React.FC<DateStripProps> = ({ selectedDate, onDateSelect, isDarkTheme = true }) => {
     const flatListRef = useRef<FlatList>(null);
 
     const dates = useMemo(() => {
@@ -53,12 +54,26 @@ export const DateStrip: React.FC<DateStripProps> = ({ selectedDate, onDateSelect
                 }}
                 style={[
                     styles.dateItem,
-                    isSelected && styles.selectedItem
+                    isDarkTheme ? styles.dateItemDark : styles.dateItemLight,
+                    isSelected && styles.selectedItem,
+                    isSelected && (isDarkTheme ? styles.selectedItemDark : styles.selectedItemLight)
                 ]}
             >
-                <Text style={[styles.dayName, isSelected && styles.selectedDayName]}>{dayName}</Text>
-                <Text style={[styles.dayNum, isSelected && styles.selectedDayNum]}>{dayNum}</Text>
-                <Text style={[styles.hijriLabel, isSelected && styles.selectedHijriLabel]} numberOfLines={1}>
+                <Text style={[
+                    styles.dayName,
+                    { color: isDarkTheme ? tokens2026.colors.text.secondary : 'rgba(45,45,53,0.66)' },
+                    isSelected && (isDarkTheme ? styles.selectedDayNameDark : styles.selectedDayNameLight),
+                ]}>{dayName}</Text>
+                <Text style={[
+                    styles.dayNum,
+                    { color: isDarkTheme ? tokens2026.colors.text.primary : '#34323A' },
+                    isSelected && styles.selectedDayNum,
+                ]}>{dayNum}</Text>
+                <Text style={[
+                    styles.hijriLabel,
+                    { color: isDarkTheme ? tokens2026.colors.text.secondary : 'rgba(45,45,53,0.56)' },
+                    isSelected && (isDarkTheme ? styles.selectedHijriLabelDark : styles.selectedHijriLabelLight),
+                ]} numberOfLines={1}>
                     {hijriLabel}
                 </Text>
                 {isSelected && <View style={styles.indicator} />}
@@ -102,13 +117,25 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginHorizontal: 4,
         borderRadius: 22,
-        backgroundColor: 'rgba(255, 255, 255, 0.075)',
         borderWidth: 1,
-        borderColor: 'rgba(255, 255, 255, 0.10)',
     },
-    selectedItem: {
+    dateItemDark: {
+        backgroundColor: 'rgba(255, 255, 255, 0.10)',
+        borderColor: 'rgba(255, 255, 255, 0.14)',
+    },
+    dateItemLight: {
+        backgroundColor: 'rgba(255, 255, 255, 0.44)',
+        borderColor: 'rgba(201, 168, 76, 0.12)',
+    },
+    selectedItemDark: {
         backgroundColor: 'rgba(255, 255, 255, 0.105)',
         borderColor: 'rgba(193, 160, 99, 0.28)',
+    },
+    selectedItemLight: {
+        backgroundColor: 'rgba(255, 255, 255, 0.72)',
+        borderColor: 'rgba(201, 168, 76, 0.42)',
+    },
+    selectedItem: {
         shadowColor: '#000',
         shadowOpacity: 0.07,
         shadowRadius: 8,
@@ -118,7 +145,6 @@ const styles = StyleSheet.create({
     dayName: {
         fontSize: 10,
         fontWeight: '700',
-        color: tokens2026.colors.text.secondary,
         letterSpacing: 1,
         marginBottom: 3,
     },
@@ -126,26 +152,32 @@ const styles = StyleSheet.create({
         fontSize: 21,
         lineHeight: 24,
         fontWeight: '800',
-        color: tokens2026.colors.text.primary,
     },
     hijriLabel: {
         marginTop: 4,
         fontSize: 9,
         lineHeight: 11,
         fontWeight: '600',
-        color: tokens2026.colors.text.secondary,
-        opacity: 0.5,
+        opacity: 0.72,
         letterSpacing: 0.35,
     },
-    selectedDayName: {
+    selectedDayNameDark: {
         color: 'rgba(255,255,255,0.82)',
+    },
+    selectedDayNameLight: {
+        color: 'rgba(45,45,53,0.72)',
     },
     selectedDayNum: {
         color: tokens2026.colors.brandGold,
     },
-    selectedHijriLabel: {
+    selectedHijriLabelDark: {
         color: 'rgba(255,255,255,0.82)',
         opacity: 0.78,
+        letterSpacing: 0.45,
+    },
+    selectedHijriLabelLight: {
+        color: 'rgba(45,45,53,0.62)',
+        opacity: 0.9,
         letterSpacing: 0.45,
     },
     indicator: {

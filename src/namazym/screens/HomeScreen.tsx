@@ -523,6 +523,7 @@ export default function HomeScreen({ navigation }: any) {
                     <DateStrip
                         selectedDate={selectedDate}
                         onDateSelect={setSelectedDate}
+                        isDarkTheme={isDarkTheme}
                     />
 
                     <DailyPrayersList

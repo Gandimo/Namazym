@@ -283,11 +283,13 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
                 onPress={onPress}
                 style={[styles.card, tokens2026.elevation.focused]}
             >
-                <BlurView
-                    intensity={tokens2026.glass.blurRadius}
-                    tint="dark"
-                    style={StyleSheet.absoluteFill}
-                />
+                {Platform.OS === 'ios' ? (
+                    <BlurView
+                        intensity={tokens2026.glass.blurRadius}
+                        tint="dark"
+                        style={StyleSheet.absoluteFill}
+                    />
+                ) : null}
                 <View style={styles.surfaceTone} />
                 <View pointerEvents="none" style={styles.ambientLayer}>
                     <View
@@ -401,12 +403,14 @@ const styles = StyleSheet.create({
         borderRadius: 24,
         overflow: 'hidden',
         borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.11)',
-        backgroundColor: 'rgba(8, 11, 17, 0.26)',
+        borderColor: 'rgba(216, 181, 106, 0.20)',
+        backgroundColor: '#121923',
     },
     surfaceTone: {
         ...StyleSheet.absoluteFillObject,
-        backgroundColor: 'rgba(10, 13, 20, 0.38)',
+        backgroundColor: Platform.OS === 'ios'
+            ? 'rgba(10, 13, 20, 0.34)'
+            : 'rgba(12, 18, 28, 0.92)',
     },
     ambientLayer: {
         ...StyleSheet.absoluteFillObject,

@@ -53,7 +53,7 @@ const PrayerRow = ({ item, time, isCurrent, isNext, isPast, isDarkTheme = true }
                 styles.card,
                 cardTone,
                 dynamicCardStyle,
-                tokens2026.elevation.soft
+                isDarkTheme ? tokens2026.elevation.soft : styles.lightCardDepth
             ]}>
 
                 <Text style={[styles.arabicWatermark, { color: palette.watermark }]}>{ARABIC_NAMES[item.key]}</Text>
@@ -162,6 +162,13 @@ const styles = StyleSheet.create({
     nextCard: {
         shadowOpacity: 0.09,
     },
+    lightCardDepth: {
+        shadowColor: '#8A6F31',
+        shadowOffset: { width: 0, height: 7 },
+        shadowOpacity: 0.10,
+        shadowRadius: 18,
+        elevation: 2,
+    },
     content: {
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -188,9 +195,9 @@ const styles = StyleSheet.create({
     },
     arabicWatermark: {
         position: 'absolute',
-        right: -15,
-        bottom: -15,
-        fontSize: 70,
+        right: -10,
+        bottom: -12,
+        fontSize: 58,
         fontFamily: 'Amiri_400Regular',
         zIndex: 1,
     },
