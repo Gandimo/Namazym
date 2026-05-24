@@ -190,7 +190,7 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
     const isNearPrayer = !isPassengerMode && remainingMs < 15 * 60 * 1000 && remainingMs > 0;
     const isCompactLayout = width <= 390;
     const isLargeLayout = width >= 430;
-    const visualKey = isPassengerMode ? current?.key : current?.key ?? next?.key;
+    const visualKey = isPassengerMode ? current?.key : next?.key ?? current?.key;
     const periodKey = normalizePrayerPeriodKey(visualKey) ?? normalizePrayerPeriodKey(current?.key) ?? 'Dhuhr';
     const visual = HERO_VISUALS[periodKey];
     const showDecorativeImage = visual.showDecorativeImage === true;
