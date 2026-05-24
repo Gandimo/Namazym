@@ -56,7 +56,9 @@ const PrayerRow = ({ item, time, isCurrent, isNext, isPast, isDarkTheme = true }
                 isDarkTheme ? tokens2026.elevation.soft : styles.lightCardDepth
             ]}>
 
-                <Text style={[styles.arabicWatermark, { color: palette.watermark }]}>{ARABIC_NAMES[item.key]}</Text>
+                {!isDarkTheme ? (
+                    <Text style={[styles.arabicWatermark, { color: palette.watermark }]}>{ARABIC_NAMES[item.key]}</Text>
+                ) : null}
 
                 <View style={styles.content}>
                     <View style={styles.nameGroup}>

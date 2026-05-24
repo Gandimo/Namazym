@@ -61,17 +61,17 @@ export const DateStrip: React.FC<DateStripProps> = ({ selectedDate, onDateSelect
             >
                 <Text style={[
                     styles.dayName,
-                    { color: isDarkTheme ? tokens2026.colors.text.secondary : 'rgba(45,45,53,0.66)' },
+                    { color: isDarkTheme ? tokens2026.colors.text.secondary : '#60584E' },
                     isSelected && (isDarkTheme ? styles.selectedDayNameDark : styles.selectedDayNameLight),
                 ]}>{dayName}</Text>
                 <Text style={[
                     styles.dayNum,
-                    { color: isDarkTheme ? tokens2026.colors.text.primary : '#34323A' },
+                    { color: isDarkTheme ? tokens2026.colors.text.primary : '#332F2A' },
                     isSelected && styles.selectedDayNum,
                 ]}>{dayNum}</Text>
                 <Text style={[
                     styles.hijriLabel,
-                    { color: isDarkTheme ? tokens2026.colors.text.secondary : 'rgba(45,45,53,0.56)' },
+                    { color: isDarkTheme ? tokens2026.colors.text.secondary : '#786F63' },
                     isSelected && (isDarkTheme ? styles.selectedHijriLabelDark : styles.selectedHijriLabelLight),
                 ]} numberOfLines={1}>
                     {hijriLabel}
@@ -124,16 +124,26 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(255, 255, 255, 0.14)',
     },
     dateItemLight: {
-        backgroundColor: 'rgba(255, 255, 255, 0.44)',
-        borderColor: 'rgba(201, 168, 76, 0.12)',
+        backgroundColor: '#FFFDF6',
+        borderColor: 'rgba(168, 132, 51, 0.22)',
+        shadowColor: '#8A6F31',
+        shadowOpacity: 0.08,
+        shadowRadius: 13,
+        shadowOffset: { width: 0, height: 7 },
+        elevation: 2,
     },
     selectedItemDark: {
         backgroundColor: 'rgba(255, 255, 255, 0.105)',
         borderColor: 'rgba(193, 160, 99, 0.28)',
     },
     selectedItemLight: {
-        backgroundColor: 'rgba(255, 255, 255, 0.72)',
-        borderColor: 'rgba(201, 168, 76, 0.42)',
+        backgroundColor: '#FFF4D8',
+        borderColor: 'rgba(196, 160, 80, 0.62)',
+        shadowColor: '#8A6F31',
+        shadowOpacity: 0.16,
+        shadowRadius: 16,
+        shadowOffset: { width: 0, height: 8 },
+        elevation: 4,
     },
     selectedItem: {
         shadowColor: '#000',
@@ -158,14 +168,14 @@ const styles = StyleSheet.create({
         fontSize: 9,
         lineHeight: 11,
         fontWeight: '600',
-        opacity: 0.72,
+        opacity: 0.88,
         letterSpacing: 0.35,
     },
     selectedDayNameDark: {
         color: 'rgba(255,255,255,0.82)',
     },
     selectedDayNameLight: {
-        color: 'rgba(45,45,53,0.72)',
+        color: '#6F5213',
     },
     selectedDayNum: {
         color: tokens2026.colors.brandGold,
@@ -176,8 +186,8 @@ const styles = StyleSheet.create({
         letterSpacing: 0.45,
     },
     selectedHijriLabelLight: {
-        color: 'rgba(45,45,53,0.62)',
-        opacity: 0.9,
+        color: '#6F5213',
+        opacity: 0.82,
         letterSpacing: 0.45,
     },
     indicator: {
