@@ -137,6 +137,38 @@ const normalizePrayerPeriodKey = (key?: string | null): PrayerPeriodKey | null =
     return NORMALIZED_PERIOD_KEYS[key.toLowerCase()] ?? null;
 };
 
+const getHeroTargetPrayer = ({
+    current,
+    next,
+    isPassengerMode,
+}: {
+    current: any;
+    next: any;
+    isPassengerMode: boolean;
+}) => {
+    if (isPassengerMode) return current ?? next ?? null;
+    return next ?? current ?? null;
+};
+
+const HERO_COUNTDOWN_TITLES: Record<PrayerPeriodKey, string> = {
+    Fajr: 'ERTIR NAMAZYNA',
+    Sunrise: 'GÜNÜŇ DOGMAGYNA',
+    Dhuhr: 'ÖÝLE NAMAZYNA',
+    Asr: 'IKINDI NAMAZYNA',
+    Maghrib: 'AGŞAM NAMAZYNA',
+    Isha: 'ÝASSY NAMAZYNA',
+};
+
+const getHeroCountdownTitle = ({
+    periodKey,
+    fallbackLabel,
+}: {
+    periodKey: PrayerPeriodKey;
+    fallbackLabel?: string | null;
+}) => {
+    return HERO_COUNTDOWN_TITLES[periodKey] ?? `${(fallbackLabel || '').toUpperCase()} NAMAZYNA`;
+};
+
 function PeriodAmbientIcon({
     period,
     color,
@@ -190,8 +222,8 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
     const isNearPrayer = !isPassengerMode && remainingMs < 15 * 60 * 1000 && remainingMs > 0;
     const isCompactLayout = width <= 390;
     const isLargeLayout = width >= 430;
-    const visualKey = isPassengerMode ? current?.key : next?.key ?? current?.key;
-    const periodKey = normalizePrayerPeriodKey(visualKey) ?? normalizePrayerPeriodKey(current?.key) ?? 'Dhuhr';
+    const targetPrayer = getHeroTargetPrayer({ current, next, isPassengerMode });
+    const periodKey = normalizePrayerPeriodKey(targetPrayer?.key) ?? normalizePrayerPeriodKey(current?.key) ?? 'Dhuhr';
     const visual = HERO_VISUALS[periodKey];
     const showDecorativeImage = visual.showDecorativeImage === true;
 
@@ -273,7 +305,10 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
     const hasDecorativeImage = showDecorativeImage && Boolean(decorativeAsset);
     const nextLabelText = isPassengerMode
         ? t('common.prayer_times').toUpperCase()
-        : `${t(`prayer.${next?.key?.toLowerCase()}`).toUpperCase()} NAMAZYNA`;
+        : getHeroCountdownTitle({
+            periodKey,
+            fallbackLabel: targetPrayer?.label || t(`prayer.${targetPrayer?.key?.toLowerCase()}`),
+        });
 
     return (
         <Animated.View style={[styles.container, entranceStyle, scaleStyle]}>
@@ -322,9 +357,11 @@ export const HeroPrayerCard = ({ current, next, remainingMs, progress, delay = 0
                                 opacity: decorativeImageOpacity,
                             },
                         ]}
+                        key={`hero-visual-stage-${periodKey}`}
                     >
                         {hasDecorativeImage ? (
                             <Image
+                                key={`hero-visual-image-${periodKey}`}
                                 source={decorativeAsset}
                                 resizeMode="contain"
                                 style={[styles.decorativeImage, isCompactLayout && styles.decorativeImageCompact]}
