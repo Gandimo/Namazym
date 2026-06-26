@@ -19,6 +19,7 @@ import type {
     PrayerNotificationSettings,
     PrayerRebuildReport,
 } from './notifications/prayerNotificationTypes';
+import { AZAN_CHANNEL_ID, AZAN_SOUND_FILE } from './notifications/prayerNotificationTypes';
 
 type PermissionStatus = 'granted' | 'denied';
 type RebuildResult = 'success' | 'partial_failure' | 'permission_denied' | 'disabled' | 'error';
@@ -142,10 +143,10 @@ export class NotificationService {
             return report;
         }
 
-        const channelId = soundType === 'azan_short' ? 'azan_channel' : 'default_content';
+        const channelId = soundType === 'azan_short' ? AZAN_CHANNEL_ID : 'default_content';
         const sound: string | boolean = soundType === 'silent'
             ? false
-            : (soundType === 'azan_short' ? 'namaz_chime.wav' : true);
+            : (soundType === 'azan_short' ? AZAN_SOUND_FILE : true);
 
         const mappedTimings: Array<{ key: PrayerName; label: 'Fajr' | 'Dhuhr' | 'Asr' | 'Maghrib' | 'Isha'; time: string }> = [
             { key: 'fajr', label: 'Fajr', time: data.timings.Fajr },
@@ -241,10 +242,13 @@ export class NotificationService {
                 sound: 'default',
             });
 
-            await Notifications.setNotificationChannelAsync('azan_channel', {
+            // Remove the legacy chime channel so its old sound no longer lingers.
+            await Notifications.deleteNotificationChannelAsync('azan_channel').catch(() => {});
+
+            await Notifications.setNotificationChannelAsync(AZAN_CHANNEL_ID, {
                 name: 'Azan Alerts',
                 importance: Notifications.AndroidImportance.HIGH,
-                sound: 'namaz_chime.wav',
+                sound: AZAN_SOUND_FILE,
                 vibrationPattern: [0, 250, 250, 250],
                 lightColor: '#C9A84C',
             });

@@ -48,7 +48,8 @@
         "expo-notifications",
         {
           "sounds": [
-            "./assets/sounds/namaz_chime.wav"
+            "./assets/sounds/namaz_chime.wav",
+            "./assets/sounds/azan_short.wav"
           ]
         }
       ]

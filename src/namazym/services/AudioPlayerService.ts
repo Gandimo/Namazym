@@ -1,20 +1,48 @@
-import { Audio } from 'expo-av';
+import { Audio, InterruptionModeIOS, InterruptionModeAndroid } from 'expo-av';
 
 /**
  * AudioPlayerService
  * Handles foreground playback of the full Azan sound.
+ *
+ * The bundled recording lives at `assets/audio/azan_full.mp3`. Replace that
+ * file (keep the same filename) to swap the Azan voice.
  */
+const AZAN_SOURCE = require('../assets/audio/azan_full.mp3');
+
 class AudioPlayerService {
     private sound: Audio.Sound | null = null;
     private isPlayingAudio: boolean = false;
+    private audioModeReady: boolean = false;
+
+    /**
+     * Configure the audio session so the Azan is audible even when the iOS
+     * silent switch is on. Called lazily before the first playback.
+     */
+    private async ensureAudioMode() {
+        if (this.audioModeReady) return;
+        try {
+            await Audio.setAudioModeAsync({
+                playsInSilentModeIOS: true,
+                staysActiveInBackground: false,
+                shouldDuckAndroid: true,
+                interruptionModeIOS: InterruptionModeIOS.DoNotMix,
+                interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
+                playThroughEarpieceAndroid: false,
+            });
+            this.audioModeReady = true;
+        } catch (error) {
+            console.error('[AudioPlayerService] Failed to set audio mode:', error);
+        }
+    }
 
     async playFullAzan() {
         try {
             // Stop any existing playback
             await this.stop();
+            await this.ensureAudioMode();
 
             const { sound } = await Audio.Sound.createAsync(
-                require('../assets/audio/azan_full.mp3'),
+                AZAN_SOURCE,
                 { shouldPlay: true, isLooping: false }
             );
 

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Pressable, ScrollView } from 'react-native';
 import * as Notifications from 'expo-notifications';
 import { NotificationService } from '../services/NotificationService';
 import { scheduleDevJumaReminderTestNotification } from '../services/notifications/jumaReminder';
+import { AZAN_CHANNEL_ID, AZAN_SOUND_FILE } from '../services/notifications/prayerNotificationTypes';
 
 /**
  * Dev-Only Notification Test Screen
@@ -23,17 +24,17 @@ export function NotificationTestScreen() {
                 return;
             }
 
-            // Trigger immediate prayer notification
+            // Trigger immediate prayer notification on the real Azan channel
             await Notifications.scheduleNotificationAsync({
                 content: {
                     title: 'Ertir namazynyň wagty',
                     body: 'Ertir namazynyň wagty boldy',
-                    data: { type: 'prayer_alert', prayer: 'test' },
-                    sound: true,
+                    data: { type: 'prayer', prayer: 'test' },
+                    sound: AZAN_SOUND_FILE,
                 },
                 trigger: {
                     seconds: 2, // Fire in 2 seconds
-                    channelId: 'prayer-alerts', // PRAYER channel: namaz_chime.wav + gentle pulse
+                    channelId: AZAN_CHANNEL_ID, // Azan Alerts: azan_short.wav
                 } as any,
             });
 
@@ -145,7 +146,7 @@ export function NotificationTestScreen() {
 
                 <Pressable style={styles.buttonPrayer} onPress={testPrayerNotification}>
                     <Text style={styles.buttonText}>🕌 Test PRAYER Channel</Text>
-                    <Text style={styles.buttonSubtext}>namaz_chime.wav + gentle pulse</Text>
+                    <Text style={styles.buttonSubtext}>azan_short.wav (28s) + pulse</Text>
                 </Pressable>
 
                 <Pressable style={styles.buttonReminder} onPress={testReminderNotification}>

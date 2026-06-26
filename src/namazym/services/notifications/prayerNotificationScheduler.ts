@@ -4,6 +4,7 @@ import { PrayerEngine } from '../prayer/engine';
 import type { SupportedCity } from '../prayer/types';
 import { PrayerNotificationStorage } from './prayerNotificationStorage';
 import type { PrayerName, PrayerNotificationSettings, PrayerRebuildReport } from './prayerNotificationTypes';
+import { AZAN_CHANNEL_ID, AZAN_SOUND_FILE } from './prayerNotificationTypes';
 
 type SoundType = 'azan_short' | 'standard' | 'silent';
 
@@ -96,10 +97,10 @@ export async function scheduleCanonicalPrayerNotifications(input: {
     }
 
     const scheduledIds: string[] = [];
-    const channelId = input.soundType === 'azan_short' ? 'azan_channel' : 'default_content';
+    const channelId = input.soundType === 'azan_short' ? AZAN_CHANNEL_ID : 'default_content';
     const sound: string | boolean = input.soundType === 'silent'
         ? false
-        : (input.soundType === 'azan_short' ? 'namaz_chime.wav' : true);
+        : (input.soundType === 'azan_short' ? AZAN_SOUND_FILE : true);
 
     const targets = [
         { dateObj: todayDate, dateISO: todayISO, bucket: 'today' as const },
