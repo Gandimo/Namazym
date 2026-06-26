@@ -101,6 +101,9 @@ export async function scheduleCanonicalPrayerNotifications(input: {
     const sound: string | boolean = input.soundType === 'silent'
         ? false
         : (input.soundType === 'azan_short' ? AZAN_SOUND_FILE : true);
+    // The pre-prayer reminder uses the standard system sound so it is clearly
+    // distinct from the Azan that plays at the prayer time itself.
+    const reminderSound: string | boolean = input.soundType === 'silent' ? false : true;
 
     const targets = [
         { dateObj: todayDate, dateISO: todayISO, bucket: 'today' as const },
@@ -122,47 +125,72 @@ export async function scheduleCanonicalPrayerNotifications(input: {
             if (!input.settings.prayers[prayer.key]) continue;
 
             const prayerTime = times[prayer.datasetKey];
-            const scheduledFor = parseTimeForDate(target.dateObj, prayerTime);
-            scheduledFor.setMinutes(scheduledFor.getMinutes() - input.settings.leadMinutes);
+            const localizedName = getTurkmenPrayerName(prayer.labelKey);
+            const azanTime = parseTimeForDate(target.dateObj, prayerTime);
 
-            if (scheduledFor <= now) {
+            // 1) Azan alert exactly at the prayer time.
+            if (azanTime > now) {
+                const azanId = await Notifications.scheduleNotificationAsync({
+                    content: {
+                        title: `🕌 ${localizedName}`,
+                        body: `${localizedName} namazynyň wagty boldy.`,
+                        data: {
+                            type: 'prayer',
+                            kind: 'azan',
+                            prayer: prayer.key,
+                            city: input.city,
+                            date: target.dateISO,
+                            leadMinutes: 0,
+                        },
+                        sound,
+                    },
+                    trigger: {
+                        type: Notifications.SchedulableTriggerInputTypes.DATE,
+                        date: azanTime,
+                        channelId,
+                    } as any,
+                });
+
+                scheduledIds.push(azanId);
+                if (target.bucket === 'today') {
+                    report.scheduledToday += 1;
+                    report.perPrayer[prayer.key].today += 1;
+                } else {
+                    report.scheduledTomorrow += 1;
+                    report.perPrayer[prayer.key].tomorrow += 1;
+                }
+            } else {
                 report.skippedPast += 1;
                 report.perPrayer[prayer.key].skipped += 1;
-                continue;
             }
 
-            const localizedName = getTurkmenPrayerName(prayer.labelKey);
-            const body = input.settings.leadMinutes > 0
-                ? `${localizedName} namazyna ${input.settings.leadMinutes} minut galdy.`
-                : `${localizedName} namazynyň wagty boldy.`;
-
-            const identifier = await Notifications.scheduleNotificationAsync({
-                content: {
-                    title: `🕌 ${localizedName}`,
-                    body,
-                    data: {
-                        type: 'prayer',
-                        prayer: prayer.key,
-                        city: input.city,
-                        date: target.dateISO,
-                        leadMinutes: input.settings.leadMinutes,
-                    },
-                    sound,
-                },
-                trigger: {
-                    type: Notifications.SchedulableTriggerInputTypes.DATE,
-                    date: scheduledFor,
-                    channelId,
-                } as any,
-            });
-
-            scheduledIds.push(identifier);
-            if (target.bucket === 'today') {
-                report.scheduledToday += 1;
-                report.perPrayer[prayer.key].today += 1;
-            } else {
-                report.scheduledTomorrow += 1;
-                report.perPrayer[prayer.key].tomorrow += 1;
+            // 2) Optional heads-up reminder before the prayer (gentle sound).
+            if (input.settings.leadMinutes > 0) {
+                const reminderTime = new Date(azanTime);
+                reminderTime.setMinutes(reminderTime.getMinutes() - input.settings.leadMinutes);
+                if (reminderTime > now) {
+                    const reminderId = await Notifications.scheduleNotificationAsync({
+                        content: {
+                            title: `🕌 ${localizedName}`,
+                            body: `${localizedName} namazyna ${input.settings.leadMinutes} minut galdy.`,
+                            data: {
+                                type: 'prayer',
+                                kind: 'reminder',
+                                prayer: prayer.key,
+                                city: input.city,
+                                date: target.dateISO,
+                                leadMinutes: input.settings.leadMinutes,
+                            },
+                            sound: reminderSound,
+                        },
+                        trigger: {
+                            type: Notifications.SchedulableTriggerInputTypes.DATE,
+                            date: reminderTime,
+                            channelId: 'default_content',
+                        } as any,
+                    });
+                    scheduledIds.push(reminderId);
+                }
             }
         }
     }

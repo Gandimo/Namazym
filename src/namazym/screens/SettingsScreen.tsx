@@ -293,10 +293,15 @@ export default function SettingsScreen() {
                         {renderOption('document-text-outline', t('settings.terms'), '', () => navigation.navigate('Legal'), 'TIME_CALENDAR', true)}
                     </View>
 
-                    <View style={styles.versionBox}>
+                    <Pressable
+                        style={styles.versionBox}
+                        disabled={!__DEV__}
+                        onLongPress={() => { if (__DEV__) navigation.navigate('NotificationTest' as never); }}
+                    >
                         <Text style={styles.versionText}>NAMAZYM APP V1.1.0</Text>
                         <Text style={styles.copyrightText}>{t('settings.copyright')}</Text>
-                    </View>
+                        {__DEV__ && <Text style={styles.copyrightText}>dev: uzun bas → bildirim testi</Text>}
+                    </Pressable>
                     </View>
                 </ScrollView>
             </SafeAreaView>

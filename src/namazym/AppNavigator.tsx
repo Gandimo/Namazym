@@ -25,6 +25,7 @@ import NamazLearnDetailScreen from "./screens/NamazLearnDetailScreen";
 import DogalarScreen from "./screens/DogalarScreen";
 import DogaDetailScreen from "./screens/DogaDetailScreen";
 import LegalScreen from "./screens/LegalScreen";
+import { NotificationTestScreen } from "./screens/NotificationTestScreen";
 
 import { NavigationContainer, createNavigationContainerRef } from "@react-navigation/native";
 import { CityProvider } from "./context/CityContext";
@@ -71,8 +72,11 @@ export function AppNavigator() {
                         break;
                     case 'prayer':
                         nav.navigate('Home');
-                        // Trigger foreground audio
-                        AudioPlayerService.playFullAzan();
+                        // Play the full Azan only for the at-time alert, not the
+                        // pre-prayer reminder.
+                        if (data.kind !== 'reminder') {
+                            AudioPlayerService.playFullAzan();
+                        }
                         break;
                     case 'juma_reminder':
                         nav.navigate('Home');
@@ -137,6 +141,9 @@ export function AppNavigator() {
                         <Stack.Screen name="NamazLearnDetail" component={NamazLearnDetailScreen} />
                         <Stack.Screen name="DogaDetail" component={DogaDetailScreen} />
                         <Stack.Screen name="Legal" component={LegalScreen} />
+                        {__DEV__ && (
+                            <Stack.Screen name="NotificationTest" component={NotificationTestScreen} />
+                        )}
                     </Stack.Navigator>
                 </NavigationContainer>
             </CityProvider>
