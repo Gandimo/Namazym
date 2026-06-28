@@ -15,14 +15,18 @@ import { ContentLoaderService } from '../services/ContentLoaderService';
 import { cancelScheduledJumaReminders, scheduleWeeklyJumaReminder } from '../services/notifications/jumaReminder';
 import { getBoundedContentWidth, getResponsiveLayoutMetrics } from '../utils/responsiveLayout';
 
+// Ana sayfa (HomeScreen) ile birebir aynı yumuşak palet.
 const SKY_THEMES = {
-    Fajr: ['#4A90E2', '#B8D8F4'],
-    Sunrise: ['#FF9E80', '#FBE9E7'],
-    Dhuhr: ['#1e90ff', '#c8eaff'],
-    Asr: ['#F57C00', '#FFF3E0'],
-    Maghrib: ['#311B92', '#FF8A65'],
-    Isha: ['#1A237E', '#121212'],
+    Fajr: ['#B9CAD8', '#E8EFF4'],
+    Sunrise: ['#E4C8AE', '#F6E6D4'],
+    Dhuhr: ['#D5E0E7', '#F3EFE8'],
+    Asr: ['#E0C9B0', '#F2E1CF'],
+    Maghrib: ['#9A756C', '#DEC0AE'],
+    Isha: ['#222A3A', '#151B26'],
 };
+
+// Ana sayfadaki gibi: yalnız Isha/Maghrib koyu kabul edilir → beyaz metin.
+const DARK_PRAYERS = ['Isha', 'Maghrib'];
 
 const COLORS = {
     white: '#FFFFFF',
@@ -45,7 +49,7 @@ export default function SettingsScreen() {
     const navigation = useNavigation<any>();
     const { t, i18n } = useTranslation();
     const { width } = useWindowDimensions();
-    const { prayerTimes, placeKey, isAutoLocation, toggleAutoLocation } = useCity();
+    const { prayerTimes, placeKey } = useCity();
 
     const [lang, setLang] = useState(i18n.language);
     const [prefs, setPrefs] = useState<NotificationPreferences | null>(null);
@@ -170,6 +174,13 @@ export default function SettingsScreen() {
     );
 
     const theme = SKY_THEMES[currentPrayer as keyof typeof SKY_THEMES] || SKY_THEMES.Dhuhr;
+    const isDark = DARK_PRAYERS.includes(currentPrayer);
+    const headerColor = isDark ? '#FFFFFF' : '#2D2D35';
+    const subColor = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(45,45,53,0.55)';
+    const backBg = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.05)';
+    const sectionColor = isDark ? 'rgba(255,255,255,0.8)' : 'rgba(45,45,53,0.6)';
+    const versionColor = isDark ? 'rgba(255,255,255,0.5)' : 'rgba(45,45,53,0.45)';
+    const copyrightColor = isDark ? 'rgba(255,255,255,0.3)' : 'rgba(45,45,53,0.3)';
     const currentLangLabel = LANGUAGES.find(l => l.code === lang);
 
     const renderOption = (icon: any, label: string, value: string, onPress: () => void, gradient?: any, isLast = false) => (
@@ -202,16 +213,16 @@ export default function SettingsScreen() {
 
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" />
+            <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
             <LinearGradient colors={theme as any} style={StyleSheet.absoluteFill} />
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={[styles.header, { width: contentWidth, alignSelf: 'center' }]}>
-                    <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
-                        <PremiumIcon name="chevron-back" size="STANDARD" color="#FFFFFF" interactive onPress={() => navigation.goBack()} />
+                    <Pressable onPress={() => navigation.goBack()} style={[styles.backButton, { backgroundColor: backBg }]}>
+                        <PremiumIcon name="chevron-back" size="STANDARD" color={headerColor} interactive onPress={() => navigation.goBack()} />
                     </Pressable>
                     <View style={styles.titleBox}>
-                        <Text style={styles.title}>{t('common.settings').toUpperCase()}</Text>
-                        <Text style={styles.subtitle}>TERTIPLER WE MAGLUMAT</Text>
+                        <Text style={[styles.title, { color: headerColor }]}>{t('common.settings').toUpperCase()}</Text>
+                        <Text style={[styles.subtitle, { color: subColor }]}>TERTIPLER WE MAGLUMAT</Text>
                     </View>
                     <View style={{ width: 40 }} />
                 </View>
@@ -224,7 +235,6 @@ export default function SettingsScreen() {
 
                     {/* GENEL */}
                     <View style={styles.glassCard}>
-                        {renderOption('location-sharp', t('common.auto_location'), isAutoLocation ? 'On' : 'Off', toggleAutoLocation, 'PRAYER_GOLD')}
                         {renderOption('globe-outline', t('common.language'),
                             `${currentLangLabel?.flag} ${currentLangLabel?.label}`,
                             () => setLangModalVisible(true),
@@ -233,7 +243,7 @@ export default function SettingsScreen() {
                     </View>
 
                     {/* BİLDİRİMLER */}
-                    <Text style={styles.sectionTitle}>{t('settings.notifications').toUpperCase()}</Text>
+                    <Text style={[styles.sectionTitle, { color: sectionColor }]}>{t('settings.notifications').toUpperCase()}</Text>
                     <View style={styles.glassCard}>
                         {renderSwitchOption('calendar-outline', t('settings.juma_reminder'), prefs?.juma_reminder.enabled || false, toggleJumaReminder, 'PRAYER_GOLD')}
                         {renderSwitchOption('notifications-outline', t('settings.prayer_reminder'), prefs?.pre_prayer_alert.enabled || false, togglePrayerReminders, 'PRAYER_GOLD')}
@@ -286,7 +296,7 @@ export default function SettingsScreen() {
                     </View>
 
                     {/* EKSTRALAR */}
-                    <Text style={styles.sectionTitle}>{t('settings.extras').toUpperCase()}</Text>
+                    <Text style={[styles.sectionTitle, { color: sectionColor }]}>{t('settings.extras').toUpperCase()}</Text>
                     <View style={styles.glassCard}>
                         {renderOption('share-social-outline', t('settings.share'), '', handleShare, 'TIME_CALENDAR')}
                         {renderOption('star-outline', t('settings.rate'), '', handleRate, 'TIME_CALENDAR')}
@@ -298,9 +308,9 @@ export default function SettingsScreen() {
                         disabled={!__DEV__}
                         onLongPress={() => { if (__DEV__) navigation.navigate('NotificationTest' as never); }}
                     >
-                        <Text style={styles.versionText}>NAMAZYM APP V1.1.0</Text>
-                        <Text style={styles.copyrightText}>{t('settings.copyright')}</Text>
-                        {__DEV__ && <Text style={styles.copyrightText}>dev: uzun bas → bildirim testi</Text>}
+                        <Text style={[styles.versionText, { color: versionColor }]}>NAMAZYM APP V1.1.0</Text>
+                        <Text style={[styles.copyrightText, { color: copyrightColor }]}>{t('settings.copyright')}</Text>
+                        {__DEV__ && <Text style={[styles.copyrightText, { color: copyrightColor }]}>dev: uzun bas → bildirim testi</Text>}
                     </Pressable>
                     </View>
                 </ScrollView>

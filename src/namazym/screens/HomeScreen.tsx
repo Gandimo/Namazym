@@ -619,10 +619,10 @@ export default function HomeScreen({ navigation }: any) {
 
                     <Animated.View style={[styles.grid, shortcutsEntrance, { width: compactGridWidth }]}>
                         <ShortcutCard
-                            icon="calendar-outline"
-                            label={t('common.sahetli_gun')}
-                            gradient="TIME_CALENDAR"
-                            onPress={() => navigation.navigate('SahetliGun')}
+                            icon="map-outline"
+                            label={t('common.zyyarat_yerleri')}
+                            gradient="PRAYER_GOLD"
+                            onPress={() => navigation.navigate('SacredPlacesList')}
                             textColor={glassTextPrimary}
                             cardStyle={{ backgroundColor: glassSurface, borderColor: glassBorder }}
                             layoutStyle={{ width: compactCardWidth }}

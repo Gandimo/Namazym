@@ -24,14 +24,18 @@ import {
     getResponsiveLayoutMetrics,
 } from '../utils/responsiveLayout';
 
+// Ana sayfa (HomeScreen) ile birebir aynı yumuşak palet.
 const SKY_THEMES = {
-    Fajr: ['#4A90E2', '#B8D8F4'],
-    Sunrise: ['#FF9E80', '#FBE9E7'],
-    Dhuhr: ['#1e90ff', '#c8eaff'],
-    Asr: ['#F57C00', '#FFF3E0'],
-    Maghrib: ['#311B92', '#FF8A65'],
-    Isha: ['#1A237E', '#121212'],
+    Fajr: ['#B9CAD8', '#E8EFF4'],
+    Sunrise: ['#E4C8AE', '#F6E6D4'],
+    Dhuhr: ['#D5E0E7', '#F3EFE8'],
+    Asr: ['#E0C9B0', '#F2E1CF'],
+    Maghrib: ['#9A756C', '#DEC0AE'],
+    Isha: ['#222A3A', '#151B26'],
 };
+
+// Ana sayfadaki gibi: yalnız Isha/Maghrib koyu kabul edilir → beyaz metin.
+const DARK_PRAYERS = ['Isha', 'Maghrib'];
 
 const COLORS = {
     white: '#FFFFFF',
@@ -106,23 +110,27 @@ export default function NamazKitabyScreen() {
     }, [prayerTimes]);
 
     const theme = SKY_THEMES[currentPrayer as keyof typeof SKY_THEMES] || SKY_THEMES.Dhuhr;
+    const isDark = DARK_PRAYERS.includes(currentPrayer);
+    const headerColor = isDark ? '#FFFFFF' : '#2D2D35';
+    const subColor = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(45,45,53,0.55)';
+    const backBg = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.05)';
 
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" />
+            <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
             <LinearGradient colors={theme as any} style={StyleSheet.absoluteFill} />
 
             <SafeAreaView style={styles.safeArea}>
                 <View style={[styles.header, { width: contentWidth, alignSelf: 'center' }]}>
                     <Pressable
                         onPress={() => navigation.goBack()}
-                        style={styles.backButton}
+                        style={[styles.backButton, { backgroundColor: backBg }]}
                     >
-                        <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
+                        <Ionicons name="chevron-back" size={24} color={headerColor} />
                     </Pressable>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.headerTitle}>NAMAZ KITABY</Text>
-                        <Text style={styles.headerSubtitle}>YSLAM ESASLARY</Text>
+                        <Text style={[styles.headerTitle, { color: headerColor }]}>NAMAZ KITABY</Text>
+                        <Text style={[styles.headerSubtitle, { color: subColor }]}>YSLAM ESASLARY</Text>
                     </View>
                     <View style={{ width: 40 }} />
                 </View>

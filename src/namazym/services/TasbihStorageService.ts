@@ -6,12 +6,16 @@ export interface TasbihState {
     count: number;
     total: number;
     limit: number;
+    zikirId?: string;
+    rounds?: number;
 }
 
 const DEFAULT_STATE: TasbihState = {
     count: 0,
     total: 0,
     limit: 33,
+    zikirId: 'subhanallah',
+    rounds: 0,
 };
 
 function normalizeTasbihState(value: unknown): TasbihState {
@@ -21,11 +25,15 @@ function normalizeTasbihState(value: unknown): TasbihState {
     const count = typeof raw.count === 'number' ? raw.count : 0;
     const total = typeof raw.total === 'number' ? raw.total : 0;
     const limit = typeof raw.limit === 'number' && raw.limit > 0 ? raw.limit : 33;
+    const zikirId = typeof raw.zikirId === 'string' ? raw.zikirId : 'subhanallah';
+    const rounds = typeof raw.rounds === 'number' ? raw.rounds : 0;
 
     return {
         count: Math.max(0, count),
         total: Math.max(0, total),
         limit,
+        zikirId,
+        rounds: Math.max(0, rounds),
     };
 }
 

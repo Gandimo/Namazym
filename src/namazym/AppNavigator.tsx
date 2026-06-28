@@ -9,7 +9,6 @@ import KyblaScreen from "./screens/KyblaScreen";
 
 import NamazKitabyScreen from "./screens/NamazKitabyScreen";
 import NamazKitabyReaderScreen from "./screens/NamazKitabyReaderScreen";
-import SahetliGunScreen from "./screens/SahetliGunScreen";
 import TasbihScreen from "./screens/TasbihScreen";
 import KazaScreen from "./screens/KazaScreen";
 import AsmaulHusnaScreen from "./screens/AsmaulHusnaScreen";
@@ -120,7 +119,6 @@ export function AppNavigator() {
                         <Stack.Screen name="DailyVerse" component={DailyVerseScreen} />
                         <Stack.Screen name="HadithReader" component={HadithReaderScreen} />
                         <Stack.Screen name="RamadanCalendar" component={RamadanCalendarScreen} />
-                        <Stack.Screen name="SahetliGun" component={SahetliGunScreen} />
                         <Stack.Screen name="QiblaScreen" component={KyblaScreen} />
                         <Stack.Screen name="NamazKitaby" component={NamazKitabyScreen} />
                         <Stack.Screen name="QuranReader" component={QuranReaderScreen} initialParams={{ surahId: 1 }} />

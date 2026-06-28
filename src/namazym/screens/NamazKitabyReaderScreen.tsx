@@ -122,14 +122,18 @@ const LOCALIZED_CONTENT_MAP: Record<string, Record<string, any>> = {
     namaz_kitaby_bes_wagt_okalysy: { en: besWagtEn, ru: besWagtRu, tr: besWagtTr, fr: besWagtFr },
 };
 
+// Ana sayfa (HomeScreen) ile birebir aynı yumuşak palet.
 const SKY_THEMES = {
-    Fajr: ['#4A90E2', '#B8D8F4'],
-    Sunrise: ['#FF9E80', '#FBE9E7'],
-    Dhuhr: ['#1e90ff', '#c8eaff'],
-    Asr: ['#F57C00', '#FFF3E0'],
-    Maghrib: ['#311B92', '#FF8A65'],
-    Isha: ['#1A237E', '#121212'],
+    Fajr: ['#B9CAD8', '#E8EFF4'],
+    Sunrise: ['#E4C8AE', '#F6E6D4'],
+    Dhuhr: ['#D5E0E7', '#F3EFE8'],
+    Asr: ['#E0C9B0', '#F2E1CF'],
+    Maghrib: ['#9A756C', '#DEC0AE'],
+    Isha: ['#222A3A', '#151B26'],
 };
+
+// Ana sayfadaki gibi: yalnız Isha/Maghrib koyu kabul edilir → beyaz metin.
+const DARK_PRAYERS = ['Isha', 'Maghrib'];
 
 const COLORS = {
     white: '#FFFFFF',
@@ -218,6 +222,9 @@ export default function NamazKitabyReaderScreen() {
     }, [prayerTimes]);
 
     const bgTheme = SKY_THEMES[currentPrayer as keyof typeof SKY_THEMES] || SKY_THEMES.Dhuhr;
+    const isDark = DARK_PRAYERS.includes(currentPrayer);
+    const headerColor = isDark ? '#FFFFFF' : '#2D2D35';
+    const backBg = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.05)';
 
     const progress = scrollY.interpolate({
         inputRange: [0, Math.max(1, contentHeight - layoutHeight)],
@@ -425,21 +432,21 @@ export default function NamazKitabyReaderScreen() {
 
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" />
+            <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
             <LinearGradient colors={bgTheme as any} style={StyleSheet.absoluteFill} />
 
             <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
                 <View style={[styles.header, { width: contentWidth, alignSelf: 'center' }]}>
-                    <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
-                        <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
+                    <Pressable onPress={() => navigation.goBack()} style={[styles.backButton, { backgroundColor: backBg }]}>
+                        <Ionicons name="chevron-back" size={24} color={headerColor} />
                     </Pressable>
                     <View style={styles.titleContainer}>
-                        <Text style={styles.headerTitle} numberOfLines={1}>
+                        <Text style={[styles.headerTitle, { color: headerColor }]} numberOfLines={1}>
                             {bookEntry ? bookEntry.listTitle.toUpperCase() : 'NAMAZ KITABY'}
                         </Text>
                     </View>
-                    <Pressable onPress={toggleControls} style={styles.controlTrigger}>
-                        <Ionicons name="text-outline" size={20} color="#FFFFFF" />
+                    <Pressable onPress={toggleControls} style={[styles.controlTrigger, { backgroundColor: backBg }]}>
+                        <Ionicons name="text-outline" size={20} color={headerColor} />
                     </Pressable>
                 </View>
 

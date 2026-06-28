@@ -88,6 +88,14 @@
             "location": "Ahal welaýat • Aşgabat",
             "short_desc": "Parfiýa imperiýasynyň gadymy paýtagty.",
             "full_desc": "Nusaý (Gadymy we Täze Nusaý) Aşgabat şäheriniň golaýynda ýerleşýär. Bu ýer Parfiýa patyşalarynyň rezidensiýasy bolup hyzmat eden taryhy galadyr."
+        },
+        {
+            "id": "pir_360",
+            "category_id": "ziyarat",
+            "name": "360 Pir",
+            "location": "Daşoguz welaýat • Köneürgenç",
+            "short_desc": "Türkmenistanyň Daşoguz welaýatynda ýerleşýän Köneürgenç (öňki ady Gürgenç), “360 Pir” diýlip atlandyrylýan ruhy mekanlaryň we Yslam dünýäsiniň iň möhüm taryhy merkezleriniň ýerleşýän mukaddes yeridir.",
+            "full_desc": "Türkmenistanyň Daşoguz welaýatynda ýerleşýän Köneürgenç (öňki ady Gürgenç), “360 Pir” diýlip atlandyrylýan ruhy mekanlaryň we Yslam dünýäsiniň iň möhüm taryhy merkezleriniň ýerleşýän mukaddes yeridir."
         }
     ]
 }

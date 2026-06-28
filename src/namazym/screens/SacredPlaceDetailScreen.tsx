@@ -9,14 +9,17 @@ import { TimeService } from '../services/TimeService';
 import { getCurrentPrayer } from '../utils/prayerUtils';
 import sacredData from '../data/sacred_places_tm.json';
 
+// Ana sayfa (HomeScreen) ile birebir aynı yumuşak palet.
 const SKY_THEMES = {
-    Fajr: ['#4A90E2', '#B8D8F4'],
-    Sunrise: ['#FF9E80', '#FBE9E7'],
-    Dhuhr: ['#1e90ff', '#c8eaff'],
-    Asr: ['#F57C00', '#FFF3E0'],
-    Maghrib: ['#311B92', '#FF8A65'],
-    Isha: ['#1A237E', '#121212'],
+    Fajr: ['#B9CAD8', '#E8EFF4'],
+    Sunrise: ['#E4C8AE', '#F6E6D4'],
+    Dhuhr: ['#D5E0E7', '#F3EFE8'],
+    Asr: ['#E0C9B0', '#F2E1CF'],
+    Maghrib: ['#9A756C', '#DEC0AE'],
+    Isha: ['#222A3A', '#151B26'],
 };
+
+const DARK_PRAYERS = ['Isha', 'Maghrib'];
 
 const COLORS = {
     white: '#FFFFFF',
@@ -42,21 +45,25 @@ export default function SacredPlaceDetailScreen() {
     }, [prayerTimes]);
 
     const theme = SKY_THEMES[currentPrayer as keyof typeof SKY_THEMES] || SKY_THEMES.Dhuhr;
+    const isDark = DARK_PRAYERS.includes(currentPrayer);
+    const headerColor = isDark ? '#FFFFFF' : '#2D2D35';
+    const subColor = isDark ? 'rgba(255,255,255,0.7)' : 'rgba(45,45,53,0.55)';
+    const backBg = isDark ? 'rgba(255,255,255,0.12)' : 'rgba(0,0,0,0.05)';
 
     if (!place) return null;
 
     return (
         <View style={styles.container}>
-            <StatusBar barStyle="light-content" />
+            <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
             <LinearGradient colors={theme as any} style={StyleSheet.absoluteFill} />
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={styles.header}>
-                    <Pressable onPress={() => navigation.goBack()} style={styles.backButton}>
-                        <Ionicons name="chevron-back" size={24} color="#FFFFFF" />
+                    <Pressable onPress={() => navigation.goBack()} style={[styles.backButton, { backgroundColor: backBg }]}>
+                        <Ionicons name="chevron-back" size={24} color={headerColor} />
                     </Pressable>
                     <View style={styles.titleBox}>
-                        <Text style={styles.title}>{place.name.toUpperCase()}</Text>
-                        <Text style={styles.subtitle}>KEREMLI ÝER</Text>
+                        <Text style={[styles.title, { color: headerColor }]}>{place.name.toUpperCase()}</Text>
+                        <Text style={[styles.subtitle, { color: subColor }]}>KEREMLI ÝER</Text>
                     </View>
                     <View style={{ width: 40 }} />
                 </View>
@@ -71,14 +78,16 @@ export default function SacredPlaceDetailScreen() {
 
                             <View style={styles.divider} />
 
-                            <Text style={styles.description}>{place.description}</Text>
+                            {place.short_desc ? (
+                                <Text style={styles.description}>{place.short_desc}</Text>
+                            ) : null}
 
-                            {place.history && (
+                            {place.full_desc ? (
                                 <View style={styles.historyBox}>
-                                    <Text style={styles.historyTitle}>TARYHY</Text>
-                                    <Text style={styles.historyText}>{place.history}</Text>
+                                    <Text style={styles.historyTitle}>GIŇIŞLEÝIN</Text>
+                                    <Text style={styles.historyText}>{place.full_desc}</Text>
                                 </View>
-                            )}
+                            ) : null}
                         </View>
                         <View style={{ height: 40 }} />
                     </View>

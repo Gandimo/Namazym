@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { View, Text, StyleSheet, Pressable, StatusBar, Animated, useWindowDimensions } from 'react-native';
+import { View, Text, StyleSheet, Pressable, StatusBar, Animated, useWindowDimensions, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -29,6 +29,30 @@ const COLORS = {
     glassBorder: 'rgba(0,0,0,0.02)',
 };
 
+// Klasyk tesbihat zikirleri — ulanyjy haýsysyny islese saýlap çekip biler.
+interface Zikir {
+    id: string;
+    arabic: string;
+    latin: string;
+    meaning: string;
+    limit: number;
+}
+
+const ZIKIRLER: Zikir[] = [
+    { id: 'subhanallah', arabic: 'سُبْحَانَ اللّٰه', latin: 'Subhanallah', meaning: 'Allah ähli kemçilikden päkdir', limit: 33 },
+    { id: 'alhamdulillah', arabic: 'اَلْحَمْدُ لِلّٰه', latin: 'Elhamdulillah', meaning: 'Ähli öwgi Allaha mahsusdyr', limit: 33 },
+    { id: 'allahuakbar', arabic: 'اَللّٰهُ اَكْبَر', latin: 'Allahu Ekber', meaning: 'Allah iň beýikdir', limit: 33 },
+    { id: 'tahlil', arabic: 'لَا إِلٰهَ إِلَّا اللّٰه', latin: 'Lä ilähe illallah', meaning: 'Allahdan başga ylah ýokdur', limit: 100 },
+    { id: 'istigfar', arabic: 'أَسْتَغْفِرُ اللّٰه', latin: 'Estagfirullah', meaning: 'Allahdan bagyşlanmak dileýärin', limit: 33 },
+    { id: 'salavat', arabic: 'اَللّٰهُمَّ صَلِّ عَلَىٰ مُحَمَّد', latin: 'Allahumma salli alä Muhammed', meaning: 'Pygambere salawat', limit: 100 },
+    { id: 'havkale', arabic: 'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللّٰه', latin: 'Lä hawle welä kuwwete illä billäh', meaning: 'Güýç-kuwwat diňe Allahdandyr', limit: 33 },
+    { id: 'bihamdihi', arabic: 'سُبْحَانَ اللّٰهِ وَبِحَمْدِهِ', latin: 'Subhanallahi we bihamdihi', meaning: 'Allahy hamd bilen päkleýärin', limit: 100 },
+    { id: 'hasbunallah', arabic: 'حَسْبُنَا اللّٰهُ وَنِعْمَ الْوَكِيل', latin: 'Hasbunallahu we ni‘mel wekil', meaning: 'Allah bize ýeterlikdir', limit: 33 },
+    { id: 'subhanazim', arabic: 'سُبْحَانَ اللّٰهِ الْعَظِيم', latin: 'Subhanallahil Azim', meaning: 'Beýik Allah päkdir', limit: 33 },
+];
+
+const getZikir = (id?: string): Zikir => ZIKIRLER.find(z => z.id === id) ?? ZIKIRLER[0];
+
 export default function TasbihScreen() {
     const navigation = useNavigation();
     const { width } = useWindowDimensions();
@@ -57,26 +81,45 @@ export default function TasbihScreen() {
     const [count, setCount] = useState(0);
     const [totalCount, setTotalCount] = useState(0);
     const [limit, setLimit] = useState(33);
+    const [zikirId, setZikirId] = useState('subhanallah');
+    const [rounds, setRounds] = useState(0);
+
+    const activeZikir = useMemo(() => getZikir(zikirId), [zikirId]);
+    // Bu zikir üçin jemi sany: tamamlanan halkalar + häzirki halka.
+    const sessionTotal = useMemo(() => rounds * limit + count, [rounds, limit, count]);
 
     const pressScale = useRef(new Animated.Value(1)).current;
     const glowAnim = useRef(new Animated.Value(0)).current;
+    const celebrateAnim = useRef(new Animated.Value(0)).current;
+    const [celebrateRound, setCelebrateRound] = useState(0);
 
     useEffect(() => {
         const load = async () => {
-            const { count: c, total: t, limit: l } = await TasbihStorageService.getState();
+            const { count: c, total: t, limit: l, zikirId: z, rounds: r } = await TasbihStorageService.getState();
             setCount(c);
             setTotalCount(t);
             setLimit(l);
+            if (z) setZikirId(z);
+            setRounds(r ?? 0);
         };
         load();
     }, []);
 
     useEffect(() => {
         const save = async () => {
-            await TasbihStorageService.saveState({ count, total: totalCount, limit });
+            await TasbihStorageService.saveState({ count, total: totalCount, limit, zikirId, rounds });
         };
         save();
-    }, [count, totalCount, limit]);
+    }, [count, totalCount, limit, zikirId, rounds]);
+
+    const selectZikir = (z: Zikir) => {
+        if (z.id === zikirId) return;
+        HapticService.softImpact();
+        setZikirId(z.id);
+        setLimit(z.limit);
+        setCount(0);
+        setRounds(0);
+    };
 
     const currentPrayer = useMemo(() => {
         if (!prayerTimes) return 'Dhuhr';
@@ -132,6 +175,25 @@ export default function TasbihScreen() {
         ]).start();
     };
 
+    const triggerCelebration = (round: number) => {
+        setCelebrateRound(round);
+        celebrateAnim.setValue(0);
+        Animated.sequence([
+            Animated.spring(celebrateAnim, {
+                toValue: 1,
+                friction: 6,
+                tension: 80,
+                useNativeDriver: true,
+            }),
+            Animated.delay(750),
+            Animated.timing(celebrateAnim, {
+                toValue: 0,
+                duration: 350,
+                useNativeDriver: true,
+            }),
+        ]).start();
+    };
+
     const increment = () => {
         HapticService.softImpact();
         animatePress();
@@ -139,8 +201,10 @@ export default function TasbihScreen() {
         const nextCount = count + 1;
         if (nextCount > limit) {
             setCount(1);
+            setRounds(prev => prev + 1);
             HapticService.success();
             animateCompletion();
+            triggerCelebration(rounds + 1);
         } else {
             setCount(nextCount);
         }
@@ -149,6 +213,7 @@ export default function TasbihScreen() {
 
     const resetCurrent = () => {
         setCount(0);
+        setRounds(0);
     };
 
     const toggleLimit = () => {
@@ -199,6 +264,30 @@ export default function TasbihScreen() {
                         </Pressable>
                     </View>
 
+                    <ScrollView
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        contentContainerStyle={styles.zikirSelector}
+                        style={{ width: interactionWidth, alignSelf: 'center', flexGrow: 0 }}
+                    >
+                        {ZIKIRLER.map((z) => {
+                            const selected = z.id === zikirId;
+                            return (
+                                <Pressable
+                                    key={z.id}
+                                    onPress={() => selectZikir(z)}
+                                    style={[
+                                        styles.zikirChip,
+                                        { backgroundColor: selected ? COLORS.gold : glassBg, borderColor: selected ? COLORS.gold : glassBorder },
+                                    ]}
+                                >
+                                    <Text style={[styles.zikirChipArabic, { color: selected ? '#FFFFFF' : fg }]}>{z.arabic}</Text>
+                                    <Text style={[styles.zikirChipText, { color: selected ? '#FFFFFF' : fgMedium }]}>{z.latin}</Text>
+                                </Pressable>
+                            );
+                        })}
+                    </ScrollView>
+
                     <Pressable onPress={increment} style={[styles.mainArea, { width: interactionWidth, alignSelf: 'center' }]}>
                         <Animated.View
                             style={[
@@ -231,16 +320,40 @@ export default function TasbihScreen() {
                                 ]}
                             >
                                 <View style={styles.beadHighlight} />
-                                <View style={styles.beadInnerShadow} />
+                                <Text style={styles.zikirArabic}>{activeZikir.arabic}</Text>
                                 <Text style={styles.countText}>{count}</Text>
                                 <Text style={styles.limitSubText}>/ {limit}</Text>
-                                <Text style={styles.beadLabel}>Zikir sany</Text>
+                                <Text style={styles.zikirLatin}>{activeZikir.latin}</Text>
                             </Animated.View>
                         </Animated.View>
+
+                        <Animated.View
+                            pointerEvents="none"
+                            style={[
+                                styles.celebrate,
+                                {
+                                    opacity: celebrateAnim.interpolate({ inputRange: [0, 0.15, 0.85, 1], outputRange: [0, 1, 1, 1] }),
+                                    transform: [
+                                        { scale: celebrateAnim.interpolate({ inputRange: [0, 1], outputRange: [0.5, 1] }) },
+                                        { translateY: celebrateAnim.interpolate({ inputRange: [0, 1], outputRange: [10, -counterCircleSize / 2 - 8] }) },
+                                    ],
+                                },
+                            ]}
+                        >
+                            <Text style={styles.celebrateEmoji}>🎉</Text>
+                            <Text style={styles.celebrateText}>{celebrateRound}. halka doldy!</Text>
+                        </Animated.View>
+
                         <View style={[styles.beadProgressCard, { width: interactionWidth, backgroundColor: glassBg, borderColor: glassBorder }]}>
                             <View style={styles.beadProgressHeader}>
-                                <Text style={[styles.beadProgressTitle, { color: fgMedium }]}>Agyzbir halka</Text>
-                                <Text style={[styles.beadProgressValue, { color: fg }]}>{count}/{limit}</Text>
+                                <View>
+                                    <Text style={[styles.beadProgressTitle, { color: fgMedium }]}>JEMI SANY</Text>
+                                    <Text style={[styles.sessionTotalValue, { color: fg }]}>{sessionTotal}</Text>
+                                </View>
+                                <View style={{ alignItems: 'flex-end' }}>
+                                    <Text style={[styles.beadProgressValue, { color: fg }]}>{count}/{limit}</Text>
+                                    <Text style={[styles.beadProgressTitle, { color: fgMedium, marginTop: 3 }]}>{rounds} halka</Text>
+                                </View>
                             </View>
                             <View style={styles.beadRow}>
                                 {progressDots.map((isActive, index) => (
@@ -308,14 +421,6 @@ const styles = StyleSheet.create({
         borderRadius: 999,
         backgroundColor: 'rgba(255,255,255,0.18)',
     },
-    beadInnerShadow: {
-        position: 'absolute',
-        bottom: 14,
-        width: '78%',
-        height: '22%',
-        borderRadius: 999,
-        backgroundColor: 'rgba(0,0,0,0.05)',
-    },
     countText: { fontSize: 80, fontWeight: '900', color: COLORS.textPrimary },
     limitSubText: { fontSize: 16, fontWeight: '800', color: COLORS.gold, marginTop: 8 },
     beadLabel: {
@@ -357,6 +462,30 @@ const styles = StyleSheet.create({
         fontWeight: '800',
         color: '#FFF',
     },
+    sessionTotalValue: {
+        fontSize: 22,
+        fontWeight: '900',
+        marginTop: 2,
+        letterSpacing: -0.5,
+    },
+    celebrate: {
+        position: 'absolute',
+        alignSelf: 'center',
+        flexDirection: 'row',
+        alignItems: 'center',
+        backgroundColor: COLORS.gold,
+        paddingHorizontal: 18,
+        paddingVertical: 11,
+        borderRadius: 999,
+        shadowColor: '#C4A050',
+        shadowOpacity: 0.45,
+        shadowRadius: 16,
+        shadowOffset: { width: 0, height: 8 },
+        elevation: 10,
+        zIndex: 20,
+    },
+    celebrateEmoji: { fontSize: 18, marginRight: 8 },
+    celebrateText: { color: '#FFFFFF', fontSize: 15, fontWeight: '900', letterSpacing: 0.3 },
     beadRow: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -378,5 +507,36 @@ const styles = StyleSheet.create({
     beadDotLast: {
         marginRight: 0,
     },
-    tapTip: { fontSize: 11, fontWeight: '900', color: 'rgba(255,255,255,0.5)', letterSpacing: 3, marginTop: 18 }
+    tapTip: { fontSize: 11, fontWeight: '900', color: 'rgba(255,255,255,0.5)', letterSpacing: 3, marginTop: 18 },
+
+    // Zikir saýlaýjy
+    zikirSelector: { gap: 8, paddingVertical: 4, paddingHorizontal: 2 },
+    zikirChip: {
+        paddingHorizontal: 16,
+        paddingVertical: 10,
+        borderRadius: 16,
+        borderWidth: 1,
+        alignItems: 'center',
+        minWidth: 96,
+    },
+    zikirChipArabic: { fontSize: 18, fontWeight: '700', marginBottom: 3 },
+    zikirChipText: { fontSize: 11, fontWeight: '800', letterSpacing: 0.3 },
+
+    // Sayaç içindäki zikir ýazgylary
+    zikirArabic: {
+        fontSize: 30,
+        fontWeight: '700',
+        color: COLORS.textPrimary,
+        marginBottom: 6,
+        textAlign: 'center',
+        paddingHorizontal: 16,
+    },
+    zikirLatin: {
+        fontSize: 13,
+        fontWeight: '800',
+        color: COLORS.gold,
+        letterSpacing: 0.5,
+        marginTop: 10,
+        textAlign: 'center',
+    },
 });
