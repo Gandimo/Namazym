@@ -14,6 +14,7 @@ export default (): ExpoConfig => {
     expoConfig.plugins = [
         ...(expoConfig.plugins ?? []),
         './plugins/withNamazymWidgetBridge',
+        './plugins/withDisableBundleResourceSigning',
     ];
 
     return expoConfig;
