@@ -44,3 +44,8 @@ yarn-error.*
 *.aab
 *.apk
 *.ipa
+
+# Google Play service account key (SECRET — never commit)
+google-service-account.json
+google-play-*.json
+*-service-account.json
