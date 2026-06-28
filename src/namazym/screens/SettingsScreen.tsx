@@ -77,11 +77,31 @@ export default function SettingsScreen() {
     };
 
     const handleRate = async () => {
-        const url = Platform.OS === 'ios'
-            ? 'https://apps.apple.com/app/idYOUR_APP_ID'
-            : 'https://play.google.com/store/apps/details?id=YOUR_PACKAGE_NAME';
         const { Linking } = require('react-native');
-        await Linking.openURL(url);
+        const APP_STORE_ID = '6760561168';
+        const PLAY_PACKAGE = 'com.namazym.app';
+
+        // iOS: doğrudan değerlendirme yazma ekranını aç. Android: önce market://, olmazsa web.
+        if (Platform.OS === 'ios') {
+            const reviewUrl = `itms-apps://apps.apple.com/app/id${APP_STORE_ID}?action=write-review`;
+            const webUrl = `https://apps.apple.com/app/id${APP_STORE_ID}?action=write-review`;
+            try {
+                const supported = await Linking.canOpenURL(reviewUrl);
+                await Linking.openURL(supported ? reviewUrl : webUrl);
+            } catch {
+                await Linking.openURL(webUrl);
+            }
+            return;
+        }
+
+        const marketUrl = `market://details?id=${PLAY_PACKAGE}`;
+        const webUrl = `https://play.google.com/store/apps/details?id=${PLAY_PACKAGE}`;
+        try {
+            const supported = await Linking.canOpenURL(marketUrl);
+            await Linking.openURL(supported ? marketUrl : webUrl);
+        } catch {
+            await Linking.openURL(webUrl);
+        }
     };
 
     const togglePrayerReminders = async () => {
