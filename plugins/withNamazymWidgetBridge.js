@@ -12,6 +12,10 @@ const BRIDGE_GROUP_NAME = 'NamazymWidgetBridge';
 const BRIDGE_FILES = ['NamazymWidgetBridge.swift', 'NamazymWidgetBridge.m'];
 const WIDGET_TARGET_NAME = 'NamazymWidget';
 const WIDGET_BUNDLE_ID = 'com.namazym.app.widget';
+
+// Apple Developer Team used for automatic signing of the app + widget targets.
+const APP_TARGET_NAME = 'Namazym';
+const DEVELOPMENT_TEAM_ID = '3D84RKN99P';
 const WIDGET_TEMPLATE_DIR = 'namazym-widget-extension';
 const WIDGET_SWIFT_FILES = [
   'NamazymWidgetBundle.swift',
@@ -304,6 +308,47 @@ const getTargetBuildConfigurations = (xcodeProject, targetUuid) => {
   return (configurationList?.buildConfigurations ?? [])
     .map((item) => buildConfigurations[item.value])
     .filter(Boolean);
+};
+
+// Sets automatic signing + DEVELOPMENT_TEAM on the app and widget targets only.
+// Targets are matched by name AND productType so we never blindly write the team
+// onto resource-bundle / Pods targets (those are handled by the Podfile hook).
+const applyDevelopmentTeam = (xcodeProject) => {
+  const specs = [
+    { name: APP_TARGET_NAME, productType: 'com.apple.product-type.application' },
+    { name: WIDGET_TARGET_NAME, productType: 'com.apple.product-type.app-extension' },
+  ];
+
+  const applied = [];
+
+  for (const spec of specs) {
+    const found = getTargetByName(xcodeProject, spec.name);
+    if (!found) {
+      throw new Error(
+        `[withNamazymWidgetBridge] DEVELOPMENT_TEAM: target "${spec.name}" not found in Xcode project`,
+      );
+    }
+
+    const productType = unquote(found.nativeTarget.productType);
+    if (productType !== spec.productType) {
+      throw new Error(
+        `[withNamazymWidgetBridge] DEVELOPMENT_TEAM: target "${spec.name}" has productType "${productType}", expected "${spec.productType}"`,
+      );
+    }
+
+    const configurations = getTargetBuildConfigurations(xcodeProject, found.uuid);
+    for (const configuration of configurations) {
+      if (!configuration.buildSettings) {
+        configuration.buildSettings = {};
+      }
+      configuration.buildSettings.DEVELOPMENT_TEAM = DEVELOPMENT_TEAM_ID;
+      configuration.buildSettings.CODE_SIGN_STYLE = 'Automatic';
+    }
+
+    applied.push(`${spec.name} (${configurations.length} config)`);
+  }
+
+  console.log(`[withNamazymWidgetBridge] DEVELOPMENT_TEAM=${DEVELOPMENT_TEAM_ID} applied to: ${applied.join(', ')}`);
 };
 
 const findBuildPhase = (xcodeProject, targetUuid, phaseType, phaseName) => {
@@ -655,6 +700,7 @@ const withNamazymWidgetBridge = (config) => {
   config = withXcodeProject(config, (pluginConfig) => {
     addBridgeFilesToProject(pluginConfig, pluginConfig.modResults);
     addWidgetExtensionToProject(pluginConfig, pluginConfig.modResults);
+    applyDevelopmentTeam(pluginConfig.modResults);
     return pluginConfig;
   });
 
