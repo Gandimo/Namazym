@@ -11,6 +11,7 @@
         "hadith": "Günüň hadysy",
         "verse": "Günüň aýady",
         "zyyarat_yerleri": "Zyýarat ýerleri",
+        "umra_hac": "Umre & Haj",
         "asmaul_husna": "99 At",
         "mosques": "Metjitler",
         "dogalar": "Dogalar",
@@ -106,5 +107,14 @@
         "label": "Kerahat wagty",
         "maghrib_starts": "Agşam {{time}}-da başlanýar",
         "severe_label": "Kerahat: güýçli döwür"
+    },
+    "umra": {
+        "title": "UMRE & HAJ",
+        "subtitle": "MEKGE — MEDINE SAPARLARY",
+        "call": "Jaň et",
+        "verified": "YNAMDAR",
+        "featured": "SAÝLANAN",
+        "empty": "Häzirlikçe kärhana goşulmady. Tizden goşular.",
+        "disclaimer": "Bu kärhanalar garaşsyz hyzmat üpjünçileridir. Namazym diňe habarlaşmaga ýardam berýär."
     }
 }

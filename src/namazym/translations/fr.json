@@ -11,6 +11,7 @@
         "hadith": "Hadith du jour",
         "verse": "Verset du jour",
         "zyyarat_yerleri": "Lieux sacrés",
+        "umra_hac": "Omra et Hajj",
         "asmaul_husna": "99 Noms",
         "mosques": "Mosquées",
         "dogalar": "Douas",
@@ -100,5 +101,14 @@
         "difference": "Écart",
         "distance": "Vers La Mecque",
         "stable": "Stable"
+    },
+    "umra": {
+        "title": "OMRA ET HAJJ",
+        "subtitle": "VOYAGES À LA MECQUE ET MÉDINE",
+        "call": "Appeler",
+        "verified": "DE CONFIANCE",
+        "featured": "À LA UNE",
+        "empty": "Aucune agence pour l'instant. Bientôt disponible.",
+        "disclaimer": "Ces agences sont des prestataires indépendants. Namazym aide seulement à les contacter."
     }
 }

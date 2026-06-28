@@ -11,6 +11,7 @@
         "hadith": "Günün Hadisi",
         "verse": "Günün Ayeti",
         "zyyarat_yerleri": "Ziyaret Yerleri",
+        "umra_hac": "Umre & Hac",
         "asmaul_husna": "99 İsim",
         "mosques": "Camiler",
         "dogalar": "Dualar",
@@ -100,5 +101,14 @@
         "difference": "Fark",
         "distance": "Mekke'ye",
         "stable": "Kararlı"
+    },
+    "umra": {
+        "title": "UMRE & HAC",
+        "subtitle": "MEKKE — MEDİNE SEYAHATLERİ",
+        "call": "Ara",
+        "verified": "GÜVENİLİR",
+        "featured": "ÖNE ÇIKAN",
+        "empty": "Henüz şirket eklenmedi. Yakında eklenecek.",
+        "disclaimer": "Bu şirketler bağımsız hizmet sağlayıcılardır. Namazym yalnızca iletişime aracılık eder."
     }
 }

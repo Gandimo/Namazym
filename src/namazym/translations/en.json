@@ -11,6 +11,7 @@
         "hadith": "Hadith of the Day",
         "verse": "Verse of the Day",
         "zyyarat_yerleri": "Sacred Places",
+        "umra_hac": "Umrah & Hajj",
         "asmaul_husna": "99 Names",
         "mosques": "Mosques",
         "dogalar": "Duas",
@@ -101,5 +102,14 @@
         "difference": "Difference",
         "distance": "To Mecca",
         "stable": "Stable"
+    },
+    "umra": {
+        "title": "UMRAH & HAJJ",
+        "subtitle": "MECCA — MEDINA JOURNEYS",
+        "call": "Call",
+        "verified": "TRUSTED",
+        "featured": "FEATURED",
+        "empty": "No companies yet. Coming soon.",
+        "disclaimer": "These companies are independent service providers. Namazym only helps you get in touch."
     }
 }

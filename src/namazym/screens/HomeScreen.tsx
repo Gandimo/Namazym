@@ -735,6 +735,17 @@ export default function HomeScreen({ navigation }: any) {
                             variant="dua"
                             subtitle="Oku"
                         />
+                        <InfoCard
+                            icon="airplane-outline"
+                            label={t('common.umra_hac')}
+                            gradient="PRAYER_GOLD"
+                            onPress={() => navigation.navigate('UmraCompanies')}
+                            textColor={glassTextPrimary}
+                            cardStyle={{ backgroundColor: glassSurface, borderColor: glassBorder }}
+                            layoutStyle={{ width: compactCardWidth }}
+                            variant="mosque"
+                            subtitle="Mekge — Medine"
+                        />
                     </Animated.View>
 
                     <View style={styles.creatorWrapper}>

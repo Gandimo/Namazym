@@ -17,6 +17,7 @@ import IslamBayramlaryScreen from "./screens/IslamBayramlaryScreen";
 import NamazDetailScreen from "./screens/NamazDetailScreen";
 import SacredPlacesListScreen from "./screens/SacredPlacesListScreen";
 import SacredPlaceDetailScreen from "./screens/SacredPlaceDetailScreen";
+import UmraCompaniesScreen from "./screens/UmraCompaniesScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import GurhanLibraryScreen from "./screens/GurhanLibraryScreen";
 import NamazLearnScreen from "./screens/NamazLearnScreen";
@@ -135,6 +136,7 @@ export function AppNavigator() {
                         <Stack.Screen name="NamazDetail" component={NamazDetailScreen} />
                         <Stack.Screen name="SacredPlacesList" component={SacredPlacesListScreen} />
                         <Stack.Screen name="SacredPlaceDetail" component={SacredPlaceDetailScreen} />
+                        <Stack.Screen name="UmraCompanies" component={UmraCompaniesScreen} />
                         <Stack.Screen name="NamazLearn" component={NamazLearnScreen} />
                         <Stack.Screen name="NamazLearnDetail" component={NamazLearnDetailScreen} />
                         <Stack.Screen name="DogaDetail" component={DogaDetailScreen} />
