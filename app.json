@@ -55,7 +55,24 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "b9936d46-5710-4703-abfd-f6ed64798031"
+        "projectId": "b9936d46-5710-4703-abfd-f6ed64798031",
+        "build": {
+          "experimental": {
+            "ios": {
+              "appExtensions": [
+                {
+                  "targetName": "NamazymWidget",
+                  "bundleIdentifier": "com.namazym.app.widget",
+                  "entitlements": {
+                    "com.apple.security.application-groups": [
+                      "group.com.namazym.app"
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
       }
     },
     "runtimeVersion": "1.0.0",
