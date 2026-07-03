@@ -5,30 +5,34 @@
  */
 import { useMemo } from 'react';
 import { useCity } from '../context/CityContext';
-import { CITIES } from '../constants/cities';
+import { resolveQiblaPlace } from '../constants/qiblaPlaces';
 
 export interface QiblaLocation {
     lat: number;
     lon: number;
     cityLabel: string;
     cityKey: string;
-    /** Magnetic declination (°E) for the selected city — offline, WMM ~2025. */
+    /** Magnetic declination (°E) for the resolved Qibla place — offline, WMM ~2025. */
     declination: number;
 }
 
 export function useQiblaLocation(): QiblaLocation {
-    const { placeKey } = useCity();
+    // placeKey/placeLabel come from the prayer-time city selector (unchanged).
+    const { placeKey, placeLabel } = useCity();
 
     return useMemo<QiblaLocation>(() => {
-        const city = CITIES.find(c => c.key === placeKey) ?? CITIES[0];
+        // Resolve to the most specific offline Qibla coordinates for the selected
+        // place. Prayer-time cityId logic is untouched — this only affects the
+        // compass. Fully offline (no GPS / geocoding / network).
+        const qp = resolveQiblaPlace(placeKey);
         return {
-            lat: city.lat ?? 37.9601,
-            lon: city.lon ?? 58.3261,
-            cityLabel: city.label ?? 'Aşgabat',
-            cityKey: city.key,
-            // Fallback ~5.5°E is a safe Turkmenistan-wide average if a city is
-            // missing the value; still far better than no declination correction.
-            declination: city.declination ?? 5.5,
+            lat: qp.lat,
+            lon: qp.lon,
+            // Keep showing the user's selected place label (falls back to the
+            // Qibla place label if the context label is empty).
+            cityLabel: placeLabel || qp.label,
+            cityKey: placeKey,
+            declination: qp.declination,
         };
-    }, [placeKey]);
+    }, [placeKey, placeLabel]);
 }
