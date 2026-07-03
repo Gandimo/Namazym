@@ -92,6 +92,7 @@
         "status_calibrating": "Calibrage de la boussole",
         "status_hold_flat": "Tenez le téléphone à plat",
         "status_unstable": "Interférence magnétique détectée",
+        "calibration_hint": "Bougez votre téléphone en forme de 8 et éloignez-le des objets métalliques.",
         "status_far": "Recherche de la Qibla",
         "status_near": "Proche de la Qibla",
         "status_aligned": "Approche de la Qibla",

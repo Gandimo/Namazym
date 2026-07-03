@@ -6,7 +6,10 @@ import type { SupportedCity } from '../prayer/types';
  * Android ignores sound updates on an existing channel id, so a new id is the
  * only reliable way to make a new sound take effect.
  */
-export const AZAN_CHANNEL_ID = 'azan_alerts_v2';
+// v3: bumped because azan_short.wav was loudness-normalised to ~-12 LUFS.
+// Android freezes a channel's sound at creation time, so existing users only
+// hear the louder sound once this new channel id is created on their device.
+export const AZAN_CHANNEL_ID = 'azan_alerts_v3';
 
 /** Bundled short-Azan notification sound (declared in app.json expo-notifications). */
 export const AZAN_SOUND_FILE = 'azan_short.wav';

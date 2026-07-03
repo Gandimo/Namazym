@@ -93,6 +93,7 @@
         "status_calibrating": "Kybla ugruny tap",
         "status_hold_flat": "Telefony düz tutuň",
         "status_unstable": "Magnit päsgelçiligi bolup biler",
+        "calibration_hint": "Telefonyňyzy \"8\" görnüşinde hereketlendiriň we metal zatlardan daşda tutuň.",
         "status_far": "Kybla gözlenýär",
         "status_near": "Kybla ýakyn",
         "status_aligned": "Kybla tarapyna öwrülýär",

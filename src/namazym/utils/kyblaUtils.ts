@@ -4,8 +4,8 @@
  */
 
 // ─── Kaaba coordinates ────────────────────────────────────────────────────────
-export const KAABA_LAT = 21.4225;
-export const KAABA_LON = 39.8262;
+export const KAABA_LAT = 21.422487;
+export const KAABA_LON = 39.826206;
 
 // ─── Threshold config ─────────────────────────────────────────────────────────
 export const THR_HOLD_FLAT_DEG = 35;    // tilt above this → holdFlat state

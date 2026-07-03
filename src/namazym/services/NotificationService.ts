@@ -268,15 +268,21 @@ export class NotificationService {
                 sound: 'default',
             });
 
-            // Remove the legacy chime channel so its old sound no longer lingers.
+            // Remove legacy channels so their old (quieter) sound no longer lingers
+            // in the system settings. Android freezes a channel's sound at creation,
+            // which is why AZAN_CHANNEL_ID is versioned (now azan_alerts_v3).
             await Notifications.deleteNotificationChannelAsync('azan_channel').catch(() => {});
+            await Notifications.deleteNotificationChannelAsync('azan_alerts_v2').catch(() => {});
 
             await Notifications.setNotificationChannelAsync(AZAN_CHANNEL_ID, {
                 name: 'Azan Alerts',
-                importance: Notifications.AndroidImportance.HIGH,
+                // MAX so the Azan alert is delivered as a high-priority heads-up
+                // notification and plays at full notification volume.
+                importance: Notifications.AndroidImportance.MAX,
                 sound: AZAN_SOUND_FILE,
                 vibrationPattern: [0, 250, 250, 250],
                 lightColor: '#C9A84C',
+                bypassDnd: false,
             });
         }
     }

@@ -93,6 +93,7 @@
         "status_calibrating": "Calibrating compass",
         "status_hold_flat": "Hold phone flat",
         "status_unstable": "Magnetic interference detected",
+        "calibration_hint": "Move your phone in a figure-8 motion and keep it away from metal objects.",
         "status_far": "Searching Qibla",
         "status_near": "Near Qibla",
         "status_aligned": "Approaching Qibla",

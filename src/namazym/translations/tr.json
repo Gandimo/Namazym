@@ -92,6 +92,7 @@
         "status_calibrating": "Pusula hazırlanıyor",
         "status_hold_flat": "Telefonu düz tutun",
         "status_unstable": "Manyetik parazit olabilir",
+        "calibration_hint": "Telefonu \"8\" şeklinde hareket ettirin ve metal nesnelerden uzak tutun.",
         "status_far": "Kıble aranıyor",
         "status_near": "Kıble yakın",
         "status_aligned": "Kıbleye yaklaşılıyor",

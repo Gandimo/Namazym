@@ -24,7 +24,9 @@ class AudioPlayerService {
             await Audio.setAudioModeAsync({
                 playsInSilentModeIOS: true,
                 staysActiveInBackground: false,
-                shouldDuckAndroid: true,
+                // Do NOT duck our own Azan on Android — it must play at full media
+                // volume. DoNotMix already pauses other audio while it plays.
+                shouldDuckAndroid: false,
                 interruptionModeIOS: InterruptionModeIOS.DoNotMix,
                 interruptionModeAndroid: InterruptionModeAndroid.DoNotMix,
                 playThroughEarpieceAndroid: false,
@@ -43,11 +45,20 @@ class AudioPlayerService {
 
             const { sound } = await Audio.Sound.createAsync(
                 AZAN_SOURCE,
-                { shouldPlay: true, isLooping: false }
+                // volume 1.0 = maximum in-app playback level (relative to the
+                // device media volume). The asset itself is loudness-normalised
+                // to ~-12 LUFS / -1 dBTP so it is as loud as possible without clipping.
+                { shouldPlay: true, isLooping: false, volume: 1.0 }
             );
+            // Belt-and-suspenders: force max volume on the loaded sound too.
+            await sound.setVolumeAsync(1.0);
 
             this.sound = sound;
             this.isPlayingAudio = true;
+
+            if (__DEV__) {
+                console.log('[AudioPlayerService] Playing full Azan | source=assets/audio/azan_full.mp3 | volume=1.0');
+            }
 
             sound.setOnPlaybackStatusUpdate((status) => {
                 if (status.isLoaded && status.didJustFinish) {

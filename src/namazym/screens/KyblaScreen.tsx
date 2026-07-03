@@ -67,9 +67,15 @@ export default function KyblaScreen({ navigation }: any) {
     const sceneHaloInnerSize = compassSize + (responsiveLayout.isTablet ? 34 : 22);
 
     // V2 Architecture Hooks
-    const { lat, lon, cityLabel } = useQiblaLocation();
+    const { lat, lon, cityLabel, declination } = useQiblaLocation();
     const { bearing, distanceKm } = useQiblaBearing(lat, lon);
-    const { heading, headingUnwrapped, stability, tiltDeg, sampleCount } = useSensorHeading();
+    const { heading: magHeading, headingUnwrapped: magHeadingUnwrapped, stability, tiltDeg, sampleCount } = useSensorHeading();
+
+    // The sensor pipeline returns a MAGNETIC heading; the Qibla bearing is a TRUE
+    // great-circle bearing. Add the local magnetic declination (offline constant,
+    // °E) to convert magnetic → true north so the needle points at the real Qibla.
+    const heading = useMemo(() => (magHeading + declination + 360) % 360, [magHeading, declination]);
+    const headingUnwrapped = magHeadingUnwrapped + declination;
 
     // Calculate angular difference continuously
     const diff = useMemo(() => {
@@ -363,6 +369,13 @@ export default function KyblaScreen({ navigation }: any) {
                     </Text>
                 </Animated.View>
 
+                {/* Calibration hint — only while the compass is unreliable */}
+                {(state === 'calibrating' || state === 'unstable') && (
+                    <Text style={s.calibrationHint}>
+                        {t('qibla.calibration_hint', 'Telefonyňyzy “8” görnüşinde hereketlendiriň we metal zatlardan daşda tutuň.')}
+                    </Text>
+                )}
+
                 {/* compass area */}
                 <View style={[s.compassArea, { width: contentWidth }]}>
                     <Animated.View
@@ -614,6 +627,14 @@ const s = StyleSheet.create({
         height: 8,
         borderRadius: 4,
         marginRight: 8,
+    },
+    calibrationHint: {
+        marginTop: 10,
+        paddingHorizontal: 32,
+        textAlign: 'center',
+        fontSize: 12,
+        lineHeight: 17,
+        color: C.textMuted,
     },
     badgeText: {
         fontSize: 14,
