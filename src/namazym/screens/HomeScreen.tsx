@@ -93,7 +93,13 @@ export default function HomeScreen({ navigation }: any) {
     const { width: windowWidth } = useWindowDimensions();
     const insets = useSafeAreaInsets();
     const { placeLabel, prayerTimes, isLoading, placeKey, setPlace } = useCity();
-    const [now, setNow] = useState(TimeService.now());
+    // `nowSecond` ticks every second and feeds ONLY the live HH:MM:SS countdown.
+    // `now` is truncated to the current minute, so all the prayer/progress/kerahat/
+    // date memos below (and the memoised child cards) keep a stable reference and
+    // only recompute once per minute instead of 60× — the main Android jank fix.
+    const [nowSecond, setNowSecond] = useState(TimeService.now());
+    const minuteEpoch = Math.floor(nowSecond.getTime() / 60000);
+    const now = useMemo(() => new Date(minuteEpoch * 60000), [minuteEpoch]);
     const [selectedDate, setSelectedDate] = useState(TimeService.getTodayDateString());
     const [isCityModalVisible, setCityModalVisible] = useState(false);
     const [tasbihState, setTasbihState] = useState<TasbihState>({ count: 0, total: 0, limit: 33 });
@@ -103,7 +109,7 @@ export default function HomeScreen({ navigation }: any) {
     const scrollY = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
-        const timer = setInterval(() => setNow(TimeService.now()), 1000);
+        const timer = setInterval(() => setNowSecond(TimeService.now()), 1000);
         Animated.timing(fadeAnim, { toValue: 1, duration: 800, useNativeDriver: true }).start();
         return () => clearInterval(timer);
     }, [fadeAnim]);
@@ -139,7 +145,7 @@ export default function HomeScreen({ navigation }: any) {
         return PrayerTimesService.getPrayerTimes(selectedDate, placeKey);
     }, [selectedDate, placeKey]);
 
-    const remainingMs = useMemo(() => next ? next.dateObj.getTime() - now.getTime() : 0, [next, now]);
+    const remainingMs = useMemo(() => next ? next.dateObj.getTime() - nowSecond.getTime() : 0, [next, nowSecond]);
 
     const progress = useMemo(() => {
         if (!current || !next) return 0;
@@ -769,7 +775,7 @@ export default function HomeScreen({ navigation }: any) {
                         onPress={() => {
                             AudioPlayerService.stop();
                             // Force re-render to hide button
-                            setNow(new Date());
+                            setNowSecond(new Date());
                         }}
                         style={[(styles as any).stopAdhanBtn, { bottom: insets.bottom + 100 }]}
                     >

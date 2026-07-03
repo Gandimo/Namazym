@@ -69,6 +69,7 @@
     "@expo/metro-runtime": "~6.1.2",
     "@types/react": "~19.1.0",
     "@types/suncalc": "^1.9.2",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "babel-preset-expo": "~54.0.10",
     "eslint": "^9.39.2",
     "eslint-config-expo": "^10.0.0",

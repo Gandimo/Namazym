@@ -22,7 +22,7 @@ const NAV_ITEMS: NavItem[] = [
     { id: 'Metjitler', icon: 'business-outline', library: 'Ionicons', label: 'Metjit', customIcon: MosqueIcon },
 ];
 
-export const PillNavigationBar = ({ navigation, activeRoute = 'Home' }: any) => {
+export const PillNavigationBar = React.memo(({ navigation, activeRoute = 'Home' }: any) => {
     const { width } = useWindowDimensions();
     const responsiveLayout = React.useMemo(() => getResponsiveLayoutMetrics(width), [width]);
     const navWidth = Math.min(width - (responsiveLayout.horizontalPadding * 2), responsiveLayout.navigationMaxWidth);
@@ -81,7 +81,9 @@ export const PillNavigationBar = ({ navigation, activeRoute = 'Home' }: any) => 
             </View>
         </View>
     );
-};
+});
+
+PillNavigationBar.displayName = 'PillNavigationBar';
 
 const styles = StyleSheet.create({
     container: {

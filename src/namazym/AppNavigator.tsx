@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import DailyVerseScreen from "./screens/DailyVerseScreen";
@@ -39,12 +39,8 @@ export const navigationRef = createNavigationContainerRef();
 
 import { PremiumProvider } from "./context/PremiumContext";
 
-import { View, ActivityIndicator, Platform } from "react-native";
-import { colors } from "./theme/colors";
 
 export function AppNavigator() {
-    const [initialRoute, setInitialRoute] = useState<string | null>(null);
-
     // Notification Listener for Smart Routing
     useEffect(() => {
         const subscription = Notifications.addNotificationResponseReceivedListener((response: Notifications.NotificationResponse) => {
@@ -90,26 +86,18 @@ export function AppNavigator() {
         return () => subscription.remove();
     }, []);
 
+    // Fire-and-forget after first paint. The app always opens straight to Home,
+    // so there is no async route decision and therefore no loading gate to show.
     useEffect(() => {
         NotificationService.init();
-        setInitialRoute("Home");
     }, []);
-
-    if (!initialRoute) {
-
-        return (
-            <View style={{ flex: 1, backgroundColor: colors.bg, justifyContent: 'center', alignItems: 'center' }}>
-                <ActivityIndicator size="small" color={colors.gold} />
-            </View>
-        );
-    }
 
     return (
         <PremiumProvider>
             <CityProvider>
                 <NavigationContainer ref={navigationRef}>
                     <Stack.Navigator
-                        initialRouteName={initialRoute}
+                        initialRouteName="Home"
                         screenOptions={{
                             headerShown: false,
                             animation: "fade",

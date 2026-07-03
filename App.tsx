@@ -13,12 +13,13 @@ import { CityProvider } from "./src/namazym/context/CityContext";
 
 // Navigation
 import { AppNavigator } from "./src/namazym/AppNavigator";
-import { NotificationService } from "./src/namazym/services/NotificationService";
 
 // Prevent splash screen from hiding automatically until we're ready
 SplashScreen.preventAutoHideAsync();
 
-NotificationService.init();
+// NotificationService.init() runs once inside AppNavigator's effect (after the
+// first paint) — it used to also run here at module load, doing the work twice
+// and delaying startup. Kept in a single place now.
 
 export default function App() {
   const [appReady, setAppReady] = useState(false);

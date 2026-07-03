@@ -14,7 +14,7 @@ interface DateStripProps {
     isDarkTheme?: boolean;
 }
 
-export const DateStrip: React.FC<DateStripProps> = ({ selectedDate, onDateSelect, isDarkTheme = true }) => {
+export const DateStrip = React.memo(({ selectedDate, onDateSelect, isDarkTheme = true }: DateStripProps) => {
     const flatListRef = useRef<FlatList>(null);
 
     const dates = useMemo(() => {
@@ -99,7 +99,9 @@ export const DateStrip: React.FC<DateStripProps> = ({ selectedDate, onDateSelect
             />
         </View>
     );
-};
+});
+
+DateStrip.displayName = 'DateStrip';
 
 const styles = StyleSheet.create({
     container: {

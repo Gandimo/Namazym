@@ -89,7 +89,7 @@ const PrayerRow = ({ item, time, isCurrent, isNext, isPast, isDarkTheme = true }
     );
 };
 
-export const DailyPrayersList = ({ prayerTimes, current, next, progress, delay = 0, isDarkTheme = true }: any) => {
+export const DailyPrayersList = React.memo(({ prayerTimes, current, next, progress, delay = 0, isDarkTheme = true }: any) => {
     const { t } = useTranslation();
     const entranceStyle = useAnimatedEntrance(delay);
     const ORDER = [
@@ -122,7 +122,9 @@ export const DailyPrayersList = ({ prayerTimes, current, next, progress, delay =
             ))}
         </Animated.View>
     );
-};
+});
+
+DailyPrayersList.displayName = 'DailyPrayersList';
 
 const styles = StyleSheet.create({
     container: {

@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "Namazym",
+    "name": "Namazym Mobile",
     "slug": "namazym",
     "scheme": "namazym",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,7 +19,7 @@
       }
     },
     "android": {
-      "versionCode": 4,
+      "versionCode": 8,
       "package": "com.namazym.app",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon-foreground.png",

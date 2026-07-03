@@ -23,7 +23,7 @@ interface KerahatBannerProps {
  * Kerahat logic lives exclusively in mekruh.ts. This component only handles
  * display. It never re-derives timing.
  */
-export const KerahatBanner = ({ maghribTime, isSevere, isDarkTheme }: KerahatBannerProps) => {
+export const KerahatBanner = React.memo(({ maghribTime, isSevere, isDarkTheme }: KerahatBannerProps) => {
     const { t } = useTranslation();
     const entranceStyle = useAnimatedEntrance(80);
 
@@ -79,7 +79,9 @@ export const KerahatBanner = ({ maghribTime, isSevere, isDarkTheme }: KerahatBan
             </View>
         </Animated.View>
     );
-};
+});
+
+KerahatBanner.displayName = 'KerahatBanner';
 
 const styles = StyleSheet.create({
     wrapper: {
