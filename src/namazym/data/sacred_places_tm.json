@@ -96,6 +96,14 @@
             "location": "Daşoguz welaýat • Köneürgenç",
             "short_desc": "Türkmenistanyň Daşoguz welaýatynda ýerleşýän Köneürgenç (öňki ady Gürgenç), “360 Pir” diýlip atlandyrylýan ruhy mekanlaryň we Yslam dünýäsiniň iň möhüm taryhy merkezleriniň ýerleşýän mukaddes yeridir.",
             "full_desc": "Türkmenistanyň Daşoguz welaýatynda ýerleşýän Köneürgenç (öňki ady Gürgenç), “360 Pir” diýlip atlandyrylýan ruhy mekanlaryň we Yslam dünýäsiniň iň möhüm taryhy merkezleriniň ýerleşýän mukaddes yeridir."
+        },
+        {
+            "id": "ak_isan",
+            "category_id": "ziyarat",
+            "name": "Ak Işan zyýaratgähi",
+            "location": "Ahal welaýaty, Baharly etraby",
+            "short_desc": "Ak Işan — Ahal welaýatynyň Baharly etrabynda ýerleşýän, halk arasynda tanalýan mukaddes zyýarat ýerleriniň biridir.",
+            "full_desc": "Ak Işan zyýaratgähi Ahal welaýatynyň Baharly etrabynda ýerleşýär. Bu ýer halk arasynda tanalýan mukaddes zyýarat ýerleriniň biridir. Namazym programmasy bu ýer barada maglumat bermäge we zyýarat meýilnamasyny düzmäge kömek eder."
         }
     ]
 }
