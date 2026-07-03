@@ -14,7 +14,10 @@ const WIDGET_TARGET_NAME = 'NamazymWidget';
 const WIDGET_BUNDLE_ID = 'com.namazym.app.widget';
 
 // Apple Developer Team used for automatic signing of the app + widget targets.
-const APP_TARGET_NAME = 'Namazym';
+// APP_TARGET_NAME must match the Xcode target name Expo generates from the
+// sanitized `expo.name` (non-alphanumerics stripped). expo.name = "Namazym Mobile"
+// → target "NamazymMobile". If expo.name changes, update this to match.
+const APP_TARGET_NAME = 'NamazymMobile';
 const DEVELOPMENT_TEAM_ID = '3D84RKN99P';
 const WIDGET_TEMPLATE_DIR = 'namazym-widget-extension';
 const WIDGET_SWIFT_FILES = [
