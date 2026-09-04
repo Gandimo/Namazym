@@ -34,8 +34,11 @@ export const CITIES_GROUPED: PlaceGroup[] = [
     }
 ];
 
-// Flat list for easy lookup
-export const CITIES = CITIES_GROUPED.flatMap(g => g.places);
+import { ALL_REGION_PLACES } from './regions';
+
+// Flat list for easy lookup. Region (etrap) places are included so a saved
+// region placeKey survives app restarts (CityContext init looks keys up here).
+export const CITIES = [...CITIES_GROUPED.flatMap(g => g.places), ...ALL_REGION_PLACES];
 
 export const RAMADAN_TABLE_MAPPING: Record<string, string> = {
     "asgabat_arkadag_ahal": "asgabat_arkadag_ahal",

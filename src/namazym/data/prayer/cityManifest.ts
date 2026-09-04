@@ -1,4 +1,5 @@
 import type { CityManifest } from '../../services/prayer/types';
+import { REGION_MANIFEST_ENTRIES } from './regions';
 
 export const CITY_MANIFEST: CityManifest = {
     "ashgabat": {
@@ -52,5 +53,7 @@ export const CITY_MANIFEST: CityManifest = {
         "sourceType": "txt",
         "lastImportedAt": "2026-03-23T17:42:57.975Z",
         "status": "ready"
-    }
+    },
+    // Etrap (bölge) girişleri — resmi il tablosu + konumsal farktan türetildi.
+    ...REGION_MANIFEST_ENTRIES
 };

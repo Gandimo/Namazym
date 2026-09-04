@@ -1,4 +1,5 @@
 import type { PrayerDataset } from '../../services/prayer/types';
+import { REGION_DATASET_ENTRIES } from './regions';
 import { ashgabatDataset } from './cities/ashgabat';
 import { ahalDataset }     from './cities/ahal';
 import { arkadagDataset }  from './cities/arkadag';
@@ -20,4 +21,6 @@ export const PRAYER_DATASET: PrayerDataset = {
     dashoguz: { city: 'dashoguz', data: dashoguzDataset, status: hasYears(dashoguzDataset) ? 'available' : 'empty' },
     lebap:    { city: 'lebap',    data: lebapDataset,    status: hasYears(lebapDataset)    ? 'available' : 'empty' },
     mary:     { city: 'mary',     data: maryDataset,     status: hasYears(maryDataset)     ? 'available' : 'empty' },
+    // Etrap (bölge) girişleri — resmi il tablosu + konumsal fark ile üretilir.
+    ...REGION_DATASET_ENTRIES,
 };

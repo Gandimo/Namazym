@@ -1,0 +1,77 @@
+import type { Place } from './cities';
+
+/**
+ * Welaýat -> etrap (bölge) listesi. ÜRETİLMİŞ DOSYA (gen_regions.py).
+ */
+export const REGIONS_BY_PROVINCE: Record<string, Place[]> = {
+    "asgabat_arkadag_ahal": [
+        { key: "ahal_asgabat", label: "Aşgabat (Ashgabat)", cityId: 1, lat: 37.95, lon: 58.3167 },
+        { key: "ahal_baherden", label: "Baherden", cityId: 1, lat: 38.4333, lon: 57.4167 },
+        { key: "ahal_bamy", label: "Bamy", cityId: 1, lat: 38.7167, lon: 56.7833 },
+        { key: "ahal_erbent", label: "Erbent", cityId: 1, lat: 39.3, lon: 58.5833 },
+        { key: "ahal_gokdepe", label: "Gökdepe", cityId: 1, lat: 38.15, lon: 57.95 },
+        { key: "ahal_gyaurs", label: "Gyaurs (Gevers)", cityId: 1, lat: 37.7833, lon: 58.7167 },
+        { key: "ahal_kaakhka", label: "Kaakhka", cityId: 1, lat: 37.3333, lon: 59.6167 },
+        { key: "ahal_kaushut", label: "Kaushut (Kaushut-Bent)", cityId: 1, lat: 37.45, lon: 59.4667 },
+        { key: "ahal_sarahs", label: "Sarahs (Sarakhs)", cityId: 1, lat: 36.5333, lon: 61.2167 },
+        { key: "ahal_serni_zavod", label: "Serni Zavod (Sernyy-Zavod)", cityId: 1, lat: 39.9833, lon: 58.8167 },
+        { key: "ahal_tejen", label: "Tejen (Tedjen)", cityId: 1, lat: 37.3667, lon: 60.4833 },
+        { key: "ahal_yaradzhy", label: "Yaradzhy (Yaradzhi)", cityId: 1, lat: 38.2833, lon: 57.6667 },
+    ],
+    "balkan": [
+        { key: "balkan_akdas", label: "Akdaş", cityId: 3, lat: 40.0333, lon: 53.1167 },
+        { key: "balkan_avaza", label: "Avaza", cityId: 3, lat: 39.9667, lon: 52.8333 },
+        { key: "balkan_balkanabad", label: "Balkanabad", cityId: 3, lat: 39.5, lon: 54.35 },
+        { key: "balkan_bekdash", label: "Bekdash", cityId: 3, lat: 41.5333, lon: 52.5667 },
+        { key: "balkan_chagyl", label: "Chagyl", cityId: 3, lat: 40.7667, lon: 55.3667 },
+        { key: "balkan_celeken", label: "Çeleken (Hazar)", cityId: 3, lat: 39.4, lon: 53.1167 },
+        { key: "balkan_dzhanga", label: "Dzhanga", cityId: 3, lat: 40.0, lon: 53.1 },
+        { key: "balkan_gazancik", label: "Gazancık", cityId: 3, lat: 39.2333, lon: 55.5167 },
+        { key: "balkan_giziletrek", label: "Gızıletrek", cityId: 3, lat: 37.6, lon: 54.7667 },
+        { key: "balkan_karshi", label: "Karshi", cityId: 3, lat: 40.7167, lon: 52.85 },
+        { key: "balkan_kiyanli_kiyanly", label: "Kiyanli / Kiyanly", cityId: 3, lat: 40.1833, lon: 52.7667 },
+        { key: "balkan_omchali", label: "Omchali", cityId: 3, lat: 40.6667, lon: 53.6667 },
+        { key: "balkan_serdar", label: "Serdar (Gızılarbat)", cityId: 3, lat: 38.9667, lon: 56.2667 },
+        { key: "balkan_turkmenbasi", label: "Türkmenbaşı (Turkmenbashi)", cityId: 3, lat: 40.0, lon: 52.9667 },
+        { key: "balkan_turkmenbasi_havaalani", label: "Türkmenbaşı Havaalanı", cityId: 3, lat: 40.0333, lon: 53.0 },
+        { key: "balkan_yangadzha", label: "Yangadzha", cityId: 3, lat: 40.0167, lon: 53.3167 },
+    ],
+    "dasoguz": [
+        { key: "dasoguz_darvaza", label: "Darvaza", cityId: 4, lat: 40.2, lon: 58.4 },
+        { key: "dasoguz_kone_urgench", label: "Köne Ürgench", cityId: 4, lat: 42.3167, lon: 59.1667 },
+        { key: "dasoguz_tasoguz", label: "Taşoğuz (Tasauz)", cityId: 4, lat: 41.8333, lon: 59.95 },
+    ],
+    "lebap": [
+        { key: "lebap_carsanga", label: "Carsanga (Koytendag)", cityId: 5, lat: 37.5, lon: 66.0167 },
+        { key: "lebap_darganata", label: "Darganata", cityId: 5, lat: 40.4833, lon: 62.1167 },
+        { key: "lebap_ene_kuliyevo", label: "Ene Kuliyevo", cityId: 5, lat: 39.3, lon: 63.0 },
+        { key: "lebap_gaurdak", label: "Gaurdak (Magdanli)", cityId: 5, lat: 37.8, lon: 66.0333 },
+        { key: "lebap_golovnoye", label: "Golovnoye", cityId: 5, lat: 37.55, lon: 65.6333 },
+        { key: "lebap_guneshoba", label: "Guneshoba", cityId: 5, lat: 37.5833, lon: 65.6 },
+        { key: "lebap_halac", label: "Halaç (Halach)", cityId: 5, lat: 38.0667, lon: 64.8833 },
+        { key: "lebap_imeni_stalina", label: "İmeni Stalina (Khodzhapil)", cityId: 5, lat: 37.9333, lon: 66.6333 },
+        { key: "lebap_karabekaul", label: "Karabekaul", cityId: 5, lat: 38.4667, lon: 64.15 },
+        { key: "lebap_karlyuk", label: "Karlyuk", cityId: 5, lat: 37.5833, lon: 66.3333 },
+        { key: "lebap_kerki", label: "Kerki (Atamurat)", cityId: 5, lat: 37.8333, lon: 65.2 },
+        { key: "lebap_komsomolsk", label: "Komsomolsk", cityId: 5, lat: 39.0167, lon: 63.5667 },
+        { key: "lebap_kuvak", label: "Kuvak", cityId: 5, lat: 37.5833, lon: 65.5667 },
+        { key: "lebap_lebap", label: "Lebap", cityId: 5, lat: 41.0333, lon: 61.8667 },
+        { key: "lebap_mirzabek", label: "Mirzabek", cityId: 5, lat: 37.5833, lon: 65.6 },
+        { key: "lebap_mukry", label: "Mukry (Mukri)", cityId: 5, lat: 37.5667, lon: 65.55 },
+        { key: "lebap_sakar", label: "Sakar", cityId: 5, lat: 38.9167, lon: 63.75 },
+        { key: "lebap_sayat", label: "Sayat", cityId: 5, lat: 38.7667, lon: 63.8667 },
+        { key: "lebap_seydi", label: "Seydi (Neftezavodsk)", cityId: 5, lat: 39.4333, lon: 62.8833 },
+        { key: "lebap_turkmenabat", label: "Türkmenabat (Chardzhou)", cityId: 5, lat: 39.0833, lon: 63.5667 },
+    ],
+    "mary": [
+        { key: "mary_bayram_ali", label: "Bayram-Ali (Bayramaly)", cityId: 6, lat: 37.6, lon: 62.1667 },
+        { key: "mary_merv", label: "Merv (Mary)", cityId: 6, lat: 37.6, lon: 61.85 },
+        { key: "mary_murgab", label: "Murgab", cityId: 6, lat: 37.4833, lon: 61.9667 },
+        { key: "mary_serhetabad", label: "Serhetabad (Guşgı)", cityId: 6, lat: 35.3, lon: 62.3667 },
+        { key: "mary_takhta_bazar", label: "Takhta-Bazar (Tagtabazar)", cityId: 6, lat: 35.95, lon: 62.9167 },
+        { key: "mary_tashkepri", label: "Tashkepri", cityId: 6, lat: 36.2833, lon: 62.65 },
+        { key: "mary_yoloten", label: "Yolöten (Eloten)", cityId: 6, lat: 37.2833, lon: 62.35 },
+    ],
+};
+
+export const ALL_REGION_PLACES: Place[] = Object.values(REGIONS_BY_PROVINCE).flat();

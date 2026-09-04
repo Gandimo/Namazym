@@ -75,7 +75,7 @@ export type Dataset = Record<string, DailyPrayerTimes>;
  * EXTENDING: add a new city key here, create its data file, and register it
  * in prayerDataset.ts. The engine requires zero further code changes.
  */
-export type SupportedCity =
+export type CoreSupportedCity =
     | 'ashgabat'
     | 'ahal'
     | 'arkadag'
@@ -83,6 +83,17 @@ export type SupportedCity =
     | 'dashoguz'
     | 'lebap'
     | 'mary';
+
+// Type-only import: erased at compile time, so no runtime cycle exists between
+// this module and the generated region dataset files.
+import type { RegionPlaceKey } from '../../data/prayer/regions';
+
+/**
+ * Core welayat tables plus the generated region (etrap) keys. Region datasets
+ * are derived from the official province tables with per-day geographic
+ * offsets — see data/prayer/regions/.
+ */
+export type SupportedCity = CoreSupportedCity | RegionPlaceKey;
 
 // ─── Parser types ─────────────────────────────────────────────────────────────
 
