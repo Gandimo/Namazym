@@ -4,6 +4,7 @@ import { tokens2026 } from '../theme/tokens2026';
 import { useAnimatedEntrance } from '../hooks/useAnimatedEntrance';
 import { PremiumIcon } from './icons/PremiumIcon';
 import { useTranslation } from 'react-i18next';
+import { getFastingTimes } from '../utils/fastingTimes';
 
 const ARABIC_NAMES: Record<string, string> = {
     Fajr: 'الفجر',
@@ -89,6 +90,59 @@ const PrayerRow = ({ item, time, isCurrent, isNext, isPast, isDarkTheme = true }
     );
 };
 
+/**
+ * Fasting times strip. Both values come from the same official timetable already
+ * shown above (iftar = maghrib, imsak = fajr − 40 min, the gap printed in the
+ * Turkmen tables themselves), so nothing here can drift from the prayer times.
+ */
+const FastingTimesRow = ({ timings, palette, isDarkTheme }: any) => {
+    const { t } = useTranslation();
+    const { imsak, iftar } = getFastingTimes(timings);
+    if (!imsak && !iftar) return null;
+
+    const cells = [
+        { key: 'imsak', label: t('fasting.imsak', 'Agyz bekleme'), time: imsak, icon: 'moon-outline' },
+        { key: 'iftar', label: t('fasting.iftar', 'Agyz açar'), time: iftar, icon: 'restaurant-outline' },
+    ] as const;
+
+    return (
+        <View style={styles.rowWrapper}>
+            <View style={[
+                styles.fastingCard,
+                { backgroundColor: palette.cardDefault, borderColor: palette.borderDefault },
+                isDarkTheme ? tokens2026.elevation.soft : styles.lightCardDepth,
+            ]}>
+                {cells.map((cell, index) => (
+                    <React.Fragment key={cell.key}>
+                        {index > 0 && (
+                            <View style={[styles.fastingDivider, { backgroundColor: palette.borderDefault }]} />
+                        )}
+                        <View style={styles.fastingCell}>
+                            <View style={styles.fastingLabelRow}>
+                                <PremiumIcon
+                                    name={cell.icon}
+                                    size="SMALL"
+                                    color={palette.textMuted}
+                                    style={{ marginRight: 6 }}
+                                />
+                                <Text
+                                    numberOfLines={1}
+                                    style={[styles.fastingLabel, { color: palette.textSecondary }]}
+                                >
+                                    {cell.label}
+                                </Text>
+                            </View>
+                            <Text style={[styles.fastingTime, { color: palette.textPrimary }]}>
+                                {cell.time || '--:--'}
+                            </Text>
+                        </View>
+                    </React.Fragment>
+                ))}
+            </View>
+        </View>
+    );
+};
+
 export const DailyPrayersList = React.memo(({ prayerTimes, current, next, progress, delay = 0, isDarkTheme = true }: any) => {
     const { t } = useTranslation();
     const entranceStyle = useAnimatedEntrance(delay);
@@ -108,6 +162,11 @@ export const DailyPrayersList = React.memo(({ prayerTimes, current, next, progre
             <View style={styles.sectionHeader}>
                 <Text style={[styles.sectionTitle, { color: palette.textSecondary }]}>{t('common.prayer_times').toUpperCase()}</Text>
             </View>
+            <FastingTimesRow
+                timings={prayerTimes?.timings}
+                palette={palette}
+                isDarkTheme={isDarkTheme}
+            />
             {ORDER.map((item, index) => (
                 <PrayerRow
                     key={item.key}
@@ -151,6 +210,40 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingHorizontal: tokens2026.layout.componentPadding,
         borderWidth: 1,
+    },
+    fastingCard: {
+        height: 62,
+        borderRadius: 20,
+        flexDirection: 'row',
+        alignItems: 'center',
+        paddingHorizontal: tokens2026.layout.componentPadding,
+        borderWidth: 1,
+        shadowOpacity: 0.08,
+    },
+    fastingCell: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    fastingLabelRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    fastingLabel: {
+        fontSize: 11,
+        fontWeight: '700',
+        letterSpacing: 0.6,
+    },
+    fastingTime: {
+        fontSize: 17,
+        fontWeight: '800',
+        marginTop: 3,
+        letterSpacing: 0.2,
+    },
+    fastingDivider: {
+        width: 1,
+        height: 30,
+        opacity: 0.6,
     },
     currentCard: {
         shadowOpacity: 0.12,

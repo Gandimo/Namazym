@@ -46,7 +46,8 @@
         "share": "Uygulamayı Paylaş",
         "rate": "Bizi Değerlendirin",
         "terms": "Kullanım Şartları",
-        "copyright": "© 2026 TÜM HAKLARI SAKLIDIR"
+        "copyright": "© 2026 TÜM HAKLARI SAKLIDIR",
+        "notification_status": "Bildirim durumu"
     },
     "notification": {
         "prayer_reminder_title": "🕌 {{prayer}} Vakti",
@@ -91,17 +92,30 @@
         "compass": "Pusulası",
         "status_calibrating": "Pusula hazırlanıyor",
         "status_hold_flat": "Telefonu düz tutun",
-        "status_unstable": "Manyetik parazit olabilir",
+        "status_unstable": "Telefonu sabit tutun",
         "calibration_hint": "Telefonu \"8\" şeklinde hareket ettirin ve metal nesnelerden uzak tutun.",
         "status_far": "Kıble aranıyor",
         "status_near": "Kıble yakın",
         "status_aligned": "Kıbleye yaklaşılıyor",
         "status_perfect": "Kıble bulundu",
+        "turn_left": "Sola {{degrees}}° dönün",
+        "turn_right": "Sağa {{degrees}}° dönün",
+        "align_hint": "Ok Kâbe işaretiyle birleşene kadar dönün.",
+        "success_hint": "Namaz için bu yöne dönün.",
+        "kaaba": "Kâbe",
+        "offline": "Çevrimdışı",
+        "compass_ready": "Pusula hazır",
+        "compass_checking": "Pusula kontrol ediliyor",
         "heading": "Yön",
         "bearing": "Kıble yönü",
         "difference": "Fark",
         "distance": "Mekke'ye",
-        "stable": "Kararlı"
+        "stable": "Kararlı",
+        "unstable_hint": "Telefonu düz ve hareketsiz tutun.",
+        "status_interference": "Manyetik parazit",
+        "interference_hint": "Metal ve mıknatıslı eşyalardan uzaklaşın, sonra telefonu “8” çizerek hareket ettirin.",
+        "accuracy_low": "Doğruluk düşük",
+        "accuracy_bad": "Güvenilir değil"
     },
     "umra": {
         "title": "UMRE & HAC",
@@ -111,5 +125,36 @@
         "featured": "ÖNE ÇIKAN",
         "empty": "Henüz şirket eklenmedi. Yakında eklenecek.",
         "disclaimer": "Bu şirketler bağımsız hizmet sağlayıcılardır. Namazym yalnızca iletişime aracılık eder."
+    },
+    "notification_status": {
+        "title": "Bildirim durumu",
+        "subtitle": "Bildirimlerin tam vaktinde gelmesi için kontroller",
+        "perm_notifications": "Bildirim izni",
+        "perm_exact": "Tam zamanlı alarm izni",
+        "perm_battery": "Pil kısıtlaması",
+        "on": "Açık",
+        "off": "Kapalı",
+        "unrestricted": "Kısıtlanmamış",
+        "optimized": "Kısıtlanmış",
+        "scheduled": "Planlanan bildirimler",
+        "next": "Sıradaki namaz",
+        "fix": "Düzelt",
+        "test_button": "Test bildirimi (30 saniye)",
+        "test_sent": "Test bildirimi 30 saniye içinde gelecek — telefonu kilitleyip bekleyin",
+        "test_body": "Bildirimler doğru çalışıyor. Allah kabul etsin!",
+        "exact_hint": "Bu izin kapalıysa telefon kilitliyken namaz bildirimleri gecikebilir. \"Düzelt\"e basıp listeden Namazym'ı açın.",
+        "battery_hint": "Samsung gibi telefonlarda pil tasarrufu bildirimleri engelleyebilir. Namazym için kısıtlamayı kaldırın.",
+        "all_good": "Tüm ayarlar doğru — bildirimler tam vaktinde gelecek"
+    },
+    "fasting": {
+        "imsak": "İmsak",
+        "iftar": "İftar"
+    },
+    "streak": {
+        "title": "Süreklilik",
+        "days": "{{days}} gün",
+        "start": "Bugünden başla",
+        "today_progress": "Bugün {{done}}/{{total}}",
+        "today_complete": "Bugünün beş vakti tam"
     }
 }

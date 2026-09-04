@@ -46,7 +46,8 @@
         "share": "Partager l'application",
         "rate": "Évaluez-nous",
         "terms": "Conditions d'utilisation",
-        "copyright": "© 2026 TOUS DROITS RÉSERVÉS"
+        "copyright": "© 2026 TOUS DROITS RÉSERVÉS",
+        "notification_status": "État des notifications"
     },
     "notification": {
         "prayer_reminder_title": "🕌 Prière de {{prayer}}",
@@ -91,17 +92,30 @@
         "compass": "Boussole",
         "status_calibrating": "Calibrage de la boussole",
         "status_hold_flat": "Tenez le téléphone à plat",
-        "status_unstable": "Interférence magnétique détectée",
+        "status_unstable": "Tenez le téléphone immobile",
         "calibration_hint": "Bougez votre téléphone en forme de 8 et éloignez-le des objets métalliques.",
         "status_far": "Recherche de la Qibla",
         "status_near": "Proche de la Qibla",
         "status_aligned": "Approche de la Qibla",
         "status_perfect": "Aligné avec la Qibla",
+        "turn_left": "Tournez à gauche de {{degrees}}°",
+        "turn_right": "Tournez à droite de {{degrees}}°",
+        "align_hint": "Tournez jusqu’à ce que la flèche rejoigne le repère de la Kaaba.",
+        "success_hint": "Orientez-vous dans cette direction pour prier.",
+        "kaaba": "Kaaba",
+        "offline": "Hors ligne",
+        "compass_ready": "Boussole prête",
+        "compass_checking": "Vérification de la boussole",
         "heading": "Direction",
         "bearing": "Direction Qibla",
         "difference": "Écart",
         "distance": "Vers La Mecque",
-        "stable": "Stable"
+        "stable": "Stable",
+        "unstable_hint": "Gardez le téléphone à plat et immobile.",
+        "status_interference": "Interférence magnétique",
+        "interference_hint": "Éloignez-vous du métal et des aimants, puis décrivez un 8 avec le téléphone.",
+        "accuracy_low": "Précision faible",
+        "accuracy_bad": "Peu fiable"
     },
     "umra": {
         "title": "OMRA ET HAJJ",
@@ -111,5 +125,36 @@
         "featured": "À LA UNE",
         "empty": "Aucune agence pour l'instant. Bientôt disponible.",
         "disclaimer": "Ces agences sont des prestataires indépendants. Namazym aide seulement à les contacter."
+    },
+    "notification_status": {
+        "title": "État des notifications",
+        "subtitle": "Vérifications pour des alertes à l'heure",
+        "perm_notifications": "Autorisation de notifications",
+        "perm_exact": "Alarmes exactes",
+        "perm_battery": "Restriction de batterie",
+        "on": "Activé",
+        "off": "Désactivé",
+        "unrestricted": "Sans restriction",
+        "optimized": "Restreint",
+        "scheduled": "Notifications planifiées",
+        "next": "Prochaine prière",
+        "fix": "Corriger",
+        "test_button": "Notification test (30 s)",
+        "test_sent": "Le test arrive dans 30 secondes — verrouillez le téléphone et patientez",
+        "test_body": "Les notifications fonctionnent correctement.",
+        "exact_hint": "Sans cet accès, les alertes de prière peuvent arriver en retard téléphone verrouillé. Touchez « Corriger » et activez Namazym dans la liste.",
+        "battery_hint": "L'économiseur de batterie (p. ex. Samsung) peut bloquer les alertes. Retirez la restriction pour Namazym.",
+        "all_good": "Tout est configuré — les alertes arriveront à l'heure"
+    },
+    "fasting": {
+        "imsak": "Imsak",
+        "iftar": "Iftar"
+    },
+    "streak": {
+        "title": "Série",
+        "days": "{{days}} j",
+        "start": "Commencez aujourd'hui",
+        "today_progress": "Aujourd'hui {{done}}/{{total}}",
+        "today_complete": "Les cinq prières faites"
     }
 }

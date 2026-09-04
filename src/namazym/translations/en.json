@@ -46,7 +46,8 @@
         "share": "Share App",
         "rate": "Rate Us",
         "terms": "Terms of Use",
-        "copyright": "© 2026 ALL RIGHTS RESERVED"
+        "copyright": "© 2026 ALL RIGHTS RESERVED",
+        "notification_status": "Notification health"
     },
     "notification": {
         "prayer_reminder_title": "🕌 {{prayer}} Time",
@@ -92,17 +93,30 @@
         "compass": "Compass",
         "status_calibrating": "Calibrating compass",
         "status_hold_flat": "Hold phone flat",
-        "status_unstable": "Magnetic interference detected",
+        "status_unstable": "Hold the phone steady",
         "calibration_hint": "Move your phone in a figure-8 motion and keep it away from metal objects.",
         "status_far": "Searching Qibla",
         "status_near": "Near Qibla",
         "status_aligned": "Approaching Qibla",
         "status_perfect": "Aligned with Qibla",
+        "turn_left": "Turn left {{degrees}}°",
+        "turn_right": "Turn right {{degrees}}°",
+        "align_hint": "Turn until the arrow meets the Kaaba marker.",
+        "success_hint": "Face this direction for prayer.",
+        "kaaba": "Kaaba",
+        "offline": "Offline",
+        "compass_ready": "Compass ready",
+        "compass_checking": "Checking compass",
         "heading": "Heading",
         "bearing": "Qibla bearing",
         "difference": "Difference",
         "distance": "To Mecca",
-        "stable": "Stable"
+        "stable": "Stable",
+        "unstable_hint": "Keep the phone level and still.",
+        "status_interference": "Magnetic interference",
+        "interference_hint": "Move away from metal and magnets, then wave the phone in a figure 8.",
+        "accuracy_low": "Low accuracy",
+        "accuracy_bad": "Not reliable"
     },
     "umra": {
         "title": "UMRAH & HAJJ",
@@ -112,5 +126,36 @@
         "featured": "FEATURED",
         "empty": "No companies yet. Coming soon.",
         "disclaimer": "These companies are independent service providers. Namazym only helps you get in touch."
+    },
+    "notification_status": {
+        "title": "Notification health",
+        "subtitle": "Checks that keep prayer alerts on time",
+        "perm_notifications": "Notification permission",
+        "perm_exact": "Exact alarm access",
+        "perm_battery": "Battery restriction",
+        "on": "On",
+        "off": "Off",
+        "unrestricted": "Unrestricted",
+        "optimized": "Restricted",
+        "scheduled": "Scheduled notifications",
+        "next": "Next prayer",
+        "fix": "Fix",
+        "test_button": "Test notification (30 s)",
+        "test_sent": "The test arrives in 30 seconds — lock your phone and wait",
+        "test_body": "Notifications are working correctly.",
+        "exact_hint": "Without this access, prayer alerts can arrive late while the phone is locked. Tap Fix and enable Namazym in the list.",
+        "battery_hint": "Battery savers (e.g. on Samsung) can block alerts. Remove the restriction for Namazym.",
+        "all_good": "Everything is set — alerts will arrive on time"
+    },
+    "fasting": {
+        "imsak": "Imsak",
+        "iftar": "Iftar"
+    },
+    "streak": {
+        "title": "Streak",
+        "days": "{{days}} d",
+        "start": "Start today",
+        "today_progress": "Today {{done}}/{{total}}",
+        "today_complete": "All five prayers done"
     }
 }

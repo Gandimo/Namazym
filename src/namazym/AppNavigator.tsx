@@ -26,18 +26,20 @@ import DogalarScreen from "./screens/DogalarScreen";
 import DogaDetailScreen from "./screens/DogaDetailScreen";
 import LegalScreen from "./screens/LegalScreen";
 import { NotificationTestScreen } from "./screens/NotificationTestScreen";
+import { NotificationStatusScreen } from "./screens/NotificationStatusScreen";
 
 import { NavigationContainer, createNavigationContainerRef } from "@react-navigation/native";
 import { CityProvider } from "./context/CityContext";
+import { PremiumProvider } from "./context/PremiumContext";
 
 import * as Notifications from 'expo-notifications';
 import { NotificationService } from "./services/NotificationService";
 import AudioPlayerService from "./services/AudioPlayerService";
+import { MARK_PRAYED_ACTION } from './constants/notificationActions';
+import { PrayerTrackerService } from './services/PrayerTrackerService';
 
 const Stack = createNativeStackNavigator();
 export const navigationRef = createNavigationContainerRef();
-
-import { PremiumProvider } from "./context/PremiumContext";
 
 
 export function AppNavigator() {
@@ -46,6 +48,18 @@ export function AppNavigator() {
         const subscription = Notifications.addNotificationResponseReceivedListener((response: Notifications.NotificationResponse) => {
             const data = response.notification.request.content.data;
             if (!data) return;
+
+            // "Okadym" is answered in place: mark the prayer, then stop. Opening
+            // Home or starting the Azan here would punish the user for using the
+            // quick action instead of tapping the notification body.
+            if (response.actionIdentifier === MARK_PRAYED_ACTION) {
+                const trackerKey = typeof data.trackerKey === 'string' ? data.trackerKey : null;
+                if (trackerKey) {
+                    const date = typeof data.date === 'string' ? data.date : undefined;
+                    void PrayerTrackerService.setPrayer(trackerKey, true, date);
+                }
+                return;
+            }
 
             // Short delay to ensure navigation is ready
             setTimeout(() => {
@@ -102,13 +116,18 @@ export function AppNavigator() {
                             headerShown: false,
                             animation: "fade",
                             animationDuration: 420, // Spec V1.1 Sacred Interaction
+                            orientation: "portrait",
                         }}
                     >
                         <Stack.Screen name="Home" component={HomeScreen} />
                         <Stack.Screen name="DailyVerse" component={DailyVerseScreen} />
                         <Stack.Screen name="HadithReader" component={HadithReaderScreen} />
                         <Stack.Screen name="RamadanCalendar" component={RamadanCalendarScreen} />
-                        <Stack.Screen name="QiblaScreen" component={KyblaScreen} />
+                        <Stack.Screen
+                            name="QiblaScreen"
+                            component={KyblaScreen}
+                            options={{ orientation: "all" }}
+                        />
                         <Stack.Screen name="NamazKitaby" component={NamazKitabyScreen} />
                         <Stack.Screen name="QuranReader" component={QuranReaderScreen} initialParams={{ surahId: 1 }} />
                         <Stack.Screen name="TasbihScreen" component={TasbihScreen} />
@@ -129,6 +148,7 @@ export function AppNavigator() {
                         <Stack.Screen name="NamazLearnDetail" component={NamazLearnDetailScreen} />
                         <Stack.Screen name="DogaDetail" component={DogaDetailScreen} />
                         <Stack.Screen name="Legal" component={LegalScreen} />
+                        <Stack.Screen name="NotificationStatus" component={NotificationStatusScreen} />
                         {__DEV__ && (
                             <Stack.Screen name="NotificationTest" component={NotificationTestScreen} />
                         )}

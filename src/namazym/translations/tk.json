@@ -46,7 +46,8 @@
         "share": "Programmany paýlaş",
         "rate": "Baha ber",
         "terms": "Ulanuş şertleri",
-        "copyright": "© 2026 ÄHLI HUKUKLAR GORAGLY"
+        "copyright": "© 2026 ÄHLI HUKUKLAR GORAGLY",
+        "notification_status": "Bildiriş ýagdaýy"
     },
     "notification": {
         "prayer_reminder_title": "🕌 {{prayer}} wagty",
@@ -90,19 +91,32 @@
     },
     "qibla": {
         "compass": "",
-        "status_calibrating": "Kybla ugruny tap",
+        "status_calibrating": "Kybla ugruny tapyň",
         "status_hold_flat": "Telefony düz tutuň",
-        "status_unstable": "Magnit päsgelçiligi bolup biler",
+        "status_unstable": "Telefony durnukly tutuň",
         "calibration_hint": "Telefonyňyzy \"8\" görnüşinde hereketlendiriň we metal zatlardan daşda tutuň.",
         "status_far": "Kybla gözlenýär",
         "status_near": "Kybla ýakyn",
         "status_aligned": "Kybla tarapyna öwrülýär",
         "status_perfect": "Kybla tapyldy",
+        "turn_left": "Çepe {{degrees}}° öwrüliň",
+        "turn_right": "Saga {{degrees}}° öwrüliň",
+        "align_hint": "Ok Käbe belgisi bilen gabat gelýänçä öwrüliň.",
+        "success_hint": "Namaz üçin şu tarapa öwrüliň.",
+        "kaaba": "Käbe",
+        "offline": "Oflaýn",
+        "compass_ready": "Kompas taýýar",
+        "compass_checking": "Kompas barlanýar",
         "heading": "Ugur",
         "bearing": "Kybla ugry",
         "difference": "Tapawut",
         "distance": "Mekgä",
-        "stable": "Durnukly"
+        "stable": "Durnukly",
+        "unstable_hint": "Telefony deň we asuda saklaň.",
+        "status_interference": "Magnit päsgelçiligi",
+        "interference_hint": "Metal we magnitli zatlardan daşlaşyň, soňra telefony “8” görnüşinde hereketlendiriň.",
+        "accuracy_low": "Takyklyk pes",
+        "accuracy_bad": "Ynamly däl"
     },
     "kerahat": {
         "label": "Kerahat wagty",
@@ -117,5 +131,36 @@
         "featured": "SAÝLANAN",
         "empty": "Häzirlikçe kärhana goşulmady.",
         "disclaimer": "Namazym programmasy bu kärhanalar bilen habarlaşmaga kömek eder."
+    },
+    "notification_status": {
+        "title": "Bildiriş ýagdaýy",
+        "subtitle": "Bildirişleriň takyk gelmegi üçin barlaglar",
+        "perm_notifications": "Bildiriş rugsady",
+        "perm_exact": "Takyk duýduryş rugsady",
+        "perm_battery": "Batareýa çäklendirmesi",
+        "on": "Açyk",
+        "off": "Ýapyk",
+        "unrestricted": "Çäklendirilmedik",
+        "optimized": "Çäklendirilen",
+        "scheduled": "Meýilleşdirilen bildirişler",
+        "next": "Indiki namaz",
+        "fix": "Düzelt",
+        "test_button": "Test bildirişi (30 sekunt)",
+        "test_sent": "Test bildirişi 30 sekuntdan geler — telefony gulplap garaşyň",
+        "test_body": "Bildirişler dogry işleýär. Alla kabul etsin!",
+        "exact_hint": "Bu rugsat ýapyk bolsa, telefon gulplyka namaz bildirişleri gijigip biler. \"Düzelt\" basyp, sanawdan Namazym-y açyň.",
+        "battery_hint": "Samsung ýaly telefonlarda batareýa tygşytlaýjysy bildirişleri saklap biler. Namazym üçin çäklendirmäni aýryň.",
+        "all_good": "Ähli sazlamalar dogry — bildirişler takyk geler"
+    },
+    "fasting": {
+        "imsak": "Agyz bekleme",
+        "iftar": "Agyz açar"
+    },
+    "streak": {
+        "title": "Yzygiderlik",
+        "days": "{{days}} gün",
+        "start": "Şu günden başla",
+        "today_progress": "Bu gün {{done}}/{{total}}",
+        "today_complete": "Bu günki bäş wagt doly"
     }
 }

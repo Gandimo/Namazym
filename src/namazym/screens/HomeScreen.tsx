@@ -49,6 +49,7 @@ import { tokens2026 } from '../theme/tokens2026';
 import AudioPlayerService from '../services/AudioPlayerService';
 import { TasbihStorageService, type TasbihState } from '../services/TasbihStorageService';
 import { PrayerTrackerService, type KazaState } from '../services/PrayerTrackerService';
+import { PrayerStreakCard } from '../components/PrayerStreakCard';
 import { DAILY_PRAYER_KEYS, getTurkmenPrayerName } from '../constants/prayerNames';
 import {
     getAdaptiveCardWidth,
@@ -139,6 +140,23 @@ export default function HomeScreen({ navigation }: any) {
 
     const current = useMemo(() => prayerTimes ? getCurrentPrayer(now, prayerTimes.timings as any) : null, [prayerTimes, now]);
     const next = useMemo(() => prayerTimes ? getNextPrayer(now, prayerTimes.timings as any) : null, [prayerTimes, now]);
+
+    // A prayer cannot be marked before its time has arrived, so the tracker only
+    // unlocks what the clock has already passed today.
+    const unlockedPrayerKeys = useMemo(() => {
+        const timings = prayerTimes?.timings as Record<string, string> | undefined;
+        if (!timings) return [];
+        // Compared against `now` rather than reading the clock inside, so this
+        // genuinely recomputes each minute as the day's prayer times arrive.
+        const minutesNow = now.getHours() * 60 + now.getMinutes();
+        return DAILY_PRAYER_KEYS.filter(key => {
+            const time = timings[key];
+            if (typeof time !== 'string') return false;
+            const [hours, minutes] = time.split(':').map(Number);
+            if (!Number.isFinite(hours) || !Number.isFinite(minutes)) return false;
+            return minutesNow >= hours * 60 + minutes;
+        });
+    }, [prayerTimes, now]);
 
     // Passenger Mode Data Lookup
     const selectedPrayerTimes = useMemo(() => {
@@ -395,6 +413,7 @@ export default function HomeScreen({ navigation }: any) {
     }, [now, versesPool, hadithData, i18n.language]);
 
     // Entrance Animations
+    const streakEntrance = useAnimatedEntrance(220);
     const ayatEntrance = useAnimatedEntrance(260);
     const hadithEntrance = useAnimatedEntrance(340);
     const ramadanEntrance = useAnimatedEntrance(420);
@@ -540,6 +559,19 @@ export default function HomeScreen({ navigation }: any) {
                         isDarkTheme={isDarkTheme}
                         delay={180}
                     />
+
+                    {selectedDate === TimeService.getTodayDateString() && (
+                        <PrayerStreakCard
+                            unlockedKeys={unlockedPrayerKeys}
+                            layoutStyle={{ width: wideCardWidth, alignSelf: 'center', marginTop: 12 }}
+                            cardStyle={{ backgroundColor: glassSurface, borderColor: glassBorder }}
+                            textColor={glassTextPrimary}
+                            secondaryTextColor={glassTextSecondary}
+                            isDarkTheme={isDarkTheme}
+                            entranceStyle={streakEntrance}
+                        />
+                    )}
+
                     {dailyContent?.ayat && (
                         <AnimatedPressable
                             onPressIn={ayatPress.onPressIn}
