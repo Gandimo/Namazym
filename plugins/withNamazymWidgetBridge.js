@@ -139,12 +139,22 @@ const patchAndroidManifestForWidgets = (platformRoot) => {
   }
 
   let manifest = fs.readFileSync(manifestPath, 'utf8');
-  if (
-    manifest.includes('NamazymSmallWidgetProvider')
-    && manifest.includes('NamazymMediumWidgetProvider')
-    && manifest.includes('NamazymLargeWidgetProvider')
-  ) {
-    return;
+
+  // Expo's manifest mods re-serialize the XML and strip comments, so marker
+  // comments cannot be trusted for idempotency. Remove every Namazym widget
+  // receiver element by name, then append one fresh block.
+  const widgetReceiverNames = [
+    'NamazymSmallWidgetProvider',
+    'NamazymMediumWidgetProvider',
+    'NamazymLargeWidgetProvider',
+    'NamazymWidgetTickReceiver',
+    'NamazymExactAlarmChangedReceiver',
+  ];
+  for (const receiverName of widgetReceiverNames) {
+    manifest = manifest.replace(
+      new RegExp(`\\n?\\s*<receiver[^>]*"\\.widget\\.${receiverName}"[\\s\\S]*?</receiver>`, 'g'),
+      '',
+    );
   }
 
   manifest = manifest.replace(
@@ -171,6 +181,16 @@ const patchAndroidManifestForWidgets = (platformRoot) => {
         <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
       </intent-filter>
       <meta-data android:name="android.appwidget.provider" android:resource="@xml/namazym_large_widget_info"/>
+    </receiver>
+    <receiver android:name=".widget.NamazymWidgetTickReceiver" android:exported="false">
+      <intent-filter>
+        <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
+      </intent-filter>
+    </receiver>
+    <receiver android:name=".widget.NamazymExactAlarmChangedReceiver" android:exported="false">
+      <intent-filter>
+        <action android:name="android.app.action.SCHEDULE_EXACT_ALARM_PERMISSION_STATE_CHANGED"/>
+      </intent-filter>
     </receiver>
     <!-- @generated end: Android widgets -->`;
 

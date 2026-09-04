@@ -19,7 +19,13 @@ import type {
     PrayerNotificationSettings,
     PrayerRebuildReport,
 } from './notifications/prayerNotificationTypes';
-import { AZAN_CHANNEL_ID, AZAN_SOUND_FILE } from './notifications/prayerNotificationTypes';
+import { AZAN_CHANNEL_ID, AZAN_SOUND_FILE, SCHEDULE_DAYS_AHEAD } from './notifications/prayerNotificationTypes';
+import { ExactAlarmService } from './ExactAlarmService';
+import {
+    MARK_PRAYED_ACTION,
+    MARK_PRAYED_BUTTON_TITLE,
+    PRAYER_ACTION_CATEGORY,
+} from '../constants/notificationActions';
 
 type PermissionStatus = 'granted' | 'denied';
 type RebuildResult = 'success' | 'partial_failure' | 'permission_denied' | 'disabled' | 'error';
@@ -251,6 +257,8 @@ export class NotificationService {
      * Initialize notification behavior and channels.
      */
     static async init() {
+        // Set synchronously and first: this is what shows alerts while the app is
+        // open, so nothing awaited may come before it.
         Notifications.setNotificationHandler({
             handleNotification: async () => ({
                 shouldShowAlert: true,
@@ -259,6 +267,19 @@ export class NotificationService {
                 shouldShowBanner: true,
                 shouldShowList: true,
             }),
+        });
+
+        // One tap on the azan alert keeps the streak alive without opening the app.
+        // Registered before anything is scheduled, but after the handler above, so
+        // a stall here can never stop alerts from being displayed.
+        await Notifications.setNotificationCategoryAsync(PRAYER_ACTION_CATEGORY, [
+            {
+                identifier: MARK_PRAYED_ACTION,
+                buttonTitle: MARK_PRAYED_BUTTON_TITLE,
+                options: { opensAppToForeground: false },
+            },
+        ]).catch(() => {
+            // A missing category only costs the button; alerts still fire.
         });
 
         if (Platform.OS === 'android') {
@@ -306,12 +327,41 @@ export class NotificationService {
     /**
      * Main scheduling entry point.
      * Rebuilds prayer + Juma + daily content schedules using targeted cancellation.
+     *
+     * Serialized: concurrent rebuilds interleave their cancel/schedule passes —
+     * the later cleanup sweep only sees notifications the earlier run has already
+     * registered, so whatever the earlier run schedules afterwards survives as an
+     * orphaned DUPLICATE (double azan at the same minute). Cold start hits this
+     * (init + refreshIfDateChanged fire ~100ms apart), so every rebuild goes
+     * through one promise chain and runs alone.
      */
-    static async rescheduleAll(
+    private static rebuildChain: Promise<unknown> = Promise.resolve();
+
+    private static enqueueRebuildTask<T>(task: () => Promise<T>): Promise<T> {
+        const run = this.rebuildChain.then(task);
+        this.rebuildChain = run.catch(() => undefined);
+        return run;
+    }
+
+    static rescheduleAll(
         prayerData?: PrayerTimeDisplay | null,
         cityLabel = '',
         placeKey?: string,
     ): Promise<NotificationRebuildReport> {
+        return this.enqueueRebuildTask(() => this.rescheduleAllNow(prayerData, cityLabel, placeKey));
+    }
+
+    private static rebuildPassCounter = 0;
+
+    private static async rescheduleAllNow(
+        prayerData?: PrayerTimeDisplay | null,
+        cityLabel = '',
+        placeKey?: string,
+    ): Promise<NotificationRebuildReport> {
+        // warn seviyesinde: release build'te de logcat'e düşer (babel yalnız
+        // log/info'yu siler) — sahada kurulum geçişlerini sayılabilir kılar.
+        NotificationService.rebuildPassCounter += 1;
+        console.warn(`[NotificationEngine] rebuild pass #${NotificationService.rebuildPassCounter} start (place=${placeKey ?? '-'})`);
         const report: NotificationRebuildReport = {
             city: cityLabel || 'unknown',
             placeKey: placeKey ?? '',
@@ -332,11 +382,21 @@ export class NotificationService {
             }
             report.permissionStatus = 'granted';
 
+            // Idempotent reconciliation: wipe EVERY scheduled notification, then
+            // rebuild the complete set below (prayers + Juma + daily content are
+            // all rescheduled by this method). Targeted-cancellation left
+            // orphaned duplicates behind when two rebuilds ever interleaved
+            // (double azan at the same minute) — a full wipe also cleans sets
+            // leaked by older app versions after the store update.
+            await Notifications.cancelAllScheduledNotificationsAsync();
+
             const prefs = await NotificationStorage.getPreferences();
             console.log(`[NotificationEngine] Master notifications enabled: ${prefs.is_enabled}`);
             console.log(`[NotificationEngine] Prayer reminders enabled: ${prefs.pre_prayer_alert.enabled && prefs.prayer_notifications.enabled}`);
             console.log(`[NotificationEngine] Juma reminder enabled: ${prefs.juma_reminder.enabled}`);
             if (!prefs.is_enabled) {
+                // Master switch off — the wipe above already cleared everything;
+                // the targeted cancels below just clear the tracking storage.
                 await cancelTrackedPrayerNotifications();
                 await this.cancelDailyContentNotifications();
                 await cancelScheduledJumaReminders();
@@ -394,8 +454,37 @@ export class NotificationService {
                 report.dailyContent = 'cancelled';
             }
 
+            // Nihai tekilleştirme: eşzamanlı iki kurulum geçişi yaşansa bile
+            // (ör. Activity yeniden kurulumu ile ikinci JS runtime) her mantıksal
+            // bildirim tek kayıtla kalır. Anahtar seçimi deterministiktir; en son
+            // biten geçişin süpürmesi birleşimi görüp fazlalıkları iptal eder.
+            try {
+                const allScheduled = await Notifications.getAllScheduledNotificationsAsync();
+                const seenByLogicalKey = new Set<string>();
+                for (const request of allScheduled) {
+                    const data = request.content.data as Record<string, unknown> | undefined;
+                    const type = data?.type;
+                    let logicalKey: string | null = null;
+                    if (type === 'prayer') {
+                        logicalKey = `prayer|${data?.date}|${data?.prayer}|${data?.kind}`;
+                    } else if (type === 'hadith' || type === 'ayah') {
+                        logicalKey = 'daily_content';
+                    } else if (type === 'juma_reminder') {
+                        logicalKey = 'juma_reminder';
+                    }
+                    if (!logicalKey) continue;
+                    if (seenByLogicalKey.has(logicalKey)) {
+                        await Notifications.cancelScheduledNotificationAsync(request.identifier);
+                    } else {
+                        seenByLogicalKey.add(logicalKey);
+                    }
+                }
+            } catch {
+                // best-effort — süpürme hatası kurulumu bozmaz
+            }
+
             const scheduled = await Notifications.getAllScheduledNotificationsAsync();
-            console.log(`[NotificationEngine] Scheduled ${scheduled.length} notifications.`);
+            console.warn(`[NotificationEngine] rebuild pass #${NotificationService.rebuildPassCounter} done — ${scheduled.length} scheduled`);
             console.log(
                 '[NotificationEngine] Scheduled notifications snapshot:',
                 scheduled.map((request) => this.summarizeScheduledNotification(request)),
@@ -431,7 +520,17 @@ export class NotificationService {
      * Ensures canonical prayer schedules stay current when day changes
      * while app remains open.
      */
-    static async refreshIfDateChanged(
+    static refreshIfDateChanged(
+        prayerData?: PrayerTimeDisplay | null,
+        cityLabel = '',
+        placeKey?: string,
+    ): Promise<boolean> {
+        // Runs inside the rebuild chain so the meta check always observes the
+        // finished state of any rebuild that was already in flight.
+        return this.enqueueRebuildTask(() => this.refreshIfDateChangedNow(prayerData, cityLabel, placeKey));
+    }
+
+    private static async refreshIfDateChangedNow(
         prayerData?: PrayerTimeDisplay | null,
         cityLabel = '',
         placeKey?: string,
@@ -444,19 +543,25 @@ export class NotificationService {
         const meta = await PrayerNotificationStorage.getScheduleMeta();
         const now = new Date();
         const todayISO = this.toDateISO(now);
-        const tomorrow = new Date(now);
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        const tomorrowISO = this.toDateISO(tomorrow);
+        const alarmStatus = await ExactAlarmService.getStatus();
 
+        const scheduledDates = Array.isArray(meta?.scheduledForDates) ? meta.scheduledForDates : [];
         const shouldRebuild =
             !meta ||
             meta.placeKey !== placeKey ||
-            meta.scheduledForDates[0] !== todayISO ||
-            meta.scheduledForDates[1] !== tomorrowISO;
+            scheduledDates[0] !== todayISO ||
+            // Horizon grew (app update) or the day rolled — top the window back up.
+            scheduledDates.length < SCHEDULE_DAYS_AHEAD ||
+            // Exact-alarm access changed (user visited "Alarms & reminders"):
+            // reschedule so pending alarms switch to the exact code path.
+            meta.exactAlarmGranted !== alarmStatus.canScheduleExactAlarms;
 
         if (!shouldRebuild) return false;
 
-        await this.rescheduleAll(prayerData, cityLabel, placeKey);
+        // Already inside the rebuild chain — call the unqueued variant directly
+        // (going through rescheduleAll() here would enqueue behind ourselves
+        // and deadlock).
+        await this.rescheduleAllNow(prayerData, cityLabel, placeKey);
         return true;
     }
 

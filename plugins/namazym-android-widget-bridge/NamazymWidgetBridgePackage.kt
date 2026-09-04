@@ -7,7 +7,10 @@ import com.facebook.react.uimanager.ViewManager
 
 class NamazymWidgetBridgePackage : ReactPackage {
   override fun createNativeModules(reactContext: ReactApplicationContext): List<NativeModule> {
-    return listOf(NamazymWidgetBridgeModule(reactContext))
+    return listOf(
+      NamazymWidgetBridgeModule(reactContext),
+      NamazymAlarmAccessModule(reactContext)
+    )
   }
 
   override fun createViewManagers(

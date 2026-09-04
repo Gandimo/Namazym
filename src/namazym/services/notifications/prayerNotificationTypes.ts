@@ -16,6 +16,15 @@ export const AZAN_SOUND_FILE = 'azan_short.wav';
 
 export type PrayerName = 'fajr' | 'dhuhr' | 'asr' | 'maghrib' | 'isha';
 
+/**
+ * How many days of prayer notifications are scheduled ahead (including today).
+ * Sized to stay under iOS's hard cap of 64 pending local notifications:
+ * 6 days × (5 azan + up to 5 reminders) = 60, + weekly Juma + daily content ≤ 64.
+ * A user who does not open the app still gets notifications for a full 6 days
+ * (the old horizon was only today + tomorrow).
+ */
+export const SCHEDULE_DAYS_AHEAD = 6;
+
 export interface PrayerNotificationSettings {
     enabled: boolean;
     leadMinutes: 0 | 5 | 10 | 15;
@@ -25,9 +34,15 @@ export interface PrayerNotificationSettings {
 export interface PrayerScheduleMeta {
     city: SupportedCity;
     placeKey: string;
-    scheduledForDates: [string, string];
+    scheduledForDates: string[];
     rebuiltAt: string;
     leadMinutes: number;
+    /**
+     * Android exact-alarm access at the time of the last rebuild. When the user
+     * grants it later, the changed value forces a rebuild so every pending
+     * notification is rescheduled as an EXACT alarm.
+     */
+    exactAlarmGranted?: boolean;
 }
 
 export type PrayerRebuildResult =

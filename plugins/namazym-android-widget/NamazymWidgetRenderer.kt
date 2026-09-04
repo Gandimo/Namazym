@@ -34,10 +34,9 @@ object NamazymWidgetRenderer {
     context: Context,
     appWidgetManager: AppWidgetManager,
     appWidgetIds: IntArray,
-    size: NamazymWidgetSize
+    size: NamazymWidgetSize,
+    snapshot: JSONObject?
   ) {
-    val snapshot = readSnapshot(context)
-
     for (widgetId in appWidgetIds) {
       val views = when (size) {
         NamazymWidgetSize.SMALL -> renderSmall(context, snapshot)
@@ -48,7 +47,7 @@ object NamazymWidgetRenderer {
     }
   }
 
-  private fun readSnapshot(context: Context): JSONObject? {
+  fun readSnapshot(context: Context): JSONObject? {
     val json = context
       .getSharedPreferences(WIDGET_PREFS_NAME, Context.MODE_PRIVATE)
       .getString(WIDGET_SNAPSHOT_KEY, null)

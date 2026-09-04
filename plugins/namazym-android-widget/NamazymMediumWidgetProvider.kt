@@ -6,6 +6,10 @@ import android.content.Context
 
 class NamazymMediumWidgetProvider : AppWidgetProvider() {
   override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
-    NamazymWidgetRenderer.update(context, appWidgetManager, appWidgetIds, NamazymWidgetSize.MEDIUM)
+    NamazymWidgetUpdater.updateAll(context)
+  }
+
+  override fun onDisabled(context: Context) {
+    NamazymWidgetUpdater.updateAll(context)
   }
 }

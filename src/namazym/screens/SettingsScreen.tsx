@@ -12,6 +12,7 @@ import { getCurrentPrayer } from '../utils/prayerUtils';
 import { NotificationStorage, NotificationPreferences } from '../utils/notificationStorage';
 import { NotificationService } from '../services/NotificationService';
 import { ContentLoaderService } from '../services/ContentLoaderService';
+import { ExactAlarmService } from '../services/ExactAlarmService';
 import { cancelScheduledJumaReminders, scheduleWeeklyJumaReminder } from '../services/notifications/jumaReminder';
 import { getBoundedContentWidth, getResponsiveLayoutMetrics } from '../utils/responsiveLayout';
 
@@ -54,10 +55,24 @@ export default function SettingsScreen() {
     const [lang, setLang] = useState(i18n.language);
     const [prefs, setPrefs] = useState<NotificationPreferences | null>(null);
     const [langModalVisible, setLangModalVisible] = useState(false);
+    const [notificationHealthWarning, setNotificationHealthWarning] = useState(false);
 
     React.useEffect(() => {
         NotificationStorage.getPreferences().then(setPrefs);
     }, []);
+
+    // Surface a ⚠️ on the status row when exact alarms are unavailable —
+    // on Android 12+ that means locked-screen prayer alerts can arrive late.
+    React.useEffect(() => {
+        const checkNotificationHealth = () => {
+            ExactAlarmService.getStatus()
+                .then((status) => setNotificationHealthWarning(!status.canScheduleExactAlarms))
+                .catch(() => {});
+        };
+        checkNotificationHealth();
+        const unsubscribe = navigation.addListener('focus', checkNotificationHealth);
+        return unsubscribe;
+    }, [navigation]);
 
     const changeLanguage = async (newLang: string) => {
         await AsyncStorage.setItem('user_language', newLang);
@@ -312,7 +327,12 @@ export default function SettingsScreen() {
                         {renderSwitchOption('partly-sunny-outline', t('prayer.asr'), prefs?.prayer_notifications.prayers.asr || false, () => togglePrayerType('asr'), 'PRAYER_GOLD')}
                         {renderSwitchOption('moon-outline', t('prayer.maghrib'), prefs?.prayer_notifications.prayers.maghrib || false, () => togglePrayerType('maghrib'), 'PRAYER_GOLD')}
                         {renderSwitchOption('moon', t('prayer.isha'), prefs?.prayer_notifications.prayers.isha || false, () => togglePrayerType('isha'), 'PRAYER_GOLD')}
-                        {renderSwitchOption('book-outline', t('settings.daily_content'), prefs?.daily_content.enabled || false, toggleDailyContent, 'TIME_CALENDAR', true)}
+                        {renderSwitchOption('book-outline', t('settings.daily_content'), prefs?.daily_content.enabled || false, toggleDailyContent, 'TIME_CALENDAR')}
+                        {renderOption('shield-checkmark-outline', t('settings.notification_status'),
+                            notificationHealthWarning ? '⚠️' : '',
+                            () => navigation.navigate('NotificationStatus'),
+                            'PRAYER_GOLD', true
+                        )}
                     </View>
 
                     {/* EKSTRALAR */}

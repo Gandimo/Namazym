@@ -1,13 +1,21 @@
 import type { PrayerTimeDisplay } from './PrayerTimesAdapter';
 import { getCurrentPrayer, getNextPrayer } from '../utils/prayerUtils';
 import type {
-    NamazymWidgetSnapshotV1,
+    NamazymWidgetSnapshotV2,
     PrayerWidgetKey,
+    WidgetDayPrayers,
     WidgetPrayerSummary,
     WidgetPrayerTime,
     WidgetVisualMood,
     WidgetDailyVerse,
 } from '../types/widget';
+
+/** Prayer times for one extra (future) day, keyed like PrayerTimeDisplay.timings. */
+export interface WidgetSnapshotDayInput {
+    dateISO: string;
+    timings: Record<PrayerWidgetKey, string>;
+    dailyVerse?: WidgetDailyVerse;
+}
 
 interface BuildWidgetSnapshotParams {
     placeKey: string;
@@ -15,6 +23,8 @@ interface BuildWidgetSnapshotParams {
     prayerTimes: PrayerTimeDisplay;
     now: Date;
     dailyVerse?: WidgetDailyVerse;
+    /** Days AFTER prayerTimes.date, in ascending date order. */
+    extraDays?: WidgetSnapshotDayInput[];
 }
 
 const PRAYER_WIDGET_ORDER: PrayerWidgetKey[] = [
@@ -117,13 +127,34 @@ export const getWidgetVisualMood = (key: PrayerWidgetKey | null | undefined): Wi
     return VISUAL_MOODS[key ?? 'Fajr'] ?? VISUAL_MOODS.Fajr;
 };
 
+const buildDayPrayers = (
+    dateISO: string,
+    timings: Record<PrayerWidgetKey, string>,
+    dailyVerse?: WidgetDailyVerse,
+): WidgetDayPrayers => ({
+    dateISO,
+    prayers: PRAYER_WIDGET_ORDER.map((key) => {
+        const time = timings[key];
+        const dateObj = getPrayerDate(dateISO, time);
+        return {
+            key,
+            label: WIDGET_PRAYER_LABELS[key],
+            time,
+            timestampISO: dateObj.toISOString(),
+            timestamp: dateObj.getTime(),
+        };
+    }),
+    dailyVerse,
+});
+
 export const buildWidgetSnapshot = ({
     placeKey,
     placeLabel,
     prayerTimes,
     now,
     dailyVerse,
-}: BuildWidgetSnapshotParams): NamazymWidgetSnapshotV1 => {
+    extraDays,
+}: BuildWidgetSnapshotParams): NamazymWidgetSnapshotV2 => {
     const timings = prayerTimes.timings as Record<string, string>;
     const current = getCurrentPrayer(now, timings);
     const next = getNextPrayer(now, timings);
@@ -131,22 +162,18 @@ export const buildWidgetSnapshot = ({
     const nextPrayer = toPrayerSummary(next);
     const moodKey = currentPrayer?.key ?? nextPrayer?.key ?? 'Fajr';
 
-    const prayers: WidgetPrayerTime[] = PRAYER_WIDGET_ORDER.map((key) => {
-        const time = prayerTimes.timings[key];
-        return {
-            key,
-            label: WIDGET_PRAYER_LABELS[key],
-            time,
-            timestampISO: getPrayerDate(prayerTimes.date, time).toISOString(),
-        };
-    });
+    const today = buildDayPrayers(prayerTimes.date, prayerTimes.timings, dailyVerse);
+    const days: WidgetDayPrayers[] = [
+        today,
+        ...(extraDays ?? []).map((day) => buildDayPrayers(day.dateISO, day.timings, day.dailyVerse)),
+    ];
 
     const totalMinutes = next
         ? Math.max(0, Math.floor((next.dateObj.getTime() - now.getTime()) / 60000))
         : null;
 
     return {
-        schemaVersion: 1,
+        schemaVersion: 2,
         generatedAtISO: now.toISOString(),
         localDateISO: prayerTimes.date,
         timezone: getTimezone(),
@@ -154,7 +181,7 @@ export const buildWidgetSnapshot = ({
             key: placeKey,
             name: placeLabel,
         },
-        prayers,
+        prayers: today.prayers,
         currentPrayer,
         nextPrayer,
         remaining: totalMinutes === null
@@ -165,5 +192,7 @@ export const buildWidgetSnapshot = ({
         },
         visualMood: getWidgetVisualMood(moodKey),
         dailyVerse,
+        days,
+        moods: VISUAL_MOODS,
     };
 };

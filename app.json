@@ -3,8 +3,8 @@
     "name": "Namazym Mobile",
     "slug": "namazym",
     "scheme": "namazym",
-    "version": "1.0.4",
-    "orientation": "portrait",
+    "version": "1.0.7",
+    "orientation": "default",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -14,18 +14,21 @@
     "ios": {
       "bundleIdentifier": "com.namazym.app",
       "supportsTablet": true,
+      "requireFullScreen": true,
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
     },
     "android": {
-      "versionCode": 8,
+      "versionCode": 14,
       "package": "com.namazym.app",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon-foreground.png",
         "backgroundColor": "#F6F1E8"
       },
-      "permissions": [],
+      "permissions": [
+        "android.permission.SCHEDULE_EXACT_ALARM"
+      ],
       "blockedPermissions": [
         "android.permission.RECORD_AUDIO",
         "android.permission.MODIFY_AUDIO_SETTINGS",
@@ -75,7 +78,9 @@
         }
       }
     },
-    "runtimeVersion": "1.0.0",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
     "updates": {
       "url": "https://u.expo.dev/b9936d46-5710-4703-abfd-f6ed64798031"
     }

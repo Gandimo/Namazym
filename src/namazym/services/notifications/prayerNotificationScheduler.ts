@@ -1,10 +1,12 @@
 import * as Notifications from 'expo-notifications';
+import { PRAYER_ACTION_CATEGORY } from '../../constants/notificationActions';
 import { getTurkmenPrayerName } from '../../constants/prayerNames';
+import { ExactAlarmService } from '../ExactAlarmService';
 import { PrayerEngine } from '../prayer/engine';
 import type { SupportedCity } from '../prayer/types';
 import { PrayerNotificationStorage } from './prayerNotificationStorage';
 import type { PrayerName, PrayerNotificationSettings, PrayerRebuildReport } from './prayerNotificationTypes';
-import { AZAN_CHANNEL_ID, AZAN_SOUND_FILE } from './prayerNotificationTypes';
+import { AZAN_CHANNEL_ID, AZAN_SOUND_FILE, SCHEDULE_DAYS_AHEAD } from './prayerNotificationTypes';
 
 type SoundType = 'azan_short' | 'standard' | 'silent';
 
@@ -68,11 +70,7 @@ export async function scheduleCanonicalPrayerNotifications(input: {
 }): Promise<PrayerRebuildReport> {
     const now = input.now ?? new Date();
     const todayDate = new Date(now);
-    const tomorrowDate = new Date(now);
-    tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-
     const todayISO = toDateISO(todayDate);
-    const tomorrowISO = toDateISO(tomorrowDate);
 
     const report: PrayerRebuildReport = {
         city: input.city,
@@ -105,10 +103,17 @@ export async function scheduleCanonicalPrayerNotifications(input: {
     // distinct from the Azan that plays at the prayer time itself.
     const reminderSound: string | boolean = input.soundType === 'silent' ? false : true;
 
-    const targets = [
-        { dateObj: todayDate, dateISO: todayISO, bucket: 'today' as const },
-        { dateObj: tomorrowDate, dateISO: tomorrowISO, bucket: 'tomorrow' as const },
-    ];
+    // Today + the following days; every day after today lands in the
+    // "tomorrow" report bucket (kept for report shape compatibility).
+    const targets = Array.from({ length: SCHEDULE_DAYS_AHEAD }, (_, offset) => {
+        const dateObj = new Date(todayDate);
+        dateObj.setDate(dateObj.getDate() + offset);
+        return {
+            dateObj,
+            dateISO: toDateISO(dateObj),
+            bucket: offset === 0 ? ('today' as const) : ('tomorrow' as const),
+        };
+    });
 
     for (const target of targets) {
         let times: Awaited<ReturnType<typeof PrayerEngine.getPrayerTimes>>;
@@ -138,11 +143,15 @@ export async function scheduleCanonicalPrayerNotifications(input: {
                             type: 'prayer',
                             kind: 'azan',
                             prayer: prayer.key,
+                            // Canonical key so the action handler can mark the
+                            // tracker without repeating a case-mapping table.
+                            trackerKey: prayer.labelKey,
                             city: input.city,
                             date: target.dateISO,
                             leadMinutes: 0,
                         },
                         sound,
+                        categoryIdentifier: PRAYER_ACTION_CATEGORY,
                     },
                     trigger: {
                         type: Notifications.SchedulableTriggerInputTypes.DATE,
@@ -195,14 +204,36 @@ export async function scheduleCanonicalPrayerNotifications(input: {
         }
     }
 
+    // Mutlak tekilleştirme: hangi yarış ya da yeniden kurulum yaşanmış olursa
+    // olsun, her mantıksal bildirim — (tarih | namaz | tür) — sonunda TEK
+    // kayıtla kalır. En-iyi-çaba: başarısızlığı kurulumu bozmaz.
+    try {
+        const allScheduled = await Notifications.getAllScheduledNotificationsAsync();
+        const seenByLogicalKey = new Set<string>();
+        for (const request of allScheduled) {
+            const data = request.content.data as Record<string, unknown> | undefined;
+            if (!data || data.type !== 'prayer') continue;
+            const logicalKey = `${data.date}|${data.prayer}|${data.kind}`;
+            if (seenByLogicalKey.has(logicalKey)) {
+                await Notifications.cancelScheduledNotificationAsync(request.identifier);
+            } else {
+                seenByLogicalKey.add(logicalKey);
+            }
+        }
+    } catch {
+        // ignore — dedup sweep is best-effort
+    }
+
     if (scheduledIds.length > 0) {
+        const alarmStatus = await ExactAlarmService.getStatus();
         await PrayerNotificationStorage.saveScheduledIds(scheduledIds);
         await PrayerNotificationStorage.saveScheduleMeta({
             city: input.city,
             placeKey: input.placeKey,
-            scheduledForDates: [todayISO, tomorrowISO],
+            scheduledForDates: targets.map((target) => target.dateISO),
             rebuiltAt: new Date().toISOString(),
             leadMinutes: input.settings.leadMinutes,
+            exactAlarmGranted: alarmStatus.canScheduleExactAlarms,
         });
     } else {
         await PrayerNotificationStorage.clearScheduledIds();

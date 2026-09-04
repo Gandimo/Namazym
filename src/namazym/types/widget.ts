@@ -8,6 +8,8 @@ export interface WidgetPrayerTime {
     label: string;
     time: string;
     timestampISO: string;
+    /** Epoch milliseconds — native widget code compares against this, no date parsing. */
+    timestamp: number;
 }
 
 export interface WidgetPrayerSummary {
@@ -49,4 +51,24 @@ export interface NamazymWidgetSnapshotV1 {
     remaining: WidgetRemainingTime | null;
     visualMood: WidgetVisualMood;
     dailyVerse?: WidgetDailyVerse;
+}
+
+/** One day of prayer times inside the multi-day snapshot. */
+export interface WidgetDayPrayers {
+    dateISO: string;
+    prayers: WidgetPrayerTime[];
+    dailyVerse?: WidgetDailyVerse;
+}
+
+/**
+ * v2 — carries several days of prayer times so the native widgets can resolve
+ * current/next prayer and the remaining-time text at RENDER time instead of
+ * displaying values frozen at the moment the app last wrote the snapshot.
+ * All v1 fields are still populated (computed for "now") so older render
+ * paths keep working during the transition.
+ */
+export interface NamazymWidgetSnapshotV2 extends Omit<NamazymWidgetSnapshotV1, 'schemaVersion'> {
+    schemaVersion: 2;
+    days: WidgetDayPrayers[];
+    moods: Record<PrayerWidgetKey, WidgetVisualMood>;
 }
