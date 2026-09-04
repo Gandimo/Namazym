@@ -8,7 +8,9 @@ export const KAABA_LAT = 21.422487;
 export const KAABA_LON = 39.826206;
 
 // ─── Threshold config ─────────────────────────────────────────────────────────
-export const THR_HOLD_FLAT_DEG = 35;    // tilt above this → holdFlat state
+// Kept for backwards compatibility with older callers. The V3 compass adapts
+// its reference axis when the phone is upright, so tilt is no longer an error.
+export const THR_HOLD_FLAT_DEG = 35;
 export const THR_STABILITY_LOW = 0.30; // below → unstable state
 export const THR_STABILITY_MED = 0.55; // below → no celebration feedback
 export const THR_STABILITY_HIGH = 0.75; // above → full feedback allowed
@@ -17,10 +19,93 @@ export const THR_ALIGNED_DEG = 5;    // diff ≤ this → aligned state
 export const THR_PERFECT_DEG = 3;    // diff ≤ this → perfect state
 export const THR_KAABA_ICON_DEG = 3;    // same as perfect
 
+// ─── Magnetic field quality ───────────────────────────────────────────────────
+// Interference is the one compass failure that hides itself: a magnet, a steel
+// desk, a magnetic phone case or a car body produces a heading that is perfectly
+// STABLE and completely WRONG. Heading variance cannot see it — the numbers look
+// healthy — so the magnetic vector itself has to be inspected.
+
+/**
+ * Earth's surface field measures ~22–67 µT everywhere on the planet. A reading
+ * outside this padded band is not the Earth's field, so something nearby is
+ * dominating the sensor. This is a property of the planet, not a lookup — no
+ * network, no location service, nothing to keep up to date.
+ */
+export const FIELD_MIN_UT = 25;
+export const FIELD_MAX_UT = 70;
+
+/**
+ * A clean field holds a constant magnitude while the phone turns through it.
+ * A distorted field does not, so the spread of |B| across a short window
+ * separates real interference from a merely shaky hand. Being self-referencing,
+ * it needs no per-city reference value and tolerates sensor bias.
+ */
+export const FIELD_SPREAD_DISTURBED_UT = 8;
+export const FIELD_SPREAD_UNRELIABLE_UT = 15;
+
+export type FieldQuality = 'unknown' | 'good' | 'disturbed' | 'unreliable';
+
+export interface FieldReading {
+    /** Latest |B| in microtesla. */
+    magnitude: number;
+    /** max−min of |B| across the tracked window, in microtesla. */
+    spread: number;
+    quality: FieldQuality;
+}
+
+export class MagneticFieldTracker {
+    private samples: number[] = [];
+    readonly maxSamples: number;
+
+    /** At 25 Hz, 60 samples ≈ 2.4 s — long enough to cover a deliberate turn. */
+    constructor(maxSamples = 60) { this.maxSamples = maxSamples; }
+
+    add(magnitude: number): FieldReading {
+        if (!Number.isFinite(magnitude)) {
+            return { magnitude: 0, spread: 0, quality: 'unknown' };
+        }
+
+        this.samples.push(magnitude);
+        if (this.samples.length > this.maxSamples) this.samples.shift();
+
+        // An out-of-band reading is conclusive by itself; report it without
+        // waiting for the window to fill.
+        if (magnitude < FIELD_MIN_UT || magnitude > FIELD_MAX_UT) {
+            return { magnitude, spread: 0, quality: 'unreliable' };
+        }
+
+        if (this.samples.length < 8) return { magnitude, spread: 0, quality: 'unknown' };
+
+        let min = Infinity;
+        let max = -Infinity;
+        for (const sample of this.samples) {
+            if (sample < min) min = sample;
+            if (sample > max) max = sample;
+        }
+        const spread = max - min;
+
+        const quality: FieldQuality =
+            spread >= FIELD_SPREAD_UNRELIABLE_UT ? 'unreliable'
+                : spread >= FIELD_SPREAD_DISTURBED_UT ? 'disturbed'
+                    : 'good';
+
+        return { magnitude, spread, quality };
+    }
+
+    get count() { return this.samples.length; }
+    reset() { this.samples = []; }
+}
+
+/** Magnitude of the raw magnetometer vector, in microtesla. */
+export function fieldMagnitude(x: number, y: number, z: number): number {
+    return Math.sqrt(x * x + y * y + z * z);
+}
+
 // ─── State machine types ──────────────────────────────────────────────────────
 export type CompassState =
     | 'calibrating'
     | 'hold_flat'
+    | 'interference'
     | 'unstable'
     | 'far'
     | 'near'
@@ -41,6 +126,7 @@ export interface CompassStateInfo {
 const STATE_LABEL_KEY: Record<CompassState, string> = {
     calibrating: 'qibla.status_calibrating',
     hold_flat: 'qibla.status_hold_flat',
+    interference: 'qibla.status_interference',
     unstable: 'qibla.status_unstable',
     far: 'qibla.status_far',
     near: 'qibla.status_near',
@@ -51,6 +137,7 @@ const STATE_LABEL_KEY: Record<CompassState, string> = {
 const GLOW_BY_STATE: Record<CompassState, number> = {
     calibrating: 0,
     hold_flat: 0,
+    interference: 0,
     unstable: 0,
     far: 0.10,
     near: 0.35,
@@ -59,9 +146,10 @@ const GLOW_BY_STATE: Record<CompassState, number> = {
 };
 
 const COLOR_BY_STATE: Record<CompassState, string> = {
-    calibrating: '#FFB300', // Amber
-    hold_flat: '#F44336',   // Red
-    unstable: '#FF9800',    // Orange
+    calibrating: '#FFB300',    // Amber
+    hold_flat: '#F44336',      // Red
+    interference: '#E05A3C',   // Alert red-orange — the field cannot be trusted
+    unstable: '#FF9800',       // Orange
     far: '#9E9E9E',         // Gray
     near: '#D4AF37',        // Gold
     aligned: '#4CAF50',     // Green
@@ -88,15 +176,28 @@ export function resolveCompassState(
     currentState: CompassState,
     diff: number,
     stability: number,
-    tiltDeg: number,
+    _tiltDeg: number,
     sampleCount: number,
+    fieldQuality: FieldQuality = 'unknown',
 ): CompassState {
-    if (sampleCount < 12) return 'calibrating';
-    if (tiltDeg > THR_HOLD_FLAT_DEG) return 'hold_flat';
+    if (sampleCount < 6) return 'calibrating';
+
+    // A contaminated field is the one failure worth interrupting for: it yields a
+    // heading that is steady, confident and wrong, so every other signal here
+    // still looks healthy. Say nothing about direction until the field recovers —
+    // pointing a person the wrong way for prayer is worse than pointing nowhere.
+    if (fieldQuality === 'unreliable') return 'interference';
 
     // Hysteresis for unstable: Enter < LOW, Exit > LOW + 0.05
     if (currentState === 'unstable' && stability < (THR_STABILITY_LOW + 0.05)) return 'unstable';
     if (stability < THR_STABILITY_LOW) return 'unstable';
+
+    // A merely disturbed field still gives a usable rough direction, but not one
+    // worth celebrating. Cap guidance at 'near' so the compass keeps asking the
+    // user to turn instead of declaring the Qibla found on suspect data.
+    if (fieldQuality === 'disturbed') {
+        return diff <= THR_NEAR_DEG ? 'near' : 'far';
+    }
 
     // Hysteresis for distance states (enter at threshold, exit at threshold + margin)
     const margin = 2.5;
@@ -138,7 +239,7 @@ export function haversineDistance(
 // ─── Tilt-compensated heading ─────────────────────────────────────────────────
 /**
  * Returns heading in degrees (0–360), or NaN if sensor data is degenerate.
- * Also returns tiltDeg so the caller can check against THR_HOLD_FLAT_DEG.
+ * Also returns tiltDeg for diagnostics and UI quality feedback.
  */
 export function tiltCompensatedHeading(
     mx: number, my: number, mz: number,
@@ -172,10 +273,49 @@ export function tiltCompensatedHeading(
 
     const nnx = northX / northNorm;
     const nny = northY / northNorm;
+    const nnz = northZ / northNorm;
 
-    // Heading of the device's top edge (+Y axis) relative to magnetic north.
-    const heading = (Math.atan2(nnx, nny) * 180 / Math.PI + 360) % 360;
+    // When the phone is flat, +Y (the top edge of the screen) is the natural
+    // compass reference. Near portrait-upright, +Y becomes parallel to gravity
+    // and has no usable horizontal projection. Blend to the screen-normal axis
+    // in that pose. The sign is selected from gravity so lifting either the top
+    // or bottom edge keeps the displayed direction continuous.
+    const topVerticality = Math.abs(ny);
+    const uprightProgress = clamp01((topVerticality - 0.55) / 0.30);
+    const uprightMix = uprightProgress * uprightProgress * (3 - 2 * uprightProgress);
+    const facingSign = ny >= 0 ? 1 : -1;
+    const forwardNorth = (1 - uprightMix) * nny + uprightMix * facingSign * nnz;
+
+    if (Math.hypot(nnx, forwardNorth) < 1e-6) return { heading: NaN, tiltDeg };
+
+    // Preserve the established compass sign convention while using the
+    // pose-adaptive forward axis above.
+    const heading = (Math.atan2(nnx, forwardNorth) * 180 / Math.PI + 360) % 360;
     return { heading, tiltDeg };
+}
+
+export type ScreenRotation = 0 | 90 | -90 | 180;
+
+/**
+ * Rotate a native sensor vector into the axes of the currently rendered screen.
+ * This keeps the screen's top edge as +Y in portrait and both landscape modes.
+ */
+export function rotateVectorForScreen(
+    x: number,
+    y: number,
+    z: number,
+    rotation: ScreenRotation,
+): { x: number; y: number; z: number } {
+    switch (rotation) {
+        case 90:
+            return { x: -y, y: x, z };
+        case -90:
+            return { x: y, y: -x, z };
+        case 180:
+            return { x: -x, y: -y, z };
+        default:
+            return { x, y, z };
+    }
 }
 
 // ─── Circular vector smoother (sin/cos EMA) ───────────────────────────────────
@@ -193,15 +333,18 @@ export class CircularEMA {
         this.alpha = Math.max(0.05, Math.min(0.5, alpha));
     }
 
-    smooth(angleDeg: number): number {
+    smooth(angleDeg: number, alphaOverride?: number): number {
+        const alpha = alphaOverride === undefined
+            ? this.alpha
+            : Math.max(0.05, Math.min(0.9, alphaOverride));
         const r = toRad(angleDeg);
         const s = Math.sin(r), c = Math.cos(r);
         if (!this.initialized) {
             this.sinEMA = s; this.cosEMA = c;
             this.initialized = true;
         } else {
-            this.sinEMA = this.alpha * s + (1 - this.alpha) * this.sinEMA;
-            this.cosEMA = this.alpha * c + (1 - this.alpha) * this.cosEMA;
+            this.sinEMA = alpha * s + (1 - alpha) * this.sinEMA;
+            this.cosEMA = alpha * c + (1 - alpha) * this.cosEMA;
         }
         return (Math.atan2(this.sinEMA, this.cosEMA) * 180 / Math.PI + 360) % 360;
     }
@@ -250,3 +393,4 @@ export type AlignmentStatus = 'aligned' | 'near' | 'searching';
 
 // ─── Internal ─────────────────────────────────────────────────────────────────
 function toRad(d: number) { return d * Math.PI / 180; }
+function clamp01(value: number) { return Math.max(0, Math.min(1, value)); }

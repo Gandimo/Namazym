@@ -1,43 +1,75 @@
 /**
- * useSensorHeading — dual-sensor heading with fusion, tilt compensation & stability score.
+ * Low-latency, fully offline compass heading.
  *
- * Architecture:
- *   Accelerometer (50 ms)  → accelRef (gravity vector for tilt compensation)
- *   Gyroscope     (50 ms)  → gyroRef (angular velocity for short-term prediction)
- *   Magnetometer  (50 ms)  → tiltCompensatedHeading(mag, accel)
- *                          → KalmanHeadingFilter (remove magnetic noise)
- *                          → HeadingFusion (fuse gyro prediction + mag correction)
- *                          → CircularEMA (smooth fused result)
- *                          → Micro-Jitter Guard (ignore < 0.6° changes)
- *                          → StabilityTracker (circular variance on rendered output)
- *                          → emits { rawHeading, heading, headingUnwrapped, tiltDeg, stability, sampleCount }
+ * The native magnetometer is already calibrated by the platform. We combine it
+ * with a lightly smoothed gravity vector for tilt compensation, rotate both
+ * vectors into the current screen orientation, and use one adaptive circular
+ * filter. Fast turns therefore react immediately while a resting phone remains
+ * visually stable. No GPS, network request, or remote service is involved.
  */
-import { useState, useEffect, useRef } from 'react';
-import { Accelerometer, Magnetometer, Gyroscope } from 'expo-sensors';
+import { useEffect, useRef, useState } from 'react';
+import { Accelerometer, Magnetometer } from 'expo-sensors';
+import * as ScreenOrientation from 'expo-screen-orientation';
 import {
+    angularDifference,
     CircularEMA,
+    fieldMagnitude,
+    MagneticFieldTracker,
+    rotateVectorForScreen,
     StabilityTracker,
     tiltCompensatedHeading,
+    type FieldQuality,
+    type ScreenRotation,
 } from '../utils/kyblaUtils';
-import { KalmanHeadingFilter } from '../utils/kalmanHeading';
-import { HeadingFusion } from '../utils/headingFusion';
 
 export interface SensorHeadingResult {
-    /** Raw tilt-compensated magnetometer heading before any fusion/smoothing */
+    /** Raw tilt-compensated magnetic heading before smoothing. */
     rawHeading: number;
-    /** Final fused, smoothed, and micro-jitter guarded heading in degrees 0–360 */
+    /** Responsive, smoothed magnetic heading in degrees 0–360. */
     heading: number;
-    /** Unwrapped heading for continuous timing animation (no 0/360 snap) */
+    /** Continuous heading for animation without a 0/360 snap. */
     headingUnwrapped: number;
-    /** Phone tilt from horizontal in degrees (0 = flat) */
+    /** Phone tilt from horizontal in degrees (0 = flat, 90 = upright). */
     tiltDeg: number;
-    /** Circular-variance stability score 0–1 */
+    /** Circular stability score from 0–1. */
     stability: number;
-    /** Total samples collected (used to gate 'calibrating' state) */
+    /** Number of valid compass samples received. */
     sampleCount: number;
+    /** Strength of the measured magnetic field in microtesla. */
+    fieldStrength: number;
+    /** max−min of the field strength across the recent window, in microtesla. */
+    fieldSpread: number;
+    /** Whether the magnetic field can be trusted to give a true direction. */
+    fieldQuality: FieldQuality;
 }
 
-const UPDATE_MS = 33; // ~30 Hz — improves responsiveness with modest battery cost
+type Vector3 = { x: number; y: number; z: number };
+
+const UPDATE_MS = 40; // 25 Hz is fluid on-screen without redrawing at sensor maximum speed.
+const GRAVITY_ALPHA = 0.18;
+const MICRO_JITTER_DEG = 0.18;
+
+function orientationToRotation(orientation: ScreenOrientation.Orientation): ScreenRotation | null {
+    switch (orientation) {
+        case ScreenOrientation.Orientation.PORTRAIT_UP:
+            return 0;
+        case ScreenOrientation.Orientation.PORTRAIT_DOWN:
+            return 180;
+        case ScreenOrientation.Orientation.LANDSCAPE_LEFT:
+            return 90;
+        case ScreenOrientation.Orientation.LANDSCAPE_RIGHT:
+            return -90;
+        default:
+            return null;
+    }
+}
+
+function smoothingAlpha(deltaDeg: number): number {
+    if (deltaDeg >= 18) return 0.86;
+    if (deltaDeg >= 7) return 0.68;
+    if (deltaDeg >= 2) return 0.44;
+    return 0.24;
+}
 
 export function useSensorHeading(): SensorHeadingResult {
     const [result, setResult] = useState<SensorHeadingResult>({
@@ -47,118 +79,157 @@ export function useSensorHeading(): SensorHeadingResult {
         tiltDeg: 0,
         stability: 0,
         sampleCount: 0,
+        fieldStrength: 0,
+        fieldSpread: 0,
+        fieldQuality: 'unknown',
     });
 
-    // Refs — avoid stale closures in sensor callbacks
-    const accelRef = useRef({ x: 0, y: 0, z: 9.8 });
-    const gyroRef = useRef({ x: 0, y: 0, z: 0 });
-    const gyroLastTimeRef = useRef<number>(0);
-
-    const smoother = useRef(new CircularEMA(0.30)).current;
-    const stabilizer = useRef(new StabilityTracker(20)).current;
-    const kalmanFilter = useRef(new KalmanHeadingFilter(0.015, 3.0)).current;
-    const fusionEngine = useRef(new HeadingFusion(0.05)).current;
-
-    const lastFusionTime = useRef(0);
-    const lastUnwrapped = useRef(0);
+    const gravityRef = useRef<Vector3>({ x: 0, y: 0, z: 1 });
+    const hasGravityRef = useRef(false);
+    const screenRotationRef = useRef<ScreenRotation>(0);
+    const smootherRef = useRef(new CircularEMA(0.24));
+    const stabilizerRef = useRef(new StabilityTracker(14));
+    const fieldTrackerRef = useRef(new MagneticFieldTracker());
+    const lastUnwrappedRef = useRef(0);
     const sampleCountRef = useRef(0);
     const initializedRef = useRef(false);
 
     useEffect(() => {
-        Accelerometer.setUpdateInterval(UPDATE_MS);
-        Magnetometer.setUpdateInterval(UPDATE_MS);
-        Gyroscope.setUpdateInterval(UPDATE_MS);
+        let active = true;
+        let accelerometerSubscription: ReturnType<typeof Accelerometer.addListener> | null = null;
+        let magnetometerSubscription: ReturnType<typeof Magnetometer.addListener> | null = null;
 
-        const accSub = Accelerometer.addListener(data => {
-            accelRef.current = data;
+        const resetForOrientation = (rotation: ScreenRotation) => {
+            if (screenRotationRef.current === rotation) return;
+            screenRotationRef.current = rotation;
+            smootherRef.current.reset();
+            stabilizerRef.current.reset();
+            hasGravityRef.current = false;
+            initializedRef.current = false;
+        };
+
+        const orientationSubscription = ScreenOrientation.addOrientationChangeListener(event => {
+            const rotation = orientationToRotation(event.orientationInfo.orientation);
+            if (rotation !== null) resetForOrientation(rotation);
         });
 
-        const gyroSub = Gyroscope.addListener(data => {
-            gyroRef.current = data;
-            gyroLastTimeRef.current = Date.now();
-        });
+        const start = async () => {
+            try {
+                const [orientation, hasAccelerometer, hasMagnetometer] = await Promise.all([
+                    ScreenOrientation.getOrientationAsync(),
+                    Accelerometer.isAvailableAsync(),
+                    Magnetometer.isAvailableAsync(),
+                ]);
 
-        const magSub = Magnetometer.addListener(mag => {
-            const now = Date.now();
-            const dt = lastFusionTime.current ? (now - lastFusionTime.current) / 1000 : 0;
-            lastFusionTime.current = now;
+                if (!active || !hasAccelerometer || !hasMagnetometer) return;
 
-            // Gyro freshness check (active if updated in the last 250ms)
-            const hasGyro = (now - gyroLastTimeRef.current) < 250;
+                const initialRotation = orientationToRotation(orientation);
+                if (initialRotation !== null) screenRotationRef.current = initialRotation;
 
-            const { x: ax, y: ay, z: az } = accelRef.current;
-            const { x: gx, y: gy, z: gz } = gyroRef.current;
+                Accelerometer.setUpdateInterval(UPDATE_MS);
+                Magnetometer.setUpdateInterval(UPDATE_MS);
 
-            const { heading: rawMag, tiltDeg } = tiltCompensatedHeading(
-                mag.x, mag.y, mag.z,
-                ax, ay, az,
-            );
+                accelerometerSubscription = Accelerometer.addListener(data => {
+                    const next = rotateVectorForScreen(
+                        data.x,
+                        data.y,
+                        data.z,
+                        screenRotationRef.current,
+                    );
 
-            // Skip degenerate sensor reading
-            if (isNaN(rawMag)) return;
+                    if (!hasGravityRef.current) {
+                        gravityRef.current = next;
+                        hasGravityRef.current = true;
+                        return;
+                    }
 
-            // Pipeline Step 1: Kalman Filter (removes base magnetic noise)
-            const kalmanFiltered = kalmanFilter.update(rawMag);
+                    const previous = gravityRef.current;
+                    gravityRef.current = {
+                        x: previous.x + GRAVITY_ALPHA * (next.x - previous.x),
+                        y: previous.y + GRAVITY_ALPHA * (next.y - previous.y),
+                        z: previous.z + GRAVITY_ALPHA * (next.z - previous.z),
+                    };
+                });
 
-            // Pipeline Step 2: Gyroscope Fusion
-            // Project gyro onto gravity vector to get robust rotation rate regardless of tilt
-            const aMag = Math.sqrt(ax * ax + ay * ay + az * az) || 1;
-            const verticalRotationRateRads = (gx * ax + gy * ay + gz * az) / aMag;
-            const verticalRotationRateDegs = verticalRotationRateRads * (180 / Math.PI);
+                magnetometerSubscription = Magnetometer.addListener(data => {
+                    if (!active) return;
 
-            const fusedHeading = fusionEngine.update(
-                kalmanFiltered,
-                verticalRotationRateDegs,
-                dt,
-                hasGyro
-            );
+                    // |B| is independent of how the phone or the screen is turned,
+                    // so it is measured on the raw vector and keeps accumulating
+                    // across orientation changes.
+                    const field = fieldTrackerRef.current.add(
+                        fieldMagnitude(data.x, data.y, data.z),
+                    );
 
-            // Pipeline Step 3: Circular EMA smoothing
-            let smoothed = smoother.smooth(fusedHeading);
+                    if (!hasGravityRef.current) return;
 
-            // First-frame initialization to prevent 0° jump animation
-            if (!initializedRef.current) {
-                lastUnwrapped.current = smoothed;
-                initializedRef.current = true;
-            } else {
-                // Pipeline Step 4: Micro-jitter guard (ignore changes < 0.4°)
-                const lastSmoothed = (lastUnwrapped.current % 360 + 360) % 360;
-                let delta = smoothed - lastSmoothed;
-                if (delta > 180) delta -= 360;
-                if (delta < -180) delta += 360;
+                    const magnetic = rotateVectorForScreen(
+                        data.x,
+                        data.y,
+                        data.z,
+                        screenRotationRef.current,
+                    );
+                    const gravity = gravityRef.current;
+                    const { heading: rawHeading, tiltDeg } = tiltCompensatedHeading(
+                        magnetic.x,
+                        magnetic.y,
+                        magnetic.z,
+                        gravity.x,
+                        gravity.y,
+                        gravity.z,
+                    );
 
-                if (Math.abs(delta) < 0.4) {
-                    smoothed = lastSmoothed;
-                    delta = 0;
-                }
+                    if (!Number.isFinite(rawHeading)) return;
 
-                // Unwrap: maintain continuous rotation for animation
-                lastUnwrapped.current += delta;
+                    const lastHeading = (lastUnwrappedRef.current % 360 + 360) % 360;
+                    const rawDelta = initializedRef.current
+                        ? Math.abs(angularDifference(lastHeading, rawHeading))
+                        : 180;
+                    let smoothed = smootherRef.current.smooth(rawHeading, smoothingAlpha(rawDelta));
+
+                    if (!initializedRef.current) {
+                        lastUnwrappedRef.current = smoothed;
+                        initializedRef.current = true;
+                    } else {
+                        let delta = angularDifference(lastHeading, smoothed);
+                        if (Math.abs(delta) < MICRO_JITTER_DEG) {
+                            smoothed = lastHeading;
+                            delta = 0;
+                        }
+                        lastUnwrappedRef.current += delta;
+                    }
+
+                    const heading = (smoothed % 360 + 360) % 360;
+                    const stability = stabilizerRef.current.add(heading);
+                    sampleCountRef.current += 1;
+
+                    setResult({
+                        rawHeading,
+                        heading,
+                        headingUnwrapped: lastUnwrappedRef.current,
+                        tiltDeg,
+                        stability,
+                        sampleCount: sampleCountRef.current,
+                        fieldStrength: field.magnitude,
+                        fieldSpread: field.spread,
+                        fieldQuality: field.quality,
+                    });
+                });
+            } catch {
+                // Keep the screen in its calibration state on unsupported/broken
+                // hardware. No sensor values or device details are logged.
             }
+        };
 
-            // Pipeline Step 5: Stability tracking (measured on final rendered outcome)
-            const stability = stabilizer.add(smoothed);
-            sampleCountRef.current += 1;
-
-            // Normalize final heading to strict 0-360 range
-            const headingNormalized = (smoothed % 360 + 360) % 360;
-
-            setResult({
-                rawHeading: rawMag, // Now correctly returns the raw magnetometer truth
-                heading: headingNormalized,
-                headingUnwrapped: lastUnwrapped.current,
-                tiltDeg,
-                stability,
-                sampleCount: sampleCountRef.current,
-            });
-        });
+        void start();
 
         return () => {
-            accSub.remove();
-            magSub.remove();
-            gyroSub.remove();
+            active = false;
+            orientationSubscription.remove();
+            accelerometerSubscription?.remove();
+            magnetometerSubscription?.remove();
         };
-    }, [smoother, stabilizer, kalmanFilter, fusionEngine]);
+    }, []);
 
     return result;
 }

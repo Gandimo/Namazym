@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useMemo } from 'react';
+import React, { useEffect, useRef, useMemo, useState } from 'react';
 import {
     View,
     Text,
@@ -10,7 +10,6 @@ import {
     useWindowDimensions,
 } from 'react-native';
 import Svg, { Circle, Line, Path, Text as SvgText } from 'react-native-svg';
-import * as Haptics from 'expo-haptics';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -23,6 +22,7 @@ import { useSensorHeading } from '../hooks/useSensorHeading';
 import { useQiblaState } from '../hooks/useQiblaState';
 import { angularDifference } from '../utils/kyblaUtils';
 import { getBoundedContentWidth, getResponsiveLayoutMetrics } from '../utils/responsiveLayout';
+import { QiblaCalibrationHint } from '../components/QiblaCalibrationHint';
 
 // Sacred Precision Palette
 const C = {
@@ -40,14 +40,49 @@ const C = {
     textMuted: 'rgba(255, 250, 242, 0.42)',
     amber: '#B98D48',
     green: '#77906C',
-    accentSoft: 'rgba(255,255,255,0.06)',
+    alert: '#E05A3C',
     glassBg: 'rgba(255, 250, 242, 0.05)',
     glassBorder: 'rgba(255, 250, 242, 0.10)',
 };
 
+const CompassDial = React.memo(function CompassDial({ size }: { size: number }) {
+    return (
+        <Svg width={size} height={size} viewBox="0 0 100 100">
+            <Circle cx="50" cy="50" r="49" fill={C.ring} opacity="0.9" />
+            <Circle cx="50" cy="50" r="46.8" fill={C.compass} stroke={C.glassBorder} strokeWidth="0.4" />
+            <Circle cx="50" cy="50" r="37.5" fill="none" stroke={C.goldDim} strokeWidth="0.18" opacity="0.55" />
+
+            {Array.from({ length: 72 }).map((_, i) => {
+                const major = i % 18 === 0;
+                const mid = i % 9 === 0;
+                return (
+                    <Line
+                        key={i}
+                        x1="50"
+                        y1="2"
+                        x2="50"
+                        y2={major ? '9.4' : mid ? '6.6' : '4.7'}
+                        stroke={major || mid ? C.gold : C.goldDim}
+                        strokeWidth={major ? '0.62' : mid ? '0.34' : '0.16'}
+                        transform={`rotate(${i * 5} 50 50)`}
+                    />
+                );
+            })}
+
+            <SvgText x="50" y="14.5" textAnchor="middle" fontSize="6.2" fontWeight="800" fill={C.goldBright}>N</SvgText>
+            <SvgText x="50" y="91.8" textAnchor="middle" fontSize="4.1" fontWeight="700" fill={C.textMuted}>S</SvgText>
+            <SvgText x="87.8" y="51.8" textAnchor="middle" fontSize="4.1" fontWeight="700" fill={C.textMuted}>E</SvgText>
+            <SvgText x="12.2" y="51.8" textAnchor="middle" fontSize="4.1" fontWeight="700" fill={C.textMuted}>W</SvgText>
+        </Svg>
+    );
+});
+
 export default function KyblaScreen({ navigation }: any) {
     const { t } = useTranslation();
-    const { width } = useWindowDimensions();
+    const [turnSide, setTurnSide] = useState<'left' | 'right'>('right');
+    const turnSideReadyRef = useRef(false);
+    const { width, height } = useWindowDimensions();
+    const isLandscape = width > height;
     const responsiveLayout = useMemo(() => getResponsiveLayoutMetrics(width), [width]);
     const contentWidth = useMemo(
         () => getBoundedContentWidth(width, responsiveLayout.horizontalPadding, responsiveLayout.compactContentMaxWidth),
@@ -55,13 +90,16 @@ export default function KyblaScreen({ navigation }: any) {
     );
     const compassSize = useMemo(
         () => Math.min(
-            responsiveLayout.isTablet ? contentWidth * 0.62 : width * 0.75,
+            responsiveLayout.isTablet ? contentWidth * 0.62 : width * (isLandscape ? 0.42 : 0.75),
+            height * (isLandscape ? 0.58 : 0.44),
             responsiveLayout.isTablet ? 420 : 360,
         ),
-        [contentWidth, responsiveLayout.isTablet, width],
+        [contentWidth, height, isLandscape, responsiveLayout.isTablet, width],
     );
     const instrumentSize = compassSize + 28;
-    const infoCardWidth = Math.min(contentWidth, responsiveLayout.isTablet ? 720 : width - 48);
+    const infoCardWidth = isLandscape
+        ? Math.min(280, contentWidth * 0.39)
+        : Math.min(contentWidth, responsiveLayout.isTablet ? 720 : width - 48);
     const sceneAuraSize = compassSize + (responsiveLayout.isTablet ? 168 : 140);
     const sceneHaloSize = compassSize + (responsiveLayout.isTablet ? 92 : 72);
     const sceneHaloInnerSize = compassSize + (responsiveLayout.isTablet ? 34 : 22);
@@ -69,7 +107,14 @@ export default function KyblaScreen({ navigation }: any) {
     // V2 Architecture Hooks
     const { lat, lon, cityLabel, declination } = useQiblaLocation();
     const { bearing, distanceKm } = useQiblaBearing(lat, lon);
-    const { heading: magHeading, headingUnwrapped: magHeadingUnwrapped, stability, tiltDeg, sampleCount } = useSensorHeading();
+    const {
+        heading: magHeading,
+        headingUnwrapped: magHeadingUnwrapped,
+        stability,
+        tiltDeg,
+        sampleCount,
+        fieldQuality,
+    } = useSensorHeading();
 
     // The sensor pipeline returns a MAGNETIC heading; the Qibla bearing is a TRUE
     // great-circle bearing. Add the local magnetic declination (offline constant,
@@ -77,19 +122,14 @@ export default function KyblaScreen({ navigation }: any) {
     const heading = useMemo(() => (magHeading + declination + 360) % 360, [magHeading, declination]);
     const headingUnwrapped = magHeadingUnwrapped + declination;
 
-    // Calculate angular difference continuously
-    const diff = useMemo(() => {
-        if (bearing === null) return 0;
-        return Math.abs(angularDifference(heading, bearing));
-    }, [heading, bearing]);
-
-    // Qibla State Machine & Haptics
+    // Qibla state machine (haptics are emitted once inside the hook)
     const { state, stateInfo } = useQiblaState({
         heading,
         bearing: bearing || 0,
         stability,
         tiltDeg,
-        sampleCount
+        sampleCount,
+        fieldQuality,
     });
 
     // Animations Setup
@@ -97,15 +137,13 @@ export default function KyblaScreen({ navigation }: any) {
     const pulseAnim = useRef(new Animated.Value(1)).current;
     const breatheAnim = useRef(new Animated.Value(0)).current;
     const glowAnim = useRef(new Animated.Value(0)).current;
-    const badgeAnim = useRef(new Animated.Value(0)).current;
+    const guidanceAnim = useRef(new Animated.Value(0)).current;
     const arrowGlowAnim = useRef(new Animated.Value(0)).current;
     const lockAnim = useRef(new Animated.Value(1)).current;
-    const reachedLabelAnim = useRef(new Animated.Value(0)).current;
     const prevStateRef = useRef(state);
-    const reachedLabelTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
-        Animated.loop(
+        const breathing = Animated.loop(
             Animated.sequence([
                 Animated.timing(breatheAnim, {
                     toValue: 1,
@@ -117,21 +155,16 @@ export default function KyblaScreen({ navigation }: any) {
                     duration: 3200,
                     useNativeDriver: true,
                 }),
-            ])
-        ).start();
+            ]),
+        );
+        breathing.start();
+        return () => breathing.stop();
     }, [breatheAnim]);
 
     useEffect(() => {
         const prevState = prevStateRef.current;
 
         if (state === 'perfect' && prevState !== 'perfect') {
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-
-            if (reachedLabelTimerRef.current) {
-                clearTimeout(reachedLabelTimerRef.current);
-                reachedLabelTimerRef.current = null;
-            }
-
             lockAnim.setValue(1);
             Animated.sequence([
                 Animated.timing(lockAnim, {
@@ -145,31 +178,7 @@ export default function KyblaScreen({ navigation }: any) {
                     useNativeDriver: true,
                 }),
             ]).start();
-
-            Animated.timing(reachedLabelAnim, {
-                toValue: 1,
-                duration: 260,
-                useNativeDriver: true,
-            }).start();
-
-            reachedLabelTimerRef.current = setTimeout(() => {
-                Animated.timing(reachedLabelAnim, {
-                    toValue: 0,
-                    duration: 320,
-                    useNativeDriver: true,
-                }).start();
-                reachedLabelTimerRef.current = null;
-            }, 1500);
         } else if (state !== 'perfect' && prevState === 'perfect') {
-            if (reachedLabelTimerRef.current) {
-                clearTimeout(reachedLabelTimerRef.current);
-                reachedLabelTimerRef.current = null;
-            }
-            Animated.timing(reachedLabelAnim, {
-                toValue: 0,
-                duration: 180,
-                useNativeDriver: true,
-            }).start();
             Animated.timing(lockAnim, {
                 toValue: 1,
                 duration: 220,
@@ -178,27 +187,19 @@ export default function KyblaScreen({ navigation }: any) {
         }
 
         prevStateRef.current = state;
-    }, [state, lockAnim, reachedLabelAnim]);
+    }, [state, lockAnim]);
 
+    // Sensor output is already adaptively smoothed. Updating the native animated
+    // value directly avoids stacking a new 110 ms timing animation every 40 ms.
     useEffect(() => {
-        return () => {
-            if (reachedLabelTimerRef.current) {
-                clearTimeout(reachedLabelTimerRef.current);
-            }
-        };
-    }, []);
-
-    // 1. Compass Rotation (smooth timing)
-    useEffect(() => {
-        Animated.timing(rotAnim, {
-            toValue: headingUnwrapped,
-            duration: 110,
-            useNativeDriver: true,
-        }).start();
-    }, [headingUnwrapped, rotAnim]);
+        if (sampleCount === 0) return;
+        rotAnim.stopAnimation();
+        rotAnim.setValue(headingUnwrapped);
+    }, [headingUnwrapped, rotAnim, sampleCount]);
 
     // 2. Pulse, Glow, and Badge transitions based on State
     useEffect(() => {
+        let perfectGlowLoop: Animated.CompositeAnimation | null = null;
         const targetScale =
             state === 'perfect' ? 1.022 :
                 state === 'aligned' ? 1.014 :
@@ -222,7 +223,7 @@ export default function KyblaScreen({ navigation }: any) {
 
         if (state === 'perfect') {
             arrowGlowAnim.setValue(0);
-            Animated.loop(
+            perfectGlowLoop = Animated.loop(
                 Animated.sequence([
                     Animated.timing(arrowGlowAnim, {
                         toValue: 1,
@@ -234,8 +235,9 @@ export default function KyblaScreen({ navigation }: any) {
                         duration: 2400,
                         useNativeDriver: true,
                     }),
-                ])
-            ).start();
+                ]),
+            );
+            perfectGlowLoop.start();
         } else if (state === 'aligned') {
             Animated.timing(arrowGlowAnim, {
                 toValue: 0.55,
@@ -257,30 +259,104 @@ export default function KyblaScreen({ navigation }: any) {
             }).start();
         }
 
-        // Badge entry animation
-        badgeAnim.setValue(0);
-        Animated.timing(badgeAnim, {
+        // Guidance entry animation
+        guidanceAnim.setValue(0);
+        Animated.timing(guidanceAnim, {
             toValue: 1,
             duration: 400,
             useNativeDriver: true,
         }).start();
 
-    }, [state, pulseAnim, glowAnim, badgeAnim, arrowGlowAnim]);
+        return () => perfectGlowLoop?.stop();
+    }, [state, pulseAnim, glowAnim, guidanceAnim, arrowGlowAnim]);
 
     // INTERPOLATIONS
-    const rotateStr = rotAnim.interpolate({
+    const rotateStr = useMemo(() => rotAnim.interpolate({
         inputRange: [0, 360],
-        outputRange: ['0deg', '-360deg']
-    });
+        outputRange: ['0deg', '-360deg'],
+    }), [rotAnim]);
 
     // The Qibla bearing needs to rotate *opposite* to the compass dial 
     // to stay pointing at Mecca in worldly space
-    const bearingRotStr = rotAnim.interpolate({
+    const bearingRotStr = useMemo(() => rotAnim.interpolate({
         inputRange: [0, 360],
-        outputRange: [`${bearing}deg`, `${bearing - 360}deg`]
-    });
+        outputRange: [`${bearing}deg`, `${bearing - 360}deg`],
+    }), [bearing, rotAnim]);
 
     const isAligned = state === 'aligned' || state === 'perfect';
+    const signedTurn = useMemo(
+        () => angularDifference(heading, bearing || 0),
+        [bearing, heading],
+    );
+    useEffect(() => {
+        if (sampleCount < 6) return;
+
+        const measuredSide = signedTurn >= 0 ? 'right' : 'left';
+        if (!turnSideReadyRef.current) {
+            turnSideReadyRef.current = true;
+            setTurnSide(measuredSide);
+            return;
+        }
+
+        // Near the exact opposite direction, sensor noise can alternate between
+        // +180° and -180°. Keep the chosen side until the user starts turning.
+        if (Math.abs(signedTurn) < 165) {
+            setTurnSide(current => current === measuredSide ? current : measuredSide);
+        }
+    }, [sampleCount, signedTurn]);
+    const turnDegrees = Math.round(Math.abs(signedTurn));
+    const isInterference = state === 'interference';
+    // Both states mean "don't trust the needle yet", so both get the figure-8 prompt.
+    const isCalibrating = state === 'calibrating' || state === 'unstable' || isInterference;
+    const guidanceTitle = useMemo(() => {
+        if (state === 'calibrating') {
+            return t('qibla.status_calibrating', 'Kybla ugruny tapyň');
+        }
+        if (state === 'interference') {
+            return t('qibla.status_interference', 'Magnit päsgelçiligi');
+        }
+        if (state === 'unstable') {
+            return t('qibla.status_unstable', 'Telefony durnukly tutuň');
+        }
+        if (state === 'perfect') {
+            return t('qibla.status_perfect', 'Kybla tapyldy');
+        }
+        if (turnSide === 'right') {
+            return t('qibla.turn_right', {
+                degrees: turnDegrees,
+                defaultValue: `Saga ${turnDegrees}° öwrüliň`,
+            });
+        }
+        return t('qibla.turn_left', {
+            degrees: turnDegrees,
+            defaultValue: `Çepe ${turnDegrees}° öwrüliň`,
+        });
+    }, [state, t, turnDegrees, turnSide]);
+    const guidanceHint = isInterference
+        ? t('qibla.interference_hint', 'Metal we magnitli zatlardan daşlaşyň, soňra telefony “8” görnüşinde hereketlendiriň.')
+        : state === 'unstable'
+            ? t('qibla.unstable_hint', 'Telefony deň we asuda saklaň.')
+            : state === 'calibrating'
+                ? t('qibla.calibration_hint', 'Telefonyňyzy “8” görnüşinde hereketlendiriň we metal zatlardan daşda tutuň.')
+                : state === 'perfect'
+                    ? t('qibla.success_hint', 'Namaz üçin şu tarapa öwrüliň.')
+                    : t('qibla.align_hint', 'Ok Käbe belgisi bilen gabat gelýänçä öwrüliň.');
+    const guidanceIcon: React.ComponentProps<typeof Ionicons>['name'] =
+        state === 'perfect' ? 'checkmark-circle' :
+            state === 'interference' ? 'magnet' :
+                state === 'unstable' ? 'warning' :
+                    state === 'calibrating' ? 'sync' :
+                        turnSide === 'right' ? 'arrow-forward' : 'arrow-back';
+    const guidanceColor = state === 'perfect'
+        ? C.green
+        : state === 'interference'
+            ? C.alert
+            : state === 'unstable'
+                ? C.amber
+                : C.goldBright;
+    const guidanceWidth = isLandscape
+        ? Math.min(contentWidth, 500)
+        : Math.min(contentWidth, width - 48);
 
     // ── STATE-BASED ALIGNMENT RING FEEDBACK ──
     // Spec: far(0.0), near(0.25), aligned(0.7), perfect(1.0)
@@ -315,69 +391,122 @@ export default function KyblaScreen({ navigation }: any) {
         return 0.85;
     }, [state]);
 
-    const sceneGlowOpacity = glowAnim.interpolate({
+    const sceneGlowOpacity = useMemo(() => glowAnim.interpolate({
         inputRange: [0, 1],
         outputRange: [0.02, 0.12],
-    });
+    }), [glowAnim]);
 
-    const tipGlowOpacity = arrowGlowAnim.interpolate({
+    const tipGlowOpacity = useMemo(() => arrowGlowAnim.interpolate({
         inputRange: [0, 0.5, 1],
         outputRange: [0.02, 0.10, 0.16],
-    });
+    }), [arrowGlowAnim]);
 
-    const tipGlowScale = arrowGlowAnim.interpolate({
+    const tipGlowScale = useMemo(() => arrowGlowAnim.interpolate({
         inputRange: [0, 0.5, 1],
         outputRange: [1.0, 1.015, 1.03],
-    });
+    }), [arrowGlowAnim]);
 
-    const idleBreathScale = breatheAnim.interpolate({
+    const idleBreathScale = useMemo(() => breatheAnim.interpolate({
         inputRange: [0, 1],
         outputRange: [1, 1.006],
-    });
+    }), [breatheAnim]);
 
-    const offlineMeta = useMemo(() => {
-        if (distanceKm > 0) return `${cityLabel} · ${distanceKm} km`;
-        return cityLabel;
-    }, [cityLabel, distanceKm]);
+    const offlineLabel = t('qibla.offline', 'Oflaýn');
 
-    const compassSceneScale = Animated.multiply(pulseAnim, lockAnim);
+    // The status line now reports what the magnetometer actually sees rather than
+    // only whether the needle happens to be still — a steady needle in a distorted
+    // field used to read as "ready".
+    const accuracyLabel = useMemo(() => {
+        if (fieldQuality === 'unreliable') return t('qibla.accuracy_bad', 'Ynamly däl');
+        if (fieldQuality === 'disturbed') return t('qibla.accuracy_low', 'Takyklyk pes');
+        if (fieldQuality === 'good' && stateInfo.isStable) {
+            return t('qibla.compass_ready', 'Kompas taýýar');
+        }
+        return t('qibla.compass_checking', 'Kompas barlanýar');
+    }, [fieldQuality, stateInfo.isStable, t]);
+
+    const accuracyColor = fieldQuality === 'unreliable'
+        ? C.alert
+        : fieldQuality === 'disturbed'
+            ? C.amber
+            : fieldQuality === 'good' && stateInfo.isStable
+                ? C.green
+                : C.amber;
+    const distanceLabel = distanceKm > 0 ? `${distanceKm} km` : '—';
+
+    const compassSceneScale = useMemo(
+        () => Animated.multiply(pulseAnim, lockAnim),
+        [lockAnim, pulseAnim],
+    );
 
     return (
         <View style={s.root}>
             <StatusBar barStyle="light-content" />
             <LinearGradient colors={[C.bgTop, C.bgBot]} style={StyleSheet.absoluteFill} />
 
-            <SafeAreaView style={s.safe}>
+            <SafeAreaView style={[s.safe, isLandscape && s.safeLandscape]}>
 
                 {/* header */}
-                <View style={[s.header, { width: contentWidth }]}>
+                <View style={[s.header, isLandscape && s.headerLandscape, { width: contentWidth }]}>
                     <Pressable onPress={() => navigation.goBack()} style={s.backBtn} hitSlop={12}>
                         <Ionicons name="chevron-back" size={22} color={C.textPrimary} />
                     </Pressable>
                     <View style={s.headerCenter}>
                         <Text style={s.title}>{t('common.kybla', 'KYBLA').toUpperCase()}</Text>
-                        <Text style={s.subtitle}>{offlineMeta}</Text>
+                        <Text style={s.subtitle}>{cityLabel} · {offlineLabel}</Text>
                     </View>
                     <View style={{ width: 40 }} />
                 </View>
 
-                {/* status badge */}
-                <Animated.View style={[s.badge, { opacity: badgeAnim }]}>
-                    <View style={[s.badgeDot, { backgroundColor: stateInfo.color }]} />
-                    <Text style={[s.badgeText, { color: stateInfo.color }]}>
-                        {t(stateInfo.label)}
-                    </Text>
+                {/* One clear instruction: turn left/right, calibrate, or stop when aligned. */}
+                <Animated.View
+                    accessible
+                    accessibilityLabel={`${guidanceTitle}. ${guidanceHint}`}
+                    accessibilityLiveRegion={state === 'perfect' ? 'polite' : 'none'}
+                    style={[
+                        s.guidanceCard,
+                        isLandscape && s.guidanceCardLandscape,
+                        state === 'perfect' && s.guidanceCardPerfect,
+                        { width: guidanceWidth, opacity: guidanceAnim },
+                    ]}
+                >
+                    <View style={[
+                        s.guidanceIcon,
+                        state === 'perfect' && s.guidanceIconPerfect,
+                    ]}>
+                        <Ionicons name={guidanceIcon} size={isLandscape ? 22 : 26} color={guidanceColor} />
+                    </View>
+                    <View style={s.guidanceCopy}>
+                        <Text
+                            numberOfLines={2}
+                            style={[
+                                s.guidanceTitle,
+                                isLandscape && s.guidanceTitleLandscape,
+                                { color: guidanceColor },
+                            ]}
+                        >
+                            {guidanceTitle}
+                        </Text>
+                        <Text
+                            numberOfLines={isLandscape ? 1 : 3}
+                            style={[s.guidanceHint, isLandscape && s.guidanceHintLandscape]}
+                        >
+                            {guidanceHint}
+                        </Text>
+                    </View>
+                    {isCalibrating && (
+                        <QiblaCalibrationHint
+                            width={isLandscape ? 64 : 84}
+                            height={isLandscape ? 28 : 36}
+                            markerColor={isInterference ? C.alert : C.goldBright}
+                            trackColor={isInterference ? 'rgba(224, 90, 60, 0.32)' : C.goldDim}
+                        />
+                    )}
                 </Animated.View>
 
-                {/* Calibration hint — only while the compass is unreliable */}
-                {(state === 'calibrating' || state === 'unstable') && (
-                    <Text style={s.calibrationHint}>
-                        {t('qibla.calibration_hint', 'Telefonyňyzy “8” görnüşinde hereketlendiriň we metal zatlardan daşda tutuň.')}
-                    </Text>
-                )}
-
+                <View style={[s.mainContent, { width: contentWidth }, isLandscape && s.mainContentLandscape]}>
                 {/* compass area */}
-                <View style={[s.compassArea, { width: contentWidth }]}>
+                <View style={[s.compassArea, !isLandscape && { width: contentWidth }, isLandscape && s.compassAreaLandscape]}>
                     <Animated.View
                         style={[
                             s.sceneAura,
@@ -410,13 +539,17 @@ export default function KyblaScreen({ navigation }: any) {
                         ]}
                     />
 
-                    <Animated.View style={[s.targetBlock, { opacity: targetOpacity, transform: [{ scale: idleBreathScale }] }]}>
-                        <View style={[s.targetRing, isAligned && s.targetRingAligned]} />
+                    <Animated.View style={[s.targetBlock, isLandscape && s.targetBlockLandscape, { opacity: targetOpacity, transform: [{ scale: idleBreathScale }] }]}>
+                        <View style={[
+                            s.targetRing,
+                            isAligned && s.targetRingAligned,
+                            state === 'perfect' && s.targetRingPerfect,
+                        ]} />
                         <View style={[s.targetPill, state === 'perfect' && s.targetPillPerfect]}>
-                            <View style={s.kaabaMark}>
+                            <View style={[s.kaabaMark, state === 'perfect' && s.kaabaMarkPerfect]}>
                                 <View style={s.kaabaBand} />
                             </View>
-                            <Text style={s.targetLabel}>Kybla</Text>
+                            <Text style={s.targetLabel}>{t('qibla.kaaba', 'Käbe')}</Text>
                         </View>
                     </Animated.View>
 
@@ -432,6 +565,9 @@ export default function KyblaScreen({ navigation }: any) {
                                         borderRadius: instrumentSize / 2,
                                         opacity: ringOpacity,
                                         borderWidth: ringBorderWidth,
+                                        borderColor: state === 'perfect'
+                                            ? 'rgba(119, 144, 108, 0.88)'
+                                            : 'rgba(197, 162, 101, 0.42)',
                                         transform: [{ scale: ringScale }],
                                     },
                                 ]}
@@ -441,32 +577,7 @@ export default function KyblaScreen({ navigation }: any) {
 
                             {/* Rotating Dial */}
                             <Animated.View style={[s.disc, { width: compassSize, height: compassSize, borderRadius: compassSize / 2, transform: [{ rotate: rotateStr }] }]}>
-                                <Svg width={compassSize} height={compassSize} viewBox="0 0 100 100">
-                                    <Circle cx="50" cy="50" r="49" fill={C.ring} opacity="0.9" />
-                                    <Circle cx="50" cy="50" r="46.8" fill={C.compass} stroke={C.glassBorder} strokeWidth="0.4" />
-                                    <Circle cx="50" cy="50" r="37.5" fill="none" stroke={C.goldDim} strokeWidth="0.18" opacity="0.55" />
-
-                                    {/* Degree ticks */}
-                                    {Array.from({ length: 72 }).map((_, i) => {
-                                        const major = i % 18 === 0;
-                                        const mid = i % 9 === 0;
-                                        return (
-                                            <Line key={i}
-                                                x1="50" y1="2"
-                                                x2="50" y2={major ? '9.4' : mid ? '6.6' : '4.7'}
-                                                stroke={major || mid ? C.gold : C.goldDim}
-                                                strokeWidth={major ? '0.62' : mid ? '0.34' : '0.16'}
-                                                transform={`rotate(${i * 5} 50 50)`}
-                                            />
-                                        );
-                                    })}
-
-                                    {/* Cardinal Points */}
-                                    <SvgText x="50" y="14.5" textAnchor="middle" fontSize="6.2" fontWeight="800" fill={C.goldBright}>N</SvgText>
-                                    <SvgText x="50" y="91.8" textAnchor="middle" fontSize="4.1" fontWeight="700" fill={C.textMuted}>S</SvgText>
-                                    <SvgText x="87.8" y="51.8" textAnchor="middle" fontSize="4.1" fontWeight="700" fill={C.textMuted}>E</SvgText>
-                                    <SvgText x="12.2" y="51.8" textAnchor="middle" fontSize="4.1" fontWeight="700" fill={C.textMuted}>W</SvgText>
-                                </Svg>
+                                <CompassDial size={compassSize} />
                             </Animated.View>
 
                             {/* Rotating Arrow */}
@@ -508,58 +619,34 @@ export default function KyblaScreen({ navigation }: any) {
                         </View>
                     </Animated.View>
 
-                    <Animated.Text
-                        style={[
-                            s.reachedLabel,
-                            {
-                                opacity: reachedLabelAnim,
-                                transform: [{
-                                    translateY: reachedLabelAnim.interpolate({
-                                        inputRange: [0, 1],
-                                        outputRange: [4, 0],
-                                    }),
-                                }],
-                            },
-                        ]}
-                    >
-                        Kybla tapyldy
-                    </Animated.Text>
                 </View>
 
-                {/* info card */}
-                <View style={[s.card, { width: infoCardWidth }, isAligned && s.cardAligned]}>
-                    <View style={s.infoTopRow}>
-                        <View style={s.infoTopStatus}>
-                            <View style={[s.infoTopDot, { backgroundColor: stateInfo.color }]} />
-                            <Text style={s.infoTopLabel}>{t(stateInfo.label)}</Text>
-                        </View>
-                        <Text style={s.infoTopMeta}>{offlineMeta}</Text>
-                    </View>
-
-                    <View style={s.infoRow}>
-                        <View style={s.infoCell}>
-                            <Text style={s.infoLabel}>{t('qibla.heading', 'Ugur')}</Text>
-                            <Text style={s.infoValue}>{Math.round(heading)}°</Text>
-                        </View>
-                        <View style={s.vDiv} />
-                        <View style={s.infoCell}>
-                            <Text style={s.infoLabel}>{t('qibla.bearing', 'Kybla ugry')}</Text>
-                            <Text style={[s.infoValue, { color: C.gold }]}>{Math.round(bearing || 0)}°</Text>
+                {/* Only the useful offline facts remain visible. */}
+                <View style={[
+                    s.metaCard,
+                    { width: infoCardWidth },
+                    isLandscape && s.metaCardLandscape,
+                    isAligned && s.metaCardAligned,
+                ]}>
+                    <View style={s.metaItem}>
+                        <Ionicons name="navigate-outline" size={18} color={C.gold} />
+                        <View style={s.metaCopy}>
+                            <Text style={s.metaLabel}>{t('qibla.distance', 'Mekgä')}</Text>
+                            <Text style={s.metaValue}>{distanceLabel}</Text>
                         </View>
                     </View>
-
-                    {/* Sensor Stability Gauge */}
-                    <View style={s.stabRow}>
-                        <View style={s.stabBar}>
-                            <View style={[s.stabFill, {
-                                width: `${Math.round(stability * 100)}%` as any,
-                                backgroundColor: stateInfo.isStable ? C.green : C.amber,
-                            }]} />
+                    <View style={s.metaDivider} />
+                    <View style={s.metaItem}>
+                        <View style={[
+                            s.readyDot,
+                            { backgroundColor: accuracyColor },
+                        ]} />
+                        <View style={s.metaCopy}>
+                            <Text style={s.metaLabel}>{offlineLabel}</Text>
+                            <Text style={s.metaValueSmall}>{accuracyLabel}</Text>
                         </View>
-                        <Text style={s.stabText}>
-                            {t('qibla.sensor', 'Sensor')}: {stateInfo.isStable ? t('qibla.stable', 'Durnukly') : t('qibla.measuring', 'Ölcenýär...')}
-                        </Text>
                     </View>
+                </View>
                 </View>
 
             </SafeAreaView>
@@ -578,6 +665,9 @@ const s = StyleSheet.create({
         justifyContent: 'space-between',
         paddingVertical: 10,
     },
+    safeLandscape: {
+        paddingVertical: 4,
+    },
     header: {
         width: '100%',
         flexDirection: 'row',
@@ -585,6 +675,9 @@ const s = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 16,
         paddingTop: 10,
+    },
+    headerLandscape: {
+        paddingTop: 0,
     },
     headerCenter: {
         alignItems: 'center',
@@ -611,40 +704,80 @@ const s = StyleSheet.create({
         borderWidth: 1,
         borderColor: C.glassBorder,
     },
-    badge: {
+    guidanceCard: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: 'rgba(255,250,242,0.045)',
-        paddingHorizontal: 14,
-        paddingVertical: 8,
-        borderRadius: 999,
+        backgroundColor: 'rgba(255,250,242,0.055)',
+        paddingHorizontal: 16,
+        paddingVertical: 13,
+        borderRadius: 20,
         borderWidth: 1,
         borderColor: C.glassBorder,
-        marginTop: 16,
+        marginTop: 12,
     },
-    badgeDot: {
-        width: 8,
-        height: 8,
-        borderRadius: 4,
-        marginRight: 8,
+    guidanceCardLandscape: {
+        marginTop: 2,
+        paddingHorizontal: 14,
+        paddingVertical: 8,
+        borderRadius: 16,
     },
-    calibrationHint: {
-        marginTop: 10,
-        paddingHorizontal: 32,
-        textAlign: 'center',
+    guidanceCardPerfect: {
+        backgroundColor: 'rgba(119,144,108,0.11)',
+        borderColor: 'rgba(119,144,108,0.46)',
+    },
+    guidanceIcon: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 12,
+        backgroundColor: 'rgba(197,162,101,0.10)',
+    },
+    guidanceIconPerfect: {
+        backgroundColor: 'rgba(119,144,108,0.15)',
+    },
+    guidanceCopy: {
+        flex: 1,
+        minWidth: 0,
+    },
+    guidanceTitle: {
+        fontSize: 21,
+        lineHeight: 26,
+        fontWeight: '800',
+        letterSpacing: 0.15,
+    },
+    guidanceTitleLandscape: {
+        fontSize: 17,
+        lineHeight: 21,
+    },
+    guidanceHint: {
+        marginTop: 3,
         fontSize: 12,
         lineHeight: 17,
-        color: C.textMuted,
+        color: C.textSecondary,
+        fontWeight: '500',
     },
-    badgeText: {
-        fontSize: 14,
-        fontWeight: '600',
-        letterSpacing: 0.5,
+    guidanceHintLandscape: {
+        marginTop: 1,
+        fontSize: 11,
+        lineHeight: 14,
+    },
+    mainContent: {
+        flex: 1,
+        alignItems: 'center',
+    },
+    mainContentLandscape: {
+        flexDirection: 'row',
+        justifyContent: 'center',
     },
     compassArea: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+    compassAreaLandscape: {
+        minWidth: 0,
     },
     sceneAura: {
         position: 'absolute',
@@ -666,22 +799,30 @@ const s = StyleSheet.create({
         alignItems: 'center',
         zIndex: 20,
     },
+    targetBlockLandscape: {
+        top: 4,
+    },
     targetRing: {
         position: 'absolute',
-        top: -8,
-        width: 68,
-        height: 68,
-        borderRadius: 34,
+        top: -9,
+        width: 76,
+        height: 76,
+        borderRadius: 38,
         borderWidth: 1,
         borderColor: 'rgba(197, 162, 101, 0.16)',
     },
     targetRingAligned: {
         borderColor: 'rgba(197, 162, 101, 0.28)',
     },
+    targetRingPerfect: {
+        borderWidth: 1.5,
+        borderColor: 'rgba(119, 144, 108, 0.74)',
+        backgroundColor: 'rgba(119, 144, 108, 0.06)',
+    },
     targetPill: {
-        minWidth: 94,
-        paddingHorizontal: 16,
-        paddingVertical: 10,
+        minWidth: 104,
+        paddingHorizontal: 18,
+        paddingVertical: 11,
         borderRadius: 999,
         backgroundColor: 'rgba(18,16,14,0.92)',
         borderWidth: 1,
@@ -694,25 +835,28 @@ const s = StyleSheet.create({
         elevation: 5,
     },
     targetPillPerfect: {
-        backgroundColor: 'rgba(23,19,15,0.98)',
-        borderColor: 'rgba(197, 162, 101, 0.18)',
+        backgroundColor: 'rgba(22,27,20,0.98)',
+        borderColor: 'rgba(119, 144, 108, 0.48)',
     },
     kaabaMark: {
-        width: 18,
-        height: 18,
+        width: 24,
+        height: 24,
         borderRadius: 4,
         backgroundColor: '#111111',
         borderWidth: 1,
-        borderColor: 'rgba(197, 162, 101, 0.28)',
-        marginBottom: 7,
+        borderColor: 'rgba(197, 162, 101, 0.52)',
+        marginBottom: 6,
         overflow: 'hidden',
+    },
+    kaabaMarkPerfect: {
+        borderColor: C.goldBright,
     },
     kaabaBand: {
         position: 'absolute',
         left: 0,
         right: 0,
-        top: 5,
-        height: 3,
+        top: 7,
+        height: 4,
         backgroundColor: C.gold,
     },
     targetLabel: {
@@ -745,10 +889,14 @@ const s = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    card: {
+    metaCard: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
         backgroundColor: 'rgba(18,16,14,0.92)',
-        borderRadius: 24,
-        padding: 22,
+        borderRadius: 20,
+        paddingHorizontal: 18,
+        paddingVertical: 14,
         borderWidth: 1,
         borderColor: 'rgba(255,255,255,0.10)',
         shadowColor: '#000',
@@ -757,90 +905,60 @@ const s = StyleSheet.create({
         shadowRadius: 18,
         marginBottom: Platform.OS === 'ios' ? 10 : 30,
     },
-    cardAligned: {
+    metaCardLandscape: {
+        alignSelf: 'center',
+        paddingHorizontal: 14,
+        paddingVertical: 12,
+        marginLeft: 16,
+        marginBottom: 0,
+    },
+    metaCardAligned: {
         borderColor: 'rgba(197, 162, 101, 0.22)',
         backgroundColor: 'rgba(23,19,15,0.94)',
     },
-    infoTopRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        marginBottom: 18,
-    },
-    infoTopStatus: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    infoTopDot: {
-        width: 7,
-        height: 7,
-        borderRadius: 3.5,
-        marginRight: 8,
-    },
-    infoTopLabel: {
-        fontSize: 11,
-        color: C.textSecondary,
-        fontWeight: '700',
-        letterSpacing: 0.6,
-        textTransform: 'uppercase',
-    },
-    infoTopMeta: {
-        fontSize: 11,
-        color: C.textMuted,
-        fontWeight: '500',
-    },
-    infoRow: {
-        flexDirection: 'row',
-        justifyContent: 'space-evenly',
-        alignItems: 'center',
-        marginBottom: 16,
-    },
-    infoCell: {
-        alignItems: 'center',
+    metaItem: {
         flex: 1,
-    },
-    infoLabel: {
-        fontSize: 11,
-        color: C.textMuted,
-        marginBottom: 6,
-        textTransform: 'uppercase',
-        letterSpacing: 0.9,
-    },
-    infoValue: {
-        fontSize: 24,
-        fontWeight: '400',
-        color: C.textPrimary,
-        letterSpacing: 0.2,
-    },
-    vDiv: {
-        width: 1,
-        height: 34,
-        backgroundColor: C.glassBorder,
-    },
-    stabRow: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        paddingTop: 16,
-        borderTopWidth: 1,
-        borderTopColor: C.glassBorder,
+        minWidth: 0,
     },
-    stabBar: {
-        width: 100,
-        height: 3,
-        backgroundColor: C.accentSoft,
-        borderRadius: 2,
-        marginRight: 10,
-        overflow: 'hidden',
+    metaCopy: {
+        marginLeft: 9,
+        minWidth: 0,
     },
-    stabFill: {
-        height: '100%',
-        borderRadius: 2,
-    },
-    stabText: {
+    metaLabel: {
         fontSize: 11,
-        color: C.textSecondary,
-        fontWeight: '500',
+        color: C.textMuted,
+        textTransform: 'uppercase',
+        letterSpacing: 0.7,
+        fontWeight: '600',
+    },
+    metaValue: {
+        marginTop: 2,
+        fontSize: 18,
+        fontWeight: '700',
+        color: C.textPrimary,
+    },
+    metaValueSmall: {
+        marginTop: 3,
+        fontSize: 13,
+        fontWeight: '600',
+        color: C.textPrimary,
+    },
+    metaDivider: {
+        width: 1,
+        height: 32,
+        backgroundColor: C.glassBorder,
+        marginHorizontal: 14,
+    },
+    readyDot: {
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        shadowColor: C.green,
+        shadowOpacity: 0.32,
+        shadowRadius: 6,
     },
     pivotWrap: {
         position: 'absolute',
@@ -875,13 +993,5 @@ const s = StyleSheet.create({
         height: 4,
         borderRadius: 2,
         backgroundColor: C.goldBright,
-    },
-    reachedLabel: {
-        position: 'absolute',
-        bottom: 28,
-        fontSize: 11,
-        fontWeight: '600',
-        letterSpacing: 0.7,
-        color: C.textSecondary,
     },
 });

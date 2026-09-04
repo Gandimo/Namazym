@@ -5,10 +5,10 @@
  *   - State is only committed after being stable for MIN_STATE_HOLD_MS
  *   - Downgrade (toward calibrating/unstable) happens immediately
  *   - Haptics fire only on state *entry*, not on repeated same-state updates
- *   - Celebration feedback requires stability ≥ THR_STABILITY_HIGH
+ *   - Celebration feedback requires stability ≥ THR_STABILITY_HIGH AND a trusted field
  *   - Minimum stable duration before success haptic: MIN_STABLE_FOR_CELEBRATE_MS
  */
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Platform } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import {
@@ -18,6 +18,7 @@ import {
     THR_STABILITY_HIGH,
     type CompassState,
     type CompassStateInfo,
+    type FieldQuality,
 } from '../utils/kyblaUtils';
 
 const MIN_STATE_HOLD_MS = 500;   // candidate must persist this long before commit
@@ -37,9 +38,17 @@ interface Props {
     stability: number;
     tiltDeg: number;
     sampleCount: number;
+    fieldQuality?: FieldQuality;
 }
 
-export function useQiblaState({ heading, bearing, stability, tiltDeg, sampleCount }: Props): QiblaStateResult {
+export function useQiblaState({
+    heading,
+    bearing,
+    stability,
+    tiltDeg,
+    sampleCount,
+    fieldQuality = 'unknown',
+}: Props): QiblaStateResult {
     const diff = Math.abs(angularDifference(heading, bearing));
 
     const [committed, setCommitted] = useState<CompassState>('calibrating');
@@ -63,13 +72,14 @@ export function useQiblaState({ heading, bearing, stability, tiltDeg, sampleCoun
         lastStableRef.current = isStable;
     }, [stability]);
 
-    const resolvedCandidate = resolveCompassState(committed, diff, stability, tiltDeg, sampleCount);
+    const resolvedCandidate = resolveCompassState(committed, diff, stability, tiltDeg, sampleCount, fieldQuality);
 
     useEffect(() => {
         // Downgrade states apply immediately (user needs instant feedback)
         const isDowngrade =
             resolvedCandidate === 'calibrating' ||
             resolvedCandidate === 'hold_flat' ||
+            resolvedCandidate === 'interference' ||
             resolvedCandidate === 'unstable';
 
         if (isDowngrade) {
@@ -94,6 +104,10 @@ export function useQiblaState({ heading, bearing, stability, tiltDeg, sampleCoun
         };
     }, [resolvedCandidate]);
 
+    useEffect(() => () => {
+        if (candidateTimer.current) clearTimeout(candidateTimer.current);
+    }, []);
+
     // Haptics — fire on state entry with cooldown + stability gate
     const prevState = useRef<CompassState>('calibrating');
     useEffect(() => {
@@ -103,22 +117,26 @@ export function useQiblaState({ heading, bearing, stability, tiltDeg, sampleCoun
         const now = Date.now();
         const stableDuration = now - stableStartRef.current;
 
+        // Never celebrate on a field the compass does not trust — a confident
+        // buzz on a distorted reading is worse than silence.
+        const fieldTrusted = fieldQuality === 'good';
+
         if (committed === 'near' && now - lastHapticNear.current > HAPTIC_COOLDOWN_NEAR_MS) {
-            if (stability >= THR_STABILITY_HIGH) {
+            if (fieldTrusted && stability >= THR_STABILITY_HIGH) {
                 lastHapticNear.current = now;
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
             }
         }
 
         if (committed === 'perfect' && now - lastHapticPerfect.current > HAPTIC_COOLDOWN_PERFECT_MS) {
-            if (stability >= THR_STABILITY_HIGH && stableDuration >= MIN_STABLE_FOR_CELEBRATE_MS) {
+            if (fieldTrusted && stability >= THR_STABILITY_HIGH && stableDuration >= MIN_STABLE_FOR_CELEBRATE_MS) {
                 lastHapticPerfect.current = now;
                 Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
             }
         }
 
         prevState.current = committed;
-    }, [committed, stability]);
+    }, [committed, fieldQuality, stability]);
 
     return {
         state: committed,
