@@ -1,25 +1,41 @@
-import React, { useEffect, useRef } from 'react';
-import { View, StyleSheet, Animated, Dimensions } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { View, StyleSheet, Animated, type LayoutChangeEvent } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { tokens2026 } from '../theme/tokens2026';
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
-
 const ShimmerBox = ({ width, height, borderRadius = 4, style }: any) => {
-    const translateX = useRef(new Animated.Value(-width)).current;
+    // `width` also arrives as a percentage string (e.g. "100%"), which cannot seed
+    // a numeric Animated.Value — `-"100%"` is NaN, and a NaN transform handed to
+    // the native driver is rejected on the native side. Measure the rendered box
+    // instead and keep the shimmer idle until a real pixel width is known.
+    const [trackWidth, setTrackWidth] = useState(typeof width === 'number' ? width : 0);
+    const translateX = useRef(new Animated.Value(0)).current;
 
     useEffect(() => {
-        Animated.loop(
+        if (!Number.isFinite(trackWidth) || trackWidth <= 0) return;
+
+        translateX.setValue(-trackWidth);
+        const shimmer = Animated.loop(
             Animated.timing(translateX, {
-                toValue: width,
+                toValue: trackWidth,
                 duration: 1500,
                 useNativeDriver: true,
             })
-        ).start();
-    }, [width]);
+        );
+        shimmer.start();
+
+        // The skeleton unmounts as soon as prayer times resolve. Without this the
+        // native-driven loop keeps animating a node that no longer exists.
+        return () => shimmer.stop();
+    }, [trackWidth, translateX]);
+
+    const handleLayout = (event: LayoutChangeEvent) => {
+        const next = Math.round(event.nativeEvent.layout.width);
+        setTrackWidth(previous => (previous === next ? previous : next));
+    };
 
     return (
-        <View style={[styles.baseBox, { width, height, borderRadius }, style]}>
+        <View style={[styles.baseBox, { width, height, borderRadius }, style]} onLayout={handleLayout}>
             <Animated.View style={[StyleSheet.absoluteFill, { transform: [{ translateX }] }]}>
                 <LinearGradient
                     colors={['transparent', 'rgba(255,255,255,0.12)', 'transparent']}

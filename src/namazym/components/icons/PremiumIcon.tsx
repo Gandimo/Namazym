@@ -60,27 +60,37 @@ export const PremiumIcon: React.FC<PremiumIconProps> = ({
   const { scaleStyle, onPressIn, onPressOut } = useScalePress();
   const pulseAnim = React.useRef(new Animated.Value(1)).current;
 
-  // Pulse animation logic
+  // Pulse animation logic. `pulse` tracks the active/near prayer, so it toggles
+  // while the app is open — the previous loop must be stopped before starting a
+  // new one, otherwise loops stack on the same value and keep driving the node
+  // after the icon unmounts.
   React.useEffect(() => {
-    if (pulse) {
-      Animated.loop(
-        Animated.sequence([
-          Animated.timing(pulseAnim, {
-            toValue: 1.1,
-            duration: 1200,
-            useNativeDriver: true,
-          }),
-          Animated.timing(pulseAnim, {
-            toValue: 1,
-            duration: 1200,
-            useNativeDriver: true,
-          }),
-        ])
-      ).start();
-    } else {
+    if (!pulse) {
       pulseAnim.setValue(1);
+      return;
     }
-  }, [pulse]);
+
+    const pulsing = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulseAnim, {
+          toValue: 1.1,
+          duration: 1200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(pulseAnim, {
+          toValue: 1,
+          duration: 1200,
+          useNativeDriver: true,
+        }),
+      ])
+    );
+    pulsing.start();
+
+    return () => {
+      pulsing.stop();
+      pulseAnim.setValue(1);
+    };
+  }, [pulse, pulseAnim]);
 
   // Boyut hesaplama (Material Design 3 standardına çek)
   const iconSize = customSize || ICON_SIZES[size];
